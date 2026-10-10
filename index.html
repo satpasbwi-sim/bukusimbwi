@@ -86,7 +86,8 @@ main{max-width:980px;margin:0 auto;padding:18px 16px 110px;overflow-x:clip}
 .ph .grp{font-size:.75rem;opacity:.8;margin-left:8px;letter-spacing:.06em;text-transform:uppercase}
 .ph h2{margin:10px 0 4px;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.2;letter-spacing:-.01em}
 .ph p{margin:0;opacity:.85;max-width:62ch}
-.confid{background:var(--brand-deep);color:#fff;border-bottom:3px solid var(--accent);text-align:center;font-weight:700;font-size:.78rem;letter-spacing:.03em;padding:7px 12px;line-height:1.35}
+.confid{background:var(--brand-deep);color:#fff;border-bottom:3px solid var(--accent);text-align:center;font-weight:700;font-size:.78rem;letter-spacing:.03em;padding:7px 12px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.confid{font-size:clamp(.56rem,2.85vw,.78rem);letter-spacing:0;padding:7px 8px}}
 .pfoot b{color:var(--brand)}
 .pfoot{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:12px clamp(16px,4vw,40px);border-top:1px dashed var(--line);font-size:.78rem;color:var(--muted)}
 h3{font-size:1.15rem;margin:28px 0 10px;color:var(--brand);display:flex;align-items:center;gap:10px}
@@ -1013,7 +1014,13 @@ h3.plain::before{display:none}
       <li><b>Verifikasi, cetak &amp; kirim</b><span>Data diverifikasi petugas, SIM dicetak, lalu dikirim ke alamat Anda. Status dapat dipantau di aplikasi.</span></li>
     </ol>
 
-    <div class="note"><b>Bantuan SINAR di Banyuwangi</b>Mengalami kendala aplikasi? Hubungi WhatsApp Layanan SIM Perpanjangan Online (SINAR): <a href="https://wa.me/62816255705" target="_blank" rel="noopener">0816-255-705</a>, atau datang ke <b>Unit Layanan SIM SINAR</b> di Satpas Polresta Banyuwangi (lihat B.11).</div>
+    <div class="infobox">
+      <p><b>🆘 Bantuan SINAR di Banyuwangi</b><br>Mengalami kendala aplikasi? Hubungi:</p>
+      <div class="infolinks">
+        <a href="https://wa.me/62816255705" target="_blank" rel="noopener"><span class="ic">💬</span><span><small>WhatsApp Layanan SIM Perpanjangan Online (SINAR)</small><b>0816-255-705</b></span></a>
+        <a href="#b11" data-go="b11"><span class="ic">🏢</span><span><small>Datang ke Satpas Polresta Banyuwangi (lihat B.11)</small><b>Unit Layanan SIM SINAR</b></span></a>
+      </div>
+    </div>
 
     <div class="widget"><span class="wt">Interaktif</span>
       <h4>Layanan perpanjangan mana yang cocok untuk saya?</h4>
@@ -1568,7 +1575,7 @@ h3.plain::before{display:none}
 </section>
 
 <section class="page" data-id="c7" data-code="C.1.7" data-group="C" data-title="Tanya Jawab (FAQ)">
-  <div class="ph"><span class="code">C.1.7</span><span class="grp">Lampiran Penunjang</span><h2>Tanya Jawab Seputar SIM</h2><p>Pertanyaan selalu berganti setiap kali dibuka — bersumber dari Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.</p></div>
+  <div class="ph"><span class="code">C.1.7</span><span class="grp">Lampiran Penunjang</span><h2>Tanya Jawab Seputar SIM</h2></div>
   <div class="pbody">
     <div class="widget"><span class="wt">Interaktif</span>
       <p class="small muted" style="margin:0 0 12px">Setiap kali dibuka, <b>8 pertanyaan dipilih acak</b> dari <b><span id="faqN"></span> tanya jawab</b>. Klik pertanyaan untuk melihat jawabannya.</p>
@@ -1579,7 +1586,7 @@ h3.plain::before{display:none}
 </section>
 
 <section class="page" data-id="c8" data-code="C.1.8" data-group="C" data-title="Kuis Pemahaman">
-  <div class="ph"><span class="code">C.1.8</span><span class="grp">Lampiran Penunjang</span><h2>Kuis Pemahaman</h2><p>Uji pengetahuan Anda tentang layanan dan aturan SIM — soal selalu berganti setiap kali dibuka.</p></div>
+  <div class="ph"><span class="code">C.1.8</span><span class="grp">Lampiran Penunjang</span><h2>Kuis Pemahaman</h2><p>Uji pengetahuan Anda tentang layanan dan aturan SIM.</p></div>
   <div class="pbody">
     <div class="widget quiz" id="quizTop"><span class="wt">Interaktif</span>
       <p class="small muted" style="margin:0 0 10px">Setiap kali dibuka, <b>10 soal dipilih acak</b> dari bank <b><span id="bankN"></span> soal</b> dan urutan jawabannya diacak. Soal yang sudah tampil tidak diulang sampai seluruh bank soal habis.</p>
