@@ -3534,7 +3534,10 @@ go(si >= 0 ? si : 0, !startId);
   }
 
   function keJadwal(rows) {
-    if (!rows.length) return [];
+    // Baris judul kolom = baris pertama yang memuat "Tanggal" (baris judul/kosong di atasnya diabaikan).
+    const hi = rows.findIndex(r => r.some(c => /tanggal|tgl/i.test(c)));
+    if (hi < 0) return [];
+    rows = rows.slice(hi);
     const head = rows[0].map(h => h.trim().toLowerCase());
     const kol = (...kata) => head.findIndex(h => kata.some(k => h.includes(k)));
     const ix = { tgl: kol('tanggal', 'tgl'), jam: kol('jam', 'waktu'), lok: kol('lokasi', 'tempat', 'titik'), kec: kol('kecamatan'),
