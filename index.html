@@ -38,7 +38,7 @@ html{font-size:var(--fs)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:var(--brand)}
 button{font:inherit;cursor:pointer}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 
 /* ---------- top bar ---------- */
 .topbar{position:sticky;top:0;z-index:30;background:var(--brand-deep);color:#fff;display:flex;align-items:center;gap:8px;padding:8px 12px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
@@ -782,7 +782,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="dflow">
         <div>
           <div class="vw" id="denahFrame">
-            <img src="img/denah-lantai-1.webp" alt="Denah lantai 1 Satpas Polresta Banyuwangi" width="1400" height="1180" loading="lazy">
+            <img src="img/denah-lantai-1.webp" alt="Denah lantai 1 Satpas Polresta Banyuwangi" width="1400" height="1180" loading="lazy" decoding="async">
             <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path id="route" d="" vector-effect="non-scaling-stroke"/></svg>
           </div>
           <div class="vinfo" id="alurInfo" aria-live="polite"></div>
@@ -842,7 +842,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <button type="button" aria-pressed="false" data-img="img/sampul-latar.webp" data-cap="Foto gedung Satpas Polresta Banyuwangi.">📷 Foto</button>
       </div>
       <figure style="margin:0">
-        <div class="vw"><img id="gImg" src="img/gedung-tampak-depan.webp" alt="Gedung Satpas Polresta Banyuwangi, tampak depan" width="1400" height="875"></div>
+        <div class="vw"><img id="gImg" src="img/gedung-tampak-depan.webp" alt="Gedung Satpas Polresta Banyuwangi, tampak depan" width="1400" height="875" loading="lazy" decoding="async"></div>
         <figcaption class="vcap" id="gCap">Tampak depan: kanopi pintu masuk, jalur ramp untuk kursi roda, dan lambang Korlantas di fasad.</figcaption>
       </figure>
       <div class="floor">
@@ -889,7 +889,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <tr><td><b>Minggu</b></td><td><span class="chip r">TUTUP</span></td></tr>
     </tbody></table></div>
     <div class="note warn"><b>Pengumuman penting</b>Layanan penerbitan SIM (baru &amp; perpanjangan) <b>tutup</b> pada Hari Libur Nasional &amp; Cuti Bersama yang ditetapkan pemerintah.</div>
-    <figure class="poster"><img src="img/poster-jadwal-pelayanan-satpas-polresta-banyuwan.webp" alt="Poster jadwal pelayanan Satpas Polresta Banyuwangi"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-jadwal-pelayanan-satpas-polresta-banyuwan.webp" alt="Poster jadwal pelayanan Satpas Polresta Banyuwangi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
 
     <h3>Layanan yang tersedia</h3>
     <div class="grid g3">
@@ -905,7 +905,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b2" data-code="B.2" data-group="B" data-title="Stop Pungli">
   <div class="ph"><span class="code">B.2</span><span class="grp">Lampiran Pendukung</span><h2>Stop Pungli, Hindari Calo!</h2><p>Proses transparan, hati tenang, SIM di tangan.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-stop-pungli-hindari-calo-dan-tarif-pnbp.webp" alt="Poster Stop Pungli Hindari Calo dan tarif PNBP"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-stop-pungli-hindari-calo-dan-tarif-pnbp.webp" alt="Poster Stop Pungli Hindari Calo dan tarif PNBP" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <p class="lead">“Kami melayani dengan bersih dan transparan. <b>Hindari calo dan stop pungli</b> dengan mengikuti proses resmi. SIM Anda adalah bukti kompetensi, bukan hasil transaksi.”</p>
 
     <h3>Tarif resmi PNBP (PP No. 76 Tahun 2020)</h3>
@@ -939,7 +939,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="ph"><span class="code">B.3</span><span class="grp">Lampiran Pendukung</span><h2>Maklumat Pelayanan SIM</h2><p>Janji layanan Satlantas Polresta Banyuwangi kepada masyarakat.</p></div>
   <div class="pbody">
     <blockquote class="maklumat">Dengan ini menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan, dan apabila tidak menepati janji ini kami siap menerima sanksi sesuai peraturan perundang-undangan yang berlaku. Di samping itu kami akan memberikan kompensasi bila pelayanan kami tidak sesuai standar pelayanan, dan kami akan terus melakukan perbaikan terus-menerus.</blockquote>
-    <figure class="poster"><img src="img/poster-maklumat-pelayanan-sim.webp" alt="Poster Maklumat Pelayanan SIM"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-maklumat-pelayanan-sim.webp" alt="Poster Maklumat Pelayanan SIM" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <h3>Empat janji utama</h3>
     <div class="grid g4">
       <div class="card brand stat"><b>1</b><span>Layanan sesuai standar yang ditetapkan</span></div>
@@ -954,7 +954,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b4" data-code="B.4" data-group="B" data-title="Kode Etik Pelayanan">
   <div class="ph"><span class="code">B.4</span><span class="grp">Lampiran Pendukung</span><h2>Kode Etik Pelayanan SIM</h2><p>Komitmen pelayanan yang cepat, tepat, transparan, dan akuntabel.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-kode-etik-pelayanan-sim.webp" alt="Poster Kode Etik Pelayanan SIM"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-kode-etik-pelayanan-sim.webp" alt="Poster Kode Etik Pelayanan SIM" width="1400" height="788" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g3">
       <div class="card brand"><h4>Hak Pemohon SIM</h4><ol class="clean small">
         <li>Mendapat informasi jelas &amp; lengkap tentang persyaratan, prosedur, dan biaya.</li>
@@ -982,7 +982,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b5" data-code="B.5" data-group="B" data-title="Permohonan SIM Baru">
   <div class="ph"><span class="code">B.5</span><span class="grp">Lampiran Pendukung</span><h2>Permohonan SIM Baru</h2><p>SIM A, SIM B, SIM C, dan SIM D — standar pelayanan sesuai Perpol 5/2021 jo. Perpol 2/2023.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-baru.webp" alt="Poster standar pelayanan permohonan SIM baru"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-baru.webp" alt="Poster standar pelayanan permohonan SIM baru" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g4">
       <div class="card brand stat"><b>± 70 menit</b><span>Jangka waktu penyelesaian</span></div>
       <div class="card brand stat"><b>Rp50 rb – 120 rb</b><span>PNBP sesuai golongan</span></div>
@@ -1093,7 +1093,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <button type="button" aria-pressed="false" data-f="car">🚗 SIM A</button>
         <button type="button" aria-pressed="false" data-f="3d">🧊 Tampak 3D</button>
       </div>
-      <div class="vw" id="lapFrame"><img id="lapImg" src="img/lapangan-tampak-atas.webp" alt="Denah lapangan uji praktik SIM Satpas Polresta Banyuwangi, tampak atas" width="1400" height="969" loading="lazy"></div>
+      <div class="vw" id="lapFrame"><img id="lapImg" src="img/lapangan-tampak-atas.webp" alt="Denah lapangan uji praktik SIM Satpas Polresta Banyuwangi, tampak atas" width="1400" height="969" loading="lazy" decoding="async"></div>
       <div class="vinfo" id="lapInfo" aria-live="polite"><h4>Pilih salah satu nomor</h4><p>Hijau = lintasan sepeda motor (SIM C), biru = lintasan mobil (SIM A).</p></div>
       <div class="legend"><span><i style="background:#1f8a4c"></i>SIM C (1–5)</span><span><i style="background:#0b3d91"></i>SIM A (6–10)</span></div>
       <p class="small muted" style="margin:8px 0 0">Penjelasan diringkas dari Keputusan Kakorlantas Polri Nomor Kep/105/VIII/2023 tentang Ketentuan Pelaksanaan Uji Praktik Penerbitan SIM.</p>
@@ -1123,7 +1123,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <g class="st" data-i="3" tabindex="0" role="button" aria-label="Materi 4: rem menghindar"><circle cx="640" cy="260" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="640" y="268" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">4</text></g>
       </svg>
       <div class="vinfo" id="circInfo" aria-live="polite"><h4>Urutan: 1 → 2 → 3 → 4</h4><p>Masuk dari START di kiri atas, lalu ikuti lintasan sampai berhenti di garis STOP kiri atau kanan pada cabang Y.</p></div>
-      <figure class="poster" style="margin:12px 0 0"><img src="img/sirkuit-r2-kep105.webp" alt="Gambar resmi desain sirkuit uji praktik R2 baru, lampiran Kep/105/VIII/2023" width="737" height="541" loading="lazy"><figcaption>🔍 Gambar resmi lampiran Kep/105</figcaption></figure>
+      <figure class="poster" style="margin:12px 0 0"><img src="img/sirkuit-r2-kep105.webp" alt="Gambar resmi desain sirkuit uji praktik R2 baru, lampiran Kep/105/VIII/2023" width="737" height="541" loading="lazy" decoding="async"><figcaption>🔍 Gambar resmi lampiran Kep/105</figcaption></figure>
     </div>
     <div class="grid g2">
       <div class="card ok"><h4>✅ Ketentuan lulus uji praktik SIM C</h4><ul class="clean small">
@@ -1178,7 +1178,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b6" data-code="B.6" data-group="B" data-title="Permohonan SIM Perpanjangan">
   <div class="ph"><span class="code">B.6</span><span class="grp">Lampiran Pendukung</span><h2>Permohonan SIM Perpanjangan</h2><p>SIM A, SIM B, SIM C, dan SIM D — perpanjang sebelum masa berlaku habis.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-perpanja.webp" alt="Poster standar pelayanan permohonan SIM perpanjangan"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-perpanja.webp" alt="Poster standar pelayanan permohonan SIM perpanjangan" width="1220" height="672" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g4">
       <div class="card brand stat"><b>± 30 menit</b><span>Jangka waktu penyelesaian</span></div>
       <div class="card brand stat"><b>5 tahun</b><span>Masa berlaku SIM baru setelah diperpanjang</span></div>
@@ -1270,7 +1270,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b7" data-code="B.7" data-group="B" data-title="Permohonan SIM Peningkatan">
   <div class="ph"><span class="code">B.7</span><span class="grp">Lampiran Pendukung</span><h2>Permohonan SIM Peningkatan</h2><p>SIM A Umum &amp; golongan SIM B — naik golongan setelah memenuhi masa kepemilikan.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-peningka.webp" alt="Poster standar pelayanan permohonan SIM peningkatan"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-peningka.webp" alt="Poster standar pelayanan permohonan SIM peningkatan" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g4">
       <div class="card brand stat"><b>± 120 menit</b><span>Jangka waktu penyelesaian</span></div>
       <div class="card brand stat"><b>Rp120.000</b><span>PNBP untuk setiap golongan</span></div>
@@ -1317,7 +1317,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b8" data-code="B.8" data-group="B" data-title="Info Pelayanan Hari Minggu – Libur Nasional">
   <div class="ph"><span class="code">B.8</span><span class="grp">Lampiran Pendukung</span><h2>Info Pelayanan Hari Minggu &amp; Libur Nasional</h2><p>Dispensasi perpanjangan SIM yang jatuh tempo pada hari libur.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-informasi-pelayanan-sim-pada-hari-minggu-.webp" alt="Poster informasi pelayanan SIM pada hari Minggu dan libur nasional"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-informasi-pelayanan-sim-pada-hari-minggu-.webp" alt="Poster informasi pelayanan SIM pada hari Minggu dan libur nasional" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <p class="lead">Jika masa berlaku SIM Anda habis tepat pada <b>Hari Minggu</b> atau <b>Hari Libur Nasional</b>, Anda tidak perlu panik. Korlantas Polri memberikan dispensasi sebagai berikut:</p>
     <div class="grid g2">
       <div class="card brand"><h4>📅 Pelayanan perpanjangan</h4><p>SIM dapat diperpanjang pada <b>hari kerja berikutnya</b>.</p></div>
@@ -1340,7 +1340,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b9" data-code="B.9" data-group="B" data-title="Persyaratan E-Rikkes dan E-PPSI">
   <div class="ph"><span class="code">B.9</span><span class="grp">Lampiran Pendukung</span><h2>Persyaratan E-Rikkes dan E-PPSI</h2><p>Kesehatan jasmani (E-RIKKES) dan kesehatan rohani (E-PPSI) — berlaku sejak 1 Januari 2024.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-panduan-persyaratan-kesehatan-dan-psikolo.webp" alt="Poster panduan persyaratan kesehatan dan psikologi"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-panduan-persyaratan-kesehatan-dan-psikolo.webp" alt="Poster panduan persyaratan kesehatan dan psikologi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g4">
       <div class="card brand"><span class="chip">1</span><h4 style="margin-top:6px">Kesehatan Jasmani (E-RIKKES)</h4><p class="small">Surat keterangan dokter yang direkomendasikan Polri/Biddokkes Polda.</p></div>
       <div class="card brand"><span class="chip">2</span><h4 style="margin-top:6px">Kesehatan Rohani (E-PPSI)</h4><p class="small">Surat keterangan lulus psikologi dari psikolog yang direkomendasikan Biro Psikologi SSDM Polri.</p></div>
@@ -1371,7 +1371,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b10" data-code="B.10" data-group="B" data-title="Rangkuman Sarana Pengaduan">
   <div class="ph"><span class="code">B.10</span><span class="grp">Lampiran Pendukung</span><h2>Suara Anda Membangun Kami</h2><p>Rangkuman saluran resmi pengaduan, kritik, dan saran.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/poster-saluran-resmi-pengaduan-kritik-dan-saran.webp" alt="Poster saluran resmi pengaduan kritik dan saran"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/poster-saluran-resmi-pengaduan-kritik-dan-saran.webp" alt="Poster saluran resmi pengaduan kritik dan saran" width="1400" height="746" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <p>Dalam rangka mewujudkan Zona Integritas menuju <b>Wilayah Bebas dari Korupsi (WBK)</b> dan <b>Wilayah Birokrasi Bersih dan Melayani (WBBM)</b>, Satpas Polresta Banyuwangi berkomitmen memberikan pelayanan penerbitan SIM yang profesional, akuntabel, dan transparan.</p>
     <div class="grid g2">
       <div class="card contact"><span class="ic">1</span><div><h4>Datang langsung</h4><p class="small">Temui petugas pengaduan/informasi di Ruang Pengaduan Satpas Polresta Banyuwangi.</p></div></div>
@@ -1440,7 +1440,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b11" data-code="B.11" data-group="B" data-title="Jobdes Pokja">
   <div class="ph"><span class="code">B.11</span><span class="grp">Lampiran Pendukung</span><h2>Jobdes Kelompok Kerja (Pokja) Satpas</h2><p>Alur &amp; tugas unit pelayanan penerbitan SIM sesuai Perpol No. 5/2021 &amp; Perpol No. 2/2023.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/infografis-alur-dan-tugas-12-unit-pelayanan-satp.webp" alt="Infografis alur dan tugas 12 unit pelayanan Satpas"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/infografis-alur-dan-tugas-12-unit-pelayanan-satp.webp" alt="Infografis alur dan tugas 12 unit pelayanan Satpas" width="1400" height="712" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <h3>12 unit pelayanan Satpas</h3>
     <div class="grid g2" id="unitGrid"></div>
     <h3>Tugas kelompok kerja menurut Perpol (Pasal 22–26)</h3>
@@ -1925,7 +1925,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b16" data-code="B.16" data-group="B" data-title="Penerbitan SIM Internasional">
   <div class="ph"><span class="code">B.16</span><span class="grp">Lampiran Pendukung</span><h2>Penerbitan SIM Internasional</h2><p>International Driver’s License — diterbitkan oleh Korlantas Polri.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/infografis-informasi-penerbitan-sim-internasiona.webp" alt="Infografis informasi penerbitan SIM Internasional"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/infografis-informasi-penerbitan-sim-internasiona.webp" alt="Infografis informasi penerbitan SIM Internasional" width="1400" height="701" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g3">
       <div class="card brand"><h4>A. SIM Internasional &amp; validitas</h4><ul class="clean small"><li>Diterbitkan oleh: <b>Korlantas Polri</b></li><li>Masa berlaku: <b>3 (tiga) tahun</b></li><li>Perpanjang sebelum masa berakhir</li></ul></div>
       <div class="card brand"><h4>B. Mekanisme permohonan</h4><p class="small">Ajukan <b>online</b>:<br><a href="https://siminternasional.korlantas.polri.go.id/" target="_blank" rel="noopener">siminternasional.korlantas.polri.go.id</a></p></div>
@@ -1947,7 +1947,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b17" data-code="B.17" data-group="B" data-title="Alur SIM WNA">
   <div class="ph"><span class="code">B.17</span><span class="grp">Lampiran Pendukung</span><h2>Alur SIM Baru bagi WNA</h2><p>Panduan persyaratan dan alur penerbitan SIM bagi Warga Negara Asing.</p></div>
   <div class="pbody">
-    <figure class="poster"><img src="img/infografis-panduan-persyaratan-sim-baru-bagi-wna.webp" alt="Infografis panduan persyaratan SIM baru bagi WNA"><figcaption>🔍 Perbesar</figcaption></figure>
+    <figure class="poster"><img src="img/infografis-panduan-persyaratan-sim-baru-bagi-wna.webp" alt="Infografis panduan persyaratan SIM baru bagi WNA" width="1400" height="628" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <h3>Dokumen keimigrasian yang diterima <span class="chip">Pasal 9 ayat 2</span></h3>
     <div class="grid g3">
       <div class="card brand"><h4>Berdomisili tetap</h4><p class="small">Paspor + Kartu Izin Tinggal Tetap (<b>KITAP</b>).</p></div>
@@ -2317,7 +2317,10 @@ let fs = store.get('sim-book-fs', 16);
 const setFs = v => { fs = Math.max(13, Math.min(22, v)); root.style.setProperty('--fs', fs + 'px'); store.set('sim-book-fs', fs); };
 setFs(fs);
 $('#fsUp').onclick = () => setFs(fs + 1); $('#fsDown').onclick = () => setFs(fs - 1);
-$('#btnPrint').onclick = () => { $$('details.acc').forEach(d => d.open = true); window.print(); };
+// Gambar lazy di halaman tersembunyi belum terunduh; muat semuanya dulu sebelum mencetak.
+const muatSemuaGambar = () => { const imgs = $$('img[loading="lazy"]'); imgs.forEach(i => i.loading = 'eager'); return Promise.all(imgs.map(i => i.decode().catch(() => {}))); };
+window.addEventListener('beforeprint', muatSemuaGambar);
+$('#btnPrint').onclick = async () => { $$('details.acc').forEach(d => d.open = true); await muatSemuaGambar(); window.print(); };
 
 // lightbox
 const lb = $('#lb');
