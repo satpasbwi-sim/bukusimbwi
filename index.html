@@ -1039,8 +1039,7 @@ h3.plain::before{display:none}
       <h4>Cek tanggal dispensasi perpanjangan</h4>
       <div class="row">
         <div class="fld"><label for="dispDate">Tanggal masa berlaku SIM habis</label><input type="date" id="dispDate"></div>
-        <label class="cb" style="flex:1 1 220px;margin:0"><input type="checkbox" id="dispHol"><span>Ada libur lain yang tidak tercantum (mis. libur daerah)</span></label>
-      </div>
+     </div>
       <div class="out" id="dispOut"></div>
       <details class="acc" style="margin-top:10px"><summary>📅 Daftar hari libur nasional &amp; cuti bersama <span id="holYear"></span></summary><div class="in small" id="holList"></div></details>
       <p class="small muted" style="margin:8px 0 0">Data: SKB 3 Menteri tentang Hari Libur Nasional dan Cuti Bersama Tahun 2026 dan Tahun 2027. Tanggal hari besar Islam dapat bergeser mengikuti penetapan Kementerian Agama (sidang isbat).</p>
@@ -2088,10 +2087,9 @@ function disp(){
   const d = parseDate($('#dispDate').value), out = $('#dispOut');
   if (!d) { out.innerHTML = ''; renderHolList(new Date().getFullYear()); return; }
   renderHolList(d.getFullYear());
-  const manual = $('#dispHol').checked;
   const chips = hariChip(d);
-  const tutup = satpasTutup(d) || manual;
-  const dataNote = LIBUR_YEARS.includes(d.getFullYear()) ? '' : `<p class="small muted" style="margin-top:6px">⚠️ Data hari libur keagamaan tahun ${d.getFullYear()} belum tersedia; centang kotak di atas bila tanggal tersebut hari libur.</p>`;
+  const tutup = satpasTutup(d);
+  const dataNote = LIBUR_YEARS.includes(d.getFullYear()) ? '' : `<p class="small muted" style="margin-top:6px">⚠️ Data hari libur keagamaan tahun ${d.getFullYear()} belum tersedia; pastikan kembali kalender libur resmi sebelum datang.</p>`;
   if (!tutup) {
     out.innerHTML = `<p><span class="chip g">✅ Hari pelayanan</span></p><p><b>${fmtDate(d)}</b> bukan hari Minggu maupun hari libur nasional/cuti bersama.</p><p class="small">Perpanjang <b>paling lambat pada tanggal tersebut</b> — lebih baik beberapa hari sebelumnya.</p>${dataNote}`;
     return;
@@ -2100,12 +2098,12 @@ function disp(){
   const lewat = [];
   let n = addDays(d, 1);
   while (satpasTutup(n)) { lewat.push(`<li>${fmtDate(n)} — ${hariChip(n)}</li>`); n = addDays(n, 1); }
-  out.innerHTML = `<div class="holalert"><b>🔔 Perhatian: Satpas tutup pada tanggal tersebut</b><p style="margin:6px 0 0">${fmtDate(d)}</p><p style="margin:6px 0 0">${chips || '<span class="chip y">🟠 Libur lain (dicentang manual)</span>'}</p></div>
+  out.innerHTML = `<div class="holalert"><b>🔔 Perhatian: Satpas tutup pada tanggal tersebut</b><p style="margin:6px 0 0">${fmtDate(d)}</p><p style="margin:6px 0 0">${chips}</p></div>
     ${lewat.length ? `<p class="small" style="margin-top:10px">Hari berikutnya juga tutup:</p><ul class="clean small">${lewat.join('')}</ul>` : ''}
     <p style="margin-top:10px">Batas dispensasi perpanjangan (1 hari kerja setelah libur berakhir):</p><div class="big">${fmtDate(n)}</div>
     <p class="small muted" style="margin-top:6px">Satpas melayani Senin–Sabtu, 08.00–13.00 WIB, kecuali hari libur nasional dan cuti bersama.</p>${dataNote}`;
 }
-$('#dispDate').addEventListener('change', disp); $('#dispHol').addEventListener('change', disp);
+$('#dispDate').addEventListener('change', disp);
 renderHolList(new Date().getFullYear());
 
 /* ---------------- B.9 doc validity ---------------- */
