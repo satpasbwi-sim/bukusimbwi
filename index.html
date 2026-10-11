@@ -89,7 +89,15 @@ main{max-width:980px;margin:0 auto;padding:18px 16px 110px;overflow-x:clip}
 .confid{background:var(--brand-deep);color:#fff;border-bottom:3px solid var(--accent);text-align:center;font-weight:700;font-size:.78rem;letter-spacing:.03em;padding:7px 12px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:640px){.confid{font-size:clamp(.56rem,2.85vw,.78rem);letter-spacing:0;padding:7px 8px}}
 .pfoot b{color:var(--brand)}
-.pfoot{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:12px clamp(16px,4vw,40px);border-top:1px dashed var(--line);font-size:.78rem;color:var(--muted)}
+/* footer: running text berjalan */
+.pfoot .run{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.pfoot .run span{display:inline-block;padding-left:100%;animation:runtext 16s linear infinite}
+.pfoot .run:hover span{animation-play-state:paused}
+.pfoot .pg{flex:none;white-space:nowrap}
+@keyframes runtext{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion: reduce){.pfoot .run span{animation:none;padding-left:0}.pfoot .run{white-space:normal;-webkit-mask-image:none;mask-image:none}}
+@media print{.pfoot .run span{animation:none;padding-left:0}.pfoot .run{-webkit-mask-image:none;mask-image:none}}
+.pfoot{display:flex;gap:12px;flex-wrap:nowrap;justify-content:space-between;align-items:center;padding:12px clamp(16px,4vw,40px);border-top:1px dashed var(--line);font-size:.78rem;color:var(--muted)}
 h3{font-size:1.15rem;margin:28px 0 10px;color:var(--brand);display:flex;align-items:center;gap:10px}
 h3::before{content:"";width:6px;height:20px;border-radius:3px;background:var(--accent);flex:none}
 h3:first-child{margin-top:4px}
@@ -2175,9 +2183,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <li>Pemberitaan media tentang penerapan sirkuit huruf S (Agustus 2023): detikOto, detikJogja, Kompas TV, Good News From Indonesia.</li>
       <li>Gambar tampak gedung, lapangan uji, dan denah lantai 1 dibuat dari model 3D gedung Satpas Polresta Banyuwangi.</li>
     </ol>
-    <div class="note"><b>Catatan</b>Informasi tarif, jadwal, dan kontak dapat berubah sewaktu-waktu. Pastikan kembali melalui Unit Informasi Satpas atau kanal resmi Satlantas Polresta Banyuwangi.</div>
     <div class="note ok"><b>Bantu kami menjadi lebih baik</b>Isi <a href="#c10" data-go="c10">survei kepuasan (C.1.10)</a>.</div>
-    <p class="small muted">Privasi: buku ini menghitung jumlah kunjungan per halaman dengan GoatCounter, <b>tanpa cookie</b> dan tanpa menyimpan data pribadi, untuk mengetahui materi yang paling dibutuhkan masyarakat. Pengaturan tampilan (ukuran huruf, tema) hanya disimpan di perangkat Anda.</p>
     <div class="noprint" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
       <button class="btn" data-go="daftar-isi">Kembali ke Daftar Isi</button>
       <button class="btn ghost" data-go="sampul">Ke Sampul</button>
@@ -2281,7 +2287,7 @@ pages.forEach((p, i) => {
   c.textContent = NOTICE;
   p.prepend(c);
   const f = document.createElement('div'); f.className = 'pfoot';
-  f.innerHTML = `<span><b>${NOTICE}</b></span><span>Halaman ${i+1} dari ${pages.length}</span>`;
+  f.innerHTML = `<span class="run"><span><b>${NOTICE}</b></span></span><span class="pg">Halaman ${i+1} dari ${pages.length}</span>`;
   p.appendChild(f);
 });
 
