@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610112120">
+<meta name="versi-buku" content="202610120549">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -670,7 +670,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <div><b id="covTools">12</b><span>Alat interaktif</span></div>
         <div><b>4</b><span>Inovasi layanan</span></div>
       </div>
-      <form class="cover-search noprint" id="covSearch" role="search"><input type="search" id="covQ" placeholder="Cari: perpanjangan, biaya, SIM hilang…" aria-label="Cari di buku"><button class="btn" type="submit">🔍 Cari</button></form>
       <div class="cinov"><small>Inovasi layanan:</small><span data-go="b12">SINAR</span><span data-go="b13">SIM JEMPOL</span><span data-go="b14">LUPIS</span><span data-go="b15">SIBABA</span></div>
       <p class="chint">👉 <b>Cara membaca:</b> Geser layar, gunakan tombol di bawah, atau tombol panah ← → pada keyboard untuk membalik halaman.</p>
     </div>
@@ -695,7 +694,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page tocpage" data-id="daftar-isi" data-title="Daftar Isi">
   <div class="ph"><span class="code">ISI</span><h2>Daftar Isi</h2><p>Klik judul untuk langsung menuju halaman yang diinginkan.</p></div>
   <div class="pbody">
-    <form class="row noprint" id="tocSearch" role="search" style="flex-wrap:nowrap"><input type="search" id="tocQ" placeholder="Cari topik… mis. perpanjangan, biaya" aria-label="Cari di buku" style="flex:1;min-width:0"><button class="btn" type="submit" style="flex:none">🔍 Cari</button></form>
     <div id="tocPage"></div>
     <div class="note"><b>Cara menggunakan buku ini</b>
       <ul>
@@ -1631,7 +1629,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= B.13 SIM JEMPOL ================= -->
-<section class="page" data-id="b13" data-code="B.13" data-group="B" data-title="Layanan Penerbitan SIM Jempol (Simling)">
+<section class="page" data-id="b13" data-code="B.13" data-group="B" data-title="Layanan Penerbitan SIM Jempol">
   <div class="ph"><span class="code">B.13</span><span class="grp">Lampiran Pendukung</span><h2>SIM JEMPOL (Jemput Bola)</h2><p>Bus SIM Keliling hadir di kecamatan dan pusat keramaian untuk perpanjangan SIM A &amp; C.</p></div>
   <div class="pbody">
     <div class="hero-inov jempol">
@@ -1754,7 +1752,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="pbody">
     <div class="hero-inov lupis">
       <div><span class="chip y">INOVASI SATLANTAS POLRESTA BANYUWANGI</span><h3 class="plain">Dari “kami menguji Anda” menjadi “kami membantu Anda belajar”</h3><p>Banyak pemohon gagal ujian praktik bukan karena tidak bisa berkendara, melainkan karena <b>gugup dan cemas</b> di bawah pengawasan penguji. LUPIS menghadirkan latihan di <b>lapangan ujian yang sebenarnya</b>, didampingi penguji bersertifikat yang ramah, sabar, dan komunikatif.</p></div>
-      <div class="track" aria-hidden="true"><svg viewBox="0 0 120 120"><path d="M20 105 C20 70 100 80 100 50 S20 30 30 12" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-dasharray="1 16"/><path d="M20 105 C20 70 100 80 100 50 S20 30 30 12" fill="none" stroke="currentColor" stroke-width="2" opacity=".5"/></svg><span>Sirkuit huruf S</span></div>
+      <div class="hero-art foto"><img src="img/lupis-1.jpg" alt="Ilustrasi latihan LUPIS: petugas memberi arahan kepada peserta bersepeda motor di lapangan uji" width="1000" height="704" loading="lazy"></div>
     </div>
     <div class="grid g4">
       <div class="card brand stat"><b>Rp0</b><span>Gratis, tanpa biaya apa pun</span></div>
@@ -3023,7 +3021,6 @@ document.addEventListener('keydown', e => {
   if (sdlg.classList.contains('on') && e.key === 'Escape') { closeSearch(); return; }
   if (e.key === '/' && !e.target.matches('input,select,textarea')) { e.preventDefault(); openSearch(); }
 });
-[['#covSearch','#covQ'], ['#tocSearch','#tocQ']].forEach(([f, i]) => $(f).addEventListener('submit', e => { e.preventDefault(); openSearch($(i).value.trim()); }));
 
 /* ---------- Dengarkan (Web Speech API, suara bawaan perangkat) ---------- */
 const TTS = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
@@ -3614,15 +3611,16 @@ go(si >= 0 ? si : 0, !startId);
   const tombolMaps = j => j.maps ? '<a class="btn sm" href="' + esc(j.maps) + '" target="_blank" rel="noopener">📍 Petunjuk arah</a>' : '';
 
   // Kalimat ajakan untuk jadwal hari ini; pola berganti setiap kali dibuka (tidak mengulang pola terakhir).
+  // Setiap pola memuat lokasi, kecamatan (bila ada) dan jam layanan, karena baris rincian terpisah sudah dihapus.
   const AJAK = [
-    j => `Kabar baik${j.kec ? ', warga ' + j.kec : ''}! Hari ini Bus SIM Keliling mangkal di <b>${j.lok}</b>${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}. Bawa e-KTP dan SIM lama, perpanjangan selesai tanpa harus ke Satpas.`,
-    j => `📍 <b>${j.lok}</b> jadi tujuan Bus SIM Keliling hari ini${j.jam ? ' (' + j.jam + ' WIB)' : ''}. Jangan tunggu SIM habis masa berlakunya, mampir sebentar dan pulang dengan SIM baru!`,
-    j => `SIM Anda hampir habis masa berlakunya? Bus SIM Keliling siap melayani di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', mulai ' + j.mulai + ' WIB' : ''}.`,
-    j => `Hari ${j.hari} ini, kami yang datang ke Anda. Bus SIM Keliling hadir di <b>${j.lok}</b>${j.jam ? ' pukul ' + j.jam + ' WIB' : ''} untuk perpanjangan SIM A dan C.`,
-    j => `Tak perlu jauh-jauh ke Satpas! Perpanjang SIM A dan C hari ini di <b>${j.lok}</b>${j.kec ? ' (' + j.kec + ')' : ''}${j.jam ? ', ' + j.jam + ' WIB' : ''}.`,
-    j => `Sempatkan mampir ke <b>${j.lok}</b>${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Siapkan e-KTP, SIM lama, serta surat kesehatan dan psikologi, lalu perpanjang SIM Anda di Bus SIM Keliling.`,
-    j => `Warga${j.kec ? ' ' + j.kec : ''} dan sekitarnya, Bus SIM Keliling menunggu Anda di <b>${j.lok}</b> hari ini${j.jam ? ', ' + j.jam + ' WIB' : ''}. Datang lebih awal agar antrean lebih singkat.`,
-    j => `Hari ini pelayanan SIM hadir lebih dekat: <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', ' + j.jam + ' WIB' : ''}. Cukup bawa dokumen lengkap, proses cepat dan biaya sesuai tarif resmi.`
+    j => `Kabar baik${j.kec ? ', warga ' + j.kec : ''}! Hari ini Bus SIM Keliling mangkal di <b>${j.lok}</b>${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Bawa e-KTP dan SIM lama, perpanjangan selesai tanpa harus ke Satpas.`,
+    j => `📍 <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec + ',' : ''} jadi tujuan Bus SIM Keliling hari ini${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Jangan tunggu SIM habis masa berlakunya, mampir sebentar dan pulang dengan SIM baru!`,
+    j => `SIM Anda hampir habis masa berlakunya? Bus SIM Keliling siap melayani di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}.`,
+    j => `Hari ${j.hari} ini, kami yang datang ke Anda. Bus SIM Keliling hadir di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ' pukul ' + j.jam + ' WIB' : ''} untuk perpanjangan SIM A dan C.`,
+    j => `Tak perlu jauh-jauh ke Satpas! Perpanjang SIM A dan C hari ini di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}.`,
+    j => `Sempatkan mampir ke <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Siapkan e-KTP, SIM lama, serta surat kesehatan dan psikologi, lalu perpanjang SIM Anda di Bus SIM Keliling.`,
+    j => `Warga${j.kec ? ' Kec. ' + j.kec : ''} dan sekitarnya, Bus SIM Keliling menunggu Anda di <b>${j.lok}</b> hari ini${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Datang lebih awal agar antrean lebih singkat.`,
+    j => `Hari ini pelayanan SIM hadir lebih dekat: <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}. Cukup bawa dokumen lengkap, proses cepat dan biaya sesuai tarif resmi.`
   ];
   function ajakan(j, hp) {
     // antrean acak: semua pola tampil bergiliran sebelum ada yang terulang
@@ -3654,13 +3652,9 @@ go(si >= 0 ? si : 0, !startId);
       html += kartuTutup(now, (lib[0] === 'C' ? 'Cuti bersama: ' : 'Hari libur nasional: ') + esc(lib[1]) + '.');
     } else if (today.length && today.some(buka)) {
       html += today.filter(buka).map(j => {
-        const r = jamRentang(j.jam);
-        const st = !r ? '' : now.menit < r[0] ? '<span class="chip y">Mulai ' + esc(j.jam.split(/[-–—]/)[0].trim()) + ' WIB</span>'
-          : now.menit <= r[1] ? '<span class="chip g">● Sedang melayani</span>' : '<span class="chip r">Sudah selesai</span>';
         const t = tglPendek(j.t);
         return '<div class="sl-today"><small>🚌 Hari ini · ' + t.hp + ', ' + tglLengkap(j.t) + '</small>'
           + '<p style="margin:4px 0 6px;font-size:1.02rem;line-height:1.5">' + ajakan(j, t.hp) + '</p>'
-          + '<div class="small">' + [j.kec && 'Kec. ' + esc(j.kec), j.jam && esc(j.jam) + ' WIB'].filter(Boolean).join(' · ') + ' ' + st + '</div>'
           + (j.ket ? '<div class="small muted">' + esc(j.ket) + '</div>' : '')
           + (j.maps ? '<div class="acts">' + tombolMaps(j) + '</div>' : '') + '</div>';
       }).join('');
