@@ -321,7 +321,19 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .hero-inov p{opacity:.92;margin:0}
 h3.plain{color:#fff;margin:8px 0 6px;font-size:1.2rem}
 h3.plain::before{display:none}
-@media (max-width:640px){.hero-inov{grid-template-columns:1fr}.hero-inov>div:last-child{display:none}}
+@media (max-width:640px){.hero-inov{grid-template-columns:1fr}.hero-inov>div:last-child{display:none}.hero-inov>div.hero-art{display:block;justify-self:center}}
+.hero-art img{display:block;height:auto}
+.hero-art.logo img{width:150px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+.hero-art.foto img{width:240px;max-width:100%;border-radius:14px;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+@media (max-width:640px){.hero-art.logo img{width:120px}.hero-art.foto img{width:100%;max-width:340px}}
+.pbm{margin:18px 0 0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pbm img{width:100%;height:auto;display:block}
+.ajak-ikm{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-radius:16px;padding:16px 18px;margin:14px 0;background:linear-gradient(135deg,var(--ok-soft),var(--brand-soft));border:1px solid var(--line)}
+.ajak-ikm .em{font-size:2.2rem;line-height:1}
+.ajak-ikm h4{margin:0 0 4px;font-size:1.08rem}
+.ajak-ikm p{margin:0 0 10px}
+.ajak-ikm .btn{text-decoration:none;display:inline-flex}
+@media (max-width:520px){.ajak-ikm{grid-template-columns:1fr;text-align:center}.ajak-ikm .btn{justify-content:center}}
 .phone{width:112px;height:196px;border-radius:22px;border:4px solid #fff;padding:7px;background:#0a1d44}
 .phone .scr{height:100%;border-radius:14px;background:#fff;color:#071f4d;display:flex;flex-direction:column;gap:6px;padding:10px;font-size:.62rem}
 .phone .scr b{font-size:1rem;color:#0b3d91}
@@ -1170,7 +1182,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Diperkenalkan Kakorlantas di Satpas Daan Mogot, Jakarta, 4 Agustus 2023, dan diberlakukan di Satpas seluruh Indonesia mulai awal Agustus 2023.</li>
         <li>Lintasan dibuat lebih lebar sehingga lebih mudah tanpa mengurangi aspek keselamatan.</li>
         <li>Menurut lampiran Kep/105, uji SIM D tetap memakai pengereman, slalom/zig-zag, dan rem menghindar.</li>
-        <li>Sumber: <a href="https://oto.detik.com/motor/d-6859036/manuver-angka-8-dihapus-ini-4-materi-ujian-praktik-sim-c-yang-baru" target="_blank" rel="noopener">detikOto</a>, <a href="https://www.detik.com/jogja/berita/d-6860128/desain-baru-ujian-praktik-sim-zigzag-angka-8-diganti-jadi-jalur-s" target="_blank" rel="noopener">detikJogja</a>, <a href="https://www.kompas.tv/info-publik/431721/ujian-praktik-sim-baru-berlaku-hari-ini-tak-ada-lagi-lintasan-angka-8-dan-zigzag?page=all" target="_blank" rel="noopener">Kompas TV</a>, <a href="https://www.goodnewsfromindonesia.id/2023/08/04/polri-hapus-ujian-sim-angka-8-dan-zig-zag-ganti-dengan-huruf-s" target="_blank" rel="noopener">GNFI</a>.</li>
       </ul></div>
     </div>
     <p class="small muted">Sebelum ujian (pencerahan): periksa fungsi kemudi, rem tangan &amp; kaki, transmisi, kopling, oli, busi, spion, lampu, bahan bakar, kondisi &amp; tekanan ban, dan klakson. Pakai helm SNI (SIM C) atau sabuk keselamatan (SIM A). Lulus bila tidak melakukan kesalahan pada setiap materi (Pasal 19 ayat 2 Perpol 5/2021).</p>
@@ -1513,7 +1524,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="pbody">
     <div class="hero-inov sinar">
       <div><span class="chip y">INOVASI KORLANTAS POLRI</span><h3 class="plain">Perpanjang SIM dari rumah</h3><p>Melalui aplikasi <b>Digital Korlantas POLRI</b>, pemohon dapat memperpanjang SIM, mengikuti tes kesehatan &amp; psikologi secara daring, membayar PNBP, lalu menerima SIM baru melalui jasa pengiriman ke alamat rumah.</p></div>
-      <div class="phone" aria-hidden="true"><div class="scr"><b>SINAR</b><span>Perpanjangan SIM</span><i></i><i></i><i></i><em>Bayar &amp; Kirim</em></div></div>
+      <div class="hero-art logo"><img src="img/logo-sinar.png" alt="Logo SINAR, SIM Nasional Presisi, Korps Lalu Lintas Polri" width="178" height="130"></div>
     </div>
 
     <div class="grid g4">
@@ -1614,7 +1625,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="pbody">
     <div class="hero-inov jempol">
       <div><span class="chip y">INOVASI SATLANTAS POLRESTA BANYUWANGI</span><h3 class="plain">“Kami yang datang ke Anda”</h3><p>Banyuwangi adalah kabupaten terluas di Pulau Jawa. Warga di pelosok dan pesisir bisa menempuh <b>40–70 km</b> ke Satpas induk. SIM JEMPOL mengubah pola layanan dari <b>menunggu pemohon datang</b> menjadi <b>menjemput kebutuhan masyarakat</b>.</p></div>
-      <div class="bus" aria-hidden="true"><div class="body"><span>SIM KELILING</span><i></i><i></i><i></i></div><b></b><b></b></div>
+      <div class="hero-art foto"><img src="img/bus-simling.webp" alt="Ilustrasi Bus Layanan SIM Keliling Polisi" width="1200" height="800" loading="lazy"></div>
     </div>
     <div class="grid g2">
       <div class="card brand stat"><b>10–15 mnt</b><span>Sejak daftar hingga SIM dicetak</span></div>
@@ -2189,7 +2200,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <li>Pemberitaan media tentang penerapan sirkuit huruf S (Agustus 2023): detikOto, detikJogja, Kompas TV, Good News From Indonesia.</li>
       <li>Gambar tampak gedung, lapangan uji, dan denah lantai 1 dibuat dari model 3D gedung Satpas Polresta Banyuwangi.</li>
     </ol>
-    <div class="note ok"><b>Bantu kami menjadi lebih baik</b>Isi <a href="#c10" data-go="c10">survei kepuasan (C.1.10)</a>.</div>
+    <div class="ajak-ikm" id="ajakIkm"><span class="em" aria-hidden="true">💬</span><div><h4>Bantu kami menjadi lebih baik</h4><p>Isi survei kepuasan Buku Digital ini.</p><a class="btn sm" href="#c10" data-go="c10">Isi survei kepuasan →</a></div></div>
+    <figure class="pbm"><img src="img/polisi-bersama-masyarakat.jpg" alt="Polisi Bersama Masyarakat: Melindungi, Mengayomi dan Melayani" width="1220" height="726" loading="lazy"></figure>
     <div class="noprint" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
       <button class="btn" data-go="daftar-isi">Kembali ke Daftar Isi</button>
       <button class="btn ghost" data-go="sampul">Ke Sampul</button>
@@ -3481,6 +3493,32 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       .catch(() => { out.innerHTML = '⚠️ Gagal mengirim. Periksa koneksi internet lalu coba lagi.'; })
       .finally(() => { send.disabled = false; send.textContent = 'Kirim penilaian'; });
   });
+})();
+
+/* ---------- Penutup: ajakan mengisi survei (pola berganti setiap kali dibuka) ---------- */
+(function(){
+  const AJAK = [
+    ['💬', 'Suara Anda, arah pelayanan kami', 'Setiap penilaian dari Anda menjadi bahan kami berbenah. Luangkan waktu sejenak untuk mengisi survei kepuasan.', 'Beri penilaian →'],
+    ['🙋', 'Sudah menemukan informasi yang dicari?', 'Ceritakan pengalaman Anda membaca buku ini. Jawaban Anda membantu warga lain mendapat informasi yang lebih jelas.', 'Ceritakan pengalaman Anda →'],
+    ['⭐', 'Berapa bintang untuk buku ini?', 'Apa pun nilainya, kami ingin tahu. Penilaian jujur Anda adalah hadiah terbaik untuk perbaikan pelayanan SIM.', 'Isi survei sekarang →'],
+    ['🤝', 'Pelayanan prima lahir dari masukan masyarakat', 'Kami tidak bisa berbenah sendirian. Bagikan penilaian Anda dan jadilah bagian dari perubahan pelayanan SIM di Banyuwangi.', 'Ikut berpartisipasi →'],
+    ['🎯', 'Satu jawaban, satu langkah perbaikan', 'Ada yang kurang jelas, kurang lengkap, atau sudah sangat membantu? Sampaikan semuanya melalui survei kepuasan.', 'Sampaikan penilaian →'],
+    ['💡', 'Kritik membangun, saran menginspirasi', 'Kami menunggu keduanya dari Anda. Isi survei kepuasan dan bantu Buku Digital SIM menjadi lebih bermanfaat.', 'Kirim masukan →'],
+    ['📣', 'Kami mendengar, kami berbenah', 'Hasil survei ditampilkan terbuka di halaman C.1.10 dan menjadi dasar peningkatan layanan. Tambahkan suara Anda di sana.', 'Lihat & isi survei →'],
+    ['🚀', 'Bantu kami melayani lebih baik', 'Terima kasih telah membaca sampai akhir! Satu langkah lagi: beri nilai untuk buku ini melalui survei kepuasan.', 'Isi survei kepuasan →']
+  ];
+  const box = $('#ajakIkm'); if (!box) return;
+  function tampil(){
+    // antrean acak: semua pola tampil bergiliran sebelum ada yang terulang
+    let q = store.get('sim-book-ajak-ikm', []);
+    const last = store.get('sim-book-ajak-ikm-akhir', -1);
+    if (!Array.isArray(q) || !q.length) { q = shuffle(AJAK.map((_, i) => i)); if (q[0] === last) q.push(q.shift()); }
+    const i = q.shift() % AJAK.length, a = AJAK[i];
+    store.set('sim-book-ajak-ikm', q); store.set('sim-book-ajak-ikm-akhir', i);
+    box.innerHTML = `<span class="em" aria-hidden="true">${a[0]}</span><div><h4>${a[1]}</h4><p>${a[2]}</p><a class="btn sm" href="#c10" data-go="c10">${a[3]}</a></div>`;
+  }
+  pageHooks.push(p => { if (p.dataset.id === 'penutup') tampil(); });
+  tampil();
 })();
 
 $('#covTools').textContent = $$('.widget').length;
