@@ -306,13 +306,10 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cinov small{opacity:.75;margin-right:4px}
 .cinov span{background:#fff;color:#06173d;font-weight:800;font-size:.72rem;padding:5px 11px;border-radius:99px;letter-spacing:.04em;cursor:pointer}
 .cinov span:hover{background:var(--accent)}
-.simcard{position:absolute;z-index:2;right:clamp(20px,5vw,56px);top:50%;margin-top:-90px;width:250px;aspect-ratio:1.586;border-radius:16px;background:linear-gradient(135deg,#ffffff,#e4ebf7);color:#06173d;box-shadow:0 24px 50px rgba(0,0,0,.45);transform:rotate(8deg);padding:12px 14px;font-size:.6rem;overflow:hidden}
-.simcard .hd{background:#c62828;color:#fff;font-weight:800;margin:-12px -14px 10px;padding:7px 14px;letter-spacing:.05em}
-.simcard .ph2{float:left;width:54px;height:66px;border-radius:6px;background:linear-gradient(180deg,#cfd8e8,#aebbd3);margin-right:12px}
-.simcard .big2{display:block;font-size:1.5rem;font-weight:800;color:#0b3d91;line-height:1}
-.simcard i{display:block;height:6px;border-radius:3px;background:#cfd8e8;margin:7px 0}
-.simcard .ft{clear:both;position:absolute;left:14px;right:14px;bottom:10px;font-weight:800;color:#0b3d91;letter-spacing:.04em;border-top:2px solid #f2b705;padding-top:5px}
-@media (max-width:899px){.simcard{display:none}}
+/* logo Lantas di sampul: kanan pada layar lebar, di atas judul pada HP */
+.covlogo{display:block;width:92px;height:auto;margin:0 0 14px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
+@media (min-width:900px){.covlogo{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);width:230px;margin:0}}
+@media print{.covlogo{filter:none}}
 @media (min-width:900px){.cover .ct{padding-right:330px}}
 @media (max-width:640px){.cfeat,.g4{grid-template-columns:repeat(2,1fr)}.g4 .stat b{font-size:1.25rem}.g4 .card{padding:12px 10px}}
 
@@ -453,7 +450,7 @@ h3.plain::before{display:none}
   .ph{padding-top:16px;padding-bottom:14px}
   .ph::after{display:none}
   .cover{min-height:auto}
-  .simcard{display:none}
+  .covlogo{position:static;transform:none;width:64px;margin:0 0 8px}
   .cover .ct{padding-right:clamp(18px,5vw,48px)}
 }
 
@@ -641,6 +638,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="cover">
     <div class="bgimg" style="background-image:url('img/sampul-latar.webp')"></div>
     <div class="ct">
+      <img class="covlogo" src="img/logo-lantas-baru.png" alt="Logo Korps Lalu Lintas Polri" width="356" height="390">
       <span class="tag">BUKU DIGITAL INTERAKTIF</span>
       <h1>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h1>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
@@ -657,11 +655,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <form class="cover-search noprint" id="covSearch" role="search"><input type="search" id="covQ" placeholder="Cari: perpanjangan, biaya, SIM hilang…" aria-label="Cari di buku"><button class="btn" type="submit">🔍 Cari</button></form>
       <div class="cinov"><small>Inovasi layanan:</small><span data-go="b12">SINAR</span><span data-go="b13">SIM JEMPOL</span><span data-go="b14">LUPIS</span><span data-go="b15">SIBABA</span></div>
       <p class="chint">👉 <b>Cara membaca:</b> Geser layar, gunakan tombol di bawah, atau tombol panah ← → pada keyboard untuk membalik halaman.</p>
-    </div>
-    <div class="simcard" aria-hidden="true">
-      <div class="hd">INDONESIA · SURAT IZIN MENGEMUDI</div>
-      <div class="ph2"></div><span class="big2">SIM C</span><i></i><i style="width:70%"></i><i style="width:85%"></i>
-      <div class="ft">SATPAS POLRESTA BANYUWANGI</div>
     </div>
     <div class="stripe"></div>
   </div>
