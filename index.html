@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="versi-buku" content="202610112120">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -318,7 +319,7 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .hero-inov p{opacity:.92;margin:0}
 h3.plain{color:#fff;margin:8px 0 6px;font-size:1.2rem}
 h3.plain::before{display:none}
-@media (max-width:640px){.hero-inov{grid-template-columns:1fr}.hero-inov>div:last-child{display:none}.hero-inov>div.hero-art{display:block;justify-self:center}}
+@media (max-width:640px){.hero-inov{grid-template-columns:1fr}.hero-inov>div:last-child{display:none}.hero-inov>div.hero-art,.hero-inov>div.track{display:block;justify-self:center}}
 .hero-art img{display:block;height:auto}
 .hero-art.logo img{width:150px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
 .hero-art.foto img{width:240px;max-width:100%;border-radius:14px;box-shadow:0 8px 22px rgba(0,0,0,.35)}
@@ -598,6 +599,23 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   details.acc .in{display:block}
 }
 </style>
+<script>
+/* Pastikan pembaca selalu mendapat versi buku terbaru.
+   GitHub Pages mengizinkan browser menyimpan halaman 10 menit; bila versi di server
+   berbeda dengan yang sedang tampil, salinan di browser diperbarui lalu halaman dimuat ulang sekali. */
+(function () {
+  if (!/^https?:$/.test(location.protocol) || !window.fetch) return;
+  const kini = (document.querySelector('meta[name="versi-buku"]') || {}).content;
+  addEventListener('load', function () {
+    fetch(location.pathname, { cache: 'reload' }).then(function (r) { return r.text(); }).then(function (t) {
+      const m = t.match(/name="versi-buku" content="(\d+)"/), server = m && m[1];
+      if (!server || server === kini) return;
+      try { if (sessionStorage.getItem('versi-dimuat') === server) return; sessionStorage.setItem('versi-dimuat', server); } catch (e) { return; }
+      location.reload();
+    }).catch(function () {});
+  });
+})();
+</script>
 </head>
 <body>
 
@@ -3680,7 +3698,7 @@ go(si >= 0 ? si : 0, !startId);
   async function muat() {
     const ctl = new AbortController(), batas = setTimeout(() => ctl.abort(), 10000);
     try {
-      const res = await fetch(CSV_URL, { signal: ctl.signal, cache: 'no-cache' });
+      const res = await fetch(CSV_URL + '&t=' + Date.now(), { signal: ctl.signal, cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const csv = await res.text();
       if (/^\s*</.test(csv)) throw new Error('bukan CSV');
