@@ -86,7 +86,13 @@ main{max-width:980px;margin:0 auto;padding:18px 16px 110px;overflow-x:clip}
 .ph .grp{font-size:.75rem;opacity:.8;margin-left:8px;letter-spacing:.06em;text-transform:uppercase}
 .ph h2{margin:10px 0 4px;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.2;letter-spacing:-.01em}
 .ph p{margin:0;opacity:.85;max-width:62ch}
-.confid{background:var(--brand-deep);color:#fff;border-bottom:3px solid var(--accent);text-align:center;font-weight:700;font-size:.78rem;letter-spacing:.03em;padding:7px 12px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.confid{background:var(--brand-deep);color:#fff;border-bottom:3px solid var(--accent);text-align:center;font-weight:700;font-size:.78rem;letter-spacing:.03em;padding:7px 12px;line-height:1.35;white-space:nowrap;overflow:hidden}
+/* header: running text berjalan */
+.confid .run{display:block;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.confid .run span{display:inline-block;padding-left:100%;animation:runtext 16s linear infinite}
+.confid:hover .run span{animation-play-state:paused}
+@media (prefers-reduced-motion: reduce){.confid .run span{animation:none;padding-left:0}.confid .run{-webkit-mask-image:none;mask-image:none;text-overflow:ellipsis}}
+@media print{.confid .run span{animation:none;padding-left:0}.confid .run{-webkit-mask-image:none;mask-image:none}}
 @media (max-width:640px){.confid{font-size:clamp(.56rem,2.85vw,.78rem);letter-spacing:0;padding:7px 8px}}
 .pfoot b{color:var(--brand)}
 /* footer: running text berjalan */
@@ -2284,7 +2290,7 @@ function goId(id){ const i = pages.findIndex(p => p.dataset.id === id); if (i >=
 const NOTICE = '© Satpas Polresta Banyuwangi — Informasi Layanan Publik';
 pages.forEach((p, i) => {
   const c = document.createElement('div'); c.className = 'confid';
-  c.textContent = NOTICE;
+  c.innerHTML = `<span class="run"><span>${NOTICE}</span></span>`;
   p.prepend(c);
   const f = document.createElement('div'); f.className = 'pfoot';
   f.innerHTML = `<span class="run"><span><b>${NOTICE}</b></span></span><span class="pg">Halaman ${i+1} dari ${pages.length}</span>`;
@@ -2395,6 +2401,7 @@ const LIBUR = {
   '2027-12-26':['L','Isra Mikraj Nabi Muhammad saw. 1449 H']
 };
 const LIBUR_YEARS = [2026, 2027];
+window.SIM_LIBUR = LIBUR; // dipakai skrip Jadwal SIM Keliling (B.13)
 const FIXED_LIBUR = {'01-01':'Tahun Baru Masehi','05-01':'Hari Buruh Internasional','06-01':'Hari Lahir Pancasila','08-17':'Proklamasi Kemerdekaan RI','12-25':'Kelahiran Yesus Kristus (Natal)'};
 const dkey = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 function liburInfo(d){
@@ -3492,7 +3499,6 @@ go(si >= 0 ? si : 0, !startId);
    Kolom dikenali dari judulnya: Tanggal, Jam, Lokasi, Kecamatan, Zona, Link Maps, Keterangan. */
 (function () {
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRhIYDoSV7CNZMBg2mBvPY1JPkSieCe4KGipQuIVMeQmUzY1_n4NeG5AYxcAGsw2W0EwKoroz0X1zpr/pub?output=csv';
-  const WA_CC = 'https://wa.me/6285233900100';
   const SIMPAN = 'simling-cache';
   const box = document.getElementById('simling'), upd = document.getElementById('simlingUpd');
   if (!box) return;
@@ -3556,8 +3562,37 @@ go(si >= 0 ? si : 0, !startId);
 
   const buka = j => j.lok && j.lok !== '-' && j.lok !== '–';
   const tglPendek = t => { const w = new Date(Date.UTC(t.y, t.m - 1, t.d)).getUTCDay(); return { h: HARI[w], hp: HARI_PANJANG[w], d: t.d, b: BULAN[t.m - 1] }; };
-  const tombolWA = '<a class="btn sm ghost" href="' + WA_CC + '" target="_blank" rel="noopener">💬 Call Centre 0852-3390-0100</a>';
   const tombolMaps = j => j.maps ? '<a class="btn sm" href="' + esc(j.maps) + '" target="_blank" rel="noopener">📍 Petunjuk arah</a>' : '';
+
+  // Kalimat ajakan untuk jadwal hari ini; pola berganti setiap kali dibuka (tidak mengulang pola terakhir).
+  const AJAK = [
+    j => `Kabar baik${j.kec ? ', warga ' + j.kec : ''}! Hari ini Bus SIM Keliling mangkal di <b>${j.lok}</b>${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}. Bawa e-KTP dan SIM lama, perpanjangan selesai tanpa harus ke Satpas.`,
+    j => `📍 <b>${j.lok}</b> jadi tujuan Bus SIM Keliling hari ini${j.jam ? ' (' + j.jam + ' WIB)' : ''}. Jangan tunggu SIM habis masa berlakunya, mampir sebentar dan pulang dengan SIM baru!`,
+    j => `SIM Anda hampir habis masa berlakunya? Bus SIM Keliling siap melayani di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', mulai ' + j.mulai + ' WIB' : ''}.`,
+    j => `Hari ${j.hari} ini, kami yang datang ke Anda. Bus SIM Keliling hadir di <b>${j.lok}</b>${j.jam ? ' pukul ' + j.jam + ' WIB' : ''} untuk perpanjangan SIM A dan C.`,
+    j => `Tak perlu jauh-jauh ke Satpas! Perpanjang SIM A dan C hari ini di <b>${j.lok}</b>${j.kec ? ' (' + j.kec + ')' : ''}${j.jam ? ', ' + j.jam + ' WIB' : ''}.`,
+    j => `Sempatkan mampir ke <b>${j.lok}</b>${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Siapkan e-KTP, SIM lama, serta surat kesehatan dan psikologi, lalu perpanjang SIM Anda di Bus SIM Keliling.`,
+    j => `Warga${j.kec ? ' ' + j.kec : ''} dan sekitarnya, Bus SIM Keliling menunggu Anda di <b>${j.lok}</b> hari ini${j.jam ? ', ' + j.jam + ' WIB' : ''}. Datang lebih awal agar antrean lebih singkat.`,
+    j => `Hari ini pelayanan SIM hadir lebih dekat: <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', ' + j.jam + ' WIB' : ''}. Cukup bawa dokumen lengkap, proses cepat dan biaya sesuai tarif resmi.`
+  ];
+  function ajakan(j, hp) {
+    // antrean acak: semua pola tampil bergiliran sebelum ada yang terulang
+    let q = []; try { q = JSON.parse(localStorage.getItem('simling-pola')) || []; } catch (e) {}
+    if (!Array.isArray(q) || !q.length) {
+      q = AJAK.map((_, k) => k);
+      for (let k = q.length - 1; k > 0; k--) { const r = Math.floor(Math.random() * (k + 1)); [q[k], q[r]] = [q[r], q[k]]; }
+    }
+    const i = q.shift() % AJAK.length;
+    try { localStorage.setItem('simling-pola', JSON.stringify(q)); } catch (e) {}
+    return AJAK[i]({ lok: esc(j.lok), kec: esc(j.kec), jam: esc(j.jam), mulai: esc(j.jam.split(/[-–—]/)[0].trim()), hari: hp });
+  }
+  const tglLengkap = t => String(t.d).padStart(2, '0') + '/' + String(t.m).padStart(2, '0') + '/' + t.y;
+  function kartuTutup(now, alasan) {
+    const t = tglPendek(now);
+    return '<div class="sl-today none"><small>Hari ini · ' + t.hp + ', ' + tglLengkap(now) + '</small><b class="loc">🚫 Bus SIM Keliling tidak beroperasi</b>'
+      + (alasan ? '<div class="small">' + alasan + '</div>' : '')
+      + '<div class="small muted">Perpanjangan tetap bisa di Satpas induk atau online lewat aplikasi SINAR (B.12).</div></div>';
+  }
 
   function render(list, info) {
     const now = sekarangWIB(), hariIni = kunci(now);
@@ -3565,20 +3600,25 @@ go(si >= 0 ? si : 0, !startId);
     const today = mendatang.filter(j => kunci(j.t) === hariIni);
     let html = '';
 
-    if (today.length && today.some(buka)) {
+    const lib = (window.SIM_LIBUR || {})[now.y + '-' + String(now.m).padStart(2, '0') + '-' + String(now.d).padStart(2, '0')];
+    if (lib) {
+      html += kartuTutup(now, (lib[0] === 'C' ? 'Cuti bersama: ' : 'Hari libur nasional: ') + esc(lib[1]) + '.');
+    } else if (today.length && today.some(buka)) {
       html += today.filter(buka).map(j => {
         const r = jamRentang(j.jam);
-        const st = !r ? '' : now.menit < r[0] ? '<span class="chip y">Mulai ' + esc(j.jam.split(/[-–—]/)[0].trim()) + '</span>'
+        const st = !r ? '' : now.menit < r[0] ? '<span class="chip y">Mulai ' + esc(j.jam.split(/[-–—]/)[0].trim()) + ' WIB</span>'
           : now.menit <= r[1] ? '<span class="chip g">● Sedang melayani</span>' : '<span class="chip r">Sudah selesai</span>';
-        return '<div class="sl-today"><small>🚌 Hari ini · ' + tglPendek(j.t).hp + '</small><b class="loc">' + esc(j.lok) + '</b>'
+        const t = tglPendek(j.t);
+        return '<div class="sl-today"><small>🚌 Hari ini · ' + t.hp + ', ' + tglLengkap(j.t) + '</small>'
+          + '<p style="margin:4px 0 6px;font-size:1.02rem;line-height:1.5">' + ajakan(j, t.hp) + '</p>'
           + '<div class="small">' + [j.kec && 'Kec. ' + esc(j.kec), j.jam && esc(j.jam) + ' WIB'].filter(Boolean).join(' · ') + ' ' + st + '</div>'
           + (j.ket ? '<div class="small muted">' + esc(j.ket) + '</div>' : '')
-          + '<div class="acts">' + tombolMaps(j) + tombolWA + '</div></div>';
+          + (j.maps ? '<div class="acts">' + tombolMaps(j) + '</div>' : '') + '</div>';
       }).join('');
     } else {
-      const ket = today.length ? today.map(j => j.ket).filter(Boolean).join(' · ') : '';
-      html += '<div class="sl-today none"><small>Hari ini</small><b class="loc">Bus SIM Keliling tidak beroperasi' + (ket ? ' (' + esc(ket) + ')' : '') + '</b>'
-        + '<div class="small muted">Perpanjangan tetap bisa di Satpas induk atau online lewat aplikasi SINAR (B.12).</div><div class="acts">' + tombolWA + '</div></div>';
+      const ket = today.map(j => j.ket).filter(Boolean).join(' · ');
+      const minggu = new Date(Date.UTC(now.y, now.m - 1, now.d)).getUTCDay() === 0;
+      html += kartuTutup(now, ket ? esc(ket) + '.' : minggu ? 'Hari Minggu, tidak ada jadwal layanan.' : 'Belum ada jadwal layanan untuk hari ini.');
     }
 
     const berikut = mendatang.filter(j => kunci(j.t) > hariIni);
@@ -3589,8 +3629,8 @@ go(si >= 0 ? si : 0, !startId);
           + '<div class="w"><b>' + (o ? esc(j.lok) : 'Tidak beroperasi') + '</b><span>' + [o && j.kec && 'Kec. ' + esc(j.kec), j.zona && 'Zona ' + esc(j.zona), j.ket && esc(j.ket)].filter(Boolean).join(' · ') + '</span></div>'
           + '<div class="t">' + (o && j.jam ? esc(j.jam) + ' WIB' : '') + (o && j.maps ? '<a href="' + esc(j.maps) + '" target="_blank" rel="noopener">📍 Peta</a>' : '') + '</div></li>';
       }).join('') + '</ul>';
-    } else if (!today.length) {
-      html = '<div class="note"><b>Jadwal minggu ini belum diumumkan.</b>Tanyakan lokasi bus SIM Keliling melalui Call Centre WhatsApp <a href="' + WA_CC + '" target="_blank" rel="noopener">0852-3390-0100</a> atau Instagram <a href="https://www.instagram.com/satpassim_banyuwangi" target="_blank" rel="noopener">@satpassim_banyuwangi</a>.</div>';
+    } else {
+      html += '<p class="small muted" style="margin:8px 0 0">Jadwal hari berikutnya belum diumumkan. Pantau Instagram <a href="https://www.instagram.com/satpassim_banyuwangi" target="_blank" rel="noopener">@satpassim_banyuwangi</a>.</p>';
     }
     box.innerHTML = html;
     upd.textContent = info;
@@ -3601,7 +3641,7 @@ go(si >= 0 ? si : 0, !startId);
     if (c && c.csv) {
       render(keJadwal(parseCSV(c.csv)), alasan + ' Menampilkan jadwal tersimpan dari ' + new Date(c.at).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' }) + '.');
     } else {
-      box.innerHTML = '<div class="note warn"><b>Jadwal belum dapat dimuat.</b>Periksa koneksi internet, atau tanyakan lokasi bus SIM Keliling melalui Call Centre WhatsApp <a href="' + WA_CC + '" target="_blank" rel="noopener">0852-3390-0100</a>.</div>';
+      box.innerHTML = '<div class="note warn"><b>Jadwal belum dapat dimuat.</b>Periksa koneksi internet, atau pantau Instagram <a href="https://www.instagram.com/satpassim_banyuwangi" target="_blank" rel="noopener">@satpassim_banyuwangi</a>.</div>';
       upd.textContent = '';
     }
   }
