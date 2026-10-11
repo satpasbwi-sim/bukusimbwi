@@ -597,7 +597,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="ct">
       <span class="tag">BUKU DIGITAL INTERAKTIF</span>
       <h1>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h1>
-      <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi. Disusun berdasarkan Peraturan Kepolisian (Perpol) No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.</p>
+      <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
       <div class="cbtn">
         <button class="btn" data-go="daftar-isi">Buka Daftar Isi</button>
         <button class="btn ghost" data-go="kata-pengantar">Mulai Membaca →</button>
@@ -775,7 +775,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <label for="jenis" class="small" style="font-weight:700">Jenis permohonan:</label>
         <select id="jenis">
           <option value="baru">SIM Baru / Peningkatan (A–H)</option>
-          <option value="panjang">Perpanjangan (A–D)</option>
+          <option value="panjang">Perpanjangan (A–C–B–H)</option>
         </select>
         <button class="btn sm ghost" id="fasBtn" type="button" aria-pressed="false">Tampilkan fasilitas</button>
       </div>
@@ -1194,11 +1194,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     </ol>
     <h3>Prosedur permohonan</h3>
     <div class="flow">
-      <div class="f"><span class="n">A</span><b>Mengambil formulir SIM</b></div>
-      <div class="f"><span class="n">B</span><b>Registrasi data, identifikasi &amp; foto</b></div>
-      <div class="f"><span class="n">C</span><b>Bayar PNBP di loket BRI</b></div>
-      <div class="f"><span class="n">D</span><b>Produksi cetak SIM</b></div>
+      <div class="f"><span class="n">A</span><b>Mengambil formulir SIM</b><small>Meja Informasi</small></div>
+      <div class="f"><span class="n">C</span><b>Bayar PNBP di loket BRI</b><small>Simpan bukti bayar</small></div>
+      <div class="f"><span class="n">B</span><b>Registrasi data, identifikasi &amp; foto</b><small>Ruang Registrasi &amp; Identifikasi</small></div>
+      <div class="f"><span class="n">H</span><b>Produksi cetak SIM</b><small>Ruang Pencetakan SIM</small></div>
     </div>
+    <p class="small muted" style="margin-top:-6px">Huruf mengikuti penanda ruangan pada denah lantai 1. Dari ruang B ke ruang H, ikuti koridor tengah melewati Ruang Pencerahan (D) dan area F, lalu belok ke koridor belakang. <a href="#alur" data-go="a2" data-alur="panjang">Lihat rute di denah alur A.2 →</a></p>
     <h3>Biaya / tarif perpanjangan</h3>
     <div class="tw fit"><table><thead><tr><th>Golongan</th><th class="num">Tarif PNBP</th></tr></thead><tbody>
       <tr><td>SIM A</td><td class="num">Rp80.000</td></tr>
@@ -3142,7 +3143,11 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     reg:[[55,64],[11.7,64]], ident:[[11.7,64],[11.7,60]], pencerahan:[[11.7,62],[25,62]],
     teori:[[25,62],[65.7,62]], lapangan:[[65.7,62],[92,63]],
     bankFromLapangan:[[92,64],[55,64],[55,79.1]], bankFromReg:[[11.7,64],[55,64],[55,79.1]],
-    cetak:[[55,79.1],[55,64],[3,64],[3,31],[19.4,31]]
+    // ke Ruang Cetak (H): kembali melewati area F (pintu lapangan), lalu pola huruf L: naik di sisi kanan, belok kiri menyusuri koridor belakang
+    cetakViaF:[[55,79.1],[55,64],[94.3,64.1],[94.3,31],[19.4,31]],
+    // perpanjangan: A → C (loket BRI) → B, lalu melewati D dan F (pola huruf L) ke H
+    regFromBank:[[55,79.1],[55,64],[11.7,64]],
+    cetakFromReg:[[11.7,64],[29.7,64],[94.3,64.1],[94.3,31],[19.4,31]]
   };
   const FLOWS = {
     baru: [
@@ -3154,14 +3159,14 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       {at:'teori', also:['tTeori'], L:'E', h:'Ujian teori', d:'Tunggu panggilan di Ruang Tunggu Uji Teori, lalu ujian E-AVIS di Ruang Uji Teori. Lulus bila nilai ≥ 70.'},
       {at:'lapangan', also:['sim1','sim2','tPraktik'], L:'F', h:'Ujian praktik', d:'Uji keterampilan di ruang simulator, tunggu giliran di Ruang Tunggu Uji Praktik, lalu keluar ke lapangan uji praktik (lihat B.5.1).'},
       {at:'bank', via:VIA.bankFromLapangan, L:'G', h:'Bayar PNBP di loket BRI', d:'Pembayaran PNBP hanya di loket BRI/BRIVA; simpan bukti bayar.'},
-      {at:'cetak', also:['tCetak'], L:'H', h:'Produksi cetak SIM', d:'Tunggu panggilan, lalu SIM dicetak dan diserahkan di Ruang Pencetakan SIM.'}
+      {at:'cetak', also:['tCetak'], via:VIA.cetakViaF, L:'H', h:'Produksi cetak SIM', d:'Dari loket BRI, kembali melewati area F, lalu naik dan belok kiri menyusuri koridor belakang (pola huruf L) ke Ruang Pencetakan SIM. Tunggu panggilan, lalu SIM dicetak dan diserahkan.'}
     ],
     panjang: [
       {at:'masuk', h:'Masuk gedung', d:'Masuk lewat pintu utama di bawah kanopi. Jalur ramp tersedia untuk pengguna kursi roda.'},
       {at:'info', L:'A', h:'Mengambil formulir SIM', d:'Datangi meja Informasi untuk mengambil formulir. Bawa SIM lama.'},
-      {at:'reg', also:['ident'], L:'B', h:'Registrasi data, identifikasi & foto', d:'Verifikasi data di Ruang Registrasi, lalu foto, sidik jari, dan tanda tangan di Ruang Identifikasi.'},
-      {at:'bank', via:VIA.bankFromReg, L:'C', h:'Bayar PNBP di loket BRI', d:'Pembayaran PNBP hanya di loket BRI/BRIVA; simpan bukti bayar.'},
-      {at:'cetak', also:['tCetak'], L:'D', h:'Produksi cetak SIM', d:'Tunggu panggilan, lalu SIM dicetak dan diserahkan di Ruang Pencetakan SIM.'}
+      {at:'bank', L:'C', h:'Bayar PNBP di loket BRI', d:'Pembayaran PNBP hanya di loket BRI/BRIVA (SIM A Rp80.000, SIM C Rp75.000); simpan bukti bayar.'},
+      {at:'reg', also:['ident'], via:VIA.regFromBank, L:'B', h:'Registrasi data, identifikasi & foto', d:'Serahkan formulir, SIM lama, dan bukti bayar di Ruang Registrasi, lalu foto, sidik jari, dan tanda tangan di Ruang Identifikasi.'},
+      {at:'cetak', also:['tCetak'], pass:[['pencerahan', 'D'], ['lapangan', 'F']], via:VIA.cetakFromReg, L:'H', h:'Produksi cetak SIM', d:'Menyusuri koridor tengah melewati Ruang Pencerahan (D) dan area F, lalu naik dan belok kiri di koridor belakang (pola huruf L) ke Ruang Pencetakan SIM. Tunggu panggilan, lalu SIM dicetak dan diserahkan.'}
     ]
   };
   const frame = $('#denahFrame'), stepsEl = $('#dsteps'), infoEl = $('#alurInfo'), routeEl = $('#route');
@@ -3178,7 +3183,8 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       const r = R[s.at];
       s.pin = pin('', r.x, r.y, r.t, i === 0 ? '⌂' : s.L);
       s.pin.onclick = () => { stop(); show(i); };
-      s.subs = (s.also || []).map(k => { const b = pin('sub', R[k].x, R[k].y, R[k].t, s.L); b.onclick = () => { stop(); show(i); }; return b; });
+      s.subs = (s.also || []).map(k => { const b = pin('sub', R[k].x, R[k].y, R[k].t, s.L); b.onclick = () => { stop(); show(i); }; return b; })
+        .concat((s.pass || []).map(([k, t]) => { const b = pin('sub', R[k].x, R[k].y, 'Dilewati: ' + R[k].t, t); b.onclick = () => { stop(); show(i); }; return b; }));
       const li = document.createElement('li');
       li.innerHTML = `<button type="button"><span class="n">${i === 0 ? '⌂' : s.L}</span><span><b>${s.h}</b><small>${[s.at, ...(s.also || [])].map(k => R[k].t).join(' · ')}</small></span></button>`;
       li.firstChild.onclick = () => { stop(); show(i); };
@@ -3212,6 +3218,11 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     timer = setInterval(() => { if (at >= flow.length - 1) return stop(); show(at + 1); }, 2200);
   };
   $('#jenis').onchange = e => { stop(); flow = FLOWS[e.target.value]; build(); };
+  // tautan dari halaman lain dapat memilih jenis permohonan, mis. data-alur="panjang"
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-alur]'); if (!a || !FLOWS[a.dataset.alur]) return;
+    $('#jenis').value = a.dataset.alur; $('#jenis').dispatchEvent(new Event('change'));
+  });
   $('#fasBtn').onclick = e => {
     showFas = !showFas; e.currentTarget.setAttribute('aria-pressed', showFas);
     e.currentTarget.textContent = showFas ? 'Sembunyikan fasilitas' : 'Tampilkan fasilitas';
