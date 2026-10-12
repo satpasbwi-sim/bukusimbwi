@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610121524">
+<meta name="versi-buku" content="202610121818">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
 <!-- Pratinjau tautan saat dibagikan (WhatsApp, Facebook, Telegram, X) -->
@@ -4067,16 +4067,29 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     j => `Warga${j.kec ? ' Kec. ' + j.kec : ''} dan sekitarnya, Bus SIM Keliling menunggu Anda di <b>${j.lok}</b> hari ini${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Datang lebih awal agar antrean lebih singkat.`,
     j => `Hari ini pelayanan SIM hadir lebih dekat: <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}. Cukup bawa dokumen lengkap, proses cepat dan biaya sesuai tarif resmi.`
   ];
-  function ajakan(j, hp) {
-    // antrean acak: semua pola tampil bergiliran sebelum ada yang terulang
-    let q = []; try { q = JSON.parse(localStorage.getItem('simling-pola')) || []; } catch (e) {}
-    if (!Array.isArray(q) || !q.length) {
-      q = AJAK.map((_, k) => k);
-      for (let k = q.length - 1; k > 0; k--) { const r = Math.floor(Math.random() * (k + 1)); [q[k], q[r]] = [q[r], q[k]]; }
+  // Kalimat himbauan untuk layanan berikutnya, tampil setelah layanan hari ini selesai.
+  // j.kapan = "Besok" atau "Hari Rabu, 14/10/2026".
+  const AJAK_BERIKUT = [
+    j => `${j.kapan}, Bus SIM Keliling hadir di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Siapkan e-KTP dan SIM lama dari sekarang agar tinggal datang.`,
+    j => `Catat jadwalnya! ${j.kapan} kami melayani perpanjangan SIM A dan C di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ', pukul ' + j.jam + ' WIB' : ''}.`,
+    j => `Belum sempat perpanjang SIM? ${j.kapan} Bus SIM Keliling menunggu di <b>${j.lok}</b>${j.kec ? ', Kec. ' + j.kec : ''}${j.jam ? ' mulai pukul ' + j.mulai + ' WIB' : ''}. Datang lebih awal agar antrean lebih singkat.`,
+    j => `Kabari keluarga dan tetangga${j.kec ? ' di Kec. ' + j.kec : ''}: ${j.kapan.charAt(0).toLowerCase() + j.kapan.slice(1)} Bus SIM Keliling ada di <b>${j.lok}</b>${j.jam ? ' pukul ' + j.jam + ' WIB' : ''}. Pastikan surat kesehatan dan psikologi sudah disiapkan.`
+  ];
+  const pilihan = {}; // kalimat yang sudah dipilih untuk satu jadwal tidak berganti saat kartu diperbarui tiap menit
+  function ajakan(j, hp, kapan) {
+    const pola = kapan ? AJAK_BERIKUT : AJAK, simpan = kapan ? 'simling-pola-berikut' : 'simling-pola';
+    const id = simpan + '|' + kunci(j.t) + '|' + j.lok;
+    if (!(id in pilihan)) {
+      // antrean acak: semua pola tampil bergiliran sebelum ada yang terulang
+      let q = []; try { q = JSON.parse(localStorage.getItem(simpan)) || []; } catch (e) {}
+      if (!Array.isArray(q) || !q.length) {
+        q = pola.map((_, k) => k);
+        for (let k = q.length - 1; k > 0; k--) { const r = Math.floor(Math.random() * (k + 1)); [q[k], q[r]] = [q[r], q[k]]; }
+      }
+      pilihan[id] = q.shift() % pola.length;
+      try { localStorage.setItem(simpan, JSON.stringify(q)); } catch (e) {}
     }
-    const i = q.shift() % AJAK.length;
-    try { localStorage.setItem('simling-pola', JSON.stringify(q)); } catch (e) {}
-    return AJAK[i]({ lok: esc(j.lok), kec: esc(j.kec), jam: esc(j.jam), mulai: esc(j.jam.split(/[-–—]/)[0].trim()), hari: hp });
+    return pola[pilihan[id]]({ lok: esc(j.lok), kec: esc(j.kec), jam: esc(j.jam), mulai: esc(j.jam.split(/[-–—]/)[0].trim()), hari: hp, kapan });
   }
   const tglLengkap = t => String(t.d).padStart(2, '0') + '/' + String(t.m).padStart(2, '0') + '/' + t.y;
   function kartuTutup(now, alasan) {
@@ -4086,17 +4099,38 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
       + '<div class="small muted">Perpanjangan tetap bisa di Satpas induk atau online lewat aplikasi SINAR (B.12).</div></div>';
   }
 
+  // Layanan dianggap selesai setelah jam akhir (mis. "08.00-11.00" selesai pukul 11.00); tanpa jam = sampai tengah malam.
+  const selesai = (j, now) => { const r = jamRentang(j.jam); return now.menit >= (r ? r[1] : 24 * 60); };
+  const besokDari = now => { const b = new Date(Date.UTC(now.y, now.m - 1, now.d + 1)); return { y: b.getUTCFullYear(), m: b.getUTCMonth() + 1, d: b.getUTCDate() }; };
+
+  let terakhir = null; // jadwal terakhir dimuat, untuk diperbarui tiap menit tanpa mengunduh ulang
   function render(list, info) {
+    terakhir = [list, info];
     const now = sekarangWIB(), hariIni = kunci(now);
     const mendatang = list.filter(j => kunci(j.t) >= hariIni).slice(0, 14);
     const today = mendatang.filter(j => kunci(j.t) === hariIni);
+    const todayAktif = today.filter(j => buka(j) && !selesai(j, now));
     let html = '';
 
     const lib = (window.SIM_LIBUR || {})[now.y + '-' + String(now.m).padStart(2, '0') + '-' + String(now.d).padStart(2, '0')];
+    const berikutnya = mendatang.find(j => kunci(j.t) > hariIni && buka(j));
     if (lib) {
       html += kartuTutup(now, (lib[0] === 'C' ? 'Cuti bersama: ' : 'Hari libur nasional: ') + esc(lib[1]) + '.');
-    } else if (today.length && today.some(buka)) {
-      html += today.filter(buka).map(j => {
+    } else if (today.some(buka) && !todayAktif.length) {
+      // layanan hari ini sudah selesai: kartu hari ini hilang, diganti pengumuman layanan berikutnya
+      if (berikutnya) {
+        const t = tglPendek(berikutnya.t), isBesok = kunci(berikutnya.t) === kunci(besokDari(now));
+        const kapan = isBesok ? 'Besok' : 'Hari ' + t.hp + ', ' + tglLengkap(berikutnya.t);
+        html += '<div class="sl-today"><small>📅 ' + (isBesok ? 'Besok' : 'Jadwal berikutnya') + ' · ' + t.hp + ', ' + tglLengkap(berikutnya.t) + '</small>'
+          + '<p style="margin:4px 0 6px;font-size:1.02rem;line-height:1.5">' + ajakan(berikutnya, t.hp, kapan) + '</p>'
+          + (berikutnya.ket ? '<div class="small muted">' + esc(berikutnya.ket) + '</div>' : '')
+          + (berikutnya.maps ? '<div class="acts">' + tombolMaps(berikutnya) + '</div>' : '') + '</div>';
+      } else {
+        html += '<div class="sl-today none"><small>Hari ini · ' + tglPendek(now).hp + ', ' + tglLengkap(now) + '</small><b class="loc">✅ Layanan SIM Keliling hari ini telah selesai</b>'
+          + '<div class="small muted">Jadwal berikutnya belum diumumkan. Perpanjangan tetap bisa di Satpas induk atau online lewat aplikasi SINAR (B.12).</div></div>';
+      }
+    } else if (todayAktif.length) {
+      html += todayAktif.map(j => {
         const t = tglPendek(j.t);
         return '<div class="sl-today"><small>🚌 Hari ini · ' + t.hp + ', ' + tglLengkap(j.t) + '</small>'
           + '<p style="margin:4px 0 6px;font-size:1.02rem;line-height:1.5">' + ajakan(j, t.hp) + '</p>'
@@ -4149,6 +4183,10 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   }
   window.muatJadwalSimling = muat;
   muat();
+  // Kartu "Hari ini" berganti sendiri saat jam layanan habis, tanpa memuat ulang halaman
+  const segarkan = () => { if (terakhir) render(...terakhir); };
+  setInterval(segarkan, 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) segarkan(); });
 })();
 </script>
 </body>
