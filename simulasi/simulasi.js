@@ -238,7 +238,19 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
     { k: 'WA', n: 'Wawasan', ikon: '💡', soal: 20, menit: 20 },
     { k: 'PE', n: 'Pengetahuan', ikon: '🎓', soal: 20, menit: 20 }
   ];
-  const LULUS = 70, KEY = 'sim-eavis-riwayat';
+  // Modul per golongan SIM: soal tanpa label "g" berlaku untuk semua golongan
+  const GOLS = [
+    { k: 'semua', n: 'Campuran', d: 'semua golongan' },
+    { k: 'C', n: 'SIM C', d: 'sepeda motor' },
+    { k: 'A', n: 'SIM A', d: 'mobil' },
+    { k: 'B', n: 'SIM BI / BII', d: 'bus & truk' },
+    { k: 'Umum', n: 'SIM Umum', d: 'angkutan umum (A/BI/BII Umum)' }
+  ];
+  const cocok = (q, g) => g === 'semua' || !q.g || q.g.includes(g);
+  const LULUS = 70, KEY = 'sim-eavis-riwayat', KEY_G = 'sim-eavis-golongan';
+  const getG = () => { try { const v = localStorage.getItem(KEY_G); return GOLS.some(x => x.k === v) ? v : 'semua'; } catch (e) { return 'semua'; } };
+  const setG = v => { try { localStorage.setItem(KEY_G, v); } catch (e) {} };
+  const namaG = k => (GOLS.find(x => x.k === k) || GOLS[0]).n;
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const store = { get(d) { try { return JSON.parse(localStorage.getItem(KEY)) || d; } catch (e) { return d; } }, set(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} } };
 
@@ -274,32 +286,35 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
 
   function intro() {
     stop();
-    const pool = k => BANK.soal.filter(q => q.t === k).length;
+    const gol = getG();
+    const pool = k => BANK.soal.filter(q => q.t === k && cocok(q, gol)).length;
     const riw = store.get([]);
     el(`<h2 data-focus>Simulasi Ujian Teori SIM</h2>
       ${/DRAF/.test(BANK.catatan || '') ? '<p class="simx-warn"><b>DRAF UJI TAMPILAN.</b> Soal belum diperiksa petugas penguji dan tidak untuk dipublikasikan.</p>' : ''}
       <p class="simx-warn"><b>Latihan, bukan ujian resmi.</b> Soal disusun baru oleh Satpas Polresta Banyuwangi untuk berlatih; bentuknya mengikuti tiga tahap E-AVIS. Ujian resmi tetap dilaksanakan di Satpas.</p>
+      <fieldset class="simx-gol"><legend>Pilih golongan SIM yang akan diujikan</legend>${GOLS.map(x => `<label><input type="radio" name="simxGol" value="${x.k}"${x.k === gol ? ' checked' : ''}><span><b>${x.n}</b><small>${x.d}</small></span></label>`).join('')}</fieldset>
       <div class="simx-stg">${TAHAP.map((t, i) => `<div><span aria-hidden="true">${t.ikon}</span><b>${i + 1}. ${t.n}</b><small>${t.soal} soal · ${t.menit} menit · bank ${pool(t.k)} soal</small></div>`).join('')}</div>
       <p class="small">Nilai lulus paling rendah <b>${LULUS}</b> (Perpol 5/2021 Pasal 15 ayat 1). Jawaban tidak bisa diubah setelah pindah soal. Pilih dengan ketuk, atau tombol 1–4 pada keyboard.</p>
       <div class="simx-act"><button type="button" class="btn" data-mulai="all">▶ Mulai simulasi lengkap (50 menit)</button></div>
       <p class="small" style="margin:14px 0 6px"><b>Latihan per tahap:</b></p>
       <div class="simx-act">${TAHAP.map((t, i) => `<button type="button" class="btn ghost sm" data-mulai="${i}">${t.ikon} ${t.n}</button>`).join('')}</div>
-      ${riw.length ? `<h3>Riwayat skor di perangkat ini</h3><ul class="simx-hist">${riw.slice(-5).reverse().map(r => `<li><span>${new Date(r.w).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</span><span>${r.m}</span><b class="${r.s >= LULUS ? 'ok' : 'no'}">${r.s}</b></li>`).join('')}</ul>` : ''}`);
+      ${riw.length ? `<h3>Riwayat skor di perangkat ini</h3><ul class="simx-hist">${riw.slice(-5).reverse().map(r => `<li><span>${new Date(r.w).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</span><span>${r.m}${r.g && r.g !== 'semua' ? ' · ' + namaG(r.g) : ''}</span><b class="${r.s >= LULUS ? 'ok' : 'no'}">${r.s}</b></li>`).join('')}</ul>` : ''}`);
     body.querySelectorAll('[data-mulai]').forEach(b => b.onclick = () => start(b.dataset.mulai));
+    body.querySelectorAll('input[name="simxGol"]').forEach(r => r.onchange = () => { setG(r.value); intro(); const f = body.querySelector(`input[value="${r.value}"]`); if (f) f.focus(); });
   }
 
   function start(which) {
     const list = which === 'all' ? TAHAP : [TAHAP[+which]];
-    state = { list, ti: 0, qs: [], ans: [], done: false, mode: which === 'all' ? 'Lengkap' : TAHAP[+which].n };
-    onEvent('mulai/' + (which === 'all' ? 'lengkap' : TAHAP[+which].k));
+    state = { list, ti: 0, qs: [], ans: [], done: false, gol: getG(), mode: which === 'all' ? 'Lengkap' : TAHAP[+which].n };
+    onEvent('mulai/' + (which === 'all' ? 'lengkap' : TAHAP[+which].k) + '/' + state.gol);
     stage();
   }
 
   function stage() {
     const t = state.list[state.ti];
-    const qs = shuffle(BANK.soal.filter(q => q.t === t.k)).slice(0, t.soal).map(q => ({ ...q, opts: shuffle([q.a, ...q.o]) }));
+    const qs = shuffle(BANK.soal.filter(q => q.t === t.k && cocok(q, state.gol))).slice(0, t.soal).map(q => ({ ...q, opts: shuffle([q.a, ...q.o]) }));
     state.cur = { t, qs, ans: new Array(qs.length).fill(null), i: 0, end: Date.now() + t.menit * 60000 };
-    el(`<h2 data-focus>Tahap ${TAHAP.indexOf(t) + 1}: ${t.n}</h2><p>${t.soal === qs.length ? t.soal : qs.length} soal, waktu <b>${t.menit} menit</b>. ${t.k === 'PB' ? 'Amati gambar dari sudut pandang pengemudi: kecepatan tertera pada spidometer.' : ''}</p><div class="simx-act"><button type="button" class="btn" data-go>Mulai tahap ini</button></div>`);
+    el(`<h2 data-focus>Tahap ${TAHAP.indexOf(t) + 1}: ${t.n}</h2>${state.gol !== 'semua' ? `<p class="simx-no">Modul ${namaG(state.gol)}</p>` : ''}<p>${t.soal === qs.length ? t.soal : qs.length} soal, waktu <b>${t.menit} menit</b>. ${t.k === 'PB' ? 'Amati gambar dari sudut pandang pengemudi: kecepatan tertera pada spidometer.' : ''}</p><div class="simx-act"><button type="button" class="btn" data-go>Mulai tahap ini</button></div>`);
     body.querySelector('[data-go]').onclick = () => { state.cur.end = Date.now() + t.menit * 60000; tick(); timer = setInterval(tick, 1000); question(); };
   }
 
@@ -347,8 +362,8 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
     state.done = true;
     const tot = state.qs.reduce((n, c) => n + c.qs.length, 0), ben = state.qs.reduce((n, c) => n + c.benar, 0);
     const skor = tot ? Math.round(ben / tot * 100) : 0, lulus = skor >= LULUS;
-    const riw = store.get([]); riw.push({ w: Date.now(), m: state.mode, s: skor }); store.set(riw.slice(-20));
-    onEvent('selesai/' + (lulus ? 'lulus' : 'belum'));
+    const riw = store.get([]); riw.push({ w: Date.now(), m: state.mode, g: state.gol, s: skor }); store.set(riw.slice(-20));
+    onEvent('selesai/' + state.gol + '/' + (lulus ? 'lulus' : 'belum'));
     const salah = [];
     state.qs.forEach(c => c.qs.forEach((q, i) => { const a = c.ans[i]; if (a === null || q.opts[a] !== q.a) salah.push({ q, a: a === null ? null : q.opts[a] }); }));
     el(`<div class="simx-res ${lulus ? 'ok' : 'no'}"><small>Nilai Anda</small><b data-focus tabindex="-1">${skor}</b><span>${lulus ? '✅ LULUS (nilai ≥ 70)' : '❌ BELUM LULUS (nilai < 70)'}</span></div>
