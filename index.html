@@ -3,18 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610120549">
+<meta name="versi-buku" content="202610121359">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
+<!-- Pratinjau tautan saat dibagikan (WhatsApp, Facebook, Telegram, X) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Satpas Polresta Banyuwangi">
+<meta property="og:locale" content="id_ID">
+<meta property="og:url" content="https://satpasbwi-sim.github.io/bukusimbwi/">
+<meta property="og:title" content="Buku Digital Layanan SIM — Satpas Polresta Banyuwangi">
+<meta property="og:description" content="Panduan resmi persyaratan, prosedur, tarif PNBP, SIM Keliling, SINAR, kuis ujian teori, dan saluran pengaduan. Gratis, tanpa calo.">
+<meta property="og:image" content="https://satpasbwi-sim.github.io/bukusimbwi/img/og-sampul.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sampul Buku Digital Layanan Penerbitan SIM Satpas Polresta Banyuwangi dengan logo Lalu Lintas">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://satpasbwi-sim.github.io/bukusimbwi/">
+<!--pwa: bagian ini dibuang pada versi satu-file (alat/buat_versi_offline.py) -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#071f4d">
+<link rel="icon" type="image/png" sizes="192x192" href="img/ikon-192.png">
+<link rel="apple-touch-icon" href="img/ikon-apple-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Buku SIM BWI">
+<link rel="preload" as="image" href="img/logo-lantas-baru.webp" type="image/webp">
+<!--/pwa-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Font dimuat tanpa menahan tampilan pertama; sementara memakai font sistem -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --bg:#e9eff8; --surface:#ffffff; --surface-2:#f4f7fc; --ink:#0f1b33; --muted:#53627d; --line:#d6dfec;
   --brand:#0b3d91; --brand-ink:#ffffff; --brand-deep:#071f4d; --brand-soft:#e3ecfb;
   --accent:#f2b705; --accent-soft:#fff5d6; --danger:#c62828; --danger-soft:#fde8e8;
-  --ok:#17804a; --ok-soft:#e2f5ea; --warn:#b26a00; --warn-soft:#fff1dc;
+  --ok:#0f6e3d; --ok-soft:#e2f5ea; --warn:#8f5600; --warn-soft:#fff1dc;
   --shadow:0 10px 30px rgba(10,30,70,.10); --radius:16px; --fs:16px;
   color-scheme:light;
 }
@@ -40,6 +64,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sa
 a{color:var(--brand)}
 button{font:inherit;cursor:pointer}
 img{max-width:100%;height:auto;display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ---------- top bar ---------- */
 .topbar{position:sticky;top:0;z-index:30;background:var(--brand-deep);color:#fff;display:flex;align-items:center;gap:8px;padding:8px 12px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
@@ -58,6 +84,7 @@ img{max-width:100%;height:auto;display:block}
 .scrim.on{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;left:0;bottom:0;width:min(360px,88vw);background:var(--surface);z-index:41;transform:translateX(-102%);transition:transform .25s;display:flex;flex-direction:column;box-shadow:var(--shadow)}
 .drawer.on{transform:none}
+.drawer:not(.on){visibility:hidden;transition:transform .25s,visibility 0s .25s}
 .drawer header{padding:14px 16px;background:var(--brand-deep);color:#fff;display:flex;align-items:center;gap:8px}
 .drawer header b{flex:1}
 .search{padding:12px 16px;border-bottom:1px solid var(--line)}
@@ -232,6 +259,8 @@ input[type=date],input[type=text],select{padding:10px 12px;border-radius:10px;bo
 .quiz .opt:hover{border-color:var(--brand)}
 .quiz .opt.right{border-color:var(--ok);background:var(--ok-soft)}
 .quiz .opt.wrong{border-color:var(--danger);background:var(--danger-soft)}
+.quiz .opt .mk{display:inline-block;margin-left:6px;font-size:.8rem;color:var(--ok)}
+.quiz .opt.wrong .mk{color:var(--danger)}
 .quiz .ex{font-size:.88rem;color:var(--muted);margin-top:6px;display:none}
 .quiz .q.answered .ex{display:block}
 
@@ -255,8 +284,8 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,23,61,.92) 0%,rgba(6,23,61,.7) 45%,rgba(6,23,61,.92) 100%);z-index:1}
 .cover .ct{position:relative;z-index:2;padding:34px clamp(18px,5vw,48px) 30px}
 .cover .tag{display:inline-block;background:var(--accent);color:#1d1600;font-weight:800;font-size:.78rem;padding:4px 12px;border-radius:99px;letter-spacing:.08em}
-.cover h1{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
-.cover h1 em{font-style:normal;color:var(--accent)}
+.cover h2{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
+.cover h2 em{font-style:normal;color:var(--accent)}
 .cover p{opacity:.9;max-width:60ch}
 .cover .stripe{height:8px;background:linear-gradient(90deg,#c62828 0 50%,#fff 50% 100%);position:relative;z-index:2}
 .cover .cbtn{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
@@ -429,7 +458,7 @@ h3.plain::before{display:none}
 .adu .hd{padding:9px 14px;font-weight:800;font-size:.85rem;letter-spacing:.04em}
 .adu .hd.brand{background:var(--brand);color:var(--brand-ink)}
 .adu .hd.accent{background:var(--accent);color:#1d1600}
-.adu .hd.ok{background:var(--ok);color:#fff}
+.adu .hd.ok{background:var(--ok);color:var(--brand-ink)}
 .adu ol{padding:10px 14px 12px 32px;margin:0}
 .adu .arr{align-self:center;font-size:1.5rem;color:var(--muted)}
 @media (max-width:820px){.adu{grid-template-columns:1fr}.adu .arr{transform:rotate(90deg);justify-self:center;line-height:1}}
@@ -520,10 +549,17 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .pact{display:flex;gap:8px;flex-wrap:wrap;padding:10px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);background:var(--surface-2)}
 .pact button,.pact a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 12px;font-size:.8rem;font-weight:700;text-decoration:none;min-height:34px}
 .pact button:hover,.pact a:hover{border-color:var(--brand)}
-.pact .wa{background:#1fa855;border-color:#1fa855;color:#fff}
+.pact .wa{background:#137c3e;border-color:#137c3e;color:#fff}
 .pact button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1b1400}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#0f1b33;color:#fff;padding:8px 16px;border-radius:99px;font-size:.85rem;z-index:70;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.on{opacity:1}
+.resume{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:26;width:min(560px,calc(100% - 24px));display:flex;align-items:center;gap:10px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:10px 10px 10px 12px;box-shadow:var(--shadow)}
+.resume[hidden]{display:none}
+.resume .ic{font-size:1.3rem}
+.resume .tx{flex:1;min-width:0;line-height:1.3}
+.resume .tx small{display:block;color:var(--muted);font-size:.75rem}
+.resume .tx b{display:block;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.resume .x{flex:none;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;width:34px;height:34px}
 mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 
 /* ---------- pencarian cepat ---------- */
@@ -619,8 +655,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </head>
 <body>
 
-<div class="topbar">
-  <button class="ib" id="btnToc" aria-label="Daftar isi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span class="hide-sm">Daftar Isi</span></button>
+<header class="topbar">
+  <h1 class="sr">Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi</h1>
+  <button class="ib" id="btnToc" aria-label="Daftar isi" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span class="hide-sm">Daftar Isi</span></button>
   <div class="t"><b id="curTitle">Buku Digital Interaktif Layanan SIM</b><span>Satpas Polresta Banyuwangi</span></div>
   <button class="ib" id="btnSearch" aria-label="Cari di buku" title="Cari (tekan /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="hide-sm">Cari</span></button>
   <button class="ib" id="btnListen" aria-label="Dengarkan halaman ini" aria-pressed="false" title="Dengarkan (baca suara)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span class="hide-sm" id="btnListenT">Dengarkan</span></button>
@@ -628,9 +665,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <button class="ib" id="fsUp" aria-label="Perbesar huruf">A+</button>
   <button class="ib" id="btnTheme" aria-label="Ganti tema terang/gelap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   <button class="ib" id="btnPrint" aria-label="Cetak seluruh buku" title="Cetak / simpan PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg><span class="hide-sm">Cetak</span></button>
-</div>
+</header>
 <div class="progress"><i id="prog"></i></div>
-<div class="rottip noprint" id="rotTip" hidden><span>📱 <b>Tips:</b> putar HP ke posisi <b>mendatar (landscape)</b> untuk melihat poster &amp; tabel lebih lebar.</span><button type="button" id="rotTipX" aria-label="Tutup tips">✕</button></div>
+<div class="rottip noprint" id="rotTip" role="region" aria-label="Tips tampilan" hidden><span>📱 <b>Tips:</b> putar HP ke posisi <b>mendatar (landscape)</b> untuk melihat poster &amp; tabel lebih lebar.</span><button type="button" id="rotTipX" aria-label="Tutup tips">✕</button></div>
 
 <div class="sdlg" id="sdlg" role="dialog" aria-modal="true" aria-label="Cari di buku">
   <div class="box">
@@ -656,9 +693,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="cover">
     <div class="bgimg" style="background-image:url('img/sampul-latar.webp')"></div>
     <div class="ct">
-      <img class="covlogo" src="img/logo-lantas-baru.png" alt="Logo Korps Lalu Lintas Polri" width="356" height="390">
+      <img class="covlogo" src="img/logo-lantas-baru.webp" fetchpriority="high" alt="Logo Korps Lalu Lintas Polri" width="356" height="390">
       <span class="tag">BUKU DIGITAL INTERAKTIF</span>
-      <h1>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h1>
+      <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
       <div class="cbtn">
         <button class="btn" data-go="daftar-isi">Buka Daftar Isi</button>
@@ -1158,7 +1195,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <p>Sejak <b>Agustus 2023</b>, Korlantas Polri mengganti lintasan <b>angka 8</b> dan <b>zig-zag</b> pada ujian praktik SIM C dengan satu sirkuit tak terputus berbentuk huruf <b>S</b>. Desainnya dimuat dalam lampiran Kep/105/VIII/2023 (“Disain Sirkuit Uji Praktek R2 Baru”). Peserta melintasi empat materi secara berurutan.</p>
     <div class="widget circ" id="circ"><span class="wt">Interaktif</span>
       <h4>Ketuk angka untuk melihat tiap materi</h4>
-      <svg viewBox="0 0 720 470" role="img" aria-label="Skema sirkuit huruf S uji praktik SIM C">
+      <svg viewBox="0 0 720 470" role="group" aria-label="Skema sirkuit huruf S uji praktik SIM C">
         <g fill="none" stroke-linecap="butt" stroke-linejoin="round">
           <path id="cRoad" d="M30 70 H470 A40 40 0 0 1 470 150 H260 A40 40 0 0 0 260 230 H340 A40 40 0 0 1 340 310 H260 A40 40 0 0 0 260 390 H600 A40 40 0 0 0 640 350 V215 M640 215 L600 160 V96 M640 215 L680 160 V96" stroke="#ffffff" stroke-width="44"/>
           <use href="#cRoad" stroke="#8b93a1" stroke-width="38"/>
@@ -1533,7 +1570,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="pbody">
     <div class="hero-inov sinar">
       <div><span class="chip y">INOVASI KORLANTAS POLRI</span><h3 class="plain">Perpanjang SIM dari rumah</h3><p>Melalui aplikasi <b>Digital Korlantas POLRI</b>, pemohon dapat memperpanjang SIM, mengikuti tes kesehatan &amp; psikologi secara daring, membayar PNBP, lalu menerima SIM baru melalui jasa pengiriman ke alamat rumah.</p></div>
-      <div class="hero-art logo"><img src="img/logo-sinar.png" alt="Logo SINAR, SIM Nasional Presisi, Korps Lalu Lintas Polri" width="178" height="130"></div>
+      <div class="hero-art logo"><img loading="lazy" decoding="async" src="img/logo-sinar.png" alt="Logo SINAR, SIM Nasional Presisi, Korps Lalu Lintas Polri" width="178" height="130"></div>
     </div>
 
     <div class="grid g4">
@@ -2220,13 +2257,21 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 
 </main>
 
-<div class="nav">
-  <button class="btn ghost" id="prev"><span>←</span><span id="prevT">Sebelumnya</span></button>
-  <div class="pn" id="pn">1 / 1</div>
-  <button class="btn" id="next"><span id="nextT">Berikutnya</span><span>→</span></button>
+<div class="resume noprint" id="resume" role="region" aria-label="Lanjutkan membaca" hidden>
+  <span class="ic" aria-hidden="true">📖</span>
+  <div class="tx"><small>Lanjutkan dari terakhir dibaca?</small><b id="resumeT"></b></div>
+  <button type="button" class="btn sm" id="resumeGo">Lanjutkan</button>
+  <button type="button" class="x" id="resumeX" aria-label="Tutup, mulai dari sampul">✕</button>
 </div>
 
-<div class="lb" id="lb" role="dialog" aria-label="Pratinjau gambar"><button class="ib x" id="lbX" aria-label="Tutup">✕</button><img id="lbImg" alt=""><span class="hint">Klik gambar untuk zoom · Esc untuk menutup</span></div>
+<nav class="nav" aria-label="Pindah halaman">
+  <button class="btn ghost" id="prev" aria-label="Halaman sebelumnya"><span aria-hidden="true">←</span><span id="prevT">Sebelumnya</span></button>
+  <div class="pn" id="pn">1 / 1</div>
+  <button class="btn" id="next" aria-label="Halaman berikutnya"><span id="nextT">Berikutnya</span><span aria-hidden="true">→</span></button>
+</nav>
+<div class="sr" id="srPage" aria-live="polite"></div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Pratinjau gambar"><button class="ib x" id="lbX" aria-label="Tutup">✕</button><img id="lbImg" alt=""><span class="hint">Klik gambar untuk zoom · Esc untuk menutup</span></div>
 
 <script>
 (function(){
@@ -2302,10 +2347,31 @@ function go(i, fromHash){
   $$('#toc a').forEach(a => a.classList.toggle('on', a.dataset.go === p.dataset.id));
   if (!fromHash) { try{ history.replaceState(null, '', '#' + p.dataset.id); }catch(e){} }
   store.set('sim-book-page', p.dataset.id);
+  $('#srPage').textContent = `Halaman ${cur + 1} dari ${pages.length}: ${t}`;
   pageHooks.forEach(f => { try{ f(p); }catch(e){ console.error(e); } });
+}
+// pindahkan fokus ke judul halaman aktif (pembaca layar mulai membaca dari sana)
+function focusPage(){
+  const h = pages[cur].querySelector('.ph h2, .cover h2'); if (!h) return;
+  h.tabIndex = -1; h.focus({preventScroll:true});
 }
 function short(p){ return p.dataset.code ? p.dataset.code + ' ' + p.dataset.title : p.dataset.title; }
 function goId(id){ const i = pages.findIndex(p => p.dataset.id === id); if (i >= 0) go(i); }
+
+// tabel lebar: bisa difokus lalu digeser dengan tombol panah
+pages.forEach(p => $$('.tw', p).forEach((w, i) => {
+  const h = w.previousElementSibling, cap = h && /^H\d$/.test(h.tagName) ? h.textContent.trim() : `${i + 1} ${short(p)}`;
+  w.tabIndex = 0; w.setAttribute('role', 'region'); w.setAttribute('aria-label', `Tabel ${cap} (dapat digeser)`);
+}));
+// urutan tingkat judul untuk pembaca layar: tidak boleh melompat (mis. h2 langsung h4)
+pages.forEach(p => {
+  let raw = 2, eff = 2;
+  $$('h2,h3,h4,h5,h6', p).forEach(h => {
+    const lv = +h.tagName[1], e = lv === raw ? eff : Math.min(lv, eff + 1);
+    if (e !== lv) h.setAttribute('aria-level', e);
+    raw = lv; eff = e;
+  });
+});
 
 // page footers
 const NOTICE = '© Satpas Polresta Banyuwangi — Informasi Layanan Publik';
@@ -2321,7 +2387,7 @@ pages.forEach((p, i) => {
 document.addEventListener('click', e => {
   const g = e.target.closest('[data-go]');
   if (g) {
-    e.preventDefault(); goId(g.dataset.go); closeDrawer();
+    e.preventDefault(); goId(g.dataset.go); closeDrawer(false); focusPage();
     // tautan ke bagian tertentu di dalam halaman, mis. href="#alur" data-go="a2"
     const h = (g.getAttribute('href') || '').slice(1), el = h && h !== g.dataset.go && document.getElementById(h);
     if (el) setTimeout(() => el.scrollIntoView({block:'start', behavior:'smooth'}), 380);
@@ -2350,8 +2416,12 @@ $('#book').addEventListener('touchend', e => {
 window.addEventListener('hashchange', () => { const i = pages.findIndex(p => '#' + p.dataset.id === location.hash); if (i >= 0 && i !== cur) go(i, true); });
 
 // drawer & search
-const openDrawer = () => { $('#drawer').classList.add('on'); $('#scrim').classList.add('on'); };
-function closeDrawer(){ $('#drawer').classList.remove('on'); $('#scrim').classList.remove('on'); }
+const openDrawer = () => { $('#drawer').classList.add('on'); $('#scrim').classList.add('on'); $('#btnToc').setAttribute('aria-expanded', 'true'); setTimeout(() => $('#btnClose').focus(), 30); };
+function closeDrawer(back = true){
+  const was = $('#drawer').classList.contains('on');
+  $('#drawer').classList.remove('on'); $('#scrim').classList.remove('on'); $('#btnToc').setAttribute('aria-expanded', 'false');
+  if (was && back) $('#btnToc').focus();
+}
 $('#btnToc').onclick = openDrawer; $('#btnClose').onclick = closeDrawer; $('#scrim').onclick = closeDrawer;
 $('#q').addEventListener('input', e => {
   const q = e.target.value.trim();
@@ -2381,12 +2451,16 @@ $('#btnPrint').onclick = async () => { $$('details.acc').forEach(d => d.open = t
 
 // lightbox
 const lb = $('#lb');
+let lbFrom = null;
+$$('.poster').forEach(f => { f.tabIndex = 0; f.setAttribute('role', 'button'); f.setAttribute('aria-label', 'Perbesar: ' + (f.querySelector('img') || {}).alt); });
+document.addEventListener('keydown', e => { const f = e.target.closest && e.target.closest('.poster'); if (f && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); f.click(); } });
 document.addEventListener('click', e => {
   const f = e.target.closest('.poster'); if (!f) return;
   $('#lbImg').src = f.querySelector('img').src; $('#lbImg').alt = f.querySelector('img').alt;
   lb.classList.remove('zoom'); lb.classList.add('on');
+  lbFrom = f; $('#lbX').focus();
 });
-function closeLb(){ lb.classList.remove('on','zoom'); }
+function closeLb(){ lb.classList.remove('on','zoom'); if (lbFrom) { lbFrom.focus(); lbFrom = null; } }
 $('#lbX').onclick = closeLb;
 lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
 $('#lbImg').onclick = () => lb.classList.toggle('zoom');
@@ -2773,12 +2847,13 @@ function newQuiz(){
   renderQuiz();
 }
 function renderQuiz(){
-  $('#quiz').innerHTML = quizSet.map((q, i) => `<div class="q ${qAns[i] !== undefined ? 'answered' : ''}"><p>${i+1}. ${q.q}</p>${q.opts.map((o, j) => { let c = ''; if (qAns[i] !== undefined) { if (j === q.ans) c = 'right'; else if (j === qAns[i]) c = 'wrong'; } return `<button class="opt ${c}" data-q="${i}" data-o="${j}" ${qAns[i] !== undefined ? 'disabled' : ''}>${String.fromCharCode(65+j)}. ${o}</button>`; }).join('')}<div class="ex">💡 ${q.ex}</div></div>`).join('');
+  $('#quiz').innerHTML = quizSet.map((q, i) => `<div class="q ${qAns[i] !== undefined ? 'answered' : ''}"><p>${i+1}. ${q.q}</p>${q.opts.map((o, j) => { let c = ''; if (qAns[i] !== undefined) { if (j === q.ans) c = 'right'; else if (j === qAns[i]) c = 'wrong'; } const tanda = c === 'right' ? ' <b class="mk">✓ Benar</b>' : c === 'wrong' ? ' <b class="mk">✗ Jawaban Anda</b>' : '';
+    return `<button class="opt ${c}" data-q="${i}" data-o="${j}" ${qAns[i] !== undefined ? 'disabled' : ''}>${String.fromCharCode(65+j)}. ${o}${tanda}</button>`; }).join('')}<div class="ex" tabindex="-1">${qAns[i] === undefined ? '' : `<b>${qAns[i] === q.ans ? '✅ Benar!' : '❌ Kurang tepat.'}</b> `}💡 ${q.ex}</div></div>`).join('');
   const done = Object.keys(qAns).length, score = Object.entries(qAns).filter(([i, a]) => quizSet[i].ans === a).length;
   const newBtn = '<button class="btn sm" data-newquiz style="margin-top:10px">🔄 Ganti Soal Baru</button>';
   $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Lampiran A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p>${newBtn}` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
 }
-$('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; renderQuiz(); });
+$('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; renderQuiz(); $$('#quiz .ex')[+b.dataset.q].focus(); });
 $('#quizOut').addEventListener('click', e => { if (e.target.closest('[data-newquiz]')) { newQuiz(); $('#quizTop').scrollIntoView({behavior:'smooth', block:'start'}); } });
 $('#bankN').textContent = BANK.length;
 newQuiz();
@@ -2995,11 +3070,13 @@ function highlightIn(p, term){
 const sdlg = $('#sdlg'), sq = $('#sq');
 const QUICK = ['perpanjangan','biaya','SIM hilang','rambu','jadwal','ujian praktik','SINAR','pengaduan','denah'];
 $('#sqChips').innerHTML = QUICK.map(k => `<button type="button" data-q="${k}">${k}</button>`).join('');
+let sdlgFrom = null;
 function openSearch(v){
+  if (!sdlg.classList.contains('on')) sdlgFrom = document.activeElement;
   sdlg.classList.add('on'); sq.value = v || sq.value;
   renderSearch(); setTimeout(() => sq.focus(), 30);
 }
-function closeSearch(){ sdlg.classList.remove('on'); }
+function closeSearch(back = true){ sdlg.classList.remove('on'); if (back && sdlgFrom && sdlgFrom.focus) sdlgFrom.focus(); sdlgFrom = null; }
 let sqT;
 function renderSearch(){
   const q = sq.value.trim();
@@ -3014,8 +3091,8 @@ $('#sqX').onclick = closeSearch;
 sdlg.addEventListener('click', e => { if (e.target === sdlg) closeSearch(); });
 document.addEventListener('click', e => {
   const a = e.target.closest('[data-hit]'); if (!a) return;
-  e.preventDefault(); closeSearch(); closeDrawer();
-  goId(a.dataset.hit); highlightIn(pages[cur], a.dataset.term);
+  e.preventDefault(); closeSearch(false); closeDrawer(false);
+  goId(a.dataset.hit); highlightIn(pages[cur], a.dataset.term); focusPage();
 });
 document.addEventListener('keydown', e => {
   if (sdlg.classList.contains('on') && e.key === 'Escape') { closeSearch(); return; }
@@ -3390,7 +3467,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     const r = R[qs[qi]];
     const same = shuffle(R.filter(x => x.k === r.k && x !== r)).slice(0, 3);
     const opts = shuffle([r, ...same]);
-    $('#rqBody').innerHTML = `<div class="q rq-sign"><p class="small muted" style="text-align:center;margin:0 0 6px">Soal ${qi + 1} dari ${qs.length} · ${CATN[r.k]}</p>${svg(r, 'Gambar soal ' + (qi + 1))}<p style="text-align:center;font-weight:700">Apa arti gambar ini?</p><div class="rq-opts quiz">${opts.map(o => `<button type="button" class="opt" data-ok="${o === r}">${o.n}</button>`).join('')}</div><p class="small" id="rqEx" style="margin-top:8px"></p></div>`;
+    $('#rqBody').innerHTML = `<div class="q rq-sign"><p class="small muted" style="text-align:center;margin:0 0 6px">Soal ${qi + 1} dari ${qs.length} · ${CATN[r.k]}</p>${svg(r, 'Gambar soal ' + (qi + 1))}<p style="text-align:center;font-weight:700">Apa arti gambar ini?</p><div class="rq-opts quiz">${opts.map(o => `<button type="button" class="opt" data-ok="${o === r}">${o.n}</button>`).join('')}</div><p class="small" id="rqEx" tabindex="-1" style="margin-top:8px"></p></div>`;
     $$('#rqBody .opt').forEach(b => b.onclick = () => {
       if ($('#rqBody .opt[disabled]')) return;
       const ok = b.dataset.ok === 'true'; if (ok) score++;
@@ -3398,6 +3475,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       if (!ok) b.classList.add('wrong');
       $('#rqEx').innerHTML = `${ok ? '✅ Benar!' : '❌ Kurang tepat.'} <b>${r.n}</b>: ${r.a} <button class="btn sm" type="button" id="rqNext" style="margin-left:6px">${qi + 1 < qs.length ? 'Soal berikutnya →' : 'Lihat skor'}</button>`;
       $('#rqNext').onclick = () => { qi++; ask(); };
+      $('#rqEx').focus();
     });
   }
   newQuiz();
@@ -3535,8 +3613,44 @@ $('#covTools').textContent = $$('.widget').length;
 buildToc();
 const startId = location.hash ? location.hash.slice(1) : null;
 let si = startId ? pages.findIndex(p => p.dataset.id === startId) : -1;
+const lastId = store.get('sim-book-page', null); // dibaca sebelum go() menimpanya
 pages[0].classList.add('active');
 go(si >= 0 ? si : 0, !startId);
+
+/* ---------------- lanjutkan membaca dari halaman terakhir ---------------- */
+(function(){
+  const li = pages.findIndex(p => p.dataset.id === lastId);
+  if (startId || li <= 0) return; // dibuka lewat tautan halaman tertentu, atau belum pernah membaca
+  const box = $('#resume');
+  $('#resumeT').textContent = `hlm. ${li + 1}: ${short(pages[li])}`;
+  const tutup = () => { box.hidden = true; };
+  $('#resumeGo').onclick = () => { tutup(); go(li); };
+  $('#resumeX').onclick = tutup;
+  pageHooks.push(tutup); // berpindah halaman sendiri = tawaran tidak diperlukan
+  box.hidden = false;
+})();
+
+/* ---------------- aplikasi: pasang ke layar utama & baca tanpa internet ---------------- */
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+(function(){
+  let tawaran = null;
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.hidden = true; btn.textContent = '📲 Pasang di HP';
+  btn.setAttribute('aria-label', 'Pasang buku ini sebagai aplikasi di layar utama');
+  const bar = pages[0].querySelector('.pact');
+  if (bar) bar.appendChild(btn);
+  addEventListener('beforeinstallprompt', e => { e.preventDefault(); tawaran = e; btn.hidden = false; });
+  btn.onclick = () => {
+    if (!tawaran) return;
+    tawaran.prompt();
+    tawaran.userChoice.finally(() => { tawaran = null; btn.hidden = true; });
+  };
+  addEventListener('appinstalled', () => { btn.hidden = true; toast('Buku terpasang di layar utama ✓'); gcCount('aplikasi/terpasang', 'Pasang aplikasi', true); });
+  addEventListener('offline', () => toast('Anda sedang offline — buku tetap bisa dibaca.'));
+  addEventListener('online', () => toast('Kembali online.'));
+})();
 })();
 </script>
 <script>
