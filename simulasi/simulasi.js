@@ -59,6 +59,7 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
       return { t: m[1], v: m[2], u: U[m[3]] ?? -0.5, z: Z[m[4]] ?? 3, pos: m[3] };
     }).sort((p, q) => q.z - p.z);
     for (const it of items) s += sprite(it, at, P, strip);
+    if (a.k === 'truk' && items.some(i => i.t === 'sepeda')) s += '<path d="M300 268 Q200 228 80 214" stroke="#e74c3c" stroke-width="6" stroke-dasharray="14 10" fill="none"/><path d="M300 268 Q200 228 80 214 L60 230 Q190 248 240 268Z" fill="#e74c3c" opacity=".25"/><text x="80" y="200" font-size="15" font-weight="800" fill="#c0392b" font-family="Arial">lintasan roda belakang</text>';
     // cuaca
     if (cuaca === 'hujan') s += rain();
     if (cuaca === 'kabut') s += `<rect width="${W}" height="${H}" fill="#eef1f3" opacity=".55"/><rect width="${W}" height="${HOR + 40}" fill="#f4f6f7" opacity=".5"/>`;
@@ -164,7 +165,7 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
       case 'mobil_kanan_belok': return g(tr, carRear(col) + '<rect x="-84" y="-62" width="20" height="14" fill="#ffb300"/>');
       case 'angkot': case 'ojek_mobil': return g(tr, van('#1abc9c'));
       case 'bus': case 'bus_halte': case 'bus_keluar_halte': return g(tr, busRear('#2471a3') + (t === 'bus_keluar_halte' ? '<rect x="92" y="-72" width="24" height="18" fill="#ffb300"/>' : ''));
-      case 'bus_samping': return g(tr, busSide('#2471a3'));
+      case 'bus_samping': return g(tr, '<polygon points="-60,-230 -330,-170 -330,-20 -60,-20" fill="#e74c3c" opacity=".3"/><text x="-195" y="-100" text-anchor="middle" font-size="30" font-weight="800" fill="#c0392b" font-family="Arial">TITIK BUTA</text>' + busSide('#2471a3'));
       case 'truk': case 'truk_parkir': return g(tr, truckRear(false));
       case 'truk_muatan': return g(tr, truckRear(true));
       case 'truk_lawan': return g(tr, truckFront());
@@ -177,10 +178,15 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
       case 'apill': return g(tr, apill(v || 'merah'));
       case 'rambu': return g(tr, /^\d+$/.test(v) ? sign('num', v) : v === 'stop' ? sign('stop') : v === 'ka' ? sign('ka') : v === 'belok_kiri_ikuti_isyarat' ? sign('biru') : sign('warn', v));
       case 'sekolah': return g(tr, sign('warn', 'sekolah'));
-      case 'palang': return g(tr, '<rect x="-6" y="-120" width="12" height="120" fill="#555"/><g transform="rotate(-12)"><rect x="0" y="-104" width="320" height="14" fill="#fff"/>' + [0, 1, 2, 3, 4].map(i => `<rect x="${20 + i * 64}" y="-104" width="30" height="14" fill="#c0392b"/>`).join('') + '</g><circle cx="-26" cy="-130" r="10" fill="#ff3030"/><circle cx="26" cy="-130" r="10" fill="#ff3030"/>') + strip(-1, 1, it.z * 0.97, it.z, '#fff', ' opacity=".9"');
+      case 'palang': return g(tr, '<rect x="-6" y="-120" width="12" height="120" fill="#555"/><g transform="rotate(-12)"><rect x="0" y="-104" width="320" height="14" fill="#fff"/>' + [0, 1, 2, 3, 4].map(i => `<rect x="${20 + i * 64}" y="-104" width="30" height="14" fill="#c0392b"/>`).join('') + '</g><circle cx="-26" cy="-130" r="10" fill="#ff3030"/><circle cx="26" cy="-130" r="10" fill="#ff3030"/><circle cx="-26" cy="-130" r="22" fill="#ff3030" opacity=".35"/><circle cx="26" cy="-130" r="22" fill="#ff3030" opacity=".35"/><rect x="-92" y="-206" width="184" height="40" rx="10" fill="#111" opacity=".85"/><text y="-178" text-anchor="middle" font-size="24" font-weight="800" fill="#ffd400" font-family="Arial">🔔 TENG-TENG</text>') + strip(-1, 1, it.z * 0.97, it.z, '#fff', ' opacity=".9"');
       case 'zebra': { let s = ''; for (let k = -0.9; k < 0.95; k += 0.22) s += strip(k, k + 0.12, it.z, it.z * 1.18, '#fafafa'); return s; }
-      case 'rhk': return strip(-1, 0, it.z, it.z * 1.25, '#c0392b', ' opacity=".75"') + strip(-1, 0, it.z * 0.97, it.z, '#fff');
-      case 'kotak_kuning': { let s = strip(-1, 1, it.z, it.z * 1.4, 'none', ' stroke="#f1c40f" stroke-width="3"'); for (let k = -0.9; k < 1; k += 0.3) s += strip(k, k + 0.04, it.z, it.z * 1.4, '#f1c40f'); return s; }
+      case 'rhk': return strip(-1, 0, it.z, it.z * 1.25, '#d62828', ' opacity=".95"') + strip(-1, 0, it.z * 0.96, it.z, '#fff') + strip(-1, 0, it.z * 1.25, it.z * 1.29, '#fff') + g(at(-0.5, it.z * 1.1), '<text text-anchor="middle" font-size="40" font-weight="800" fill="#fff" font-family="Arial" transform="scale(1 .45)">RHK</text>');
+      case 'kotak_kuning': {
+        const z1 = it.z, z2 = it.z * 1.45, [a1, b1] = P(-1, z1), [a2] = P(1, z1), [c1, d1] = P(-1, z2), [c2] = P(1, z2);
+        let s = `<polygon points="${a1},${b1} ${a2},${b1} ${c2},${d1} ${c1},${d1}" fill="none" stroke="#f1c40f" stroke-width="5"/>`;
+        s += `<line x1="${a1}" y1="${b1}" x2="${c2}" y2="${d1}" stroke="#f1c40f" stroke-width="4"/><line x1="${a2}" y1="${b1}" x2="${c1}" y2="${d1}" stroke="#f1c40f" stroke-width="4"/>`;
+        return s;
+      }
       case 'jalur_sepeda': return strip(-0.98, -0.62, 1, 30, '#27ae60', ' opacity=".7"');
       case 'genangan': case 'marka_licin': return g(tr, `<ellipse cy="-6" rx="${t === 'genangan' ? 120 : 200}" ry="26" fill="#9ec9e8" opacity=".75"/>`);
       case 'lubang': return g(tr, '<ellipse cy="-6" rx="60" ry="18" fill="#2b2b2b"/><ellipse cy="-8" rx="46" ry="11" fill="#5c7d94" opacity=".6"/>');
@@ -213,13 +219,15 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
         speedo(320, 318, 30);
     }
     const big = k === 'bus' || k === 'truk';
+    const motorKiri = items.some(i => (i.t === 'motor' || i.t === 'sepeda') && i.pos === 'kiri');
+    const spionKiri = big ? `<line x1="20" y1="170" x2="50" y2="190" stroke="#222" stroke-width="5"/><rect x="34" y="176" width="70" height="96" rx="10" fill="#bcd3e0" stroke="#222" stroke-width="5"/>${motorKiri ? '<g transform="translate(72 262) scale(.42)">' + moto('#2c3e50', '#c0392b') + '</g>' : ''}` : '';
     const dashY = big ? 268 : 292;
     return `<rect x="0" y="0" width="20" height="360" fill="#151515"/><rect x="620" y="0" width="20" height="360" fill="#151515"/><rect x="0" y="0" width="640" height="16" fill="#151515"/>` +
       `<rect x="250" y="16" width="140" height="34" rx="8" fill="#222"/><rect x="258" y="22" width="124" height="22" rx="5" fill="#9fb3c2"/>` +
       (mirrorHas ? '<rect x="300" y="26" width="34" height="14" fill="#fff"/><rect x="300" y="23" width="34" height="5" fill="#e74c3c"/>' : '') +
       `<path d="M0 ${dashY} Q320 ${dashY - 20} 640 ${dashY} V360 H0Z" fill="#2a2c30"/>` +
       `<circle cx="${big ? 300 : 210}" cy="${big ? 360 : 372}" r="${big ? 110 : 90}" fill="none" stroke="#111" stroke-width="18"/>` +
-      speedo(big ? 470 : 360, dashY + 34, 26);
+      speedo(big ? 470 : 360, dashY + 34, 26) + spionKiri;
   }
 
   /* =====================================================================
