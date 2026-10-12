@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610121458">
+<meta name="versi-buku" content="202610121518">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
 <!-- Pratinjau tautan saat dibagikan (WhatsApp, Facebook, Telegram, X) -->
@@ -552,6 +552,45 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .toast.on{opacity:1}
 .resume{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:26;width:min(560px,calc(100% - 24px));display:flex;align-items:center;gap:10px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:10px 10px 10px 12px;box-shadow:var(--shadow)}
 .resume[hidden]{display:none}
+.wizcta{display:flex;align-items:center;gap:12px;width:100%;max-width:520px;margin:6px 0 14px;padding:12px 14px;border-radius:14px;border:2px solid var(--accent);background:#fff;color:#071f4d;text-align:left;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.wizcta .ic{font-size:1.6rem}
+.wizcta span:nth-child(2){flex:1;min-width:0}
+.wizcta b{display:block;font-size:1rem}
+.wizcta small{display:block;font-size:.78rem;color:#3f4d66;line-height:1.35}
+.wizcta:hover{background:#fff8e1}
+.wizcta.toc{max-width:none;margin:0 0 16px;box-shadow:none}
+.wiz{position:fixed;inset:0;z-index:55;background:rgba(3,10,25,.6);display:none;padding:12px;overflow:auto}
+.wiz.on{display:block}
+.wiz .box{max-width:620px;margin:4vh auto;background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.wiz .hd{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--brand-deep);color:#fff}
+.wiz .hd h2{flex:1;margin:0;font-size:1rem}
+.wiz .hd .x{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:10px;width:40px;height:40px}
+.wiz .bd{padding:16px clamp(14px,4vw,24px) 20px}
+.wiz h3{margin:2px 0 12px;font-size:1.2rem}
+.wiz h4{margin:16px 0 6px}
+.wiz h3:focus{outline:none}
+.wiz .wstep{margin:0;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.wopts{border:0;margin:0;padding:0;display:grid;gap:8px}
+.wopt{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);cursor:pointer}
+.wopt input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--brand)}
+.wopt b{display:block}
+.wopt small{display:block;color:var(--muted);font-size:.8rem;line-height:1.35}
+.wopt:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+.wopt:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.wnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:18px}
+.wnav .btn[disabled]{opacity:.5;cursor:not-allowed}
+.wnav .wa{background:#137c3e;color:#fff;text-decoration:none;display:inline-flex;align-items:center}
+.wnote{margin:0 0 8px;padding:8px 12px;border-radius:10px;font-size:.9rem;border-left:4px solid var(--brand);background:var(--brand-soft)}
+.wnote.ok{border-color:var(--ok);background:var(--ok-soft)}
+.wnote.warn{border-color:var(--warn);background:var(--warn-soft)}
+.wnote.danger{border-color:var(--danger);background:var(--danger-soft)}
+.wres{margin:12px 0 4px;padding:12px 14px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--line)}
+.wres small{display:block;color:var(--muted);font-size:.78rem}
+.wres b{display:block;font-size:1.3rem;margin:2px 0}
+.wlinks{display:flex;flex-wrap:wrap;gap:6px}
+.wlinks a{border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:.82rem;text-decoration:none;background:var(--surface-2)}
+.calbtn{display:flex;flex-wrap:wrap;gap:8px}
+.calbtn a.btn{text-decoration:none;display:inline-flex;align-items:center}
 .langsw{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border:1px solid var(--line);border-radius:99px;background:var(--surface-2);margin:0 0 14px}
 .langsw button{border:0;background:transparent;color:var(--ink);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.85rem;min-height:36px}
 .langsw button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
@@ -676,6 +715,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="res" id="sqRes" aria-live="polite"></div>
   </div>
 </div>
+<div class="wiz" id="wiz" role="dialog" aria-modal="true" aria-labelledby="wizT">
+  <div class="box">
+    <div class="hd"><h2 id="wizT"><span aria-hidden="true">🧭</span> SIM apa yang saya butuhkan?</h2><button class="x" id="wizX" aria-label="Tutup">✕</button></div>
+    <div class="bd" id="wizBody"></div>
+  </div>
+</div>
 <div class="toast" id="toast" role="status"></div>
 
 <div class="scrim" id="scrim"></div>
@@ -697,6 +742,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <span class="tag">BUKU DIGITAL INTERAKTIF</span>
       <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
+      <button type="button" class="wizcta noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>SIM apa yang saya butuhkan?</b><small>Jawab beberapa pertanyaan singkat, langsung tahu syarat, biaya & tempatnya</small></span><span aria-hidden="true">→</span></button>
       <div class="cbtn">
         <button class="btn" data-go="daftar-isi">Buka Daftar Isi</button>
         <button class="btn ghost" data-go="kata-pengantar">Mulai Membaca →</button>
@@ -731,6 +777,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page tocpage" data-id="daftar-isi" data-title="Daftar Isi">
   <div class="ph"><span class="code">ISI</span><h2>Daftar Isi</h2><p>Klik judul untuk langsung menuju halaman yang diinginkan.</p></div>
   <div class="pbody">
+    <button type="button" class="wizcta toc noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>Bingung mulai dari mana?</b><small>Cek SIM apa yang Anda butuhkan: syarat, biaya & tempat mengurusnya</small></span><span aria-hidden="true">→</span></button>
     <div id="tocPage"></div>
     <div class="note"><b>Cara menggunakan buku ini</b>
       <ul>
@@ -2174,7 +2221,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <h4>Cek status SIM saya</h4>
       <div class="note danger" style="margin-top:0"><b>INFO PENTING:</b>Masa berlaku SIM saat ini tidak lagi mengikuti tanggal lahir Anda, melainkan dihitung <b>5 tahun sejak tanggal SIM dicetak</b>. Mohon selalu perhatikan tanggal kedaluwarsa yang tertera pada SIM Anda.</div>
       <div class="row"><div class="fld"><label for="expDate">Tanggal berlaku sampai (tertera di SIM)</label><input type="date" id="expDate"></div></div>
-      <div class="out" id="expOut"></div>
+      <div class="out" id="expOut" aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -2737,7 +2784,7 @@ $('#expDate').addEventListener('change', () => {
   if (left > 60) s = `<span class="chip g">AMAN</span> SIM masih berlaku <b>${left} hari</b> lagi. Tandai kalender Anda untuk perpanjangan.`;
   else if (left >= 0) s = `<span class="chip y">SEGERA PERPANJANG</span> Tersisa <b>${left} hari</b>. Perpanjang sebelum ${fmtDate(d)} di Satpas, SIM Keliling, atau SINAR.`;
   else s = `<span class="chip r">SUDAH LEWAT</span> Lewat <b>${-left} hari</b>. SIM yang lewat masa berlaku harus diajukan sebagai <b>SIM baru</b> (Pasal 4 ayat 3), kecuali dispensasi hari Minggu/libur (B.8) atau Keadaan Kahar.`;
-  out.innerHTML = `<p class="small">Berlaku sampai: <b>${fmtDate(d)}</b></p><p style="margin:0">${s}</p>`;
+  out.innerHTML = `<p class="small">Berlaku sampai: <b>${fmtDate(d)}</b></p><p style="margin:0">${s}</p>` + (left >= 0 ? `<h4 style="margin:14px 0 6px">Pasang pengingat di kalender</h4>${calHtml(d)}` : '');
 });
 
 /* ---------------- C.1.5 poin ---------------- */
@@ -2785,6 +2832,214 @@ function renderCk(){
 $('#ckSel').addEventListener('change', renderCk);
 $('#ckList').addEventListener('change', e => { const k = $('#ckSel').value; ckState[k] = ckState[k] || []; ckState[k][+e.target.dataset.i] = e.target.checked; store.set('sim-book-ck', ckState); renderCk(); });
 renderCk();
+
+/* ---------------- Pengingat masa berlaku ke kalender (C.1.4 & wizard) ---------------- */
+const ymd = d => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+const tglPendek = d => d.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'});
+const PENGINGAT = [
+  [-30, 'Saatnya perpanjang SIM (habis 30 hari lagi)'],
+  [-7, 'SIM habis 7 hari lagi, segera perpanjang'],
+  [0, 'Hari terakhir masa berlaku SIM']
+];
+function calInfo(exp){
+  return `SIM Anda berlaku sampai ${tglPendek(exp)}. Perpanjang sebelum tanggal itu; SIM yang lewat masa berlaku harus dibuat baru (ujian ulang).\n` +
+    `Pilihan: SINAR (online dari rumah, SIM A & C), SIM Keliling (SIM A & C, paling lambat H-3), atau Satpas Polresta Banyuwangi.\n` +
+    `Syarat: e-KTP, SIM lama, surat sehat jasmani & psikologi, BPJS Kesehatan aktif.\n` +
+    `Panduan: ${CONFIG.siteUrl}#b6`;
+}
+function calHtml(exp){
+  const mulai = new Date(Math.max(addDays(exp, -30), today()));
+  const g = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(`Perpanjang SIM (berlaku s.d. ${tglPendek(exp)})`) +
+    '&dates=' + ymd(mulai) + '/' + ymd(addDays(mulai, 1)) +
+    '&details=' + encodeURIComponent(calInfo(exp));
+  return `<div class="calbtn"><a class="btn sm" href="${g}" target="_blank" rel="noopener" data-cal="google">📅 Tambah ke Google Calendar</a>` +
+    `<button type="button" class="btn ghost sm" data-ics="${ymd(exp)}">⬇️ Unduh pengingat (.ics)</button></div>` +
+    `<p class="small muted" style="margin:6px 0 0">File .ics untuk iPhone, Outlook & aplikasi kalender lain: pengingat 30 hari, 7 hari, dan pada hari habisnya. Tanggal SIM diolah di HP Anda saja, tidak dikirim ke server Satpas.</p>`;
+}
+function unduhIcs(exp){
+  const esc = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  const fold = l => l.match(/.{1,60}/g).join('\r\n '); // baris iCalendar maks. 75 oktet
+  const now = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  const ev = PENGINGAT.map(([off, judul]) => [addDays(exp, off), judul]).filter(([d]) => d >= today()).map(([d, judul], i) => [
+    'BEGIN:VEVENT', `UID:sim-${ymd(exp)}-${i}@satpasbwi-sim.github.io`, `DTSTAMP:${now}`,
+    `DTSTART;VALUE=DATE:${ymd(d)}`, `DTEND;VALUE=DATE:${ymd(addDays(d, 1))}`,
+    `SUMMARY:${esc(judul)}`, `DESCRIPTION:${esc(calInfo(exp))}`, `URL:${CONFIG.siteUrl}#b6`,
+    'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${esc(judul)}`, 'TRIGGER:PT8H', 'END:VALARM', 'END:VEVENT'
+  ]).flat();
+  if (!ev.length) return toast('Tanggal sudah lewat, tidak ada pengingat yang bisa dibuat.');
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Satpas Polresta Banyuwangi//Buku Digital SIM//ID', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', ...ev, 'END:VCALENDAR'].map(fold).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([ics], {type: 'text/calendar;charset=utf-8'}));
+  a.download = 'pengingat-perpanjang-SIM.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  toast('Pengingat diunduh. Buka file-nya untuk menambahkan ke kalender.');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-ics]');
+  if (b) { unduhIcs(parseDate(b.dataset.ics.replace(/(\d{4})(\d\d)(\d\d)/, '$1-$2-$3'))); gcCount('pengingat/ics', 'Pengingat kalender', true); }
+  else if (e.target.closest('[data-cal="google"]')) gcCount('pengingat/google', 'Pengingat kalender', true);
+});
+
+/* ---------------- Wizard "SIM apa yang saya butuhkan?" ---------------- */
+(function(){
+  const dlg = $('#wiz'), body = $('#wizBody');
+  const KEPERLUAN = [
+    ['baru', '🆕 Membuat SIM baru', 'Belum pernah punya SIM untuk kendaraan ini'],
+    ['perpanjang', '🔄 Memperpanjang SIM', 'SIM saya akan / sudah habis masa berlakunya'],
+    ['naik', '⬆️ Menaikkan golongan', 'Mis. dari SIM A ke SIM B, atau SIM C ke SIM CI'],
+    ['hilang', '🔎 SIM hilang atau rusak', 'Butuh penggantian SIM'],
+    ['internasional', '🌏 SIM Internasional', 'Untuk berkendara di luar negeri'],
+    ['wna', '🛂 SIM untuk WNA', 'Warga negara asing yang tinggal di Indonesia']
+  ];
+  const KENDARAAN = [
+    ['SIM C', '🏍️ Sepeda motor s.d. 250 cc', 'SIM C'],
+    ['SIM A', '🚗 Mobil pribadi (≤ 3.500 kg)', 'SIM A'],
+    ['SIM D', '♿ Motor khusus penyandang disabilitas', 'SIM D (program SIBABA)'],
+    ['SIM DI', '♿ Mobil khusus penyandang disabilitas', 'SIM DI (program SIBABA)'],
+    ['SIM CI', '🏍️ Motor 250–500 cc', 'SIM CI, wajib punya SIM C ≥ 12 bulan'],
+    ['SIM CII', '🏍️ Motor di atas 500 cc', 'SIM CII, wajib punya SIM CI ≥ 12 bulan']
+  ];
+  const golList = names => names.map(n => [n, n, (GOL.find(g => g[0] === n) || [])[2] || '']);
+  let st = {}, step = 0, from = null;
+
+  const STEPS = {
+    jenis: {q: 'Apa keperluan Anda?', opts: () => KEPERLUAN, key: 'jenis'},
+    kendaraan: {q: 'Kendaraan apa yang akan Anda kemudikan?', opts: () => KENDARAAN, key: 'gol'},
+    golPunya: {q: 'SIM golongan apa yang Anda miliki sekarang?', key: 'gol',
+      opts: () => golList(st.jenis === 'naik' ? Object.keys(NAIK).filter(k => NAIK[k].length) : GOL.map(g => g[0]))},
+    target: {q: 'Naik ke golongan apa?', key: 'target', opts: () => golList(NAIK[st.gol] || [])},
+    masih: {q: 'Apakah masa berlaku SIM tersebut masih berlaku?', key: 'masih',
+      opts: () => [['ya', '✅ Masih berlaku', 'Belum lewat tanggal habis'], ['tidak', '⌛ Sudah lewat', 'Tanggal habis sudah terlewati']]},
+    dob: {q: 'Tanggal lahir Anda', key: 'dob', date: true, hint: 'Untuk mengecek usia minimal golongan SIM.'},
+    exp: {q: 'Sampai kapan SIM Anda berlaku?', key: 'exp', date: true, hint: 'Lihat tanggal "berlaku s.d." yang tertera di kartu SIM.'}
+  };
+  const alur = () => ({
+    baru: ['jenis', 'kendaraan', 'dob'], wna: ['jenis', 'kendaraan', 'dob'],
+    perpanjang: ['jenis', 'golPunya', 'exp'], naik: ['jenis', 'golPunya', 'target', 'dob'],
+    hilang: ['jenis', 'golPunya', 'masih'], internasional: ['jenis']
+  })[st.jenis] || ['jenis'];
+
+  function tampil(){
+    const ids = alur(), id = ids[step], S = STEPS[id], val = st[S.key];
+    const isi = S.date
+      ? `<div class="fld"><label for="wizDate">${S.q}</label><input type="date" id="wizDate" value="${val || ''}"></div><p class="small muted">${S.hint}</p>`
+      : `<fieldset class="wopts"><legend class="sr">${S.q}</legend>${S.opts().map(([v, t, s]) => `<label class="wopt"><input type="radio" name="w-${id}" value="${v}" ${val === v ? 'checked' : ''}><span><b>${t}</b>${s ? `<small>${s}</small>` : ''}</span></label>`).join('')}</fieldset>`;
+    const akhir = st.jenis && step === ids.length - 1;
+    body.innerHTML = `<p class="wstep">Langkah ${step + 1}${st.jenis ? ' dari ' + ids.length : ''}</p><h3 id="wizQ" tabindex="-1">${S.q}</h3>${isi}
+      <div class="wnav"><button type="button" class="btn ghost" data-wback ${step ? '' : 'hidden'}>← Kembali</button><button type="button" class="btn" data-wnext ${val ? '' : 'disabled'}>${akhir ? 'Lihat hasil →' : 'Lanjut →'}</button></div>`;
+    $('#wizQ').focus();
+  }
+
+  const cariTarif = (jenis, gol) => { for (const j of [jenis, 'SIM Baru', 'Perpanjangan']) { const t = (TARIF[j] || []).find(x => x[0] === gol); if (t) return t[1]; } return null; };
+  function hasil(){
+    const t = today(), notes = [], cara = [], links = [];
+    let judul, ck, jenisTarif, gol = st.target || st.gol, biaya;
+    const cekUsia = () => {
+      const g = GOL.find(x => x[0] === gol), d = parseDate(st.dob); if (!g || !d) return;
+      const boleh = new Date(d.getFullYear() + g[1], d.getMonth(), d.getDate());
+      notes.push(boleh <= t ? ['ok', `Usia Anda memenuhi syarat ${gol} (minimal ${g[1]} tahun).`]
+        : ['danger', `Usia minimal ${gol} adalah ${g[1]} tahun. Anda baru bisa mengajukan mulai <b>${tglPendek(boleh)}</b>.`]);
+    };
+    const cekPrasyarat = () => { if (PRE[gol]) notes.push(['warn', `Wajib sudah memiliki <b>${PRE[gol]}</b> minimal 12 bulan.`]); };
+    const satpas = 'Datang ke <b>Satpas Polresta Banyuwangi</b> pada jam pelayanan (lihat <a href="#b1" data-go="b1">B.1</a>).';
+    const jadiBaru = alasan => {
+      judul = `Permohonan SIM Baru · ${gol}`; ck = 'SIM Baru'; jenisTarif = 'SIM Baru';
+      notes.push(['danger', alasan + ' Pengajuan diproses sebagai <b>SIM baru</b>, termasuk ujian teori & praktik (Pasal 4 ayat 3).']);
+      cara.push(satpas, 'Persiapkan ujian dengan <a href="#b5-1" data-go="b5-1">E-Book Ujian (B.5.1)</a> dan latihan gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.');
+      links.push(['b5', 'B.5 Permohonan SIM Baru']);
+    };
+    switch (st.jenis) {
+      case 'baru': case 'wna':
+        judul = `${st.jenis === 'wna' ? 'SIM Baru WNA' : 'Permohonan SIM Baru'} · ${gol}`; ck = st.jenis === 'wna' ? 'SIM Baru WNA' : 'SIM Baru'; jenisTarif = 'SIM Baru';
+        cekUsia(); cekPrasyarat();
+        cara.push(satpas, 'Ujian teori (E-AVIS), ujian keterampilan/simulator bila diperlukan, lalu ujian praktik. Nilai lulus teori minimal 70.',
+          'Persiapkan dengan <a href="#b5-1" data-go="b5-1">E-Book Ujian (B.5.1)</a> dan latihan praktik gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.');
+        if (/^SIM D/.test(gol)) { cara.push('Layanan pendampingan khusus penyandang disabilitas: <a href="#b15" data-go="b15">SIBABA (B.15)</a>.'); links.push(['b15', 'B.15 SIBABA']); }
+        links.push(st.jenis === 'wna' ? ['b17', 'B.17 Alur SIM WNA (ID/EN)'] : ['b5', 'B.5 Permohonan SIM Baru']);
+        break;
+      case 'perpanjang': {
+        const exp = parseDate(st.exp), sisa = daysBetween(t, exp);
+        if (sisa < 0) { jadiBaru(`SIM Anda sudah lewat masa berlaku sejak ${tglPendek(exp)}.`); if (sisa >= -4) notes.push(['warn', 'Jika tanggal habis jatuh pada hari Minggu/libur nasional, ada dispensasi 1 hari kerja: cek <a href="#b8" data-go="b8">B.8</a>.']); break; }
+        judul = `Perpanjangan · ${gol}`; ck = 'Perpanjangan'; jenisTarif = 'Perpanjangan';
+        notes.push([sisa > 60 ? 'ok' : 'warn', `SIM berlaku sampai <b>${tglPendek(exp)}</b>, tersisa <b>${sisa} hari</b>. Tanpa ujian selama belum lewat.`]);
+        if (/^SIM [AC]$/.test(gol)) {
+          cara.push('<b>Dari rumah:</b> aplikasi <a href="#b12" data-go="b12">SINAR (B.12)</a>, SIM dikirim ke alamat Anda.');
+          cara.push(sisa >= 3 ? '<b>Dekat rumah:</b> <a href="#b13" data-go="b13">SIM Keliling / SIM JEMPOL (B.13)</a>, paling lambat H-3.' : 'SIM Keliling hanya melayani paling lambat H-3; waktu Anda sudah lewat, pilih SINAR atau Satpas.');
+        }
+        cara.push(satpas);
+        if (/Umum|BI/.test(gol)) notes.push(['warn', 'Golongan ini wajib membawa surat uji keterampilan/simulator.']);
+        links.push(['b6', 'B.6 Permohonan SIM Perpanjangan']);
+        st._exp = exp;
+        break;
+      }
+      case 'naik':
+        judul = `Peningkatan golongan · ${st.gol} → ${gol}`; ck = 'Peningkatan'; jenisTarif = 'Peningkatan';
+        cekUsia(); cekPrasyarat();
+        notes.push(['warn', 'Wajib sertifikat diklat mengemudi dari sekolah mengemudi terakreditasi (berlaku 6 bulan).']);
+        cara.push(satpas, 'Ujian teori & praktik untuk golongan baru.');
+        links.push(['b7', 'B.7 Permohonan SIM Peningkatan'], ['c2', 'C.1.2 Tangga golongan']);
+        break;
+      case 'hilang':
+        if (st.masih === 'tidak') { jadiBaru('SIM yang hilang/rusak sudah lewat masa berlaku.'); break; }
+        judul = `Penggantian SIM hilang/rusak · ${gol}`; ck = 'SIM Hilang / Rusak'; jenisTarif = 'Perpanjangan';
+        notes.push(['ok', 'Tanpa ujian selama data SIM tercatat dan masih berlaku.']);
+        cara.push('SIM hilang: buat laporan kehilangan di <b>SPKT Polsek/Polresta</b> (gratis, tolak bila diminta biaya).', satpas);
+        links.push(['b6-1', 'B.6.1 Penggantian SIM Hilang atau Rusak']);
+        break;
+      case 'internasional':
+        judul = 'SIM Internasional'; ck = 'SIM Internasional'; gol = 'SIM Internasional';
+        notes.push(['warn', 'Syarat: sudah memiliki SIM perseorangan/umum yang berlaku. SIM Internasional hanya berlaku di luar negeri.']);
+        cara.push('Daftar <b>online</b> di <a href="https://siminternasional.korlantas.polri.go.id/" target="_blank" rel="noopener">siminternasional.korlantas.polri.go.id</a>, bayar melalui BRIVA. Diambil di Korlantas Polri atau dikirim.');
+        links.push(['b16', 'B.16 Penerbitan SIM Internasional (ID/EN)']);
+        biaya = `${rupiah(cariTarif('SIM Baru', gol))} (baru) · ${rupiah(cariTarif('Perpanjangan', gol))} (perpanjangan)`;
+        break;
+    }
+    if (!biaya) { const b = cariTarif(jenisTarif, gol); biaya = b ? rupiah(b) : 'lihat <a href="#c3" data-go="c3">C.1.3</a>'; }
+    links.push(['b2', 'B.2 Tarif resmi & stop pungli']);
+    const ikon = {ok: '✅', warn: '⚠️', danger: '⛔'};
+    const ringkas = `${judul}\nBiaya resmi (PNBP): ${biaya.replace(/<[^>]+>/g, '')}\nDokumen: ${CEK[ck].join('; ')}\nPanduan lengkap: ${CONFIG.siteUrl}`;
+    body.innerHTML = `<p class="wstep">Hasil</p><h3 id="wizQ" tabindex="-1">${judul}</h3>
+      ${notes.map(([k, s]) => `<p class="wnote ${k}"><span aria-hidden="true">${ikon[k]}</span> ${s}</p>`).join('')}
+      <div class="wres"><div><small>Biaya resmi (PNBP)</small><b>${biaya}</b><small>Dibayar di loket bank, bukan ke perorangan.</small></div></div>
+      <h4>Dokumen yang dibawa</h4><ul class="clean small">${CEK[ck].map(x => `<li>${x}</li>`).join('')}</ul>
+      <h4>Di mana mengurusnya</h4><ul class="clean small">${cara.map(x => `<li>${x}</li>`).join('')}</ul>
+      ${st._exp ? `<h4>Jangan sampai lupa</h4>${calHtml(st._exp)}` : ''}
+      <h4>Baca selengkapnya</h4><p class="wlinks">${links.map(([id, l]) => `<a href="#${id}" data-go="${id}">${l}</a>`).join('')}</p>
+      <div class="wnav"><button type="button" class="btn ghost" data-wreset>↺ Ulangi</button><button type="button" class="btn" data-wck="${ck}">☑️ Buka checklist dokumen</button>
+      <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(ringkas)}" target="_blank" rel="noopener">💬 Kirim ke WhatsApp</a></div>`;
+    $('#wizQ').focus();
+    gcCount('wizard/' + st.jenis + '/' + (gol || '').replace(/\s+/g, '-'), 'Wizard SIM', true);
+  }
+
+  function buka(){ from = document.activeElement; st = {}; step = 0; dlg.classList.add('on'); tampil(); gcCount('wizard/buka', 'Wizard SIM', true); }
+  function tutup(){ dlg.classList.remove('on'); if (from && from.focus) from.focus(); }
+  document.addEventListener('click', e => { if (e.target.closest('[data-wiz]')) { e.preventDefault(); buka(); } });
+  $('#wizX').onclick = tutup;
+  dlg.addEventListener('click', e => {
+    if (e.target === dlg) return tutup();
+    if (e.target.closest('[data-go]')) return tutup(); // tautan ke halaman buku: tutup wizard
+    if (e.target.closest('[data-wback]')) { step--; tampil(); }
+    else if (e.target.closest('[data-wnext]')) { if (step < alur().length - 1) { step++; tampil(); } else hasil(); }
+    else if (e.target.closest('[data-wreset]')) { st = {}; step = 0; tampil(); }
+    else if (e.target.closest('[data-wck]')) { $('#ckSel').value = e.target.closest('[data-wck]').dataset.wck; renderCk(); tutup(); goId('c6'); focusPage(); }
+  });
+  dlg.addEventListener('change', e => {
+    const id = alur()[step], S = STEPS[id]; if (!S) return;
+    if (e.target.name === 'w-' + id || e.target.id === 'wizDate') {
+      const v = e.target.value;
+      if (S.key === 'jenis' && st.jenis !== v) st = {};
+      if (S.key === 'gol') delete st.target;
+      st[S.key] = v; $('[data-wnext]', dlg).disabled = !v;
+      if (S.key === 'jenis') { // jumlah langkah baru diketahui setelah keperluan dipilih
+        $('.wstep', dlg).textContent = `Langkah 1 dari ${alur().length}`;
+        $('[data-wnext]', dlg).textContent = alur().length === 1 ? 'Lihat hasil →' : 'Lanjut →';
+      }
+    }
+  });
+  dlg.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutup(); } });
+})();
 
 /* ---------------- C.1.8 kuis ---------------- */
 // Bank soal: [pertanyaan, jawaban benar, [3 pengecoh], penjelasan]
