@@ -1,0 +1,103 @@
+# Pemantau otomatis Buku Digital SIM Satpas Banyuwangi.
+# Tiap jam memeriksa situs, gambar penting, jadwal SIM Keliling (Google Sheets) dan server survei SKM (Apps Script).
+# Bila ada yang gagal: dibuat issue berlabel "gangguan" (GitHub mengirim email ke pemilik akun)
+# dan, bila rahasia MAIL_USERNAME & MAIL_PASSWORD diisi, email ke satpasbwi@gmail.com.
+# Saat pulih: issue diberi komentar lalu ditutup, dan email "pulih" dikirim.
+# Jalankan manual: tab Actions → Pantau Buku Digital → Run workflow.
+name: Pantau Buku Digital
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # tiap jam, menit ke-17 (UTC)
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+concurrency:
+  group: pantau
+  cancel-in-progress: false
+
+env:
+  SITUS: https://satpasbwi-sim.github.io/bukusimbwi/
+  CSV_SIMLING: https://docs.google.com/spreadsheets/d/e/2PACX-1vRhIYDoSV7CNZMBg2mBvPY1JPkSieCe4KGipQuIVMeQmUzY1_n4NeG5AYxcAGsw2W0EwKoroz0X1zpr/pub?output=csv
+  SKM: https://script.google.com/macros/s/AKfycbxlCB2_vkrHEMCxzffvPByFwC-I9MMC8cvgTcbKNZFYNAlxM-pojll9AMRpLb4kN0loOA/exec?aksi=hasil
+  EMAIL_TUJUAN: satpasbwi@gmail.com
+  LABEL: gangguan
+
+jobs:
+  cek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ADA_SURAT: ${{ secrets.MAIL_PASSWORD != '' }}   # email dikirim hanya bila rahasia Gmail sudah diisi
+    steps:
+      - name: Periksa situs & layanan
+        id: cek
+        run: |
+          gagal=laporan.md; : > "$gagal"
+          # cek NAMA URL POLA — dicoba 3 kali (jeda 20 detik) agar gangguan sesaat tidak memicu peringatan
+          cek() {
+            local nama="$1" url="$2" pola="$3" kode="" n
+            for n in 1 2 3; do
+              case "$url" in *\?*) sep='&';; *) sep='?';; esac   # cb= melewati cache CDN
+              kode=$(curl -sL -A 'pantau-buku-sim' --max-time 30 -o isi.tmp -w '%{http_code}' "${url}${sep}cb=$(date +%s)" 2>/dev/null) || kode=000
+              if [ "$kode" = 200 ] && { [ -z "$pola" ] || grep -q -- "$pola" isi.tmp; }; then echo "OK    $nama"; return 0; fi
+              [ $n -lt 3 ] && sleep 20
+            done
+            echo "GAGAL $nama (HTTP $kode)"
+            echo "- **$nama** — HTTP \`$kode\`${pola:+, teks \`$pola\` tidak ditemukan} — $url" >> "$gagal"
+          }
+          cek 'Halaman utama buku'          "$SITUS"                             'data-id="penutup"'
+          cek 'Logo sampul'                 "${SITUS}img/logo-lantas-baru.webp"  ''
+          cek 'Latar sampul'                "${SITUS}img/sampul-latar.webp"      ''
+          cek 'Service worker (offline)'    "${SITUS}sw.js"                      'VERSI'
+          cek 'Manifest aplikasi'           "${SITUS}manifest.webmanifest"       ''
+          cek 'Simulasi E-AVIS: skrip'      "${SITUS}simulasi/simulasi.js"       ''
+          cek 'Simulasi E-AVIS: bank soal'  "${SITUS}simulasi/soal-eavis.json"   ''
+          cek 'Jadwal SIM Keliling (Google Sheets)' "$CSV_SIMLING"               ''
+          cek 'Server survei SKM (Apps Script)'     "$SKM"                       '"ok":true'
+          if [ -s "$gagal" ]; then echo "status=gagal" >> "$GITHUB_OUTPUT"; else echo "status=ok" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Buat / perbarui / tutup issue gangguan
+        id: issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          STATUS: ${{ steps.cek.outputs.status }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create "$LABEL" --color D93F0B --description 'Dibuat otomatis oleh pemantau' 2>/dev/null || true
+          buka=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].number // empty')
+          waktu=$(TZ=Asia/Jakarta date '+%d-%m-%Y %H:%M WIB')
+          if [ "$STATUS" = gagal ]; then
+            { echo "Pemeriksaan otomatis **$waktu** menemukan gangguan:"; echo; cat laporan.md; echo; echo "Rincian: $RUN_URL"; } > badan.md
+            if [ -z "$buka" ]; then
+              gh issue create --title "⚠️ Gangguan Buku Digital SIM ($waktu)" --label "$LABEL" --body-file badan.md
+              echo "kirim=gangguan" >> "$GITHUB_OUTPUT"   # email hanya saat gangguan baru, bukan tiap jam
+            else
+              gh issue comment "$buka" --body-file badan.md
+            fi
+          elif [ -n "$buka" ]; then
+            gh issue close "$buka" --comment "✅ Semua pemeriksaan kembali normal pada $waktu. Issue ditutup otomatis."
+            echo "kirim=pulih" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Kirim email
+        if: steps.issue.outputs.kirim != '' && env.ADA_SURAT == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Pemantau Buku Digital SIM <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ env.EMAIL_TUJUAN }}
+          subject: ${{ steps.issue.outputs.kirim == 'gangguan' && '⚠️ GANGGUAN Buku Digital SIM Satpas Banyuwangi' || '✅ PULIH Buku Digital SIM Satpas Banyuwangi' }}
+          body: |
+            ${{ steps.issue.outputs.kirim == 'gangguan' && 'Pemeriksaan otomatis menemukan gangguan pada Buku Digital SIM:' || 'Semua pemeriksaan Buku Digital SIM kembali normal.' }}
+
+            Situs: ${{ env.SITUS }}
+            Daftar gangguan & rincian: ${{ github.server_url }}/${{ github.repository }}/issues?q=label%3A${{ env.LABEL }}
