@@ -345,6 +345,7 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 /* halaman inovasi */
 .hero-inov{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:linear-gradient(135deg,#071f4d,#0b3d91);color:#fff;border-radius:16px;padding:20px 22px;margin:0 0 16px}
 .hero-inov p{opacity:.92;margin:0}
+.hero-inov a{color:var(--accent);font-weight:700;text-underline-offset:2px}
 h3.plain{color:#fff;margin:8px 0 6px;font-size:1.2rem}
 h3.plain::before{display:none}
 @media (max-width:640px){.hero-inov{grid-template-columns:1fr}.hero-inov>div:last-child{display:none}.hero-inov>div.hero-art,.hero-inov>div.track{display:block;justify-self:center}}
@@ -564,6 +565,15 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .wizcta.toc{max-width:none;margin:0 0 16px;box-shadow:none}
 .wiz{position:fixed;inset:0;z-index:55;background:rgba(3,10,25,.6);display:none;padding:12px;overflow:auto}
 .wiz.on{display:block}
+.wiz.kartu{z-index:90}
+.kartu .bd{display:grid;gap:12px}
+.kartu canvas{display:block;width:auto;height:min(52vh,560px);max-width:100%;margin:0 auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.kartu label{font-weight:700;font-size:.9rem}
+.kartu input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit}
+.kartu .kact{display:flex;flex-wrap:wrap;gap:8px}
+.kartu .kact .btn{flex:1 1 140px}
+.kartu .kact .wa{background:#137c3e;color:#fff}
+.kartu-btn{background:#f2b705;color:#1d1600;margin-top:10px}
 .wiz .box{max-width:620px;margin:4vh auto;background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
 .wiz .hd{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--brand-deep);color:#fff}
 .wiz .hd h2{flex:1;margin:0;font-size:1rem}
@@ -766,6 +776,17 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="box">
     <div class="hd"><h2 id="wizT"><span aria-hidden="true">🧭</span> SIM apa yang saya butuhkan?</h2><button class="x" id="wizX" aria-label="Tutup">✕</button></div>
     <div class="bd" id="wizBody"></div>
+  </div>
+</div>
+<div class="wiz kartu" id="kartu" role="dialog" aria-modal="true" aria-labelledby="kartuT">
+  <div class="box">
+    <div class="hd"><h2 id="kartuT"><span aria-hidden="true">🪪</span> Kartu Pengendara Bijak</h2><button class="x" id="kartuX" aria-label="Tutup">✕</button></div>
+    <div class="bd">
+      <div><label for="kartuNama">Nama di kartu</label><input id="kartuNama" maxlength="30" autocomplete="given-name" placeholder="Tulis nama panggilan Anda"></div>
+      <canvas id="kartuCv" width="1080" height="1920" role="img" aria-label="Pratinjau kartu hasil latihan"></canvas>
+      <div class="kact"><button type="button" class="btn" id="kartuShare">📤 Bagikan ke Story/Status</button><button type="button" class="btn ghost" id="kartuDl">⬇️ Simpan gambar</button><button type="button" class="btn wa" id="kartuWa">💬 Ajak teman via WhatsApp</button></div>
+      <p class="small muted" style="margin:0">Nama hanya disimpan di perangkat ini. Kartu ini hasil latihan mandiri, bukan dokumen resmi.</p>
+    </div>
   </div>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -3227,12 +3248,101 @@ function renderQuiz(){
     return `<button class="opt ${c}" data-q="${i}" data-o="${j}" ${qAns[i] !== undefined ? 'disabled' : ''}>${String.fromCharCode(65+j)}. ${o}${tanda}</button>`; }).join('')}<div class="ex" tabindex="-1">${qAns[i] === undefined ? '' : `<b>${qAns[i] === q.ans ? '✅ Benar!' : '❌ Kurang tepat.'}</b> `}💡 ${q.ex}</div></div>`).join('');
   const done = Object.keys(qAns).length, score = Object.entries(qAns).filter(([i, a]) => quizSet[i].ans === a).length;
   const newBtn = '<button class="btn sm" data-newquiz style="margin-top:10px">🔄 Ganti Soal Baru</button>';
-  $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p>${newBtn}` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
+  $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p>${KartuBijak.tombol({jenis: 'kuis', judul: 'Kuis Pemahaman Layanan SIM', skor: score, maks: quizSet.length})} ${newBtn}` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
 }
 $('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; renderQuiz(); $$('#quiz .ex')[+b.dataset.q].focus(); });
 $('#quizOut').addEventListener('click', e => { if (e.target.closest('[data-newquiz]')) { newQuiz(); $('#quizTop').scrollIntoView({behavior:'smooth', block:'start'}); } });
 $('#bankN').textContent = BANK.length;
 newQuiz();
+
+/* ---------------- Kartu Pengendara Bijak (gambar hasil latihan untuk dibagikan) ---------------- */
+const KartuBijak = (() => {
+  const dlg = $('#kartu'), cv = $('#kartuCv'), nama = $('#kartuNama');
+  const W = 1080, H = 1920, URL_BUKU = 'satpasbwi-sim.github.io/bukusimbwi';
+  const QR = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#fff" d="M0 0h41v41H0z"/><path stroke="#071f4d" d="M2 2.5h7m1 0h1m3 0h2m1 0h1m1 0h2m1 0h2m1 0h4m1 0h1m1 0h7M2 3.5h1m5 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m4 0h4m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m1 0h1m4 0h2m2 0h2m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m2 0h2m1 0h4m2 0h5m1 0h3m3 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h1m2 0h1m2 0h4m2 0h2m6 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h1m1 0h5m1 0h2m4 0h7m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h1m1 0h1m2 0h1m2 0h1m1 0h2m2 0h1m3 0h1m1 0h1M4 10.5h3m1 0h1m1 0h2m1 0h6m2 0h3m1 0h4m1 0h4m2 0h3M2 11.5h2m1 0h3m1 0h1m2 0h5m1 0h1m1 0h1m1 0h4m1 0h1m2 0h1m2 0h1M2 12.5h1m1 0h2m2 0h1m3 0h5m1 0h1m4 0h1m1 0h1m1 0h3m2 0h3m2 0h2M2 13.5h1m4 0h1m4 0h1m2 0h1m1 0h3m1 0h1m1 0h4m1 0h1m3 0h1M2 14.5h3m3 0h1m4 0h3m2 0h2m1 0h3m2 0h4m1 0h2m1 0h4M3 15.5h2m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m1 0h5m4 0h1m2 0h1m1 0h1m1 0h3M2 16.5h4m2 0h3m1 0h2m2 0h6m1 0h2m1 0h2m1 0h1m2 0h1m2 0h1m1 0h2M3 17.5h2m2 0h1m2 0h4m1 0h3m3 0h1m2 0h1m3 0h1m4 0h1m4 0h1M6 18.5h1m1 0h5m1 0h3m3 0h2m4 0h4m1 0h2m1 0h1m1 0h3M2 19.5h6m2 0h1m2 0h1m2 0h1m1 0h1m1 0h3m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1M3 20.5h2m1 0h5m1 0h4m2 0h1m1 0h1m8 0h2m2 0h3m1 0h2M7 21.5h1m2 0h1m2 0h4m1 0h2m2 0h1m3 0h1m1 0h2m2 0h1m4 0h1M2 22.5h1m2 0h4m1 0h1m1 0h4m1 0h2m2 0h2m1 0h2m1 0h2m2 0h6M2 23.5h2m2 0h2m1 0h1m2 0h4m1 0h3m3 0h2m1 0h2m3 0h1m1 0h1m3 0h1M5 24.5h2m1 0h1m1 0h1m2 0h2m2 0h1m1 0h3m1 0h1m5 0h1m6 0h3M3 25.5h1m6 0h2m2 0h3m4 0h1m1 0h2m3 0h1m2 0h3M2 26.5h1m1 0h2m1 0h5m1 0h3m2 0h3m5 0h2m3 0h6m1 0h1M2 27.5h6m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m6 0h1m2 0h1m1 0h2M2 28.5h1m2 0h4m1 0h1m2 0h1m1 0h3m3 0h7m1 0h2m1 0h2m2 0h1m1 0h1M2 29.5h1m1 0h4m3 0h2m5 0h1m3 0h1m2 0h1m2 0h4m1 0h1m3 0h2M2 30.5h1m3 0h4m3 0h5m2 0h1m2 0h1m1 0h4m1 0h5m1 0h2M10 31.5h1m1 0h2m4 0h2m1 0h2m1 0h2m1 0h1m1 0h2m3 0h1m2 0h1M2 32.5h7m3 0h4m1 0h1m2 0h2m1 0h2m5 0h1m1 0h1m1 0h2m1 0h2M2 33.5h1m5 0h1m3 0h1m1 0h1m3 0h1m1 0h6m2 0h1m1 0h1m3 0h1m2 0h2M2 34.5h1m1 0h3m1 0h1m1 0h2m2 0h3m1 0h2m1 0h1m1 0h1m1 0h10m1 0h1m1 0h1M2 35.5h1m1 0h3m1 0h1m1 0h1m5 0h3m1 0h1m1 0h2m2 0h2m4 0h4M2 36.5h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h1m4 0h3m2 0h2m2 0h1m1 0h1m4 0h1M2 37.5h1m5 0h1m2 0h2m1 0h1m1 0h3m2 0h1m3 0h1m2 0h6m4 0h1M2 38.5h7m6 0h1m2 0h3m4 0h3m3 0h1m2 0h1m1 0h3"/></svg>');
+  let opt = {}, from = null, img = {}, t = 0;
+  const muat = src => new Promise(ok => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => ok(null); i.src = src; });
+  const predikat = p => p >= 90 ? ['🏆', 'PENGENDARA TELADAN'] : p >= 70 ? ['🏅', 'SIAP UJIAN SIM!'] : p >= 50 ? ['💪', 'HAMPIR SIAP'] : ['📚', 'SEMANGAT BELAJAR'];
+  const F = (w, s) => `${w} ${s}px "Plus Jakarta Sans", system-ui, "Segoe UI", sans-serif`;
+  function pas(ctx, teks, w, s, maks){ do { ctx.font = F(w, s); s -= 4; } while (ctx.measureText(teks).width > maks && s > 30); }
+  function bulat(ctx, x, y, w, h, r){ ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); }
+  function baris(ctx, teks, x, y, maks, lh){
+    const kata = teks.split(' '); let l = '', ls = [];
+    kata.forEach(k => { const c = l ? l + ' ' + k : k; if (ctx.measureText(c).width > maks && l) { ls.push(l); l = k; } else l = c; });
+    ls.push(l); ls.forEach((s, i) => ctx.fillText(s, x, y + i * lh)); return ls.length;
+  }
+
+  function gambar(){
+    const ctx = cv.getContext('2d'), pct = Math.round(opt.skor / opt.maks * 100), [ikon, pred] = predikat(pct);
+    const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#071f4d'); g.addColorStop(1, '#0b3d91');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    ctx.lineWidth = 90; ctx.strokeStyle = 'rgba(242,183,5,.13)'; ctx.beginPath(); ctx.arc(W + 40, -40, 360, 0, 7); ctx.stroke();
+    ctx.lineWidth = 60; ctx.strokeStyle = 'rgba(111,156,242,.12)'; ctx.beginPath(); ctx.arc(-80, 1250, 260, 0, 7); ctx.stroke();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    if (img.logo) ctx.drawImage(img.logo, W / 2 - 110, 110, 220, 220 * img.logo.height / img.logo.width);
+    // label
+    ctx.font = F(800, 40); const lbl = 'KARTU PENGENDARA BIJAK', lw = ctx.measureText(lbl).width + 80;
+    ctx.fillStyle = '#f2b705'; bulat(ctx, W / 2 - lw / 2, 400, lw, 80, 40); ctx.fill();
+    ctx.fillStyle = '#1d1600'; ctx.fillText(lbl, W / 2, 454);
+    ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.font = F(700, 34); ctx.fillText('SATPAS POLRESTA BANYUWANGI', W / 2, 540);
+    // nama
+    const n = (nama.value.trim() || 'Calon Pengendara').slice(0, 30);
+    ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = F(500, 36); ctx.fillText('Diberikan kepada', W / 2, 650);
+    ctx.fillStyle = '#fff'; pas(ctx, n, 800, 92, W - 140); ctx.fillText(n, W / 2, 760);
+    ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = F(500, 36); ctx.fillText('telah menyelesaikan', W / 2, 840);
+    ctx.fillStyle = '#f2b705'; ctx.font = F(800, 48); baris(ctx, opt.judul, W / 2, 910, W - 180, 60);
+    // skor
+    const cx = W / 2, cy = 1230, r = 190;
+    ctx.lineCap = 'round'; ctx.lineWidth = 34;
+    ctx.strokeStyle = 'rgba(255,255,255,.14)'; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke();
+    ctx.strokeStyle = '#f2b705'; ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + Math.max(.02, pct / 100) * Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = '#fff'; ctx.font = F(800, 150); ctx.fillText(opt.maks === 100 ? opt.skor : `${opt.skor}/${opt.maks}`, cx, cy + 40);
+    ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.font = F(700, 34); ctx.fillText(opt.maks === 100 ? 'NILAI' : 'JAWABAN BENAR', cx, cy + 105);
+    ctx.font = F(800, 50); const pt = `${ikon} ${pred}`, pw = ctx.measureText(pt).width + 90;
+    ctx.fillStyle = '#fff'; bulat(ctx, cx - pw / 2, 1480, pw, 96, 48); ctx.fill();
+    ctx.fillStyle = '#0b3d91'; ctx.fillText(pt, cx, 1545);
+    ctx.fillStyle = 'rgba(255,255,255,.65)'; ctx.font = F(500, 30);
+    ctx.fillText(new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'}) + ' · Latihan mandiri, bukan dokumen resmi', cx, 1630);
+    // kaki: QR + ajakan
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 1680, W, 240);
+    if (img.qr) ctx.drawImage(img.qr, 60, 1700, 190, 190);
+    ctx.textAlign = 'left'; ctx.fillStyle = '#071f4d'; ctx.font = F(800, 46); ctx.fillText('Kamu siap ujian SIM?', 290, 1770);
+    ctx.font = F(500, 32); ctx.fillStyle = '#3c4a63'; ctx.fillText('Uji dirimu gratis di Buku Digital SIM:', 290, 1822);
+    ctx.font = F(800, 34); ctx.fillStyle = '#c62828'; ctx.fillText(URL_BUKU, 290, 1870);
+    ctx.fillStyle = '#c62828'; ctx.fillRect(0, 1904, W / 2, 16); ctx.fillStyle = '#e9eff8'; ctx.fillRect(W / 2, 1904, W / 2, 16);
+  }
+
+  const teksBagi = () => `Saya baru menyelesaikan ${opt.judul} dengan ${opt.maks === 100 ? 'nilai ' + opt.skor : 'skor ' + opt.skor + '/' + opt.maks} 🏍️🚗 Yuk cek kesiapanmu sebelum ujian SIM di Buku Digital SIM Satpas Polresta Banyuwangi: https://${URL_BUKU}/`;
+  const berkas = () => new Promise(ok => cv.toBlob(b => ok(new File([b], 'kartu-pengendara-bijak.jpg', {type: 'image/jpeg'})), 'image/jpeg', .92));
+  function unduh(f){ const a = document.createElement('a'); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Gambar kartu tersimpan'); }
+
+  async function buka(o){
+    opt = o; from = document.activeElement;
+    nama.value = store.get('sim-book-nama', '');
+    dlg.classList.add('on');
+    if (!img.qr) [img.logo, img.qr] = await Promise.all([muat('img/logo-lantas-baru.webp'), muat(QR)]);
+    try { await Promise.all([document.fonts.load(F(800, 40)), document.fonts.load(F(500, 30))]); } catch(e){}
+    gambar(); nama.focus();
+    gcCount('kartu/buka/' + opt.jenis, 'Kartu Pengendara Bijak', true);
+  }
+  function tutup(){ dlg.classList.remove('on'); if (from && from.focus) from.focus(); }
+
+  nama.addEventListener('input', () => { store.set('sim-book-nama', nama.value.trim()); clearTimeout(t); t = setTimeout(gambar, 120); });
+  $('#kartuX').onclick = tutup;
+  dlg.addEventListener('click', e => { if (e.target === dlg) tutup(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'Escape') tutup(); });
+  $('#kartuDl').onclick = async () => { unduh(await berkas()); gcCount('kartu/unduh/' + opt.jenis, 'Kartu Pengendara Bijak', true); };
+  $('#kartuShare').onclick = async () => {
+    const f = await berkas();
+    if (navigator.canShare && navigator.canShare({files: [f]})) {
+      try { await navigator.share({files: [f], text: teksBagi()}); gcCount('kartu/bagikan/' + opt.jenis, 'Kartu Pengendara Bijak', true); } catch(e){}
+    } else { unduh(f); toast('Gambar tersimpan — unggah ke Story/Status Anda'); }
+  };
+  $('#kartuWa').onclick = () => { window.open('https://wa.me/?text=' + encodeURIComponent(teksBagi()), '_blank', 'noopener'); };
+  document.addEventListener('click', e => { const b = e.target.closest('[data-kartu]'); if (b) buka(JSON.parse(b.dataset.kartu)); });
+  return { buka, tombol: o => `<button type="button" class="btn kartu-btn" data-kartu='${JSON.stringify(o).replace(/'/g, '&#39;')}'>🪪 Buat Kartu Pengendara Bijak</button>` };
+})();
+window.KartuBijak = KartuBijak;
 
 /* ---------------- D.9 glosarium ---------------- */
 const GLO = [
@@ -3889,7 +3999,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   function ask(){
     if (qi >= qs.length) {
       const pct = Math.round(score / qs.length * 100);
-      $('#rqBody').innerHTML = `<div class="out" style="text-align:center"><div class="big">${score} / ${qs.length}</div><p>${pct >= 70 ? '🎉 Bagus! Anda siap menghadapi soal rambu di ujian teori.' : '📚 Ayo pelajari lagi galeri di atas, lalu coba kembali.'}</p><button class="btn" type="button" id="rqAgain">🔄 Ulangi dengan soal lain</button></div>`;
+      $('#rqBody').innerHTML = `<div class="out" style="text-align:center"><div class="big">${score} / ${qs.length}</div><p>${pct >= 70 ? '🎉 Bagus! Anda siap menghadapi soal rambu di ujian teori.' : '📚 Ayo pelajari lagi galeri di atas, lalu coba kembali.'}</p>${KartuBijak.tombol({jenis: 'rambu', judul: 'Kuis Rambu Lalu Lintas', skor: score, maks: qs.length})} <button class="btn" type="button" id="rqAgain">🔄 Ulangi dengan soal lain</button></div>`;
       $('#rqAgain').onclick = newQuiz; return;
     }
     const r = R[qs[qi]];
