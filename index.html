@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610121445">
+<meta name="versi-buku" content="202610121458">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
 <!-- Pratinjau tautan saat dibagikan (WhatsApp, Facebook, Telegram, X) -->
@@ -157,6 +157,7 @@ small,.small{font-size:.85rem}
 .card.ok{background:var(--ok-soft);border-color:transparent}
 .stat{text-align:center;padding:16px 10px}
 .stat b{display:block;font-size:1.7rem;color:var(--brand);line-height:1.1}
+.stat .ikw{display:inline-block;width:.9em;height:.9em;vertical-align:-.08em}
 .stat span{font-size:.82rem;color:var(--muted)}
 
 .note{border-left:5px solid var(--brand);background:var(--brand-soft);padding:12px 16px;border-radius:0 12px 12px 0;margin:14px 0}
@@ -551,6 +552,9 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .toast.on{opacity:1}
 .resume{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:26;width:min(560px,calc(100% - 24px));display:flex;align-items:center;gap:10px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:10px 10px 10px 12px;box-shadow:var(--shadow)}
 .resume[hidden]{display:none}
+.langsw{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border:1px solid var(--line);border-radius:99px;background:var(--surface-2);margin:0 0 14px}
+.langsw button{border:0;background:transparent;color:var(--ink);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.85rem;min-height:36px}
+.langsw button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
 .resume .ic{font-size:1.3rem}
 .resume .tx{flex:1;min-width:0;line-height:1.3}
 .resume .tx small{display:block;color:var(--muted);font-size:.75rem}
@@ -1240,7 +1244,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="ph"><span class="code">B.5.2</span><span class="grp">Lampiran Pendukung</span><h2>Galeri Rambu, Marka &amp; APILL</h2><p>Materi inti ujian teori SIM: kenali bentuk, warna, dan arti rambu, lalu uji diri dengan kuis tebak rambu.</p></div>
   <div class="pbody">
     <div class="grid g4">
-      <div class="card brand stat"><b>◆ Kuning</b><span>Peringatan: ada bahaya di depan</span></div>
+      <div class="card brand stat"><b><svg class="ikw" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 22.5 12 12 22.5 1.5 12z" fill="#f2b705" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg> Kuning</b><span>Peringatan: ada bahaya di depan</span></div>
       <div class="card brand stat"><b>⭕ Merah</b><span>Larangan: tidak boleh dilakukan</span></div>
       <div class="card brand stat"><b>🔵 Biru bulat</b><span>Perintah: wajib dilakukan</span></div>
       <div class="card brand stat"><b>🟦 Biru kotak</b><span>Petunjuk: informasi arah &amp; fasilitas</span></div>
@@ -2013,10 +2017,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= B.16 ================= -->
-<section class="page" data-id="b16" data-code="B.16" data-group="B" data-title="Penerbitan SIM Internasional">
-  <div class="ph"><span class="code">B.16</span><span class="grp">Lampiran Pendukung</span><h2>Penerbitan SIM Internasional</h2><p>International Driver’s License — diterbitkan oleh Korlantas Polri.</p></div>
+<section class="page" data-id="b16" data-code="B.16" data-group="B" data-title="Penerbitan SIM Internasional (ID/EN)">
+  <div class="ph"><span class="code">B.16</span><span class="grp"><span data-lang="id">Lampiran Pendukung</span><span data-lang="en" lang="en" hidden>Supporting Annex</span></span><h2><span data-lang="id">Penerbitan SIM Internasional</span><span data-lang="en" lang="en" hidden>International Driving Permit</span></h2><p data-lang="id">International Driver’s License — diterbitkan oleh Korlantas Polri.</p><p data-lang="en" lang="en" hidden>Issued by the Traffic Corps of the Indonesian National Police (Korlantas Polri).</p></div>
   <div class="pbody">
+    <div class="langsw noprint" role="group" aria-label="Pilih bahasa / Choose language"><button type="button" data-setlang="id" aria-pressed="true">ID · Bahasa Indonesia</button><button type="button" data-setlang="en" lang="en" aria-pressed="false">EN · English</button></div>
     <figure class="poster"><img src="img/infografis-informasi-penerbitan-sim-internasiona.webp" alt="Infografis informasi penerbitan SIM Internasional" width="1400" height="701" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
+    <div data-lang="id">
     <div class="grid g3">
       <div class="card brand"><h4>A. SIM Internasional &amp; validitas</h4><ul class="clean small"><li>Diterbitkan oleh: <b>Korlantas Polri</b></li><li>Masa berlaku: <b>3 (tiga) tahun</b></li><li>Perpanjang sebelum masa berakhir</li></ul></div>
       <div class="card brand"><h4>B. Mekanisme permohonan</h4><p class="small">Ajukan <b>online</b>:<br><a href="https://siminternasional.korlantas.polri.go.id/" target="_blank" rel="noopener">siminternasional.korlantas.polri.go.id</a></p></div>
@@ -2031,14 +2037,33 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="f"><span class="n">2 · IDENTIFIKASI &amp; CETAK</span><b>Input foto, tanda tangan, sidik jari; cetak buku SIM Internasional</b><small>Diserahkan langsung atau via jasa pengiriman</small></div>
       <div class="f"><span class="n">3 · PENGARSIPAN</span><b>Pembuatan data cadangan pada media penyimpan eksternal</b></div>
     </div>
+    </div>
+    <div data-lang="en" lang="en" hidden>
+    <div class="grid g3">
+      <div class="card brand"><h4>A. International permit &amp; validity</h4><ul class="clean small"><li>Issued by: <b>Korlantas Polri</b></li><li>Valid for: <b>3 (three) years</b></li><li>Renew before it expires</li></ul></div>
+      <div class="card brand"><h4>B. How to apply</h4><p class="small">Apply <b>online</b>:<br><a href="https://siminternasional.korlantas.polri.go.id/" target="_blank" rel="noopener">siminternasional.korlantas.polri.go.id</a></p></div>
+      <div class="card brand"><h4>D. Official fees (PNBP) &amp; BRIVA</h4><ul class="clean small"><li>New: <b>Rp250.000</b></li><li>Renewal: <b>Rp225.000</b></li><li>Pay via BRIVA (BRI virtual account)</li></ul></div>
+      <div class="card"><h4>C. Requirements</h4><ol class="clean small"><li>Photo of your valid Indonesian driving licence (SIM)</li><li>Photo of your KTP (Indonesian citizens) / KITAP (foreign nationals)</li><li>Photo of your valid passport</li><li>Passport photo with a white background</li><li>Your signature on white paper</li><li>Your valid International Driving Permit (renewal only)</li></ol></div>
+      <div class="card"><h4>E. Collection</h4><ul class="clean small"><li><b>In person:</b> at Korlantas Polri</li><li><b>By delivery:</b> via a courier service</li></ul></div>
+      <div class="card accent"><h4>Good to know</h4><ul class="clean small"><li>You must already hold a private or public Indonesian SIM <span class="chip y">Art. 3 (10)</span></li><li>An International Driving Permit issued by Indonesia is <b>valid only outside Indonesia</b> <span class="chip y">Art. 3 (12)</span></li></ul></div>
+    </div>
+    <h3>Issuing process (Articles 20, 27–29)</h3>
+    <div class="flow">
+      <div class="f"><span class="n">1 · VERIFICATION</span><b>Your online registration is checked against the central database &amp; uploaded documents</b><small>Data does not match → rejected with notes on what to correct</small></div>
+      <div class="f"><span class="n">2 · IDENTIFICATION &amp; PRINTING</span><b>Photo, signature and fingerprints are recorded; the permit booklet is printed</b><small>Handed over in person or sent by courier</small></div>
+      <div class="f"><span class="n">3 · ARCHIVING</span><b>A backup of your data is stored on external storage media</b></div>
+    </div>
+    </div>
   </div>
 </section>
 
 <!-- ================= B.17 ================= -->
-<section class="page" data-id="b17" data-code="B.17" data-group="B" data-title="Alur SIM WNA">
-  <div class="ph"><span class="code">B.17</span><span class="grp">Lampiran Pendukung</span><h2>Alur SIM Baru bagi WNA</h2><p>Panduan persyaratan dan alur penerbitan SIM bagi Warga Negara Asing.</p></div>
+<section class="page" data-id="b17" data-code="B.17" data-group="B" data-title="Alur SIM WNA (ID/EN)">
+  <div class="ph"><span class="code">B.17</span><span class="grp"><span data-lang="id">Lampiran Pendukung</span><span data-lang="en" lang="en" hidden>Supporting Annex</span></span><h2><span data-lang="id">Alur SIM Baru bagi WNA</span><span data-lang="en" lang="en" hidden>New Driving Licence (SIM) for Foreign Nationals</span></h2><p data-lang="id">Panduan persyaratan dan alur penerbitan SIM bagi Warga Negara Asing.</p><p data-lang="en" lang="en" hidden>Requirements and steps to get an Indonesian driving licence (SIM) as a foreign national.</p></div>
   <div class="pbody">
+    <div class="langsw noprint" role="group" aria-label="Pilih bahasa / Choose language"><button type="button" data-setlang="id" aria-pressed="true">ID · Bahasa Indonesia</button><button type="button" data-setlang="en" lang="en" aria-pressed="false">EN · English</button></div>
     <figure class="poster"><img src="img/infografis-panduan-persyaratan-sim-baru-bagi-wna.webp" alt="Infografis panduan persyaratan SIM baru bagi WNA" width="1400" height="628" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
+    <div data-lang="id">
     <h3>Dokumen keimigrasian yang diterima <span class="chip">Pasal 9 ayat 2</span></h3>
     <div class="grid g3">
       <div class="card brand"><h4>Berdomisili tetap</h4><p class="small">Paspor + Kartu Izin Tinggal Tetap (<b>KITAP</b>).</p></div>
@@ -2056,6 +2081,27 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <li><b>Ujian keterampilan (simulator) &amp; ujian praktik</b><span>Sama seperti pemohon WNI.</span></li>
       <li><b>Pembayaran PNBP &amp; cetak SIM</b><span>Bayar sesuai golongan, lalu SIM dicetak dan diserahkan.</span></li>
     </ol>
+    </div>
+    <div data-lang="en" lang="en" hidden>
+    <h3>Accepted immigration documents <span class="chip">Article 9 (2)</span></h3>
+    <div class="grid g3">
+      <div class="card brand"><h4>Permanent residents</h4><p class="small">Passport + Permanent Stay Permit (<b>KITAP</b>).</p></div>
+      <div class="card brand"><h4>Embassy staff / family</h4><p class="small">Passport, diplomatic visa, diplomatic member card, and other proof of identity.</p></div>
+      <div class="card brand"><h4>Experts / students</h4><p class="small">Passport + service visa or Temporary Stay Permit (<b>KITAS</b>).</p></div>
+    </div>
+    <h3>Step by step</h3>
+    <ol class="steps num">
+      <li><b>Prepare your documents</b><span>Fill in the paper registration form or show your online registration proof; attach photocopies &amp; show your original immigration documents.</span></li>
+      <li><b>Work permit (if you work in Indonesia)</b><span>Photocopy of your original work permit from the ministry in charge of manpower.</span></li>
+      <li><b>Physical health check</b><span>Eyesight, hearing and physical mobility — a certificate from a police doctor or a recommended general practitioner, valid for up to 14 days.</span></li>
+      <li><b>Psychological test</b><span>Certificate of passing the psychological test, valid for up to 6 months.</span></li>
+      <li><b>Registration &amp; identification</b><span>Data verification and biometric capture (photo, fingerprints, signature).</span></li>
+      <li><b>Briefing &amp; theory test</b><span>Study material is available in <b>English</b> for foreign nationals (Article 14 (5)).</span></li>
+      <li><b>Skills test (simulator) &amp; practical test</b><span>The same as for Indonesian applicants.</span></li>
+      <li><b>Pay the official fee (PNBP) &amp; card printing</b><span>Pay the fee for your licence class; your SIM is then printed and handed to you.</span></li>
+    </ol>
+    <div class="note"><b>Need help?</b> WhatsApp the Satpas service desk: <a href="https://wa.me/6285233900100" target="_blank" rel="noopener">+62 852-3390-0100</a>. Pay only the official fees (PNBP) and avoid brokers (<i lang="id">calo</i>).</div>
+    </div>
   </div>
 </section>
 
@@ -3098,17 +3144,33 @@ document.addEventListener('keydown', e => {
 /* ---------- Dengarkan (Web Speech API, suara bawaan perangkat) ---------- */
 const TTS = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
 let ttsQueue = [], ttsOn = false;
-function ttsVoice(){
-  const v = speechSynthesis.getVoices().filter(v => /^id|^in/i.test(v.lang));
-  return v.find(x => /google/i.test(x.name)) || v[0] || null;
+/* Bahasa bacaan: versi Inggris yang sedang tampil (B.16/B.17), atau bahasa hasil
+   terjemahan Google/Chrome Translate (atribut lang pada <html> ikut berganti). */
+function ttsLang(){
+  if (pages[cur].querySelector('[data-lang="en"]:not([hidden])')) return 'en';
+  const html = document.documentElement;
+  let l = (html.getAttribute('lang') || 'id').toLowerCase().replace('_', '-');
+  // halaman sudah diterjemahkan tetapi lang tidak berubah: tebak bahasa tujuan = bahasa browser
+  if (/^(id|in)\b/.test(l) && /\btranslated-(ltr|rtl)\b/.test(html.className)) l = (navigator.language || 'id').toLowerCase();
+  return /^(id|in)\b/.test(l) ? 'id' : l;
 }
-function pageSpeech(p){
+const TTS_WORD = { id: {then: 'lalu', to: 'sampai', art: 'Pasal', no: 'Nomor'}, en: {then: 'then', to: 'to', art: 'Article', no: 'Number'} };
+function ttsVoice(lang = 'id'){
+  const base = lang.split('-')[0], all = speechSynthesis.getVoices().map(v => [v, v.lang.replace('_', '-').toLowerCase()]);
+  const v = all.filter(([, l]) => base === 'id' ? /^(id|in)\b/.test(l) : l.split('-')[0] === base);
+  const exact = v.filter(([, l]) => l === lang);
+  const pool = (exact.length ? exact : v).map(([x]) => x);
+  return pool.find(x => /google/i.test(x.name)) || pool[0] || null;
+}
+function pageSpeech(p, lang = 'id'){
   const c = p.cloneNode(true);
-  c.querySelectorAll('script,style,svg,.confid,.pfoot,.pact,.noprint,.wt,.rq-qr,button,select,input,textarea,figcaption,.hp,.chip').forEach(x => x.remove());
+  c.querySelectorAll('script,style,svg,.confid,.pfoot,.pact,.noprint,.wt,.rq-qr,button,select,input,textarea,figcaption,.hp,.chip,[hidden]').forEach(x => x.remove());
   const BLOCK = /^(H\d|P|LI|TR|SUMMARY|DIV|FIGURE|BLOCKQUOTE|TABLE|UL|OL|DETAILS|SECTION|FIELDSET|LABEL)$/;
   c.querySelectorAll('*').forEach(x => x.append(BLOCK.test(x.tagName) ? '\n' : /^T[DH]$/.test(x.tagName) ? ', ' : ' '));
-  const say = s => s.replace(/\bPs\./g, 'Pasal').replace(/\bNo\./g, 'Nomor').replace(/\bRp ?(\d{1,3}(?:\.\d{3})+|\d+)/g, (m, n) => n.replace(/\./g, '') + ' rupiah')
-    .replace(/\s*→\s*(?=[.!?]|$)/g, '').replace(/→/g, ', lalu ').replace(/(\d)\s?–\s?(\d)/g, '$1 sampai $2').replace(/[–—]/g, ', ').replace(/[·•|]/g, ', ').replace(/\s*,(\s*,)+/g, ',');
+  // kata sambung hanya untuk bahasa yang dikenal; bahasa lain (hasil Google Translate) cukup jeda koma
+  const W = TTS_WORD[lang.split('-')[0]] || {then: '', to: '-'};
+  const say = s => (W.art ? s.replace(/\b(Ps|Art)\./g, W.art).replace(/\bNo\./g, W.no) : s).replace(/\bRp ?(\d{1,3}(?:\.\d{3})+|\d+)/g, (m, n) => n.replace(/\./g, '') + ' rupiah')
+    .replace(/\s*→\s*(?=[.!?]|$)/g, '').replace(/→/g, W.then ? `, ${W.then} ` : ', ').replace(/(\d)\s?–\s?(\d)/g, W.to === '-' ? '$1-$2' : `$1 ${W.to} $2`).replace(/[–—]/g, ', ').replace(/[·•|]/g, ', ').replace(/\s*,(\s*,)+/g, ',');
   const sents = [];
   c.textContent.split(/\n+/).map(s => s.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').replace(/^[,\s]+|[,\s]+$/g, '')).filter(s => s.length > 1)
     .forEach(l => { if (!/[.!?:;]$/.test(l)) l += '.'; l.split(/(?<=[.!?;:])\s+/).forEach(s => sents.push(s)); });
@@ -3116,12 +3178,13 @@ function pageSpeech(p){
   sents.forEach(s => { if (out.length && out[out.length - 1].length + s.length < 220) out[out.length - 1] += ' ' + s; else out.push(s); });
   return out.map(say);
 }
+let ttsL = 'id';
 function ttsNext(){
   if (!ttsOn) return;
   const s = ttsQueue.shift();
   if (!s) return ttsStop();
   const u = new SpeechSynthesisUtterance(s);
-  u.lang = 'id-ID'; const v = ttsVoice(); if (v) u.voice = v;
+  u.lang = ttsL === 'id' ? 'id-ID' : ttsL === 'en' ? 'en-US' : ttsL; const v = ttsVoice(ttsL); if (v) u.voice = v;
   u.rate = 0.95; u.onend = ttsNext; u.onerror = ttsNext;
   speechSynthesis.speak(u);
 }
@@ -3134,13 +3197,28 @@ function ttsSet(on){
 function ttsStart(){
   if (!TTS) return toast('Maaf, browser ini belum mendukung fitur baca suara.');
   speechSynthesis.cancel();
-  ttsQueue = pageSpeech(pages[cur]); ttsSet(true); ttsNext();
-  if (!ttsVoice()) toast('Suara bahasa Indonesia tidak ditemukan; memakai suara bawaan perangkat.');
-  gcCount('dengarkan/' + pages[cur].dataset.id, 'Dengarkan', true);
+  ttsL = ttsLang();
+  ttsQueue = pageSpeech(pages[cur], ttsL); ttsSet(true); ttsNext();
+  if (!ttsVoice(ttsL)) toast(ttsL === 'id' ? 'Suara bahasa Indonesia tidak ditemukan; memakai suara bawaan perangkat.'
+    : ttsL === 'en' ? 'No English voice found on this device; using the default voice.' : `Suara bahasa "${ttsL}" tidak tersedia di perangkat ini; memakai suara bawaan.`);
+  gcCount('dengarkan/' + pages[cur].dataset.id + (ttsL === 'id' ? '' : '/' + ttsL), 'Dengarkan', true);
 }
 function ttsStop(){ if (TTS) speechSynthesis.cancel(); ttsQueue = []; ttsSet(false); }
 const ttsToggle = () => ttsOn ? ttsStop() : ttsStart();
 $('#btnListen').onclick = ttsToggle;
+
+/* ---------- ganti bahasa ID/EN pada halaman WNA (B.16, B.17) ---------- */
+function setBahasa(l){
+  $$('[data-lang]').forEach(e => e.hidden = e.dataset.lang !== l);
+  $$('[data-setlang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setlang === l));
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-setlang]'); if (!b) return;
+  if (ttsOn) ttsStop();
+  store.set('sim-book-bahasa', b.dataset.setlang); setBahasa(b.dataset.setlang);
+  gcCount('bahasa/' + b.dataset.setlang + '/' + pages[cur].dataset.id, 'Ganti bahasa', true);
+});
+setBahasa(store.get('sim-book-bahasa', 'id'));
 if (TTS) speechSynthesis.getVoices();
 pageHooks.push(() => { if (ttsOn) ttsStop(); });
 
