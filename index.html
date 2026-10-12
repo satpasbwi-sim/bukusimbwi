@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610121518">
+<meta name="versi-buku" content="202610121524">
 <title>Buku Digital SIM Banyuwangi</title>
 <meta name="description" content="Buku Digital Interaktif Layanan Penerbitan SIM Satpas Polresta Banyuwangi berdasarkan Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.">
 <!-- Pratinjau tautan saat dibagikan (WhatsApp, Facebook, Telegram, X) -->
@@ -2848,14 +2848,15 @@ function calInfo(exp){
     `Panduan: ${CONFIG.siteUrl}#b6`;
 }
 function calHtml(exp){
+  const n = PENGINGAT.filter(([off]) => addDays(exp, off) >= today()).length;
   const mulai = new Date(Math.max(addDays(exp, -30), today()));
   const g = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
     '&text=' + encodeURIComponent(`Perpanjang SIM (berlaku s.d. ${tglPendek(exp)})`) +
     '&dates=' + ymd(mulai) + '/' + ymd(addDays(mulai, 1)) +
     '&details=' + encodeURIComponent(calInfo(exp));
   return `<div class="calbtn"><a class="btn sm" href="${g}" target="_blank" rel="noopener" data-cal="google">📅 Tambah ke Google Calendar</a>` +
-    `<button type="button" class="btn ghost sm" data-ics="${ymd(exp)}">⬇️ Unduh pengingat (.ics)</button></div>` +
-    `<p class="small muted" style="margin:6px 0 0">File .ics untuk iPhone, Outlook & aplikasi kalender lain: pengingat 30 hari, 7 hari, dan pada hari habisnya. Tanggal SIM diolah di HP Anda saja, tidak dikirim ke server Satpas.</p>`;
+    `<button type="button" class="btn ghost sm" data-ics="${ymd(exp)}">⬇️ Simpan ${n} pengingat ke kalender HP</button></div>` +
+    `<p class="small muted" style="margin:6px 0 0">Untuk iPhone, Samsung, Outlook, dll. Pengingat berbunyi pukul 08.00 pada H-30, H-7, dan hari habisnya (yang belum terlewat). Tanggal SIM diolah di HP Anda saja, tidak dikirim ke server Satpas.</p>`;
 }
 function unduhIcs(exp){
   const esc = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
