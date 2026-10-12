@@ -91,6 +91,7 @@ img{max-width:100%;height:auto;display:block}
 .search input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit}
 .toc{overflow:auto;padding:8px 8px 24px;flex:1}
 .toc h4{margin:14px 8px 4px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc h5{margin:10px 10px 2px;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--brand)}
 .toc a{display:flex;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:.9rem;line-height:1.35}
 .toc a:hover{background:var(--surface-2)}
 .toc a.on{background:var(--brand-soft);color:var(--brand);font-weight:700}
@@ -164,7 +165,7 @@ small,.small{font-size:.85rem}
 .note.warn{border-color:var(--warn);background:var(--warn-soft)}
 .note.danger{border-color:var(--danger);background:var(--danger-soft)}
 .note.ok{border-color:var(--ok);background:var(--ok-soft)}
-.note b:first-child{display:block;margin-bottom:2px}
+.note > b:first-child{display:block;margin-bottom:2px}
 .note ul{margin:4px 0 0;padding-left:20px}
 
 ul.clean,ol.clean{padding-left:20px;margin:0 0 12px}
@@ -298,6 +299,7 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .tocpage .grpbox a{display:flex;gap:12px;padding:11px 16px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);align-items:center}
 .tocpage .grpbox a:hover{background:var(--surface-2)}
 .tocpage .grpbox a .c{font-weight:800;color:var(--brand);min-width:3em}
+.tocpage .grpbox .sub{padding:8px 16px;border-top:1px solid var(--line);background:var(--surface-2);font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--brand)}
 .tocpage .grpbox a .pg{margin-left:auto;color:var(--muted);font-size:.8rem;white-space:nowrap}
 
 /* bottom nav */
@@ -1058,20 +1060,15 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="widget"><span class="wt">Interaktif</span>
       <h4>Status layanan saat ini</h4>
       <div class="status" id="openStatus"><span class="dot"></span><div><b>Memeriksa…</b><span class="small"></span></div></div>
-      <p class="small muted" style="margin:10px 0 0">Dihitung otomatis menurut waktu Indonesia Barat (WIB). Layanan tutup pada hari libur nasional &amp; cuti bersama yang ditetapkan pemerintah.</p>
+      <p class="small muted" style="margin:10px 0 0">Dihitung otomatis menurut waktu Indonesia Barat (WIB), termasuk hari libur nasional &amp; cuti bersama.</p>
     </div>
 
     <h3>Jadwal pelayanan</h3>
     <div class="tw"><table><thead><tr><th>Hari</th><th>Jam Operasional</th></tr></thead><tbody>
-      <tr><td>Senin</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td>Selasa</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td>Rabu</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td>Kamis</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td>Jumat</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td>Sabtu</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td><b>Minggu</b></td><td><span class="chip r">TUTUP</span></td></tr>
+      <tr><td>Senin – Sabtu</td><td>08.00 – 13.00 WIB</td></tr>
+      <tr><td><b>Minggu, Hari Libur Nasional &amp; Cuti Bersama</b></td><td><span class="chip r">TUTUP</span></td></tr>
     </tbody></table></div>
-    <div class="note warn"><b>Pengumuman penting</b>Layanan penerbitan SIM (baru &amp; perpanjangan) <b>tutup</b> pada Hari Libur Nasional &amp; Cuti Bersama yang ditetapkan pemerintah.</div>
+    <p class="small muted">SIM habis masa berlaku tepat di hari Minggu/libur? Ada dispensasi 1 hari kerja: <a href="#b8" data-go="b8">lihat B.8 →</a></p>
     <figure class="poster"><img src="img/poster-jadwal-pelayanan-satpas-polresta-banyuwan.webp" alt="Poster jadwal pelayanan Satpas Polresta Banyuwangi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
 
     <h3>Layanan yang tersedia</h3>
@@ -1152,10 +1149,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Menjaga kerahasiaan data pemohon.</li>
         <li>Memberi layanan cepat, tepat, dan transparan.</li>
         <li>Menerima dan menindaklanjuti pengaduan.</li></ol></div>
-      <div class="card ok"><h4>Mekanisme Aduan</h4><ol class="clean small">
-        <li>Lisan atau tertulis kepada petugas di tempat pelayanan.</li>
-        <li>Melalui telepon, email, atau media sosial resmi.</li>
-        <li>Ditindaklanjuti <b>paling lambat 3 hari kerja</b> sejak diterima.</li></ol>
+      <div class="card ok"><h4>Mekanisme Aduan</h4><p class="small">Aduan lisan/tertulis di tempat pelayanan atau lewat saluran resmi, ditindaklanjuti <b>paling lambat 3 hari kerja</b>. <a href="#b10" data-go="b10">Saluran (B.10)</a> · <a href="#b10-1" data-go="b10-1">langkah (B.10.1)</a></p>
         <h4 style="margin-top:10px">Sanksi</h4><p class="small">Petugas yang melanggar maklumat dikenakan sanksi sesuai peraturan perundang-undangan.</p></div>
     </div>
   </div>
@@ -1190,18 +1184,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="f"><span class="n">G</span><b>Bayar PNBP di loket BRI</b></div>
       <div class="f"><span class="n">H</span><b>Produksi cetak SIM</b></div>
     </div>
-    <h3>Tahapan uji teori E-AVIS</h3>
-    <p class="small muted" style="margin-top:-4px">E-AVIS (<i>Electronic Audiovisual Integrated System</i>) — ujian teori berbasis komputer/gawai yang terdiri atas 3 tahap.</p>
-    <div class="eavis">
-      <div class="ev"><span class="ico">⚠️</span><div><h4>1. Persepsi Bahaya</h4><p class="evm"><b>25 soal</b> · Waktu <b>10 menit</b></p><p class="small">Menguji kemampuan pengemudi mengidentifikasi potensi dan ancaman gangguan lalu lintas, serta bereaksi dengan tepat.</p></div></div>
-      <div class="ev"><span class="ico">💡</span><div><h4>2. Wawasan</h4><p class="evm"><b>20 soal</b> · Waktu <b>20 menit</b></p><p class="small">Menguji kompetensi dan pengalaman pengemudi dalam menempatkan/menyesuaikan diri saat berkendara di jalan guna mendukung kamseltibcarlantas.</p></div></div>
-      <div class="ev"><span class="ico">🎓</span><div><h4>3. Pengetahuan</h4><p class="evm"><b>20 soal</b> · Waktu <b>20 menit</b></p><p class="small">Menguji pemahaman pengemudi tentang dasar dan norma hukum lalu lintas yang berlaku.</p></div></div>
-    </div>
-    <div class="grid g2" style="margin-bottom:6px">
-      <div class="card accent stat"><b>65 soal</b><span>Total soal ketiga tahap</span></div>
-      <div class="card accent stat"><b>50 menit</b><span>Total waktu pengerjaan</span></div>
-    </div>
-    <p class="small muted">Nilai lulus ujian teori paling rendah <b>70</b> (Pasal 15 ayat 1). E-AVIS dapat dikerjakan pada perangkat di Satpas atau gawai milik pemohon (Pasal 14 ayat 2 Perpol 2/2023).</p>
+    <div class="note"><b>Ujian teori &amp; praktik</b>Ujian teori memakai <b>E-AVIS</b> (3 tahap, 65 soal, 50 menit, nilai lulus ≥ 70). <a href="#b5-1" data-go="b5-1">Tahapan &amp; latihan ujian teori (B.5.1) →</a> · <a href="#b5-3" data-go="b5-3">Persiapan ujian praktik (B.5.3) →</a></div>
     <h3>Biaya / tarif SIM baru</h3>
     <div class="tw fit"><table><thead><tr><th>Golongan</th><th class="num">Tarif PNBP</th></tr></thead><tbody>
       <tr><td>SIM A</td><td class="num">Rp120.000</td></tr>
@@ -1219,13 +1202,26 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= B.5.1 ================= -->
-<section class="page" data-id="b5-1" data-code="B.5.1" data-group="B" data-title="E-Book Ujian Teori dan Praktik">
-  <div class="ph"><span class="code">B.5.1</span><span class="grp">Lampiran Pendukung</span><h2>E-Book Ujian Teori &amp; Praktik</h2><p>Manfaatkan waktu tunggu Anda dengan belajar — persiapan sebelum ujian teori dan praktik SIM.</p></div>
+<section class="page" data-id="b5-1" data-code="B.5.1" data-group="B" data-title="Persiapan Ujian Teori (E-AVIS)" data-share="Belajar ujian teori SIM (E-AVIS): e-book, video & simulasi">
+  <div class="ph"><span class="code">B.5.1</span><span class="grp">Lampiran Pendukung</span><h2>Persiapan Ujian Teori (E-AVIS)</h2><p>Kenali tahapan ujian teori, lalu belajar dan berlatih sambil menunggu giliran.</p></div>
   <div class="pbody">
     <div class="hero-inov">
-      <div><span class="chip y">MAU UJIAN TEORI SIM?</span><h3 class="plain">Yuk, persiapan dulu di sini!</h3><p>Jangan tunggu gagal — pelajari materinya sambil menunggu. Satpas Polresta Banyuwangi menyediakan <b>E-Book kumpulan soal ujian teori</b> dan <b>video tutorial ujian praktik</b> untuk sepeda motor (R2) dan mobil (R4).</p></div>
+      <div><span class="chip y">MAU UJIAN TEORI SIM?</span><h3 class="plain">Yuk, persiapan dulu di sini!</h3><p>Jangan tunggu gagal — pelajari materinya sambil menunggu. Satpas Polresta Banyuwangi menyediakan <b>E-Book kumpulan soal ujian teori</b>, <b>video materi</b>, dan <b>simulasi ujian bergaya E-AVIS</b>. Persiapan ujian praktik ada di <a href="#b5-3" data-go="b5-3">B.5.3</a>.</p></div>
       <div class="a11y" aria-hidden="true">📚</div>
     </div>
+
+    <h3>Tahapan uji teori E-AVIS</h3>
+    <p class="small muted" style="margin-top:-4px">E-AVIS (<i>Electronic Audiovisual Integrated System</i>) — ujian teori berbasis komputer/gawai yang terdiri atas 3 tahap.</p>
+    <div class="eavis">
+      <div class="ev"><span class="ico">⚠️</span><div><h4>1. Persepsi Bahaya</h4><p class="evm"><b>25 soal</b> · Waktu <b>10 menit</b></p><p class="small">Menguji kemampuan pengemudi mengidentifikasi potensi dan ancaman gangguan lalu lintas, serta bereaksi dengan tepat.</p></div></div>
+      <div class="ev"><span class="ico">💡</span><div><h4>2. Wawasan</h4><p class="evm"><b>20 soal</b> · Waktu <b>20 menit</b></p><p class="small">Menguji kompetensi dan pengalaman pengemudi dalam menempatkan/menyesuaikan diri saat berkendara di jalan guna mendukung kamseltibcarlantas.</p></div></div>
+      <div class="ev"><span class="ico">🎓</span><div><h4>3. Pengetahuan</h4><p class="evm"><b>20 soal</b> · Waktu <b>20 menit</b></p><p class="small">Menguji pemahaman pengemudi tentang dasar dan norma hukum lalu lintas yang berlaku.</p></div></div>
+    </div>
+    <div class="grid g2" style="margin-bottom:6px">
+      <div class="card accent stat"><b>65 soal</b><span>Total soal ketiga tahap</span></div>
+      <div class="card accent stat"><b>50 menit</b><span>Total waktu pengerjaan</span></div>
+    </div>
+    <p class="small muted">Nilai lulus ujian teori paling rendah <b>70</b> (Pasal 15 ayat 1). E-AVIS dapat dikerjakan pada perangkat di Satpas atau gawai milik pemohon (Pasal 14 ayat 2 Perpol 2/2023).</p>
 
     <div class="widget simw" id="simWidget"><span class="wt">Simulasi</span>
       <h4>🖥️ Simulasi Ujian Teori bergaya E-AVIS</h4>
@@ -1247,6 +1243,50 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <div class="rq-act"><a class="btn" href="https://www.youtube.com/watch?v=NG6DYEwaqPc" target="_blank" rel="noopener">▶️ Tonton Video</a><div class="rq-qr"><svg role="img" aria-label="QR code Video Materi Ujian Teori SIM C" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h35v35H0z"/><path stroke="#071f4d" d="M1 1.5h7m1 0h1m1 0h1m1 0h2m2 0h3m2 0h2m3 0h7M1 2.5h1m5 0h1m1 0h1m1 0h5m3 0h2m6 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h4m4 0h1m2 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m5 0h2m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h1m1 0h6m2 0h1m1 0h1m2 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h5m1 0h2m5 0h2M1 9.5h1m2 0h7m1 0h2m1 0h1m1 0h2m5 0h1m1 0h1m2 0h1m1 0h3M1 10.5h1m3 0h2m5 0h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m4 0h3m1 0h1M1 11.5h2m2 0h4m1 0h2m1 0h2m1 0h2m3 0h1m1 0h5m1 0h5M3 12.5h2m3 0h1m2 0h1m2 0h1m1 0h2m1 0h5m2 0h3m2 0h1m1 0h1M1 13.5h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m1 0h1M1 14.5h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m2 0h4m3 0h2m1 0h1m1 0h2M1 15.5h2m1 0h2m1 0h2m2 0h1m1 0h4m3 0h3m4 0h1m1 0h2M2 16.5h1m2 0h2m1 0h7m2 0h1m3 0h1m2 0h3m1 0h2m1 0h1m1 0h1M1 17.5h1m3 0h1m1 0h1m1 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h7M3 18.5h1m6 0h1m1 0h1m1 0h3m1 0h3m4 0h3m1 0h1m1 0h1M1 19.5h2m1 0h4m1 0h1m1 0h1m2 0h7m1 0h3m1 0h3m1 0h2m1 0h1M2 20.5h1m1 0h1m4 0h1m2 0h1m4 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1M2 21.5h1m1 0h1m2 0h2m1 0h4m1 0h3m1 0h2m1 0h2m1 0h1m2 0h3m2 0h1M1 22.5h3m1 0h1m2 0h2m2 0h1m1 0h2m2 0h1m5 0h1m1 0h1m1 0h4M1 23.5h1m1 0h2m1 0h3m2 0h1m8 0h8m2 0h1m1 0h2M1 24.5h1m3 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h2m1 0h5m3 0h3M1 25.5h2m1 0h1m1 0h3m1 0h1m1 0h1m1 0h2m5 0h1m2 0h9M9 26.5h1m1 0h2m2 0h4m3 0h4m3 0h1m1 0h1M1 27.5h7m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m1 0h2M1 28.5h1m5 0h1m1 0h2m2 0h1m3 0h9m3 0h3M1 29.5h1m1 0h3m1 0h1m1 0h2m4 0h4m3 0h8m2 0h2M1 30.5h1m1 0h3m1 0h1m1 0h2m6 0h3m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1M1 31.5h1m1 0h3m1 0h1m2 0h1m2 0h2m1 0h1m3 0h1m1 0h1m2 0h1m2 0h6M1 32.5h1m5 0h1m2 0h2m3 0h1m4 0h2m1 0h11M1 33.5h7m1 0h2m4 0h4m1 0h1m3 0h2m2 0h4"/></svg>
 <small>Pindai dengan HP</small></div></div>
       </div>
+    </div>
+    <div class="note"><b>📲 Tersedia juga di Satpas</b>QR code yang sama terpasang pada banner <b>“Mau Ujian Teori SIM?”</b> dan <b>“Jangan Tunggu Gagal”</b> di area Satpas Polresta Banyuwangi.</div>
+
+    <h3>Tips belajar</h3>
+    <ul class="clean small">
+      <li>Pelajari arti <b>rambu, marka, dan APILL</b> (lampu lalu lintas), hak utama pengguna jalan, etika mendahului, dan batas kecepatan. <a href="#b5-2" data-go="b5-2">Galeri Rambu, Marka &amp; APILL + kuis (B.5.2) →</a></li>
+      <li>Kerjakan latihan soal di E-Book dan simulasi di atas berulang kali sampai terbiasa dengan pola soalnya.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= B.5.2 ================= -->
+<section class="page" data-id="b5-2" data-code="B.5.2" data-group="B" data-title="Galeri Rambu, Marka & APILL" data-share="Belajar rambu, marka & lampu lalu lintas untuk ujian teori SIM (ada kuisnya)">
+  <div class="ph"><span class="code">B.5.2</span><span class="grp">Lampiran Pendukung</span><h2>Galeri Rambu, Marka &amp; APILL</h2><p>Materi inti ujian teori SIM: kenali bentuk, warna, dan arti rambu, lalu uji diri dengan kuis tebak rambu.</p></div>
+  <div class="pbody">
+    <div class="grid g4">
+      <div class="card brand stat"><b><svg class="ikw" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 22.5 12 12 22.5 1.5 12z" fill="#f2b705" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg> Kuning</b><span>Peringatan: ada bahaya di depan</span></div>
+      <div class="card brand stat"><b>⭕ Merah</b><span>Larangan: tidak boleh dilakukan</span></div>
+      <div class="card brand stat"><b>🔵 Biru bulat</b><span>Perintah: wajib dilakukan</span></div>
+      <div class="card brand stat"><b>🟦 Biru kotak</b><span>Petunjuk: informasi arah &amp; fasilitas</span></div>
+    </div>
+    <div class="widget"><span class="wt">Galeri</span>
+      <h4>Ketuk gambar untuk membaca artinya</h4>
+      <div class="seg rcat" id="rCat" role="group" aria-label="Pilih kelompok"></div>
+      <div class="vinfo" id="rDet" aria-live="polite" style="margin:0 0 12px"><h4>Pilih salah satu rambu</h4><p>Bentuk dan warna rambu sudah memberi petunjuk artinya, bahkan sebelum Anda membaca lambangnya.</p></div>
+      <div class="rgrid" id="rGrid"></div>
+    </div>
+
+    <h3>Kuis tebak rambu</h3>
+    <div class="widget" id="rQuiz"><span class="wt">Interaktif</span>
+      <p class="small muted" style="margin:0 0 10px">10 soal acak. Pilih arti yang benar untuk setiap gambar.</p>
+      <div id="rqBody"></div>
+    </div>
+    <div class="note"><b>Dasar aturan</b>Rambu: Permenhub PM 13 Tahun 2014 tentang Rambu Lalu Lintas. Marka: Permenhub PM 34 Tahun 2014 tentang Marka Jalan. APILL: Permenhub PM 49 Tahun 2014 tentang Alat Pemberi Isyarat Lalu Lintas. Pelanggaran rambu dan marka diatur dalam Pasal 287 UU No. 22 Tahun 2009. Gambar di halaman ini disederhanakan untuk belajar.</div>
+  </div>
+</section>
+
+<!-- ================= B.5.3 ================= -->
+<section class="page" data-id="b5-3" data-code="B.5.3" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji & sirkuit huruf S">
+  <div class="ph"><span class="code">B.5.3</span><span class="grp">Lampiran Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, dan sirkuit huruf S untuk SIM C &amp; SIM A.</p></div>
+  <div class="pbody">
+    <h3>Video tutorial ujian praktik</h3>
+    <p class="small muted" style="margin-top:-4px">Ketuk tombol untuk membuka langsung. Bila membaca dari laptop/komputer, pindai QR code dengan kamera HP.</p>
+    <div class="grid g2 rqs">
       <div class="card rq">
         <div class="rq-top"><span class="ico">🏍️</span><div><h4>Video Tutorial Ujian Praktik R2 (SIM C)</h4><p class="small">Tutorial uji praktik SIM C tahap 1 — kanal YouTube Satlantas Banyuwangi.</p></div></div>
         <div class="rq-act"><a class="btn" href="https://www.youtube.com/watch?v=A37m6DrR4Xs" target="_blank" rel="noopener">▶️ Tonton Video</a><div class="rq-qr"><svg role="img" aria-label="QR code Video Tutorial Ujian Praktik R2 (SIM C)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h35v35H0z"/><path stroke="#071f4d" d="M1 1.5h7m4 0h2m1 0h1m3 0h4m1 0h1m2 0h7M1 2.5h1m5 0h1m2 0h4m2 0h1m2 0h1m1 0h2m4 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h2m8 0h1m2 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m3 0h6m2 0h1m1 0h1m3 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m2 0h3m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m1 0h1m3 0h1m1 0h1m2 0h5M1 9.5h1m1 0h5m2 0h6m2 0h1m1 0h1m2 0h2m2 0h5M1 10.5h1m1 0h4m2 0h1m1 0h2m1 0h2m1 0h5m1 0h2m2 0h2m1 0h4M3 11.5h1m2 0h13m4 0h1m1 0h1m3 0h1m1 0h1M1 12.5h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h4m2 0h1m2 0h1m1 0h4M4 13.5h1m1 0h5m2 0h1m1 0h3m2 0h7m2 0h2M1 14.5h2m2 0h1m2 0h1m1 0h5m1 0h1m1 0h2m2 0h1m2 0h2m4 0h3M1 15.5h1m1 0h2m2 0h1m4 0h1m2 0h3m3 0h3m2 0h3m1 0h1m1 0h1M2 16.5h3m1 0h1m1 0h1m3 0h5m5 0h6m3 0h1M1 17.5h1m3 0h4m3 0h5m1 0h2m3 0h1m1 0h2m1 0h3m2 0h1M1 18.5h1m1 0h4m3 0h2m3 0h1m1 0h1m1 0h2m1 0h7m1 0h2M2 19.5h7m1 0h1m1 0h1m2 0h2m2 0h1m1 0h2m5 0h2m1 0h2M3 20.5h1m4 0h1m2 0h2m3 0h2m3 0h4m2 0h6M4 21.5h2m1 0h1m1 0h1m1 0h4m1 0h1m2 0h1m2 0h1m5 0h1m1 0h1m1 0h2M1 22.5h1m1 0h1m2 0h1m2 0h2m3 0h5m2 0h4m1 0h2m2 0h2m1 0h1M1 23.5h1m1 0h2m2 0h1m3 0h2m2 0h1m2 0h1m1 0h1m1 0h2m1 0h2m1 0h3m1 0h1M1 24.5h1m2 0h1m4 0h1m3 0h2m2 0h1m2 0h3m2 0h3m2 0h4M1 25.5h1m1 0h3m1 0h5m5 0h2m1 0h1m2 0h7m3 0h1M9 26.5h1m1 0h2m4 0h2m1 0h2m1 0h3m3 0h1m1 0h3M1 27.5h7m3 0h4m1 0h3m4 0h3m1 0h1m1 0h1m1 0h1M1 28.5h1m5 0h1m1 0h3m1 0h2m1 0h1m1 0h3m3 0h2m3 0h3m1 0h1M1 29.5h1m1 0h3m1 0h1m1 0h4m3 0h2m3 0h3m1 0h6m1 0h1M1 30.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h1m2 0h2m2 0h1M1 31.5h1m1 0h3m1 0h1m1 0h5m1 0h4m2 0h8m1 0h2M1 32.5h1m5 0h1m3 0h4m1 0h1m5 0h5m2 0h1m1 0h1M1 33.5h7m1 0h4m1 0h3m1 0h1m4 0h3m2 0h1m1 0h1m1 0h1"/></svg>
@@ -1258,21 +1298,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <small>Pindai dengan HP</small></div></div>
       </div>
     </div>
-    <div class="note"><b>📲 Tersedia juga di Satpas</b>QR code yang sama terpasang pada banner <b>“Mau Ujian Teori SIM?”</b> dan <b>“Jangan Tunggu Gagal”</b> di area Satpas Polresta Banyuwangi.</div>
-
-    <h3>Rangkuman materi ujian teori</h3>
-    <div class="grid g3">
-      <div class="card brand"><h4>⚠️ Persepsi Bahaya</h4><p class="small">25 soal · 10 menit. Mengenali potensi bahaya lalu lintas dan bereaksi dengan tepat.</p></div>
-      <div class="card brand"><h4>💡 Wawasan</h4><p class="small">20 soal · 20 menit. Menyesuaikan diri saat berkendara demi kamseltibcarlantas.</p></div>
-      <div class="card brand"><h4>🎓 Pengetahuan</h4><p class="small">20 soal · 20 menit. Dasar dan norma hukum lalu lintas yang berlaku.</p></div>
-    </div>
-    <ul class="clean small" style="margin-top:10px">
-      <li>Pelajari arti <b>rambu, marka, dan APILL</b> (lampu lalu lintas), hak utama pengguna jalan, etika mendahului, dan batas kecepatan.</li>
-      <li>Kerjakan latihan soal di E-Book berulang kali sampai terbiasa dengan pola soalnya.</li>
-      <li>Nilai lulus paling rendah <b>70</b>. Ujian dapat dikerjakan di perangkat Satpas atau HP pemohon melalui E-AVIS. <a href="#b5" data-go="b5">Lihat tahapan E-AVIS (B.5) →</a></li>
-    </ul>
-
-    <p class="small">Belajar rambu untuk ujian teori? Buka <a href="#b5-2" data-go="b5-2">Galeri Rambu, Marka &amp; APILL + kuis tebak rambu (B.5.2) →</a></p>
 
     <h3>Lapangan uji praktik</h3>
     <div class="widget" id="lapangan"><span class="wt">Interaktif</span>
@@ -1337,32 +1362,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
-<!-- ================= B.5.2 ================= -->
-<section class="page" data-id="b5-2" data-code="B.5.2" data-group="B" data-title="Galeri Rambu, Marka & APILL" data-share="Belajar rambu, marka & lampu lalu lintas untuk ujian teori SIM (ada kuisnya)">
-  <div class="ph"><span class="code">B.5.2</span><span class="grp">Lampiran Pendukung</span><h2>Galeri Rambu, Marka &amp; APILL</h2><p>Materi inti ujian teori SIM: kenali bentuk, warna, dan arti rambu, lalu uji diri dengan kuis tebak rambu.</p></div>
-  <div class="pbody">
-    <div class="grid g4">
-      <div class="card brand stat"><b><svg class="ikw" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 22.5 12 12 22.5 1.5 12z" fill="#f2b705" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg> Kuning</b><span>Peringatan: ada bahaya di depan</span></div>
-      <div class="card brand stat"><b>⭕ Merah</b><span>Larangan: tidak boleh dilakukan</span></div>
-      <div class="card brand stat"><b>🔵 Biru bulat</b><span>Perintah: wajib dilakukan</span></div>
-      <div class="card brand stat"><b>🟦 Biru kotak</b><span>Petunjuk: informasi arah &amp; fasilitas</span></div>
-    </div>
-    <div class="widget"><span class="wt">Galeri</span>
-      <h4>Ketuk gambar untuk membaca artinya</h4>
-      <div class="seg rcat" id="rCat" role="group" aria-label="Pilih kelompok"></div>
-      <div class="vinfo" id="rDet" aria-live="polite" style="margin:0 0 12px"><h4>Pilih salah satu rambu</h4><p>Bentuk dan warna rambu sudah memberi petunjuk artinya, bahkan sebelum Anda membaca lambangnya.</p></div>
-      <div class="rgrid" id="rGrid"></div>
-    </div>
-
-    <h3>Kuis tebak rambu</h3>
-    <div class="widget" id="rQuiz"><span class="wt">Interaktif</span>
-      <p class="small muted" style="margin:0 0 10px">10 soal acak. Pilih arti yang benar untuk setiap gambar.</p>
-      <div id="rqBody"></div>
-    </div>
-    <div class="note"><b>Dasar aturan</b>Rambu: Permenhub PM 13 Tahun 2014 tentang Rambu Lalu Lintas. Marka: Permenhub PM 34 Tahun 2014 tentang Marka Jalan. APILL: Permenhub PM 49 Tahun 2014 tentang Alat Pemberi Isyarat Lalu Lintas. Pelanggaran rambu dan marka diatur dalam Pasal 287 UU No. 22 Tahun 2009. Gambar di halaman ini disederhanakan untuk belajar.</div>
-  </div>
-</section>
-
 <!-- ================= B.6 ================= -->
 <section class="page" data-id="b6" data-code="B.6" data-group="B" data-title="Permohonan SIM Perpanjangan">
   <div class="ph"><span class="code">B.6</span><span class="grp">Lampiran Pendukung</span><h2>Permohonan SIM Perpanjangan</h2><p>SIM A, SIM B, SIM C, dan SIM D — perpanjang sebelum masa berlaku habis.</p></div>
@@ -1391,14 +1390,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <p class="small muted" style="margin-top:-6px">Huruf mengikuti penanda ruangan pada denah lantai 1, sama dengan prosedur SIM baru (B.5): A Informasi, B Registrasi, G Loket BRI, H Pencetakan. Pada perpanjangan, loket BRI (G) didatangi lebih dulu, dan identifikasi &amp; foto dilakukan bersama registrasi. Dari ruang B ke ruang H, ikuti koridor tengah melewati Ruang Pencerahan (D) dan area F, lalu belok ke koridor belakang. <a href="#alur" data-go="a2" data-alur="panjang">Lihat rute di denah alur A.2 →</a></p>
     <h3>Biaya / tarif perpanjangan</h3>
     <div class="tw fit"><table><thead><tr><th>Golongan</th><th class="num">Tarif PNBP</th></tr></thead><tbody>
-      <tr><td>SIM A</td><td class="num">Rp80.000</td></tr>
+      <tr><td>SIM A, A Umum, BI, BI Umum, BII, BII Umum</td><td class="num">Rp80.000</td></tr>
       <tr><td>SIM C, CI, CII</td><td class="num">Rp75.000</td></tr>
-      <tr><td>SIM D</td><td class="num">Rp30.000</td></tr>
-      <tr><td>SIM A Umum</td><td class="num">Rp80.000</td></tr>
-      <tr><td>SIM BI</td><td class="num">Rp80.000</td></tr>
-      <tr><td>SIM BI Umum</td><td class="num">Rp80.000</td></tr>
-      <tr><td>SIM BII</td><td class="num">Rp80.000</td></tr>
-      <tr><td>SIM BII Umum</td><td class="num">Rp80.000</td></tr>
+      <tr><td>SIM D, DI</td><td class="num">Rp30.000</td></tr>
     </tbody></table></div>
     <div class="note warn"><b>Penting!</b>
       <ul>
@@ -1408,10 +1402,25 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Masa berlaku SIM habis pada hari Minggu / libur nasional? <a href="#b8" data-go="b8">Lihat B.8 →</a></li>
         <li>SIM hilang atau rusak? <a href="#b6-1" data-go="b6-1">Ikuti panduan B.6.1 →</a></li>
       </ul></div>
-    <div class="grid g2">
-      <div class="card"><h4>SIM Keliling (Simling)</h4><p class="small">Perpanjangan SIM A/C menggunakan bus khusus — <a href="#b13" data-go="b13">lihat SIM JEMPOL (B.13)</a>. Satpas Keliling/Pembantu melayani perpanjangan SIM D, DI, C, CI, CII, dan A <span class="chip">Pasal 30 ayat 7</span>.</p></div>
-      <div class="card"><h4>SINAR (online)</h4><p class="small">Perpanjangan SIM secara online melalui aplikasi Korlantas Polri “SINAR”. Bantuan WhatsApp: <a href="https://wa.me/62816255705" target="_blank" rel="noopener">0816-255-705</a>. <a href="#b12" data-go="b12">Panduan SINAR (B.12) →</a></p></div>
+    <h3>Tiga cara perpanjangan</h3>
+    <div class="tw"><table><thead><tr><th>Aspek</th><th>Satpas Induk</th><th>SIM Jempol (Bus Keliling)</th><th>SINAR (Online)</th></tr></thead><tbody>
+      <tr><td><b>Tempat</b></td><td>Gedung Satpas Polresta</td><td>Kecamatan, pusat keramaian, instansi</td><td>Dari HP di mana saja</td></tr>
+      <tr><td><b>Golongan</b></td><td>Semua golongan</td><td>SIM A &amp; SIM C</td><td>SIM A &amp; SIM C</td></tr>
+      <tr><td><b>Waktu proses</b></td><td>± 30 menit</td><td>10–15 menit</td><td>Menunggu verifikasi &amp; pengiriman</td></tr>
+      <tr><td><b>SIM diterima</b></td><td>Langsung di loket</td><td>Langsung di bus</td><td>Dikirim ke alamat</td></tr>
+      <tr><td><b>Syarat utama</b></td><td colspan="3">SIM lama masih berlaku · e-KTP · sehat jasmani &amp; rohani · JKN aktif · PNBP sesuai PP 76/2020</td></tr>
+    </tbody></table></div>
+    <p class="small muted">Satpas Keliling/Pembantu berwenang melayani perpanjangan SIM D, DI, C, CI, CII, dan A <span class="chip">Pasal 30 ayat 7</span>. Panduan lengkap: <a href="#b12" data-go="b12">SINAR (B.12)</a> · <a href="#b13" data-go="b13">SIM JEMPOL (B.13)</a>.</p>
+    <div class="widget"><span class="wt">Interaktif</span>
+      <h4>Layanan perpanjangan mana yang cocok untuk saya?</h4>
+      <div class="row">
+        <div class="fld"><label for="chBerlaku">SIM saya…</label><select id="chBerlaku"><option value="y">Masih berlaku</option><option value="n">Sudah lewat masa berlaku</option></select></div>
+        <div class="fld"><label for="chGol">Golongan SIM</label><select id="chGol"><option value="ac">SIM A / SIM C</option><option value="d">SIM D / DI (disabilitas)</option><option value="lain">SIM A Umum / B / CI / CII</option></select></div>
+        <div class="fld"><label for="chPref">Saya lebih suka…</label><select id="chPref"><option value="online">Mengurus dari HP (online)</option><option value="dekat">Dilayani di dekat rumah</option><option value="satpas">Datang ke Satpas induk</option></select></div>
+      </div>
+      <div class="out" id="chOut"></div>
     </div>
+
   </div>
 </section>
 
@@ -1530,11 +1539,10 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="ph"><span class="code">B.9</span><span class="grp">Lampiran Pendukung</span><h2>Persyaratan E-Rikkes dan E-PPSI</h2><p>Kesehatan jasmani (E-RIKKES) dan kesehatan rohani (E-PPSI) — berlaku sejak 1 Januari 2024.</p></div>
   <div class="pbody">
     <figure class="poster"><img src="img/poster-panduan-persyaratan-kesehatan-dan-psikolo.webp" alt="Poster panduan persyaratan kesehatan dan psikologi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
-    <div class="grid g4">
+    <div class="grid g3">
       <div class="card brand"><span class="chip">1</span><h4 style="margin-top:6px">Kesehatan Jasmani (E-RIKKES)</h4><p class="small">Surat keterangan dokter yang direkomendasikan Polri/Biddokkes Polda.</p></div>
       <div class="card brand"><span class="chip">2</span><h4 style="margin-top:6px">Kesehatan Rohani (E-PPSI)</h4><p class="small">Surat keterangan lulus psikologi dari psikolog yang direkomendasikan Biro Psikologi SSDM Polri.</p></div>
       <div class="card brand"><span class="chip">3</span><h4 style="margin-top:6px">Sistem Aplikasi</h4><p class="small">Menggunakan aplikasi E-RIKKES dan E-PPSI, untuk pendaftaran online &amp; offline (Satpas).</p></div>
-      <div class="card accent"><span class="chip y">4</span><h4 style="margin-top:6px">Masa Berlaku Hasil</h4><p class="small">E-PPSI (psikologi) <b>6 bulan</b>. E-RIKKES (jasmani) <b>14 hari</b>.</p></div>
     </div>
     <h3>Rincian menurut Perpol</h3>
     <div class="tw"><table><thead><tr><th>Aspek</th><th>Kesehatan Jasmani</th><th>Kesehatan Rohani</th></tr></thead><tbody>
@@ -1545,14 +1553,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <tr><td><b>Pendataan</b></td><td colspan="2">Hasil direkam dalam pangkalan data sebagai bagian basis data SIM Korlantas Polri (ketentuan baru Perpol 2/2023)</td></tr>
       <tr><td><b>Dasar</b></td><td>Pasal 11</td><td>Pasal 12</td></tr>
     </tbody></table></div>
-    <div class="widget"><span class="wt">Interaktif</span>
-      <h4>Hitung batas berlaku surat kesehatan/psikologi</h4>
-      <div class="row">
-        <div class="fld"><label for="docType">Jenis surat</label><select id="docType"><option value="d14">Surat keterangan dokter (jasmani) — 14 hari</option><option value="m6">Surat lulus tes psikologi (rohani) — 6 bulan</option><option value="m6s">Sertifikat diklat mengemudi — 6 bulan</option><option value="m6u">Surat keterangan uji keterampilan (simulator) — 6 bulan</option></select></div>
-        <div class="fld"><label for="docDate">Tanggal diterbitkan</label><input type="date" id="docDate"></div>
-      </div>
-      <div class="out" id="docOut"></div>
-    </div>
+    <p class="small">Hitung tanggal batas berlaku surat Anda di <a href="#c4" data-go="c4">C.1.4 Masa Berlaku Dokumen →</a></p>
   </div>
 </section>
 
@@ -1717,9 +1718,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <li><b>Digitalisasi SIM</b><span>SIM digital juga tersedia di aplikasi.</span></li>
     </ol>
     <div class="tw fit"><table><thead><tr><th>PNBP perpanjangan (PP No. 76 Tahun 2020)</th><th class="num">Tarif</th></tr></thead><tbody>
-      <tr><td>SIM A, BI, BII</td><td class="num">Rp80.000</td></tr>
+      <tr><td>SIM A</td><td class="num">Rp80.000</td></tr>
       <tr><td>SIM C</td><td class="num">Rp75.000</td></tr>
-      <tr><td>SIM Internasional</td><td class="num">Rp225.000</td></tr>
     </tbody></table></div>
     <p class="small muted">Biaya kirim dan biaya tes kesehatan/psikologi tidak termasuk PNBP.</p>
 
@@ -1729,16 +1729,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <a href="https://wa.me/62816255705" target="_blank" rel="noopener"><span class="ic">💬</span><span><small>WhatsApp Layanan SIM Perpanjangan Online (SINAR)</small><b>0816-255-705</b></span></a>
         <a href="#b11" data-go="b11"><span class="ic">🏢</span><span><small>Datang ke Satpas Polresta Banyuwangi (lihat B.11)</small><b>Unit Layanan SIM SINAR</b></span></a>
       </div>
-    </div>
-
-    <div class="widget"><span class="wt">Interaktif</span>
-      <h4>Layanan perpanjangan mana yang cocok untuk saya?</h4>
-      <div class="row">
-        <div class="fld"><label for="chBerlaku">SIM saya…</label><select id="chBerlaku"><option value="y">Masih berlaku</option><option value="n">Sudah lewat masa berlaku</option></select></div>
-        <div class="fld"><label for="chGol">Golongan SIM</label><select id="chGol"><option value="ac">SIM A / SIM C</option><option value="d">SIM D / DI (disabilitas)</option><option value="lain">SIM A Umum / B / CI / CII</option></select></div>
-        <div class="fld"><label for="chPref">Saya lebih suka…</label><select id="chPref"><option value="online">Mengurus dari HP (online)</option><option value="dekat">Dilayani di dekat rumah</option><option value="satpas">Datang ke Satpas induk</option></select></div>
-      </div>
-      <div class="out" id="chOut"></div>
     </div>
 
     <h3>Perkembangan penerbitan SIM melalui SINAR (2020 – September 2026)</h3>
@@ -1770,14 +1760,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     </tbody></table></div>
     <div class="note ok"><b>Terus meningkat setiap tahun</b>Layanan SINAR mulai tercatat pada September 2021. Dari 3.051 SIM pada 2022 menjadi 20.715 SIM pada 2025 — naik sekitar <b>6,8 kali lipat</b>. Hingga September 2026 sudah tercatat 12.110 SIM. Tahun 2020 belum ada layanan SINAR.</div>
 
-    <h3>Perbandingan tiga cara perpanjangan</h3>
-    <div class="tw"><table><thead><tr><th>Aspek</th><th>Satpas Induk</th><th>SIM Jempol (Bus Keliling)</th><th>SINAR (Online)</th></tr></thead><tbody>
-      <tr><td><b>Tempat</b></td><td>Gedung Satpas Polresta</td><td>Kecamatan, pusat keramaian, instansi</td><td>Dari HP di mana saja</td></tr>
-      <tr><td><b>Golongan</b></td><td>Semua golongan</td><td>SIM A &amp; SIM C</td><td>SIM A &amp; SIM C</td></tr>
-      <tr><td><b>Waktu proses</b></td><td>± 30 menit</td><td>10–15 menit</td><td>Menunggu verifikasi &amp; pengiriman</td></tr>
-      <tr><td><b>SIM diterima</b></td><td>Langsung di loket</td><td>Langsung di bus</td><td>Dikirim ke alamat</td></tr>
-      <tr><td><b>Syarat utama</b></td><td colspan="3">SIM lama masih berlaku · e-KTP · sehat jasmani &amp; rohani · JKN aktif · PNBP sesuai PP 76/2020</td></tr>
-    </tbody></table></div>
+    <div class="note"><b>Masih menimbang?</b>Bandingkan SINAR, SIM JEMPOL, dan Satpas induk, lalu cek mana yang cocok untuk Anda di <a href="#b6" data-go="b6">B.6 Permohonan SIM Perpanjangan →</a></div>
     <p class="small muted">Informasi umum aplikasi SINAR bersumber dari Korlantas Polri; tampilan dan alur di aplikasi dapat diperbarui sewaktu-waktu.</p>
   </div>
 </section>
@@ -2292,6 +2275,14 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <tr><td>Sertifikat diklat mengemudi</td><td><b>6 bulan</b></td><td>Ps. 9 (3a)</td></tr>
     </tbody></table></div>
     <div class="widget"><span class="wt">Interaktif</span>
+      <h4>Hitung batas berlaku surat persyaratan</h4>
+      <div class="row">
+        <div class="fld"><label for="docType">Jenis surat</label><select id="docType"><option value="d14">Surat keterangan dokter (jasmani) — 14 hari</option><option value="m6">Surat lulus tes psikologi (rohani) — 6 bulan</option><option value="m6s">Sertifikat diklat mengemudi — 6 bulan</option><option value="m6u">Surat keterangan uji keterampilan (simulator) — 6 bulan</option></select></div>
+        <div class="fld"><label for="docDate">Tanggal diterbitkan</label><input type="date" id="docDate"></div>
+      </div>
+      <div class="out" id="docOut"></div>
+    </div>
+    <div class="widget"><span class="wt">Interaktif</span>
       <h4>Cek status SIM saya</h4>
       <div class="note danger" style="margin-top:0"><b>INFO PENTING:</b>Masa berlaku SIM saat ini tidak lagi mengikuti tanggal lahir Anda, melainkan dihitung <b>5 tahun sejak tanggal SIM dicetak</b>. Mohon selalu perhatikan tanggal kedaluwarsa yang tertera pada SIM Anda.</div>
       <div class="row"><div class="fld"><label for="expDate">Tanggal berlaku sampai (tertera di SIM)</label><input type="date" id="expDate"></div></div>
@@ -2469,6 +2460,8 @@ const pages = $$('.page');
 const contentPages = pages.filter(p => p.dataset.group);
 let cur = 0;
 const GROUPS = {A:'A. Lampiran Pokok', B:'B. Lampiran Pendukung', C:'C. Lampiran Penunjang'};
+// subbab di daftar isi: halaman pertama tiap subbab → judulnya
+const SUBS = {b1:'Profil &amp; Komitmen Pelayanan', b5:'Jenis Permohonan &amp; Persiapan Ujian', b10:'Pengaduan &amp; Organisasi', b12:'Inovasi Layanan', b16:'SIM Internasional &amp; WNA'};
 
 function buildToc(){
   const toc = $('#toc'), tp = $('#tocPage');
@@ -2482,6 +2475,8 @@ function buildToc(){
     if (g === 'C') tpHtml += `<a href="#c1" data-go="c1" style="background:var(--surface-2)"><span class="c">C.1</span><b>Bahan data penunjang layanan penerbitan SIM</b></a>`;
     for (const p of list) {
       const idx = pages.indexOf(p) + 1;
+      const sub = SUBS[p.dataset.id];
+      if (sub) { html += `<h5>${sub}</h5>`; tpHtml += `<div class="sub">${sub}</div>`; }
       html += `<a href="#${p.dataset.id}" data-go="${p.dataset.id}"><span class="c">${p.dataset.code}</span>${p.dataset.title}</a>`;
       tpHtml += `<a href="#${p.dataset.id}" data-go="${p.dataset.id}"${g==='C'?' style="padding-left:34px"':''}><span class="c">${p.dataset.code}</span>${p.dataset.title}<span class="pg">hlm. ${idx}</span></a>`;
     }
@@ -3023,7 +3018,7 @@ document.addEventListener('click', e => {
     const jadiBaru = alasan => {
       judul = `Permohonan SIM Baru · ${gol}`; ck = 'SIM Baru'; jenisTarif = 'SIM Baru';
       notes.push(['danger', alasan + ' Pengajuan diproses sebagai <b>SIM baru</b>, termasuk ujian teori & praktik (Pasal 4 ayat 3).']);
-      cara.push(satpas, 'Persiapkan ujian dengan <a href="#b5-1" data-go="b5-1">E-Book Ujian (B.5.1)</a> dan latihan gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.');
+      cara.push(satpas, 'Persiapkan ujian dengan persiapan ujian <a href="#b5-1" data-go="b5-1">teori (B.5.1)</a> &amp; <a href="#b5-3" data-go="b5-3">praktik (B.5.3)</a> dan latihan gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.');
       links.push(['b5', 'B.5 Permohonan SIM Baru']);
     };
     switch (st.jenis) {
@@ -3031,7 +3026,7 @@ document.addEventListener('click', e => {
         judul = `${st.jenis === 'wna' ? 'SIM Baru WNA' : 'Permohonan SIM Baru'} · ${gol}`; ck = st.jenis === 'wna' ? 'SIM Baru WNA' : 'SIM Baru'; jenisTarif = 'SIM Baru';
         cekUsia(); cekPrasyarat();
         cara.push(satpas, 'Ujian teori (E-AVIS), ujian keterampilan/simulator bila diperlukan, lalu ujian praktik. Nilai lulus teori minimal 70.',
-          'Persiapkan dengan <a href="#b5-1" data-go="b5-1">E-Book Ujian (B.5.1)</a> dan latihan praktik gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.');
+          'Persiapkan dengan persiapan ujian <a href="#b5-1" data-go="b5-1">teori (B.5.1)</a> &amp; <a href="#b5-3" data-go="b5-3">praktik (B.5.3)</a> dan latihan praktik gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.');
         if (/^SIM D/.test(gol)) { cara.push('Layanan pendampingan khusus penyandang disabilitas: <a href="#b15" data-go="b15">SIBABA (B.15)</a>.'); links.push(['b15', 'B.15 SIBABA']); }
         links.push(st.jenis === 'wna' ? ['b17', 'B.17 Alur SIM WNA (ID/EN)'] : ['b5', 'B.5 Permohonan SIM Baru']);
         break;
@@ -3272,14 +3267,14 @@ function renderGlo(){
 }
 $('#glq').addEventListener('input', renderGlo); renderGlo();
 
-/* ---------------- B.12 pemilih layanan perpanjangan ---------------- */
+/* ---------------- B.6 pemilih layanan perpanjangan ---------------- */
 function chooser(){
   const b = $('#chBerlaku').value, g = $('#chGol').value, p = $('#chPref').value;
   let html;
   if (b === 'n') html = '<span class="chip r">SIM BARU</span> SIM yang sudah lewat masa berlaku tidak dapat diperpanjang. Ajukan <b>SIM baru di Satpas induk</b> (lihat <a href="#b5" data-go="b5">B.5</a>). Ingin lebih siap menghadapi ujian praktik? Ikuti latihan gratis <a href="#b14" data-go="b14">LUPIS (B.14)</a>.';
   else if (g === 'd') html = '<span class="chip g">SIBABA</span> Perpanjangan SIM D/DI dilayani dengan pendampingan prioritas melalui <a href="#b15" data-go="b15">SIBABA (B.15)</a>.';
   else if (g === 'lain') html = '<span class="chip">SATPAS INDUK</span> SIM A Umum dan golongan B diperpanjang di <b>Satpas Polresta Banyuwangi</b>, Senin–Sabtu 08.00–13.00 WIB (lihat <a href="#b6" data-go="b6">B.6</a>).';
-  else if (p === 'online') html = '<span class="chip g">SINAR</span> Gunakan aplikasi <b>Digital Korlantas POLRI</b> dan ikuti langkah di halaman ini. SIM baru dikirim ke alamat Anda.';
+  else if (p === 'online') html = '<span class="chip g">SINAR</span> Gunakan aplikasi <b>Digital Korlantas POLRI</b> dan ikuti langkahnya di <a href="#b12" data-go="b12">B.12</a>. SIM baru dikirim ke alamat Anda.';
   else if (p === 'dekat') html = '<span class="chip g">SIM JEMPOL</span> Datangi Bus SIM Keliling sesuai jadwal zona kecamatan Anda; selesai 10–15 menit (lihat <a href="#b13" data-go="b13">B.13</a>).';
   else html = '<span class="chip g">SATPAS INDUK</span> Datang Senin–Sabtu 08.00–13.00 WIB, proses ± 30 menit (lihat <a href="#b6" data-go="b6">B.6</a>).';
   $('#chOut').innerHTML = html;
@@ -3577,7 +3572,7 @@ pageHooks.push(() => { if (ttsOn) ttsStop(); });
 /* ---------- bilah aksi per halaman: Dengarkan · WhatsApp · Salin tautan ---------- */
 const SHARE = {
   b1:'Alamat & jadwal pelayanan Satpas Polresta Banyuwangi', b2:'Tarif resmi SIM, stop pungli & calo', b5:'Syarat & alur membuat SIM baru',
-  'b5-1':'Belajar ujian teori & praktik SIM', b6:'Syarat perpanjangan SIM', b7:'Syarat peningkatan golongan SIM',
+  'b5-1':'Belajar ujian teori SIM (E-AVIS) & simulasi', 'b5-3':'Persiapan ujian praktik SIM: lapangan & sirkuit huruf S', b6:'Syarat perpanjangan SIM', b7:'Syarat peningkatan golongan SIM',
   b8:'Info layanan SIM hari Minggu & libur nasional', b9:'Syarat tes kesehatan & psikologi SIM', b12:'Perpanjang SIM online lewat SINAR',
   b13:'SIM Keliling (SIM JEMPOL) Banyuwangi', b14:'Latihan ujian praktik SIM gratis (LUPIS)', b15:'Layanan SIM untuk penyandang disabilitas (SIBABA)',
   a2:'Alur & denah layanan SIM di Satpas', c3:'Hitung biaya resmi (PNBP) SIM', c6:'Checklist dokumen sebelum ke Satpas'
@@ -3611,7 +3606,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   $('#gCap').textContent = b.dataset.cap;
 });
 
-/* ---------- B.5.1 lapangan uji praktik (sumber: Kep/105/VIII/2023) ---------- */
+/* ---------- B.5.3 lapangan uji praktik (sumber: Kep/105/VIII/2023) ---------- */
 (function(){
   const K105 = 'Kep/105/VIII/2023';
   const LAP = [
@@ -3720,7 +3715,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       {at:'ident', L:'C', h:'Identifikasi & foto', d:'Pengambilan foto, sidik jari, dan tanda tangan elektronik (biometrik).'},
       {at:'pencerahan', L:'D', h:'Pencerahan / edukasi', d:'Materi peraturan lalu lintas, teknik dasar kendaraan, dan tata cara berlalu lintas.'},
       {at:'teori', also:['tTeori'], L:'E', h:'Ujian teori', d:'Tunggu panggilan di Ruang Tunggu Uji Teori, lalu ujian E-AVIS di Ruang Uji Teori. Lulus bila nilai ≥ 70.'},
-      {at:'lapangan', also:['sim1','sim2','tPraktik'], L:'F', h:'Ujian praktik', d:'Uji keterampilan di ruang simulator, tunggu giliran di Ruang Tunggu Uji Praktik, lalu keluar ke lapangan uji praktik (lihat B.5.1).'},
+      {at:'lapangan', also:['sim1','sim2','tPraktik'], L:'F', h:'Ujian praktik', d:'Uji keterampilan di ruang simulator, tunggu giliran di Ruang Tunggu Uji Praktik, lalu keluar ke lapangan uji praktik (lihat B.5.3).'},
       {at:'bank', via:VIA.bankFromLapangan, L:'G', h:'Bayar PNBP di loket BRI', d:'Pembayaran PNBP hanya di loket BRI/BRIVA; simpan bukti bayar.'},
       {at:'cetak', also:['tCetak'], via:VIA.cetakViaF, L:'H', h:'Produksi cetak SIM', d:'Dari loket BRI, kembali melewati area F, lalu naik dan belok kiri menyusuri koridor belakang (pola huruf L) ke Ruang Pencetakan SIM. Tunggu panggilan, lalu SIM dicetak dan diserahkan.'}
     ],
