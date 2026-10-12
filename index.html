@@ -2406,14 +2406,15 @@ pages.forEach(p => $$('.tw', p).forEach((w, i) => {
   w.tabIndex = 0; w.setAttribute('role', 'region'); w.setAttribute('aria-label', `Tabel ${cap} (dapat digeser)`);
 }));
 // urutan tingkat judul untuk pembaca layar: tidak boleh melompat (mis. h2 langsung h4)
-pages.forEach(p => {
+// (halaman dwibahasa dihitung per bahasa agar judul versi tersembunyi tidak ikut)
+pages.forEach(p => ['id', 'en'].forEach(lg => {
   let raw = 2, eff = 2;
-  $$('h2,h3,h4,h5,h6', p).forEach(h => {
+  $$('h2,h3,h4,h5,h6', p).filter(h => { const w = h.closest('div[data-lang]'); return !w || w.dataset.lang === lg; }).forEach(h => {
     const lv = +h.tagName[1], e = lv === raw ? eff : Math.min(lv, eff + 1);
     if (e !== lv) h.setAttribute('aria-level', e);
     raw = lv; eff = e;
   });
-});
+}));
 
 // page footers
 const NOTICE = '© Satpas Polresta Banyuwangi — Informasi Layanan Publik';
