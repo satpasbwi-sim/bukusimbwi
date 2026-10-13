@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610132032">
+<meta name="versi-buku" content="202610132039">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -2607,8 +2607,9 @@ const CONFIG = {
   goatcounter: 'satpasbwi',
   // URL Web App Google Apps Script untuk survei IKM (diakhiri /exec). Kosong = survei belum aktif
   ikmUrl: 'https://script.google.com/macros/s/AKfycbxlCB2_vkrHEMCxzffvPByFwC-I9MMC8cvgTcbKNZFYNAlxM-pojll9AMRpLb4kN0loOA/exec',
-  // Nilai IKM baru ditampilkan setelah jumlah responden mencapai angka ini (sebelumnya hanya ajakan mengisi, tanpa jumlah responden)
-  ikmMin: 30
+  // Satu periode survei = sekian responden (harus sama dengan PER_PERIODE di survei-ikm/Code.gs).
+  // Yang tampil hanya hasil periode terakhir yang sudah penuh; sebelumnya hanya ajakan mengisi, tanpa jumlah responden
+  ikmMin: 150
 };
 const pageHooks = []; // fungsi yang dipanggil setiap kali halaman berganti: f(page)
 
@@ -4472,6 +4473,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   $('#ikmQs').innerHTML = U.map((u, i) => `<fieldset class="ikmq" style="margin:0 0 10px"><legend class="hp">${u[0]}</legend><p>${i + 1}. ${u[1]}<small>Unsur: ${u[0]}</small></p><div class="likert">${L.map((l, j) => `<label><input type="radio" name="u${i}" value="${j + 1}" required><span>${l[0]}</span>${l[1]}</label>`).join('')}</div></fieldset>`).join('');
   const mutu = v => v >= 88.31 ? ['A', 'Sangat Baik'] : v >= 76.61 ? ['B', 'Baik'] : v >= 65 ? ['C', 'Kurang Baik'] : ['D', 'Tidak Baik'];
   const fmt = (n, d = 2) => Number(n).toLocaleString('id-ID', {minimumFractionDigits: d, maximumFractionDigits: d});
+  const tglIkm = t => new Date(t).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
   const box = $('#ikmRes');
   const head = '<span class="wt">Hasil langsung</span>';
   function renderRes(r){
@@ -4490,7 +4492,8 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       <div class="ikm-hero">
         <div class="ikm-dial" style="--p:${r.ikm.toFixed(1)}"><div><b>${fmt(r.ikm)}</b><small>Nilai IKM</small></div></div>
         <div><span class="chip ${m[0] <= 'B' ? 'g' : 'y'}" style="font-size:.9rem">Mutu ${m[0]} · ${m[1]}</span>
-          <p style="margin:8px 0 0"><b>${r.n.toLocaleString('id-ID')}</b> responden${r.mulai ? ` sejak ${new Date(r.mulai).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})}` : ''}.</p>
+          <p style="margin:8px 0 0">${r.periode ? `Periode ke-${r.periode}: ` : ''}<b>${r.n.toLocaleString('id-ID')}</b> responden${r.mulai ? `, ${tglIkm(r.mulai)}${r.selesai ? ' – ' + tglIkm(r.selesai) : ''}` : ''}.</p>
+          ${r.periode ? `<p class="small muted" style="margin:2px 0 0">Setiap periode berisi ${r.n.toLocaleString('id-ID')} responden. Periode berikutnya sedang berjalan; hasilnya tampil setelah penuh.</p>` : ''}
           <p class="small muted" style="margin:2px 0 0">Diperbarui otomatis setiap halaman ini dibuka${r.update ? ` · data per ${new Date(r.update).toLocaleString('id-ID', {dateStyle:'medium', timeStyle:'short'})}` : ''}.</p></div>
       </div>
       <h4 style="margin:16px 0 4px">Nilai per unsur (skala 25–100)</h4>
