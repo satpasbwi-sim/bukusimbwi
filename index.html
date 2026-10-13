@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131610">
+<meta name="versi-buku" content="202610131656">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -411,6 +411,10 @@ h3.plain::before{display:none}
 .bars.stack .b i{position:relative;background:var(--accent);overflow:hidden}
 .bars.stack .b i s{position:absolute;left:0;top:0;bottom:0;background:var(--brand);text-decoration:none}
 .bars .b i[style="--v:0"]{min-width:0}
+/* C.1.1 perkiraan keramaian */
+.bars.ramai .b{grid-template-columns:78px 1fr 40px}
+.bars.ramai .b.r i{background:var(--danger)} .bars.ramai .b.y i{background:var(--warn)} .bars.ramai .b.g i{background:var(--ok)}
+.bars.ramai .b.now span{font-weight:800} .bars.ramai .b.now span::after{content:" ◀";color:var(--brand)}
 @media (max-width:640px){.g3:has(> .stat){grid-template-columns:repeat(3,1fr);gap:8px}.g3 > .stat{padding:10px 6px}.g3 > .stat b{font-size:1.05rem}.g3 > .stat span{font-size:.7rem;line-height:1.25;display:block}}
 .lg{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px}
 .lg.a{background:var(--brand)} .lg.c{background:var(--accent)}
@@ -1140,19 +1144,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <li><b>Menyediakan sarana dan prasarana</b><span>yang nyaman dan ramah bagi kelompok rentan.</span></li>
     </ol>
 
-    <div class="widget"><span class="wt">Interaktif</span>
-      <h4>Status layanan saat ini</h4>
-      <div class="status" id="openStatus"><span class="dot"></span><div><b>Memeriksa…</b><span class="small"></span></div></div>
-      <p class="small muted" style="margin:10px 0 0">Dihitung otomatis menurut waktu Indonesia Barat (WIB), termasuk hari libur nasional &amp; cuti bersama.</p>
-    </div>
-
-    <h3>Jadwal pelayanan</h3>
-    <div class="tw"><table><thead><tr><th>Hari</th><th>Jam Operasional</th></tr></thead><tbody>
-      <tr><td>Senin – Sabtu</td><td>08.00 – 13.00 WIB</td></tr>
-      <tr><td><b>Minggu, Hari Libur Nasional &amp; Cuti Bersama</b></td><td><span class="chip r">TUTUP</span></td></tr>
-    </tbody></table></div>
-    <p class="small muted">SIM habis masa berlaku tepat di hari Minggu/libur? Ada dispensasi 1 hari kerja: <a href="#b8" data-go="b8">lihat C.1 →</a></p>
-    <figure class="poster"><img src="img/poster-jadwal-pelayanan-satpas-polresta-banyuwan.webp" alt="Poster jadwal pelayanan Satpas Polresta Banyuwangi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
+    <div class="card accent"><h4>🕗 Jam layanan: Senin – Sabtu, 08.00 – 13.00 WIB</h4><p class="small">Status buka/tutup saat ini, jadwal lengkap, dan perkiraan hari ramai/lengang ada di <a href="#c1-1" data-go="c1-1">C.1.1 Jam Layanan &amp; Perkiraan Keramaian →</a></p></div>
 
     <h3>Layanan yang tersedia</h3>
     <div class="grid g3">
@@ -2188,6 +2180,55 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
+<!-- ================= c1-1 · Jam Layanan & Perkiraan Keramaian ================= -->
+<section class="page" data-id="c1-1" data-code="C.1.1" data-group="C" data-title="Jam Layanan &amp; Perkiraan Keramaian" data-share="Jam layanan Satpas Polresta Banyuwangi & hari yang paling lengang untuk mengurus SIM">
+  <div class="ph"><span class="code">C.1.1</span><span class="grp">Materi Tambahan</span><h2>Jam Layanan &amp; Perkiraan Keramaian</h2><p>Kapan Satpas buka, dan hari apa sebaiknya datang agar tidak lama mengantre.</p></div>
+  <div class="pbody">
+    <div class="widget"><span class="wt">Interaktif</span>
+      <h4>Status layanan saat ini</h4>
+      <div class="status" id="openStatus"><span class="dot"></span><div><b>Memeriksa…</b><span class="small"></span></div></div>
+      <div class="out" id="ramaiHariIni" style="margin-top:10px"></div>
+      <p class="small muted" style="margin:10px 0 0">Dihitung otomatis menurut waktu Indonesia Barat (WIB), termasuk hari libur nasional &amp; cuti bersama.</p>
+    </div>
+
+    <h3>Jadwal pelayanan</h3>
+    <div class="tw"><table><thead><tr><th>Hari</th><th>Jam Operasional</th></tr></thead><tbody>
+      <tr><td>Senin – Sabtu</td><td>08.00 – 13.00 WIB</td></tr>
+      <tr><td><b>Minggu, Hari Libur Nasional &amp; Cuti Bersama</b></td><td><span class="chip r">TUTUP</span></td></tr>
+    </tbody></table></div>
+    <p class="small muted">SIM habis masa berlaku tepat di hari Minggu/libur? Ada dispensasi 1 hari kerja: <a href="#b8" data-go="b8">lihat C.1 →</a></p>
+    <figure class="poster"><img src="img/poster-jadwal-pelayanan-satpas-polresta-banyuwan.webp" alt="Poster jadwal pelayanan Satpas Polresta Banyuwangi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
+
+    <h3>Perkiraan keramaian per hari</h3>
+    <p>Rata-rata jumlah pemohon yang dilayani di kantor Satpas setiap hari (SIM baru, perpanjangan, dan peningkatan). Makin panjang batangnya, makin ramai.</p>
+    <div class="bars ramai" data-max="140">
+      <div class="b r" data-wd="1"><span>Senin</span><i style="--v:140"></i><em>140</em></div>
+      <div class="b y" data-wd="2"><span>Selasa</span><i style="--v:106"></i><em>106</em></div>
+      <div class="b y" data-wd="3"><span>Rabu</span><i style="--v:112"></i><em>112</em></div>
+      <div class="b y" data-wd="4"><span>Kamis</span><i style="--v:105"></i><em>105</em></div>
+      <div class="b g" data-wd="5"><span>Jumat</span><i style="--v:91"></i><em>91</em></div>
+      <div class="b g" data-wd="6"><span>Sabtu</span><i style="--v:79"></i><em>79</em></div>
+    </div>
+    <p class="small"><span class="lg" style="background:var(--danger)"></span> Ramai &nbsp; <span class="lg" style="background:var(--warn)"></span> Sedang &nbsp; <span class="lg" style="background:var(--ok)"></span> Lengang</p>
+
+    <h3>Awal bulan lebih padat</h3>
+    <div class="bars ramai" data-max="128">
+      <div class="b r"><span>Tgl 1–7</span><i style="--v:128"></i><em>128</em></div>
+      <div class="b y"><span>Tgl 8–14</span><i style="--v:107"></i><em>107</em></div>
+      <div class="b g"><span>Tgl 15–21</span><i style="--v:96"></i><em>96</em></div>
+      <div class="b g"><span>Tgl 22–28</span><i style="--v:86"></i><em>86</em></div>
+      <div class="b g"><span>Tgl 29–31</span><i style="--v:75"></i><em>75</em></div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card accent"><h4>✅ Agar lebih cepat</h4><p class="small">Datang hari <b>Jumat atau Sabtu</b>, pada <b>pertengahan sampai akhir bulan</b>, dan usahakan tiba sejak pukul 08.00. Siapkan berkas dulu dengan <a href="#c6" data-go="c6">Checklist Siap ke Satpas (D.6)</a>.</p></div>
+      <div class="card brand"><h4>⚠️ Biasanya padat</h4><p class="small">Hari <b>Senin</b>, <b>hari pertama buka setelah libur panjang</b>, dan <b>minggu pertama</b> setiap bulan.</p></div>
+    </div>
+    <div class="note"><b>Mau perpanjang SIM A atau C?</b>Lonjakan hari Senin sebagian besar berasal dari pemohon perpanjangan, sedangkan pemohon SIM baru relatif sama setiap hari (±24 orang). Perpanjangan bisa dilakukan <b>tanpa datang ke Satpas</b>: lewat aplikasi <a href="#b12" data-go="b12">SINAR (B.15)</a> atau <a href="#b13" data-go="b13">Bus SIM Keliling (B.16)</a>.</div>
+    <p class="small muted">Data: rekapitulasi penerbitan SIM harian Satpas Polresta Banyuwangi, 1 Agustus – 13 Oktober 2026 (61 hari layanan, 6.410 SIM). SIM Keliling dan SINAR tidak dihitung karena pemohonnya tidak datang ke kantor Satpas. Angka ini adalah <b>perkiraan</b> dari jumlah SIM yang terbit; jumlah pengunjung sebenarnya bisa lebih banyak.</p>
+  </div>
+</section>
+
 <!-- ================= b9 · Persyaratan E-Rikkes dan E-PPSI ================= -->
 <section class="page" data-id="b9" data-code="C.2" data-group="C" data-title="Persyaratan E-Rikkes &amp; E-PPSI">
   <div class="ph"><span class="code">C.2</span><span class="grp">Materi Tambahan</span><h2>Persyaratan E-Rikkes dan E-PPSI</h2><p>Kesehatan jasmani (E-RIKKES) dan kesehatan rohani (E-PPSI) — berlaku sejak 1 Januari 2024.</p></div>
@@ -2805,6 +2846,38 @@ function statusHariIni(){
   } catch(e) {}
 }
 statusHariIni(); setInterval(statusHariIni, 30000);
+
+/* ---------------- C.1.1 perkiraan keramaian hari ini ---------------- */
+// rata-rata pemohon di kantor Satpas per hari (rekap 1 Agu – 13 Okt 2026); indeks 1 = Senin
+const RAMAI = [0, 140, 106, 112, 105, 91, 79];
+const tingkatRamai = n => n >= 125 ? ['r', '🔴 Biasanya ramai'] : n >= 100 ? ['y', '🟠 Biasanya sedang'] : ['g', '🟢 Biasanya lengang'];
+function ramaiHariIni(){
+  const el = $('#ramaiHariIni'); if (!el) return;
+  let d, jam;
+  try {
+    const [y, m, dd] = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Jakarta'}).format(new Date()).split('-').map(Number); d = new Date(y, m - 1, dd);
+    jam = +new Intl.DateTimeFormat('en-US', {timeZone:'Asia/Jakarta', hour:'numeric', hour12:false}).format(new Date()) % 24;
+  } catch(e) { d = new Date(); jam = d.getHours(); d.setHours(0, 0, 0, 0); }
+  // hari ini sudah tutup (libur/Minggu/lewat 13.00) → perkiraan untuk hari layanan berikutnya
+  let label = 'Hari ini';
+  if (satpasTutup(d) || jam >= 13) {
+    do d = addDays(d, 1); while (satpasTutup(d));
+    label = d.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'short'});
+  }
+  // hari layanan berikutnya yang biasanya lengang (Jumat/Sabtu, bukan hari libur)
+  $$('.bars.ramai .b[data-wd]').forEach(b => b.classList.toggle('now', +b.dataset.wd === d.getDay()));
+  let n = addDays(d, 1); while (satpasTutup(n) || RAMAI[n.getDay()] >= 100) n = addDays(n, 1);
+  const saran = `Hari lengang terdekat: <b>${fmtDate(n)}</b>.`;
+  let [c, t] = tingkatRamai(RAMAI[d.getDay()]);
+  const notes = [];
+  // hari pertama buka setelah libur (selain Minggu biasa)
+  if (liburInfo(addDays(d, -1)) || (d.getDay() === 1 && liburInfo(addDays(d, -2)))) { c = 'r'; t = '🔴 Biasanya ramai'; notes.push('hari pertama buka setelah libur'); }
+  if (d.getDate() <= 7) notes.push('minggu pertama bulan ini');
+  el.innerHTML = `<p style="margin:0"><span class="chip ${c}">${label}: ${t}</span></p>` +
+    (notes.length ? `<p class="small" style="margin:6px 0 0">Perlu diperhatikan: ${notes.join(' dan ')}, biasanya lebih padat.</p>` : '') +
+    (c !== 'g' ? `<p class="small" style="margin:6px 0 0">${saran}</p>` : '');
+}
+ramaiHariIni(); setInterval(ramaiHariIni, 600000);
 
 /* ---------------- C.1 dispensasi ---------------- */
 function hariChip(d){
