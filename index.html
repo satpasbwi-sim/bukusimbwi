@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131748">
+<meta name="versi-buku" content="202610131805">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -412,16 +412,8 @@ h3.plain::before{display:none}
 .bars.stack .b i s{position:absolute;left:0;top:0;bottom:0;background:var(--brand);text-decoration:none}
 .bars .b i[style="--v:0"]{min-width:0}
 /* B.1 lay out pokja & personil */
-.pokja{display:grid;gap:16px;align-items:start}
-@media (min-width:900px){.pokja{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}.pokja .poster{position:sticky;top:70px}}
-.pkl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.pkl li{display:flex;gap:12px;align-items:flex-start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-.pkl .pn{flex:none;min-width:36px;height:36px;padding:0 6px;border-radius:99px;background:var(--brand);color:var(--brand-ink);font-weight:800;display:grid;place-items:center;font-size:.9rem}
-.pkl b{display:block;line-height:1.3}
-.pkl .small{display:block;color:var(--muted)}
-.pkl .pp{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.pkl .pp i{font-style:normal;font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--brand-soft);color:var(--brand)}
-/* C.1.1 perkiraan keramaian */
+.pokja{max-width:620px;margin:0 auto}
+/* C.2 perkiraan keramaian */
 .bars.ramai .b{grid-template-columns:78px 1fr 40px}
 .bars.ramai .b.r i{background:var(--danger)} .bars.ramai .b.y i{background:var(--warn)} .bars.ramai .b.g i{background:var(--ok)}
 .bars.ramai .b.now span{font-weight:800} .bars.ramai .b.now span::after{content:" ◀";color:var(--brand)}
@@ -1155,24 +1147,11 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     </ol>
 
     <h3>Kenali petugas yang melayani Anda</h3>
-    <p>Setiap meja pelayanan di Satpas dijaga oleh <b>kelompok kerja (Pokja)</b> yang terdiri dari personel Polri dan pegawai harian lepas (PHL). Ikuti nomor urutnya dari pintu masuk sampai SIM jadi.</p>
+    <p>Setiap meja pelayanan di Satpas dijaga oleh <b>kelompok kerja (Pokja)</b> yang terdiri dari personel Polri dan pegawai harian lepas (PHL). Ikuti nomor urutnya pada denah, dari pintu masuk sampai SIM jadi.</p>
     <div class="pokja">
       <figure class="poster"><img src="img/layout-pokja-personil-satpas.webp" alt="Lay out Pokja dan personil (Polri dan PHL) Satpas Polresta Banyuwangi: dari akses masuk ke Pokja 1 Informasi, 2 Pendaftaran dan Loket BRI, 3 Registrasi, 4 Identifikasi, 5 Uji Teori, 6A SINAR, 6B SIMLING, 7 Uji Praktik, 8 Baur SIM, 9 Cetak SIM, dan 10 E-Survei" width="1200" height="1608" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
-      <ol class="pkl">
-        <li><span class="pn">1</span><div><b>💁 Pokja Informasi</b><span class="small">Tanya alur & persyaratan di sini dulu.</span><span class="pp"><i>Aipda Suratmin</i></span></div></li>
-        <li><span class="pn">2</span><div><b>📝 Pokja Pendaftaran</b><span class="small">Serahkan berkas, lalu bayar PNBP di Loket BRI.</span><span class="pp"><i>Arifin</i><i>Elvis</i></span></div></li>
-        <li><span class="pn">3</span><div><b>🗂️ Pokja Registrasi</b><span class="small">Data pemohon dimasukkan ke sistem.</span><span class="pp"><i>Deka</i><i>Briptu Arisko</i><i>Aipda Dewa</i></span></div></li>
-        <li><span class="pn">4</span><div><b>📸 Pokja Identifikasi</b><span class="small">Foto, sidik jari, dan tanda tangan.</span><span class="pp"><i>Aipda Nova</i><i>Bripka Nanang</i><i>Aipda Bayu</i></span></div></li>
-        <li><span class="pn">5</span><div><b>💻 Pokja Uji Teori</b><span class="small">Ujian teori elektronik (E-AVIS).</span><span class="pp"><i>Aiptu Eko</i><i>Ocha</i></span></div></li>
-        <li><span class="pn">6A</span><div><b>📱 Pokja SINAR</b><span class="small">Bantuan perpanjangan SIM online.</span><span class="pp"><i>Agus</i><i>Aipda Dimas</i></span></div></li>
-        <li><span class="pn">6B</span><div><b>🚌 Pokja SIMLING</b><span class="small">Layanan SIM Keliling.</span><span class="pp"><i>Aiptu Irul</i><i>Aris</i></span></div></li>
-        <li><span class="pn">7</span><div><b>🏍️ Pokja Uji Praktik</b><span class="small">Ujian praktik di lapangan uji.</span><span class="pp"><i>Aipda Sri H.</i><i>Aiptu Hilmi</i><i>Banu</i></span></div></li>
-        <li><span class="pn">8</span><div><b>🧑‍✈️ Pokja Baur SIM</b><span class="small">Penanggung jawab administrasi SIM.</span><span class="pp"><i>Aipda Putu</i></span></div></li>
-        <li><span class="pn">9</span><div><b>🪪 Pokja Cetak SIM</b><span class="small">SIM dicetak dan diserahkan.</span><span class="pp"><i>Briptu David</i><i>Niken</i><i>Adi Riswanto</i></span></div></li>
-        <li><span class="pn">10</span><div><b>⭐ Pokja E-Survei</b><span class="small">Beri penilaian atas layanan kami.</span><span class="pp"><i>Pardi</i><i>Hadi</i></span></div></li>
-      </ol>
     </div>
-    <div class="note"><b>Butuh bantuan di dalam gedung?</b>Sebutkan nomor Pokja atau nama petugas di atas. Tugas tiap Pokja menurut Perpol ada di <a href="#b11" data-go="b11">B.7 Jobdes Pokja</a>, dan rute langkah demi langkah di <a href="#alur" data-go="a2">denah alur (A.2)</a>. Petugas resmi <b>tidak pernah</b> meminta biaya di luar PNBP. Temui calo? <a href="#b2" data-go="b2">Laporkan (B.2) →</a></div>
+    <div class="note"><b>Butuh bantuan di dalam gedung?</b>Sebutkan nomor Pokja atau nama petugas pada denah di atas. Tugas tiap Pokja menurut Perpol ada di <a href="#b11" data-go="b11">B.7 Jobdes Pokja</a>, dan rute langkah demi langkah di <a href="#alur" data-go="a2">denah alur (A.2)</a>. Petugas resmi <b>tidak pernah</b> meminta biaya di luar PNBP. Temui calo? <a href="#b2" data-go="b2">Laporkan (B.2) →</a></div>
   </div>
 </section>
 
@@ -2200,9 +2179,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
-<!-- ================= c1-1 · Jam Layanan & Perkiraan Keramaian ================= -->
-<section class="page" data-id="c1-1" data-code="C.1.1" data-group="C" data-title="Jam Layanan &amp; Perkiraan Keramaian" data-share="Jam layanan Satpas Polresta Banyuwangi & hari yang paling lengang untuk mengurus SIM">
-  <div class="ph"><span class="code">C.1.1</span><span class="grp">Materi Tambahan</span><h2>Jam Layanan &amp; Perkiraan Keramaian</h2><p>Kapan Satpas buka, dan hari apa sebaiknya datang agar tidak lama mengantre.</p></div>
+<!-- ================= c1-1 · C.2 Jam Layanan & Perkiraan Keramaian ================= -->
+<section class="page" data-id="c1-1" data-code="C.2" data-group="C" data-title="Jam Layanan &amp; Perkiraan Keramaian" data-share="Jam layanan Satpas Polresta Banyuwangi & hari yang paling lengang untuk mengurus SIM">
+  <div class="ph"><span class="code">C.2</span><span class="grp">Materi Tambahan</span><h2>Jam Layanan &amp; Perkiraan Keramaian</h2><p>Kapan Satpas buka, dan hari apa sebaiknya datang agar tidak lama mengantre.</p></div>
   <div class="pbody">
     <div class="widget"><span class="wt">Interaktif</span>
       <h4>Status layanan saat ini</h4>
@@ -2250,8 +2229,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= b9 · Persyaratan E-Rikkes dan E-PPSI ================= -->
-<section class="page" data-id="b9" data-code="C.2" data-group="C" data-title="Persyaratan E-Rikkes &amp; E-PPSI">
-  <div class="ph"><span class="code">C.2</span><span class="grp">Materi Tambahan</span><h2>Persyaratan E-Rikkes dan E-PPSI</h2><p>Kesehatan jasmani (E-RIKKES) dan kesehatan rohani (E-PPSI) — berlaku sejak 1 Januari 2024.</p></div>
+<section class="page" data-id="b9" data-code="C.3" data-group="C" data-title="Persyaratan E-Rikkes &amp; E-PPSI">
+  <div class="ph"><span class="code">C.3</span><span class="grp">Materi Tambahan</span><h2>Persyaratan E-Rikkes dan E-PPSI</h2><p>Kesehatan jasmani (E-RIKKES) dan kesehatan rohani (E-PPSI) — berlaku sejak 1 Januari 2024.</p></div>
   <div class="pbody">
     <figure class="poster"><img src="img/poster-panduan-persyaratan-kesehatan-dan-psikolo.webp" alt="Poster panduan persyaratan kesehatan dan psikologi" width="1400" height="781" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g3">
@@ -2273,8 +2252,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= b16 · Penerbitan SIM Internasional (ID/EN) ================= -->
-<section class="page" data-id="b16" data-code="C.3" data-group="C" data-title="Penerbitan SIM Internasional (ID/EN)">
-  <div class="ph"><span class="code">C.3</span><span class="grp"><span data-lang="id">Materi Tambahan</span><span data-lang="en" lang="en" hidden>Additional Material</span></span><h2><span data-lang="id">Penerbitan SIM Internasional</span><span data-lang="en" lang="en" hidden>International Driving Permit</span></h2><p data-lang="id">International Driver’s License — diterbitkan oleh Korlantas Polri.</p><p data-lang="en" lang="en" hidden>Issued by the Traffic Corps of the Indonesian National Police (Korlantas Polri).</p></div>
+<section class="page" data-id="b16" data-code="C.4" data-group="C" data-title="Penerbitan SIM Internasional (ID/EN)">
+  <div class="ph"><span class="code">C.4</span><span class="grp"><span data-lang="id">Materi Tambahan</span><span data-lang="en" lang="en" hidden>Additional Material</span></span><h2><span data-lang="id">Penerbitan SIM Internasional</span><span data-lang="en" lang="en" hidden>International Driving Permit</span></h2><p data-lang="id">International Driver’s License — diterbitkan oleh Korlantas Polri.</p><p data-lang="en" lang="en" hidden>Issued by the Traffic Corps of the Indonesian National Police (Korlantas Polri).</p></div>
   <div class="pbody">
     <div class="langsw noprint" role="group" aria-label="Pilih bahasa / Choose language"><button type="button" data-setlang="id" aria-pressed="true">ID · Bahasa Indonesia</button><button type="button" data-setlang="en" lang="en" aria-pressed="false">EN · English</button></div>
     <figure class="poster"><img src="img/infografis-informasi-penerbitan-sim-internasiona.webp" alt="Infografis informasi penerbitan SIM Internasional" width="1400" height="701" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
@@ -2314,8 +2293,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= b17 · Alur SIM WNA (ID/EN) ================= -->
-<section class="page" data-id="b17" data-code="C.4" data-group="C" data-title="Alur SIM WNA (ID/EN)">
-  <div class="ph"><span class="code">C.4</span><span class="grp"><span data-lang="id">Materi Tambahan</span><span data-lang="en" lang="en" hidden>Additional Material</span></span><h2><span data-lang="id">Alur SIM Baru bagi WNA</span><span data-lang="en" lang="en" hidden>New Driving Licence (SIM) for Foreign Nationals</span></h2><p data-lang="id">Panduan persyaratan dan alur penerbitan SIM bagi Warga Negara Asing.</p><p data-lang="en" lang="en" hidden>Requirements and steps to get an Indonesian driving licence (SIM) as a foreign national.</p></div>
+<section class="page" data-id="b17" data-code="C.5" data-group="C" data-title="Alur SIM WNA (ID/EN)">
+  <div class="ph"><span class="code">C.5</span><span class="grp"><span data-lang="id">Materi Tambahan</span><span data-lang="en" lang="en" hidden>Additional Material</span></span><h2><span data-lang="id">Alur SIM Baru bagi WNA</span><span data-lang="en" lang="en" hidden>New Driving Licence (SIM) for Foreign Nationals</span></h2><p data-lang="id">Panduan persyaratan dan alur penerbitan SIM bagi Warga Negara Asing.</p><p data-lang="en" lang="en" hidden>Requirements and steps to get an Indonesian driving licence (SIM) as a foreign national.</p></div>
   <div class="pbody">
     <div class="langsw noprint" role="group" aria-label="Pilih bahasa / Choose language"><button type="button" data-setlang="id" aria-pressed="true">ID · Bahasa Indonesia</button><button type="button" data-setlang="en" lang="en" aria-pressed="false">EN · English</button></div>
     <figure class="poster"><img src="img/infografis-panduan-persyaratan-sim-baru-bagi-wna.webp" alt="Infografis panduan persyaratan SIM baru bagi WNA" width="1400" height="628" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
@@ -2680,6 +2659,7 @@ const slug = p => p.dataset.code || p.dataset.id;
 function findPage(h){
   h = decodeURIComponent(String(h || '').replace(/^#/, ''));
   if (!h) return -1;
+  if (/^c\.?1\.1$/i.test(h)) h = 'c1-1'; // alamat lama sebelum C.1.1 menjadi C.2
   let i = pages.findIndex(p => p.dataset.id === h);
   if (i < 0) { const k = h.toUpperCase().replace(/^([A-D])\.?(\d+)$/, '$1.$2'); i = pages.findIndex(p => p.dataset.code === k && /\./.test(k)); }
   return i;
@@ -2867,7 +2847,7 @@ function statusHariIni(){
 }
 statusHariIni(); setInterval(statusHariIni, 30000);
 
-/* ---------------- C.1.1 perkiraan keramaian hari ini ---------------- */
+/* ---------------- C.2 perkiraan keramaian hari ini ---------------- */
 // rata-rata pemohon di kantor Satpas per hari (rekap 1 Agu – 13 Okt 2026); indeks 1 = Senin
 const RAMAI = [0, 140, 106, 112, 105, 91, 79];
 const tingkatRamai = n => n >= 125 ? ['r', '🔴 Biasanya ramai'] : n >= 100 ? ['y', '🟠 Biasanya sedang'] : ['g', '🟢 Biasanya lengang'];
@@ -3229,7 +3209,7 @@ document.addEventListener('click', e => {
         cara.push(satpas, 'Ujian teori (E-AVIS), ujian keterampilan/simulator bila diperlukan, lalu ujian praktik. Nilai lulus teori minimal 70.',
           'Persiapkan dengan persiapan ujian <a href="#b5-1" data-go="b5-1">teori (B.12)</a> &amp; <a href="#b5-3" data-go="b5-3">praktik (B.13)</a> dan latihan praktik gratis <a href="#b14" data-go="b14">LUPIS (B.17)</a>.');
         if (/^SIM D/.test(gol)) { cara.push('Layanan pendampingan khusus penyandang disabilitas: <a href="#b15" data-go="b15">SIBABA (B.18)</a>.'); links.push(['b15', 'B.18 SIBABA']); }
-        links.push(st.jenis === 'wna' ? ['b17', 'C.4 Alur SIM WNA (ID/EN)'] : ['b5', 'B.8 Permohonan SIM Baru']);
+        links.push(st.jenis === 'wna' ? ['b17', 'C.5 Alur SIM WNA (ID/EN)'] : ['b5', 'B.8 Permohonan SIM Baru']);
         break;
       case 'perpanjang': {
         const exp = parseDate(st.exp), sisa = daysBetween(t, exp);
@@ -3264,7 +3244,7 @@ document.addEventListener('click', e => {
         judul = 'SIM Internasional'; ck = 'SIM Internasional'; gol = 'SIM Internasional';
         notes.push(['warn', 'Syarat: sudah memiliki SIM perseorangan/umum yang berlaku. SIM Internasional hanya berlaku di luar negeri.']);
         cara.push('Daftar <b>online</b> di <a href="https://siminternasional.korlantas.polri.go.id/" target="_blank" rel="noopener">siminternasional.korlantas.polri.go.id</a>, bayar melalui BRIVA. Diambil di Korlantas Polri atau dikirim.');
-        links.push(['b16', 'C.3 Penerbitan SIM Internasional (ID/EN)']);
+        links.push(['b16', 'C.4 Penerbitan SIM Internasional (ID/EN)']);
         biaya = `${rupiah(cariTarif('SIM Baru', gol))} (baru) · ${rupiah(cariTarif('Perpanjangan', gol))} (perpanjangan)`;
         break;
     }
@@ -3761,7 +3741,7 @@ document.addEventListener('keydown', e => {
 /* ---------- Dengarkan (Web Speech API, suara bawaan perangkat) ---------- */
 const TTS = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
 let ttsQueue = [], ttsOn = false;
-/* Bahasa bacaan: versi Inggris yang sedang tampil (C.3/C.4), atau bahasa hasil
+/* Bahasa bacaan: versi Inggris yang sedang tampil (C.4/C.5), atau bahasa hasil
    terjemahan Google/Chrome Translate (atribut lang pada <html> ikut berganti). */
 function ttsLang(){
   if (pages[cur].querySelector('[data-lang="en"]:not([hidden])')) return 'en';
@@ -3824,7 +3804,7 @@ function ttsStop(){ if (TTS) speechSynthesis.cancel(); ttsQueue = []; ttsSet(fal
 const ttsToggle = () => ttsOn ? ttsStop() : ttsStart();
 $('#btnListen').onclick = ttsToggle;
 
-/* ---------- ganti bahasa ID/EN pada halaman WNA (C.3, C.4) ---------- */
+/* ---------- ganti bahasa ID/EN pada halaman WNA (C.4, C.5) ---------- */
 function setBahasa(l){
   $$('[data-lang]').forEach(e => e.hidden = e.dataset.lang !== l);
   $$('[data-setlang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setlang === l));
@@ -4198,7 +4178,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     lapor: ['Lapor kehilangan', 'Datang ke SPKT (Sentra Pelayanan Kepolisian Terpadu) Polsek atau Polresta terdekat dengan membawa e-KTP. Sebutkan nomor dan golongan SIM bila ingat. Anda akan menerima <b>surat tanda penerimaan laporan kehilangan</b>. Layanan ini gratis.', 'SPKT Polsek / Polresta'],
     rusak: ['Simpan SIM yang rusak', 'Tidak perlu lapor ke SPKT. Bawa SIM lama yang rusak (patah, pudar, atau chip tidak terbaca) sebagai lampiran permohonan.', 'Di rumah'],
     dok: ['Siapkan dokumen', 'e-KTP asli + fotokopi, surat kehilangan atau SIM rusak, bukti kepesertaan aktif JKN/BPJS Kesehatan. Simpan juga fotokopi SIM lama bila ada.', 'Di rumah'],
-    tes: ['Tes kesehatan & psikologi', 'Ikuti pemeriksaan kesehatan jasmani (E-Rikkes) dan tes psikologi (E-PPSI) di tempat resmi. Surat dokter berlaku 14 hari, surat psikologi 6 bulan. <a href="#b9" data-go="b9">Lihat C.2 →</a>', 'Klinik / psikolog resmi'],
+    tes: ['Tes kesehatan & psikologi', 'Ikuti pemeriksaan kesehatan jasmani (E-Rikkes) dan tes psikologi (E-PPSI) di tempat resmi. Surat dokter berlaku 14 hari, surat psikologi 6 bulan. <a href="#b9" data-go="b9">Lihat C.3 →</a>', 'Klinik / psikolog resmi'],
     info: ['Meja Informasi Satpas', 'Sampaikan keperluan penggantian SIM hilang/rusak dan ambil formulir.', 'Satpas · Meja Informasi'],
     reg: ['Registrasi & verifikasi data', 'Petugas mencocokkan data SIM lama Anda di basis data SIM, lalu memberi tanda bukti pendaftaran.', 'Satpas · Ruang Registrasi'],
     ident: ['Identifikasi', 'Pengambilan foto, sidik jari, dan tanda tangan elektronik.', 'Satpas · Ruang Identifikasi'],
