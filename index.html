@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131656">
+<meta name="versi-buku" content="202610131748">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -411,6 +411,16 @@ h3.plain::before{display:none}
 .bars.stack .b i{position:relative;background:var(--accent);overflow:hidden}
 .bars.stack .b i s{position:absolute;left:0;top:0;bottom:0;background:var(--brand);text-decoration:none}
 .bars .b i[style="--v:0"]{min-width:0}
+/* B.1 lay out pokja & personil */
+.pokja{display:grid;gap:16px;align-items:start}
+@media (min-width:900px){.pokja{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}.pokja .poster{position:sticky;top:70px}}
+.pkl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pkl li{display:flex;gap:12px;align-items:flex-start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.pkl .pn{flex:none;min-width:36px;height:36px;padding:0 6px;border-radius:99px;background:var(--brand);color:var(--brand-ink);font-weight:800;display:grid;place-items:center;font-size:.9rem}
+.pkl b{display:block;line-height:1.3}
+.pkl .small{display:block;color:var(--muted)}
+.pkl .pp{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.pkl .pp i{font-style:normal;font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--brand-soft);color:var(--brand)}
 /* C.1.1 perkiraan keramaian */
 .bars.ramai .b{grid-template-columns:78px 1fr 40px}
 .bars.ramai .b.r i{background:var(--danger)} .bars.ramai .b.y i{background:var(--warn)} .bars.ramai .b.g i{background:var(--ok)}
@@ -1144,15 +1154,25 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <li><b>Menyediakan sarana dan prasarana</b><span>yang nyaman dan ramah bagi kelompok rentan.</span></li>
     </ol>
 
-    <div class="card accent"><h4>🕗 Jam layanan: Senin – Sabtu, 08.00 – 13.00 WIB</h4><p class="small">Status buka/tutup saat ini, jadwal lengkap, dan perkiraan hari ramai/lengang ada di <a href="#c1-1" data-go="c1-1">C.1.1 Jam Layanan &amp; Perkiraan Keramaian →</a></p></div>
-
-    <h3>Layanan yang tersedia</h3>
-    <div class="grid g3">
-      <div class="card brand"><h4>SIM Baru</h4><p class="small">SIM A, C, CI, CII, D, DI dan golongan lainnya sesuai kewenangan Satpas.</p></div>
-      <div class="card brand"><h4>Perpanjangan</h4><p class="small">Di Satpas, melalui SIM Keliling, atau online via aplikasi SINAR.</p></div>
-      <div class="card brand"><h4>Peningkatan</h4><p class="small">SIM A Umum dan golongan SIM B (BI, BI Umum, BII, BII Umum).</p></div>
-      <div class="card brand"><h4>Informasi &amp; Pengaduan</h4><p class="small">Ruang pengaduan, kotak saran, WhatsApp, email, dan media sosial.</p></div>
+    <h3>Kenali petugas yang melayani Anda</h3>
+    <p>Setiap meja pelayanan di Satpas dijaga oleh <b>kelompok kerja (Pokja)</b> yang terdiri dari personel Polri dan pegawai harian lepas (PHL). Ikuti nomor urutnya dari pintu masuk sampai SIM jadi.</p>
+    <div class="pokja">
+      <figure class="poster"><img src="img/layout-pokja-personil-satpas.webp" alt="Lay out Pokja dan personil (Polri dan PHL) Satpas Polresta Banyuwangi: dari akses masuk ke Pokja 1 Informasi, 2 Pendaftaran dan Loket BRI, 3 Registrasi, 4 Identifikasi, 5 Uji Teori, 6A SINAR, 6B SIMLING, 7 Uji Praktik, 8 Baur SIM, 9 Cetak SIM, dan 10 E-Survei" width="1200" height="1608" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
+      <ol class="pkl">
+        <li><span class="pn">1</span><div><b>💁 Pokja Informasi</b><span class="small">Tanya alur & persyaratan di sini dulu.</span><span class="pp"><i>Aipda Suratmin</i></span></div></li>
+        <li><span class="pn">2</span><div><b>📝 Pokja Pendaftaran</b><span class="small">Serahkan berkas, lalu bayar PNBP di Loket BRI.</span><span class="pp"><i>Arifin</i><i>Elvis</i></span></div></li>
+        <li><span class="pn">3</span><div><b>🗂️ Pokja Registrasi</b><span class="small">Data pemohon dimasukkan ke sistem.</span><span class="pp"><i>Deka</i><i>Briptu Arisko</i><i>Aipda Dewa</i></span></div></li>
+        <li><span class="pn">4</span><div><b>📸 Pokja Identifikasi</b><span class="small">Foto, sidik jari, dan tanda tangan.</span><span class="pp"><i>Aipda Nova</i><i>Bripka Nanang</i><i>Aipda Bayu</i></span></div></li>
+        <li><span class="pn">5</span><div><b>💻 Pokja Uji Teori</b><span class="small">Ujian teori elektronik (E-AVIS).</span><span class="pp"><i>Aiptu Eko</i><i>Ocha</i></span></div></li>
+        <li><span class="pn">6A</span><div><b>📱 Pokja SINAR</b><span class="small">Bantuan perpanjangan SIM online.</span><span class="pp"><i>Agus</i><i>Aipda Dimas</i></span></div></li>
+        <li><span class="pn">6B</span><div><b>🚌 Pokja SIMLING</b><span class="small">Layanan SIM Keliling.</span><span class="pp"><i>Aiptu Irul</i><i>Aris</i></span></div></li>
+        <li><span class="pn">7</span><div><b>🏍️ Pokja Uji Praktik</b><span class="small">Ujian praktik di lapangan uji.</span><span class="pp"><i>Aipda Sri H.</i><i>Aiptu Hilmi</i><i>Banu</i></span></div></li>
+        <li><span class="pn">8</span><div><b>🧑‍✈️ Pokja Baur SIM</b><span class="small">Penanggung jawab administrasi SIM.</span><span class="pp"><i>Aipda Putu</i></span></div></li>
+        <li><span class="pn">9</span><div><b>🪪 Pokja Cetak SIM</b><span class="small">SIM dicetak dan diserahkan.</span><span class="pp"><i>Briptu David</i><i>Niken</i><i>Adi Riswanto</i></span></div></li>
+        <li><span class="pn">10</span><div><b>⭐ Pokja E-Survei</b><span class="small">Beri penilaian atas layanan kami.</span><span class="pp"><i>Pardi</i><i>Hadi</i></span></div></li>
+      </ol>
     </div>
+    <div class="note"><b>Butuh bantuan di dalam gedung?</b>Sebutkan nomor Pokja atau nama petugas di atas. Tugas tiap Pokja menurut Perpol ada di <a href="#b11" data-go="b11">B.7 Jobdes Pokja</a>, dan rute langkah demi langkah di <a href="#alur" data-go="a2">denah alur (A.2)</a>. Petugas resmi <b>tidak pernah</b> meminta biaya di luar PNBP. Temui calo? <a href="#b2" data-go="b2">Laporkan (B.2) →</a></div>
   </div>
 </section>
 
