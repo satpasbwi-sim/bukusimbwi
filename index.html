@@ -563,6 +563,14 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .wizcta small{display:block;font-size:.78rem;color:#3f4d66;line-height:1.35}
 .wizcta:hover{background:#fff8e1}
 .wizcta.toc{max-width:none;margin:0 0 16px;box-shadow:none}
+/* tombol cepat Bus SIM Keliling hari ini */
+.wizcta.busq{margin-top:-4px}
+.nav .btn.busq{flex:none;max-width:none;padding:0 12px;position:relative}
+.nav .btn.busq.on::after{content:"";position:absolute;top:6px;right:6px;width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 2px var(--surface)}
+#busBody .sl-today{margin-bottom:14px}
+#busBody h4{margin:14px 0 8px}
+#busBody .wnav{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+#busBody .wnav .btn{text-decoration:none;display:inline-flex;align-items:center}
 .wiz{position:fixed;inset:0;z-index:55;background:rgba(3,10,25,.6);display:none;padding:12px;overflow:auto}
 .wiz.on{display:block}
 .wiz.kartu{z-index:90}
@@ -775,6 +783,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="res" id="sqRes" aria-live="polite"></div>
   </div>
 </div>
+<div class="wiz" id="busDlg" role="dialog" aria-modal="true" aria-labelledby="busT">
+  <div class="box">
+    <div class="hd"><h2 id="busT"><span aria-hidden="true">🚌</span> Bus SIM Keliling hari ini di mana?</h2><button class="x" id="busX" aria-label="Tutup">✕</button></div>
+    <div class="bd" id="busBody"><p class="small muted">Memuat jadwal terbaru…</p></div>
+  </div>
+</div>
 <div class="wiz" id="wiz" role="dialog" aria-modal="true" aria-labelledby="wizT">
   <div class="box">
     <div class="hd"><h2 id="wizT"><span aria-hidden="true">🧭</span> SIM apa yang saya butuhkan?</h2><button class="x" id="wizX" aria-label="Tutup">✕</button></div>
@@ -814,6 +828,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
       <button type="button" class="wizcta noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>SIM apa yang saya butuhkan?</b><small>Jawab beberapa pertanyaan singkat, langsung tahu syarat, biaya & tempatnya</small></span><span aria-hidden="true">→</span></button>
+      <button type="button" class="wizcta busq noprint" data-bus><span class="ic" aria-hidden="true">🚌</span><span><b>Bus SIM Keliling hari ini di mana?</b><small>Lihat lokasi &amp; jam layanan hari ini, langsung buka Google Maps</small></span><span aria-hidden="true">→</span></button>
       <div class="cbtn">
         <button class="btn" data-go="daftar-isi">Buka Daftar Isi</button>
         <button class="btn ghost" data-go="kata-pengantar">Mulai Membaca →</button>
@@ -849,6 +864,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="ph"><span class="code">ISI</span><h2>Daftar Isi</h2><p>Klik judul untuk langsung menuju halaman yang diinginkan.</p></div>
   <div class="pbody">
     <button type="button" class="wizcta toc noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>Bingung mulai dari mana?</b><small>Cek SIM apa yang Anda butuhkan: syarat, biaya & tempat mengurusnya</small></span><span aria-hidden="true">→</span></button>
+    <button type="button" class="wizcta toc busq noprint" data-bus><span class="ic" aria-hidden="true">🚌</span><span><b>Bus SIM Keliling hari ini di mana?</b><small>Perpanjangan SIM A &amp; C di dekat Anda: lokasi, jam &amp; petunjuk arah</small></span><span aria-hidden="true">→</span></button>
     <div id="tocPage"></div>
     <div class="note"><b>Cara menggunakan buku ini</b>
       <ul>
@@ -2450,6 +2466,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </div>
 
 <nav class="nav" aria-label="Pindah halaman">
+  <button type="button" class="btn ghost busq noprint" data-bus aria-label="Bus SIM Keliling hari ini di mana?" title="Bus SIM Keliling hari ini"><span aria-hidden="true">🚌</span><span class="hide-sm">Bus hari ini</span></button>
   <button class="btn ghost" id="prev" aria-label="Halaman sebelumnya"><span aria-hidden="true">←</span><span id="prevT">Sebelumnya</span></button>
   <div class="pn" id="pn">1 / 1</div>
   <button class="btn" id="next" aria-label="Halaman berikutnya"><span id="nextT">Berikutnya</span><span aria-hidden="true">→</span></button>
@@ -4263,7 +4280,9 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
 
   const buka = j => j.lok && j.lok !== '-' && j.lok !== '–';
   const tglPendek = t => { const w = new Date(Date.UTC(t.y, t.m - 1, t.d)).getUTCDay(); return { h: HARI[w], hp: HARI_PANJANG[w], d: t.d, b: BULAN[t.m - 1] }; };
-  const tombolMaps = j => j.maps ? '<a class="btn sm" href="' + esc(j.maps) + '" target="_blank" rel="noopener">📍 Petunjuk arah</a>' : '';
+  // Bila kolom Link Maps kosong, pakai pencarian Google Maps dari nama lokasi + kecamatan
+  const urlMaps = j => j.maps || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([j.lok, j.kec && 'Kec. ' + j.kec, 'Banyuwangi'].filter(Boolean).join(', '));
+  const tombolMaps = j => '<a class="btn sm" href="' + esc(urlMaps(j)) + '" target="_blank" rel="noopener">📍 Buka di Google Maps</a>';
 
   // Kalimat ajakan untuk jadwal hari ini; pola berganti setiap kali dibuka (tidak mengulang pola terakhir).
   // Setiap pola memuat lokasi, kecamatan (bila ada) dan jam layanan, karena baris rincian terpisah sudah dihapus.
@@ -4314,6 +4333,9 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   const besokDari = now => { const b = new Date(Date.UTC(now.y, now.m - 1, now.d + 1)); return { y: b.getUTCFullYear(), m: b.getUTCMonth() + 1, d: b.getUTCDate() }; };
 
   let terakhir = null; // jadwal terakhir dimuat, untuk diperbarui tiap menit tanpa mengunduh ulang
+  let ringkas = null;  // isi dialog "Bus hari ini"
+  const dlgBus = document.getElementById('busDlg'), bodyBus = document.getElementById('busBody');
+  const SITUS = 'https://satpasbwi-sim.github.io/bukusimbwi/#b13';
   function render(list, info) {
     terakhir = [list, info];
     const now = sekarangWIB(), hariIni = kunci(now);
@@ -4334,7 +4356,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
         html += '<div class="sl-today"><small>📅 ' + (isBesok ? 'Besok' : 'Jadwal berikutnya') + ' · ' + t.hp + ', ' + tglLengkap(berikutnya.t) + '</small>'
           + '<p style="margin:4px 0 6px;font-size:1.02rem;line-height:1.5">' + ajakan(berikutnya, t.hp, kapan) + '</p>'
           + (berikutnya.ket ? '<div class="small muted">' + esc(berikutnya.ket) + '</div>' : '')
-          + (berikutnya.maps ? '<div class="acts">' + tombolMaps(berikutnya) + '</div>' : '') + '</div>';
+          + '<div class="acts">' + tombolMaps(berikutnya) + '</div></div>';
       } else {
         html += '<div class="sl-today none"><small>Hari ini · ' + tglPendek(now).hp + ', ' + tglLengkap(now) + '</small><b class="loc">✅ Layanan SIM Keliling hari ini telah selesai</b>'
           + '<div class="small muted">Jadwal berikutnya belum diumumkan. Perpanjangan tetap bisa di Satpas induk atau online lewat aplikasi SINAR (B.15).</div></div>';
@@ -4345,7 +4367,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
         return '<div class="sl-today"><small>🚌 Hari ini · ' + t.hp + ', ' + tglLengkap(j.t) + '</small>'
           + '<p style="margin:4px 0 6px;font-size:1.02rem;line-height:1.5">' + ajakan(j, t.hp) + '</p>'
           + (j.ket ? '<div class="small muted">' + esc(j.ket) + '</div>' : '')
-          + (j.maps ? '<div class="acts">' + tombolMaps(j) + '</div>' : '') + '</div>';
+          + '<div class="acts">' + tombolMaps(j) + '</div></div>';
       }).join('');
     } else {
       const ket = today.map(j => j.ket).filter(Boolean).join(' · ');
@@ -4354,13 +4376,23 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     }
 
     const berikut = mendatang.filter(j => kunci(j.t) > hariIni);
-    if (berikut.length) {
-      html += '<ul class="sl-list">' + berikut.map(j => {
+    const daftar = list => '<ul class="sl-list">' + list.map(j => {
         const t = tglPendek(j.t), o = buka(j);
         return '<li class="' + (o ? '' : 'off') + '"><div class="d"><small>' + t.h + '</small><b>' + t.d + '</b><i>' + t.b + '</i></div>'
           + '<div class="w"><b>' + (o ? esc(j.lok) : 'Tidak beroperasi') + '</b><span>' + [o && j.kec && 'Kec. ' + esc(j.kec), j.zona && 'Zona ' + esc(j.zona), j.ket && esc(j.ket)].filter(Boolean).join(' · ') + '</span></div>'
-          + '<div class="t">' + (o && j.jam ? esc(j.jam) + ' WIB' : '') + (o && j.maps ? '<a href="' + esc(j.maps) + '" target="_blank" rel="noopener">📍 Peta</a>' : '') + '</div></li>';
+          + '<div class="t">' + (o && j.jam ? esc(j.jam) + ' WIB' : '') + (o ? '<a href="' + esc(urlMaps(j)) + '" target="_blank" rel="noopener">📍 Peta</a>' : '') + '</div></li>';
       }).join('') + '</ul>';
+    // ringkasan untuk tombol cepat "Bus hari ini" (dialog di semua halaman)
+    const kabar = todayAktif.length ? todayAktif : (!lib && berikutnya ? [berikutnya] : []);
+    const diKartu = todayAktif.length ? todayAktif : (!lib && today.some(buka) && berikutnya ? [berikutnya] : []);
+    const lanjut = berikut.filter(j => buka(j) && !diKartu.includes(j)).slice(0, 3);
+    ringkas = { kartu: html, daftar: lanjut.length ? daftar(lanjut) : '', info,
+      aktif: todayAktif.length > 0 && !lib,
+      teks: kabar.map(j => { const t = tglPendek(j.t); return '🚌 Bus SIM Keliling ' + (kunci(j.t) === hariIni ? 'hari ini' : t.hp + ', ' + tglLengkap(j.t)) + '\n📍 ' + j.lok + (j.kec ? ', Kec. ' + j.kec : '') + (j.jam ? '\n🕗 ' + j.jam + ' WIB' : '') + '\nPeta: ' + urlMaps(j); }).join('\n\n') };
+    document.querySelectorAll('.nav .busq').forEach(b => b.classList.toggle('on', ringkas.aktif));
+    if (dlgBus.classList.contains('on')) isiBus();
+    if (berikut.length) {
+      html += daftar(berikut);
     } else {
       html += '<p class="small muted" style="margin:8px 0 0">Jadwal hari berikutnya belum diumumkan. Pantau Instagram <a href="https://www.instagram.com/satpassim_banyuwangi" target="_blank" rel="noopener">@satpassim_banyuwangi</a>.</p>';
     }
@@ -4392,6 +4424,31 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     } finally { clearTimeout(batas); }
   }
   window.muatJadwalSimling = muat;
+
+  // ---------- Tombol cepat "Bus SIM Keliling hari ini di mana?" ----------
+  function isiBus() {
+    if (!ringkas) { bodyBus.innerHTML = box.innerHTML; return; } // masih memuat / gagal: tampilkan pesan yang sama dengan B.16
+    const r = ringkas;
+    const wa = 'https://wa.me/?text=' + encodeURIComponent((r.teks || 'Jadwal Bus SIM Keliling Satpas Polresta Banyuwangi') + '\n\nJadwal lengkap: ' + SITUS);
+    bodyBus.innerHTML = r.kartu
+      + (r.daftar ? '<h4>Jadwal berikutnya</h4>' + r.daftar : '')
+      + '<p class="wnote warn small" style="margin-top:14px"><span aria-hidden="true">⚠️</span> Hanya untuk <b>perpanjangan SIM A &amp; C yang masih berlaku</b>. Bawa e-KTP, SIM lama, surat kesehatan &amp; psikologi (tersedia di lokasi).</p>'
+      + '<div class="wnav"><button type="button" class="btn ghost" data-go="b13">🗓️ Jadwal lengkap &amp; syarat (B.16)</button>'
+      + '<a class="btn wa" href="' + esc(wa) + '" target="_blank" rel="noopener">💬 Kabari lewat WhatsApp</a></div>'
+      + (r.info ? '<p class="small muted" style="margin:12px 0 0">' + esc(r.info) + '</p>' : '');
+  }
+  let dariBus = null;
+  function bukaBus() {
+    dariBus = document.activeElement; isiBus(); dlgBus.classList.add('on'); document.getElementById('busX').focus();
+    if (!ringkas) muat();
+    if (typeof gcCount === 'function') gcCount('simling/bus-hari-ini', 'Bus hari ini', true);
+  }
+  function tutupBus() { dlgBus.classList.remove('on'); if (dariBus && dariBus.focus) dariBus.focus(); }
+  document.addEventListener('click', e => { if (e.target.closest('[data-bus]')) { e.preventDefault(); bukaBus(); } });
+  document.getElementById('busX').onclick = tutupBus;
+  dlgBus.addEventListener('click', e => { if (e.target === dlgBus || e.target.closest('[data-go]')) tutupBus(); });
+  dlgBus.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutupBus(); } });
+
   muat();
   // Kartu "Hari ini" berganti sendiri saat jam layanan habis, tanpa memuat ulang halaman
   const segarkan = () => { if (terakhir) render(...terakhir); };
