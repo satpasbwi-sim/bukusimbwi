@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131538">
+<meta name="versi-buku" content="202610131558">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -553,6 +553,15 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .circ .st circle{transition:r .15s}
 .circ .st.on circle{fill:#f2b705;stroke:#1b1400}
 .circ .st.on text{fill:#1b1400}
+.salah{margin:14px 0 0}
+.salah h4{margin:0 0 8px}
+.salah ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.salah li{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.86rem;line-height:1.45}
+.salah li>i{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#1f8a4c;color:#fff;font-style:normal;font-weight:800;font-size:.85rem}
+.salah li b{display:block}
+.salah li .x{color:var(--danger)}
+.salah li .v{color:var(--ok)}
+@media (max-width:640px){.salah ol{grid-template-columns:1fr}}
 
 /* ---------- bilah aksi per halaman: dengarkan, bagikan ---------- */
 /* bilah aksi: 4 kotak sama besar (PC 4 kolom, HP 2×2); di sampul "Pasang di HP" menggantikan "Bagikan" bila tersedia */
@@ -1637,7 +1646,15 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <g class="st" data-i="3" tabindex="0" role="button" aria-label="Materi 4: rem menghindar"><circle cx="640" cy="260" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="640" y="268" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">4</text></g>
       </svg>
       <div class="vinfo" id="circInfo" aria-live="polite"><h4>Urutan: 1 → 2 → 3 → 4</h4><p>Masuk dari START di kiri atas, lalu ikuti lintasan sampai berhenti di garis STOP kiri atau kanan pada cabang Y.</p></div>
-      <figure class="poster" style="margin:12px 0 0"><img src="img/sirkuit-r2-kep105.webp" alt="Gambar resmi desain sirkuit uji praktik R2 baru, lampiran Kep/105/VIII/2023" width="737" height="541" loading="lazy" decoding="async"><figcaption>🔍 Gambar resmi lampiran Kep/105</figcaption></figure>
+      <div class="salah">
+        <h4>⚠️ Kesalahan yang sering membuat gagal &amp; cara menghindarinya</h4>
+        <ol>
+          <li><i>1</i><div><b>Pengereman / keseimbangan</b><span class="x">✗ Mengerem terlambat atau hanya rem depan, motor melewati garis STOP.</span><br><span class="v">✓ Kurangi gas sebelum garis, rem depan + belakang bersamaan, pandangan ke depan.</span></div></li>
+          <li><i>2</i><div><b>Putar balik huruf U</b><span class="x">✗ Terlalu pelan sehingga kaki turun, atau menyenggol patok sisi luar.</span><br><span class="v">✓ Masuk dari sisi luar lintasan, pandang ke arah keluar putaran, gas tetap stabil.</span></div></li>
+          <li><i>3</i><div><b>Tikungan kombinasi (huruf S)</b><span class="x">✗ Kecepatan naik-turun dan panik saat masuk tikungan berikutnya.</span><br><span class="v">✓ Pandang jauh ke tikungan selanjutnya, jaga kecepatan rata, badan ikut condong mengikuti motor.</span></div></li>
+          <li><i>4</i><div><b>Rem menghindar (cabang Y)</b><span class="x">✗ Berbelok sambil masih mengerem sehingga motor oleng, atau salah arah.</span><br><span class="v">✓ Rem tepat di garis REM, lepas rem dulu baru menghindar sesuai petunjuk petugas.</span></div></li>
+        </ol>
+      </div>
     </div>
     <div class="grid g2">
       <div class="card ok"><h4>✅ Ketentuan lulus uji praktik SIM C</h4><ul class="clean small">
