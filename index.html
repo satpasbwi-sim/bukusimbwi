@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131203">
+<meta name="versi-buku" content="202610131519">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -287,12 +287,13 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cover .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5}
 .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,23,61,.92) 0%,rgba(6,23,61,.7) 45%,rgba(6,23,61,.92) 100%);z-index:1}
 .cover .ct{position:relative;z-index:2;padding:34px clamp(18px,5vw,48px) 30px}
-.cover .tag{display:inline-block;background:var(--accent);color:#1d1600;font-weight:800;font-size:.78rem;padding:4px 12px;border-radius:99px;letter-spacing:.08em}
+.cover .tag{display:block;width:fit-content;margin:0 auto;background:var(--accent);color:#1d1600;font-weight:800;font-size:.78rem;padding:4px 12px;border-radius:99px;letter-spacing:.08em}
 .cover h2{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
 .cover h2 em{font-style:normal;color:var(--accent)}
 .cover p{opacity:.9;max-width:60ch}
 .cover .stripe{height:8px;background:linear-gradient(90deg,#c62828 0 50%,#fff 50% 100%);position:relative;z-index:2}
-.cover .cbtn{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.cover .cbtn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;max-width:520px}
+.cover .cbtn .btn{width:100%;justify-content:center;text-align:center;white-space:nowrap;padding-left:8px;padding-right:8px}
 .cover .cbtn .btn{background:var(--accent);color:#1d1600}
 .cover .cbtn .btn.ghost{background:transparent;color:#fff;border-color:#fff}
 
@@ -447,7 +448,7 @@ h3.plain::before{display:none}
 .chint{display:inline-block;margin:16px 0 0;padding:9px 14px;border-radius:12px;background:rgba(242,183,5,.16);border:1px solid rgba(242,183,5,.7);color:#ffe08a;font-size:.88rem;line-height:1.45}
 .chint b{color:#f2b705}
 .asli{max-width:640px;margin:14px 0 0;font-size:.86rem;line-height:1.5}
-.asli .st{display:inline-block;padding:6px 12px;border-radius:8px;font-weight:700}
+.asli .st{display:inline-block;padding:3px 10px;border-radius:99px;font-weight:700;font-size:.74rem;line-height:1.4}
 .asli .st.ok{background:rgba(79,209,141,.18);color:#8ff0bd}
 .asli .st.off{background:rgba(242,183,5,.18);color:#ffe08a}
 .asli .st.bad{background:#c62828;color:#fff}
@@ -858,7 +859,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         var tgl = v.length >= 8 ? ' · Diperbarui ' + +v.slice(6, 8) + ' ' + ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'][+v.slice(4, 6) - 1] + ' ' + v.slice(0, 4) + (v.length >= 12 ? ', ' + v.slice(8, 10) + '.' + v.slice(10, 12) + ' WIB' : '') : '';
         var h = location.hostname;
         if (location.protocol === 'file:') { st.className = 'st off'; st.textContent = '📄 Anda membuka versi file offline. Pastikan file ini didapat dari petugas Satpas' + tgl + '.'; }
-        else if (h === 'satpasbwi-sim.github.io' && location.protocol === 'https:') { st.className = 'st ok'; st.textContent = '✅ Alamat resmi terverifikasi' + tgl; }
+        else if (h === 'satpasbwi-sim.github.io' && location.protocol === 'https:') { st.className = 'st ok'; st.textContent = tgl.replace(' · ', ''); }
         else if (h === 'localhost' || h === '127.0.0.1') { st.className = 'st off'; st.textContent = '🛠️ Mode pratinjau petugas' + tgl + '.'; }
         else { st.className = 'st bad'; st.textContent = '⚠️ PERHATIAN: alamat ini (' + h + ') BUKAN alamat resmi. Jangan isikan data apa pun.'; }
         st.hidden = false;
