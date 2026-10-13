@@ -553,6 +553,10 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .circ .st circle{transition:r .15s}
 .circ .st.on circle{fill:#f2b705;stroke:#1b1400}
 .circ .st.on text{fill:#1b1400}
+@media (max-width:640px){
+  .circ .lbl text{font-size:30px}.circ .lbl .sy{font-size:24px}.circ .lbl .rem{font-size:22px}
+  .circ .spd text{font-size:18px}.circ .cap text{font-size:21px;fill:#e6ebf2}
+}
 .salah{margin:14px 0 0}
 .salah h4{margin:0 0 8px}
 .salah ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
@@ -1633,13 +1637,13 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
           <use href="#cRoad" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="10 12" opacity=".7"/>
         </g>
         <g stroke="#fff" stroke-width="4"><path d="M360 51v38"/><path d="M581 96h38M661 96h38"/><path d="M621 300h38" stroke="#f2b705"/></g>
-        <g font-family="inherit" font-weight="800" fill="#fff" font-size="17" text-anchor="middle">
-          <text x="54" y="44">START</text><text x="360" y="40">STOP</text><text x="600" y="82">STOP</text><text x="680" y="82">STOP</text>
-          <text x="678" y="305" font-size="11" fill="#f2b705">REM</text>
+        <g class="lbl" font-family="inherit" font-weight="800" fill="#fff" font-size="17" text-anchor="middle">
+          <text x="54" y="44">START</text><text x="360" y="40">STOP</text><text class="sy" x="600" y="82">STOP</text><text class="sy" x="680" y="82">STOP</text>
+          <text class="rem" x="678" y="305" font-size="11" fill="#f2b705">REM</text>
         </g>
-        <g><circle cx="200" cy="34" r="15" fill="#fff" stroke="#c62828" stroke-width="4"/><text x="200" y="39" text-anchor="middle" font-weight="800" font-size="12">30</text>
+        <g class="spd"><circle cx="200" cy="34" r="15" fill="#fff" stroke="#c62828" stroke-width="4"/><text x="200" y="39" text-anchor="middle" font-weight="800" font-size="12">30</text>
            <circle cx="700" cy="350" r="15" fill="#fff" stroke="#c62828" stroke-width="4"/><text x="700" y="355" text-anchor="middle" font-weight="800" font-size="12">30</text></g>
-        <g font-size="12" fill="#cfd6df" text-anchor="middle"><text x="460" y="440">Luas lapangan 35 × 30 m · lebar lintasan 200 cm</text></g>
+        <g class="cap" font-size="12" fill="#cfd6df" text-anchor="middle"><text x="460" y="440">Luas lapangan 35 × 30 m · lebar lintasan 200 cm</text></g>
         <g class="st" data-i="0" tabindex="0" role="button" aria-label="Materi 1: pengereman dan keseimbangan"><circle cx="300" cy="70" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="300" y="78" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">1</text></g>
         <g class="st" data-i="1" tabindex="0" role="button" aria-label="Materi 2: putar balik huruf U"><circle cx="510" cy="110" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="510" y="118" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">2</text></g>
         <g class="st" data-i="2" tabindex="0" role="button" aria-label="Materi 3: tikungan kombinasi"><circle cx="220" cy="270" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="220" y="278" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">3</text></g>
@@ -2542,7 +2546,9 @@ const CONFIG = {
   // Kode akun GoatCounter, mis. 'satpasbwi' untuk https://satpasbwi.goatcounter.com (kosong = penghitung mati)
   goatcounter: 'satpasbwi',
   // URL Web App Google Apps Script untuk survei IKM (diakhiri /exec). Kosong = survei belum aktif
-  ikmUrl: 'https://script.google.com/macros/s/AKfycbxlCB2_vkrHEMCxzffvPByFwC-I9MMC8cvgTcbKNZFYNAlxM-pojll9AMRpLb4kN0loOA/exec'
+  ikmUrl: 'https://script.google.com/macros/s/AKfycbxlCB2_vkrHEMCxzffvPByFwC-I9MMC8cvgTcbKNZFYNAlxM-pojll9AMRpLb4kN0loOA/exec',
+  // Nilai IKM baru ditampilkan setelah jumlah responden mencapai angka ini (sebelumnya hanya progres)
+  ikmMin: 30
 };
 const pageHooks = []; // fungsi yang dipanggil setiap kali halaman berganti: f(page)
 
@@ -2596,7 +2602,7 @@ function go(i, fromHash){
   $('#prevT').textContent = cur > 0 ? short(pages[cur-1]) : 'Sebelumnya';
   $('#nextT').textContent = cur < pages.length - 1 ? short(pages[cur+1]) : 'Selesai';
   $$('#toc a').forEach(a => a.classList.toggle('on', a.dataset.go === p.dataset.id));
-  if (!fromHash) { try{ history.replaceState(null, '', '#' + p.dataset.id); }catch(e){} }
+  if (!fromHash) { try{ history.replaceState(null, '', '#' + slug(p)); }catch(e){} }
   store.set('sim-book-page', p.dataset.id);
   $('#srPage').textContent = `Halaman ${cur + 1} dari ${pages.length}: ${t}`;
   pageHooks.forEach(f => { try{ f(p); }catch(e){ console.error(e); } });
@@ -2607,6 +2613,16 @@ function focusPage(){
   h.tabIndex = -1; h.focus({preventScroll:true});
 }
 function short(p){ return p.dataset.code ? p.dataset.code + ' ' + p.dataset.title : p.dataset.title; }
+// alamat halaman di URL: kode halaman (mis. B.16); halaman tanpa kode memakai id-nya
+const slug = p => p.dataset.code || p.dataset.id;
+// cocokkan alamat: id lama (mis. #b13) tetap berlaku, lalu kode halaman (#B.16, #b.16, #B16)
+function findPage(h){
+  h = decodeURIComponent(String(h || '').replace(/^#/, ''));
+  if (!h) return -1;
+  let i = pages.findIndex(p => p.dataset.id === h);
+  if (i < 0) { const k = h.toUpperCase().replace(/^([A-D])\.?(\d+)$/, '$1.$2'); i = pages.findIndex(p => p.dataset.code === k && /\./.test(k)); }
+  return i;
+}
 function goId(id){ const i = pages.findIndex(p => p.dataset.id === id); if (i >= 0) go(i); }
 
 // tabel lebar: bisa difokus lalu digeser dengan tombol panah
@@ -2665,7 +2681,7 @@ $('#book').addEventListener('touchend', e => {
   if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.6) go(cur + (dx < 0 ? 1 : -1));
   tx = null;
 }, {passive:true});
-window.addEventListener('hashchange', () => { const i = pages.findIndex(p => '#' + p.dataset.id === location.hash); if (i >= 0 && i !== cur) go(i, true); });
+window.addEventListener('hashchange', () => { const i = findPage(location.hash); if (i >= 0 && i !== cur) go(i, true); });
 
 // drawer & search
 const openDrawer = () => { $('#drawer').classList.add('on'); $('#scrim').classList.add('on'); $('#btnToc').setAttribute('aria-expanded', 'true'); setTimeout(() => $('#btnClose').focus(), 30); };
@@ -3543,7 +3559,7 @@ newFaq();
 const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); };
 const pageUrl = p => {
   const base = /^https?:$/.test(location.protocol) ? location.origin + location.pathname : CONFIG.siteUrl;
-  return base + '#' + p.dataset.id;
+  return base + '#' + slug(p);
 };
 
 /* ---------- statistik pengunjung (GoatCounter, tanpa cookie) ---------- */
@@ -3555,10 +3571,10 @@ if (CONFIG.goatcounter && /^https?:$/.test(location.protocol)) {
   const s = document.createElement('script');
   s.async = true; s.src = 'https://gc.zgo.at/count.js';
   s.dataset.goatcounter = `https://${CONFIG.goatcounter}.goatcounter.com/count`;
-  s.onload = () => { const p = pages[cur]; gcCount(location.pathname + '#' + p.dataset.id, short(p)); };
+  s.onload = () => { const p = pages[cur]; gcCount(location.pathname + '#' + slug(p), short(p)); };
   document.head.appendChild(s);
 }
-pageHooks.push(p => gcCount(location.pathname + '#' + p.dataset.id, short(p)));
+pageHooks.push(p => gcCount(location.pathname + '#' + slug(p), short(p)));
 
 /* ---------- pencarian ---------- */
 const SYN = {
@@ -4132,6 +4148,14 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   const head = '<span class="wt">Hasil langsung</span>';
   function renderRes(r){
     if (!r || !r.n) { box.innerHTML = head + '<p class="small" style="margin:0">Belum ada responden. Jadilah yang pertama mengisi survei di bawah ini.</p>'; return; }
+    const min = CONFIG.ikmMin || 0;
+    if (r.n < min) {
+      box.innerHTML = head + `<h4 style="margin:0 0 6px">📊 Survei sedang berjalan</h4>
+        <p style="margin:0"><b>${r.n.toLocaleString('id-ID')}</b> dari minimal <b>${min}</b> responden${r.mulai ? ` sejak ${new Date(r.mulai).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})}` : ''}.</p>
+        <div class="bars" style="margin:10px 0 6px"><div class="b" style="grid-template-columns:1fr 48px"><span style="display:block;background:var(--line);border-radius:6px"><i style="--v:${r.n};--max:${min}"></i></span><em>${Math.round(r.n / min * 100)}%</em></div></div>
+        <p class="small muted" style="margin:0">Nilai IKM dan mutu pelayanan akan ditampilkan setelah responden mencukupi, agar hasilnya mewakili pendapat pembaca. Bantu kami dengan mengisi survei di bawah ini.</p>`;
+      return;
+    }
     const m = mutu(r.ikm);
     const bars = U.map((u, i) => { const v = (r.nrr[i] || 0) * 25; return `<div class="b" style="grid-template-columns:minmax(90px,30%) 1fr 48px"><span>${u[0]}</span><i style="--v:${v.toFixed(1)};--max:100"></i><em>${fmt(v, 1)}</em></div>`; }).join('');
     const prof = (o, t) => o ? `<p class="small" style="margin:6px 0 0"><b>${t}:</b> ${Object.entries(o).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<span class="chip" style="margin:2px">${esc(k)} · ${v}</span>`).join(' ')}</p>` : '';
@@ -4214,10 +4238,14 @@ $('#covTools').textContent = $$('.widget').length;
 /* ---------------- start ---------------- */
 buildToc();
 const startId = location.hash ? location.hash.slice(1) : null;
-let si = startId ? pages.findIndex(p => p.dataset.id === startId) : -1;
+let si = startId ? findPage(startId) : -1;
 const lastId = store.get('sim-book-page', null); // dibaca sebelum go() menimpanya
 pages[0].classList.add('active');
 go(si >= 0 ? si : 0, !startId);
+// alamat lama (#b13) diganti tampilannya menjadi kode halaman (#B.16)
+if (si >= 0 && startId !== slug(pages[si])) { try{ history.replaceState(null, '', '#' + slug(pages[si])); }catch(e){} }
+// tautan internal: href ikut memakai kode halaman (berguna saat tautan disalin)
+$$('a[data-go]').forEach(a => { const i = pages.findIndex(p => p.dataset.id === a.dataset.go); if (i >= 0) a.setAttribute('href', '#' + slug(pages[i])); });
 
 /* ---------------- lanjutkan membaca dari halaman terakhir ---------------- */
 (function(){
