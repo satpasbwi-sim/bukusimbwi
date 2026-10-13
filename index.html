@@ -574,6 +574,9 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .kartu .kact .btn{flex:1 1 140px}
 .kartu .kact .wa{background:#137c3e;color:#fff}
 .kartu-btn{background:#f2b705;color:#1d1600;margin-top:10px}
+.hasil-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.hasil-act.c{justify-content:center}
+.hasil-act .btn{margin:0!important}
 .wiz .box{max-width:620px;margin:4vh auto;background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
 .wiz .hd{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--brand-deep);color:#fff}
 .wiz .hd h2{flex:1;margin:0;font-size:1rem}
@@ -3248,7 +3251,7 @@ function renderQuiz(){
     return `<button class="opt ${c}" data-q="${i}" data-o="${j}" ${qAns[i] !== undefined ? 'disabled' : ''}>${String.fromCharCode(65+j)}. ${o}${tanda}</button>`; }).join('')}<div class="ex" tabindex="-1">${qAns[i] === undefined ? '' : `<b>${qAns[i] === q.ans ? '✅ Benar!' : '❌ Kurang tepat.'}</b> `}💡 ${q.ex}</div></div>`).join('');
   const done = Object.keys(qAns).length, score = Object.entries(qAns).filter(([i, a]) => quizSet[i].ans === a).length;
   const newBtn = '<button class="btn sm" data-newquiz style="margin-top:10px">🔄 Ganti Soal Baru</button>';
-  $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p>${KartuBijak.tombol({jenis: 'kuis', judul: 'Kuis Pemahaman Layanan SIM', skor: score, maks: quizSet.length})} ${newBtn}` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
+  $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p><div class="hasil-act">${KartuBijak.tombol({jenis: 'kuis', judul: 'Kuis Pemahaman Layanan SIM', skor: score, maks: quizSet.length})}${newBtn}</div>` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
 }
 $('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; renderQuiz(); $$('#quiz .ex')[+b.dataset.q].focus(); });
 $('#quizOut').addEventListener('click', e => { if (e.target.closest('[data-newquiz]')) { newQuiz(); $('#quizTop').scrollIntoView({behavior:'smooth', block:'start'}); } });
@@ -3999,7 +4002,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   function ask(){
     if (qi >= qs.length) {
       const pct = Math.round(score / qs.length * 100);
-      $('#rqBody').innerHTML = `<div class="out" style="text-align:center"><div class="big">${score} / ${qs.length}</div><p>${pct >= 70 ? '🎉 Bagus! Anda siap menghadapi soal rambu di ujian teori.' : '📚 Ayo pelajari lagi galeri di atas, lalu coba kembali.'}</p>${KartuBijak.tombol({jenis: 'rambu', judul: 'Kuis Rambu Lalu Lintas', skor: score, maks: qs.length})} <button class="btn" type="button" id="rqAgain">🔄 Ulangi dengan soal lain</button></div>`;
+      $('#rqBody').innerHTML = `<div class="out" style="text-align:center"><div class="big">${score} / ${qs.length}</div><p>${pct >= 70 ? '🎉 Bagus! Anda siap menghadapi soal rambu di ujian teori.' : '📚 Ayo pelajari lagi galeri di atas, lalu coba kembali.'}</p><div class="hasil-act c">${KartuBijak.tombol({jenis: 'rambu', judul: 'Kuis Rambu Lalu Lintas', skor: score, maks: qs.length})}<button class="btn" type="button" id="rqAgain">🔄 Ulangi dengan soal lain</button></div></div>`;
       $('#rqAgain').onclick = newQuiz; return;
     }
     const r = R[qs[qi]];
