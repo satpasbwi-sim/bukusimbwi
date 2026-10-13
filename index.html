@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131956">
+<meta name="versi-buku" content="202610132018">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -556,6 +556,30 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .salah li .x{color:var(--danger)}
 .salah li .v{color:var(--ok)}
 @media (max-width:640px){.salah ol{grid-template-columns:1fr}}
+/* B.13 uji sirkuit S & kuis lulus/gagal */
+.uji{scroll-margin-top:72px}
+.uji:focus{outline:none}
+.uji .st{cursor:default}
+.us-hud{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.us-spd{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--brand)}
+.us-spd.lebih{color:var(--danger)}
+.us-mat{font-size:.88rem;font-weight:700;color:var(--muted);flex:1 1 220px;text-align:right}
+.us-pads{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.us-pad{min-height:64px;border-radius:14px;border:0;font-size:1.1rem;font-weight:800;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.us-pad.gas{background:var(--ok)}
+.us-pad.rem{background:var(--danger)}
+.us-pad.on{filter:brightness(1.25);transform:scale(.97)}
+.us-pad[disabled]{opacity:.35}
+.us-act{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin-top:8px}
+.us-act .btn{padding:8px 6px}
+.us-msg.bad{border-left-color:var(--danger);background:var(--danger-soft)}
+.us-msg.good{border-left-color:var(--ok);background:var(--ok-soft)}
+.us-hasil{margin:10px 0 0;padding-left:0;list-style:none;display:grid;gap:8px}
+.us-hasil li{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);font-size:.9rem}
+.us-hasil li.x{border-color:var(--danger)}
+.us-hasil li.v{border-color:var(--ok)}
+.us-hasil small{color:var(--muted)}
+@media (max-width:640px){.us-mat{text-align:left}.us-act{grid-template-columns:1fr 1fr}.us-act #usLook{grid-column:1/-1;grid-row:1}}
 
 /* ---------- bilah aksi per halaman: dengarkan, bagikan ---------- */
 /* bilah aksi: 4 kotak sama besar (PC 4 kolom, HP 2×2); di sampul "Pasang di HP" menggantikan "Bagikan" bila tersedia */
@@ -1564,8 +1588,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= b5-3 · Persiapan Ujian Praktik ================= -->
-<section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji & sirkuit huruf S">
-  <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, dan sirkuit huruf S untuk SIM C &amp; SIM A.</p></div>
+<section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji, sirkuit huruf S & simulasi uji sirkuit">
+  <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, sirkuit huruf S, simulasi uji sirkuit, dan kuis lulus atau gagal untuk SIM C &amp; SIM A.</p></div>
   <div class="pbody">
     <h3>Video tutorial ujian praktik</h3>
     <p class="small muted" style="margin-top:-4px">Ketuk tombol untuk membuka langsung. Bila membaca dari laptop/komputer, pindai QR code dengan kamera HP.</p>
@@ -1631,6 +1655,26 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         </ol>
       </div>
     </div>
+    <h3>🎮 Uji Sirkuit S: coba sendiri</h3>
+    <p class="small muted" style="margin-top:-4px">Jalankan motor melewati keempat materi sesuai aturan lulus. Kecepatan dan jarak disederhanakan; ini latihan memahami urutan &amp; aturan, bukan pengganti latihan berkendara.</p>
+    <div class="widget circ uji" id="ujiS" tabindex="-1"><span class="wt">Simulasi</span>
+      <h4>Dari START sampai garis STOP di cabang Y</h4>
+      <div id="usStage"></div>
+      <div class="us-hud"><span class="us-spd" id="usSpd">0 km/jam</span><span class="us-mat" id="usMat">Siap di START</span></div>
+      <div class="vinfo us-msg" id="usMsg" aria-live="polite"><p>Tekan <b>Mulai</b>. Tahan tombol <b>Gas</b> untuk maju dan tombol <b>Rem</b> untuk mengerem. Lepas keduanya = motor melambat pelan.</p></div>
+      <div class="us-pads">
+        <button type="button" class="us-pad rem" id="usRem" disabled>⏹ Rem</button>
+        <button type="button" class="us-pad gas" id="usGas" disabled>Gas ⏩</button>
+      </div>
+      <div class="us-act">
+        <button type="button" class="btn ghost" id="usL" disabled>⬅ Kiri</button>
+        <button type="button" class="btn ghost" id="usLook" disabled>👀 Tengok kanan belakang</button>
+        <button type="button" class="btn ghost" id="usR" disabled>Kanan ➡</button>
+      </div>
+      <div class="hasil-act c"><button type="button" class="btn" id="usStart">▶ Mulai</button></div>
+      <div class="out" id="usRes"></div>
+      <p class="small muted" style="margin:8px 0 0">Dengan keyboard: ↑ gas, ↓ rem, ← → arah, T tengok.</p>
+    </div>
     <div class="grid g2">
       <div class="card ok"><h4>✅ Ketentuan lulus uji praktik SIM C</h4><ul class="clean small">
         <li>Tidak menyentuh satu pun patok/sensor elektronik.</li>
@@ -1646,6 +1690,11 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     </div>
     <p class="small muted">Sebelum ujian (pencerahan): periksa fungsi kemudi, rem tangan &amp; kaki, transmisi, kopling, oli, busi, spion, lampu, bahan bakar, kondisi &amp; tekanan ban, dan klakson. Pakai helm SNI (SIM C) atau sabuk keselamatan (SIM A). Lulus bila tidak melakukan kesalahan pada setiap materi (Pasal 19 ayat 2 Perpol 5/2021).</p>
 
+    <h3>Kuis: lulus atau gagal?</h3>
+    <div class="widget" id="lgQuiz"><span class="wt">Interaktif</span>
+      <p class="small muted" style="margin:0 0 10px">8 kejadian acak di sirkuit S. Tebak: peserta <b>lulus</b> atau <b>gagal</b> pada materi itu?</p>
+      <div id="lgBody"></div>
+    </div>
     <div class="grid g2">
       <div class="card ok"><h4>😊 Jika gagal, jangan khawatir!</h4><p class="small">Ada kesempatan mengulang (paling banyak 2 kali dalam 14 hari kerja) dengan <b>bimbingan langsung</b> dari petugas kami.</p></div>
       <div class="card accent"><h4>🤝 Belum lulus juga?</h4><p class="small">Tim Penguji kami siap memberikan <b>panduan khusus</b> untuk kesempatan Anda berikutnya — ikuti latihan gratis <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p></div>
@@ -3929,6 +3978,241 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     g.addEventListener('click', () => pick(g));
     g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(g); } });
   });
+})();
+
+/* ---------- B.13 uji sirkuit S (simulasi) ---------- */
+(function(){
+  const box = $('#ujiS'); if (!box) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = $('#circ svg').cloneNode(true);
+  svg.setAttribute('aria-label', 'Simulasi sirkuit huruf S');
+  svg.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+  svg.querySelectorAll('.st').forEach(g => { g.removeAttribute('tabindex'); g.removeAttribute('role'); });
+  $('#usStage').append(svg);
+  const mk = (tag, at, par = svg) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); par.append(e); return e; };
+  // lintasan utama sampai cabang Y, lalu cabang kiri/kanan (diperpanjang sedikit melewati garis STOP)
+  const [dMain, dL, dR] = $('#cRoad').getAttribute('d').split(/(?=M)/).map(d => d.trim());
+  const P = {main: mk('path', {d: dMain, fill: 'none'}), L: mk('path', {d: dL + ' V70', fill: 'none'}), R: mk('path', {d: dR + ' V70', fill: 'none'})};
+  const sig = mk('g', {visibility: 'hidden'});
+  const panah = mk('path', {d: 'M-24 -9H4V-20L26 0L4 20V9H-24Z', fill: '#f2b705', stroke: '#111', 'stroke-width': 3}, sig);
+  const moto = mk('g', {transform: 'translate(30 70)'});
+  mk('circle', {r: 19, fill: '#f2b705', stroke: '#111', 'stroke-width': 3}, moto);
+  mk('path', {d: 'M4 -10L17 0L4 10Z', fill: '#111'}, moto);
+
+  const KMH = 4, ACC = 90, BRK = 170, DRAG = 22, VMAX = 160;   // 1 km/jam = 4 satuan gambar per detik
+  const NAMA = ['Pengereman / keseimbangan', 'Putar balik huruf U', 'Tikungan kombinasi (huruf S)', 'Rem menghindar (cabang Y)'];
+  const PANDU = [
+    'Materi 1 · Capai ±30 km/jam, lalu berhenti tepat sebelum garis STOP',
+    'Materi 2 · Putar balik U: pelan & stabil (5–18 km/jam)',
+    'Materi 3 · Huruf S: kecepatan rata (5–22 km/jam)',
+    'Materi 4 · Melaju ±30 km/jam, rem di garis REM'
+  ];
+  const TIP = $$('#circ .salah li .v').map(e => e.textContent.replace(/^✓\s*/, ''));
+  const msg = $('#usMsg'), spd = $('#usSpd'), mat = $('#usMat'), res = $('#usRes');
+  const btn = {gas: $('#usGas'), rem: $('#usRem'), L: $('#usL'), R: $('#usR'), look: $('#usLook'), start: $('#usStart')};
+  const nomor = $$('.st', svg);
+  let K = null, st = null, raf = 0, last = 0, gas = false, rem = false;
+
+  function dekat(p, x, y){
+    let best = 0, bd = Infinity;
+    for (let l = 0, T = p.getTotalLength(); l <= T; l++) { const q = p.getPointAtLength(l), d = (q.x - x) ** 2 + (q.y - y) ** 2; if (d < bd) { bd = d; best = l; } }
+    return best;
+  }
+  function ukur(){
+    K = {stop1: dekat(P.main, 360, 70), u0: dekat(P.main, 470, 70), u1: dekat(P.main, 470, 150), s0: dekat(P.main, 260, 150),
+         s1: dekat(P.main, 260, 390), rem: dekat(P.main, 640, 300), y: P.main.getTotalLength(), stop2: dekat(P.L, 600, 96), ujung: P.L.getTotalLength()};
+  }
+  const say = (html, cls = '') => { msg.className = 'vinfo us-msg ' + cls; msg.innerHTML = `<p>${html}</p>`; };
+  const materi = () => st.path !== 'main' || st.l >= K.s1 ? 3 : st.l >= K.s0 ? 2 : st.l >= K.u0 ? 1 : 0;
+  function gagal(i, alasan, tip){ if (st.fail[i]) return; st.fail[i] = alasan; st.tip[i] = tip || TIP[i]; say(`❌ <b>${NAMA[i]}:</b> ${alasan} Lanjutkan sampai selesai.`, 'bad'); }
+  function aktif(b){ btn.gas.disabled = btn.rem.disabled = !b; }
+
+  function mulai(){
+    if (!K) ukur();
+    st = {on: true, path: 'main', l: 0, v: 0, max1: 0, fase: 'jalan', henti1: false, remAt: null, isyarat: null, pilih: null, fail: [null, null, null, null], tip: []};
+    gas = rem = false; res.innerHTML = ''; sig.setAttribute('visibility', 'hidden');
+    btn.start.hidden = true; btn.L.disabled = btn.R.disabled = btn.look.disabled = true; aktif(true);
+    say('Tahan <b>Gas</b> sampai ±30 km/jam, lalu <b>Rem</b> agar berhenti tepat sebelum garis STOP pertama.');
+    box.focus({preventScroll: true});
+    box.scrollIntoView({block: 'start'});
+    last = performance.now(); gambar(); raf = requestAnimationFrame(putar);
+  }
+  function berhenti(){
+    if (st) st.on = false;
+    cancelAnimationFrame(raf); gas = rem = false; aktif(false);
+    btn.gas.classList.remove('on'); btn.rem.classList.remove('on');
+    btn.L.disabled = btn.R.disabled = btn.look.disabled = true; btn.start.hidden = false;
+  }
+  function putar(t){
+    if (!st.on) return;
+    if (!box.offsetParent) { berhenti(); btn.start.textContent = '▶ Mulai'; return; }   // halaman ditinggalkan
+    const dt = Math.min(.05, Math.max(0, t - last) / 1000); last = t;
+    langkah(dt);
+    if (!st.on) return;
+    gambar();
+    raf = requestAnimationFrame(putar);
+  }
+
+  function langkah(dt){
+    if (st.fase !== 'jalan') return;
+    const a = rem ? -BRK : gas ? ACC : -DRAG;
+    st.v = Math.min(VMAX, Math.max(0, st.v + a * dt));
+    const l0 = st.l; st.l += st.v * dt;
+    const kmh = st.v / KMH;
+    if (st.path === 'main' && st.l >= K.y) {          // tiba di cabang Y
+      if (!st.pilih) { gagal(3, 'Tidak menghindar sesuai isyarat petugas.'); st.pilih = st.isyarat || 'R'; }
+      st.path = st.pilih; st.l -= K.y;
+      btn.L.disabled = btn.R.disabled = true;
+      return;
+    }
+    const m = materi();
+    if (m === 0 && !st.henti1) {
+      st.max1 = Math.max(st.max1, kmh);
+      if (l0 < K.stop1 && st.l >= K.stop1) { gagal(0, 'Ban depan melewati garis STOP.'); st.henti1 = true; }
+      else if (st.v === 0 && st.l > 5) {
+        st.henti1 = true;
+        if (st.max1 < 27) gagal(0, 'Kecepatan belum mencapai ±30 km/jam sebelum mengerem.', 'Tahan gas di lintasan lurus sampai ±30 km/jam, baru mulai mengerem.');
+        else if (K.stop1 - st.l > 45) gagal(0, 'Berhenti terlalu jauh sebelum garis STOP.');
+        st.fase = 'tengok'; btn.look.disabled = false;
+        if (!st.fail[0]) say('✓ Berhenti tepat. Kaki kiri turun. Sekarang tekan <b>👀 Tengok kanan belakang</b> sebelum berjalan lagi.', 'good');
+        else say(`❌ <b>${NAMA[0]}:</b> ${st.fail[0]} Tekan <b>👀 Tengok kanan belakang</b>, lalu lanjutkan.`, 'bad');
+      }
+    }
+    if (m === 1) {
+      const diU = st.l >= K.u0 && st.l < K.u1;
+      if (diU && kmh > 18) gagal(1, 'Terlalu cepat di putar balik, motor menyenggol patok luar.');
+      if (diU && kmh < 4) gagal(1, 'Terlalu pelan sehingga kaki turun.');
+      if (st.v === 0) gagal(1, 'Berhenti di tengah lintasan, kaki turun.');
+    }
+    if (m === 2) {
+      if (kmh > 22) gagal(2, 'Terlalu cepat di tikungan, roda keluar dari lintasan.');
+      if (kmh < 4) gagal(2, 'Terlalu pelan atau berhenti sehingga kaki turun.');
+    }
+    if (m === 3 && st.path === 'main') {
+      if (rem && st.remAt === null && st.l > K.rem - 60) {
+        st.remAt = st.l;
+        if (st.l < K.rem - 22) gagal(3, 'Mengerem sebelum garis REM.');
+        else if (kmh < 25) gagal(3, 'Kecepatan belum ±30 km/jam saat tiba di garis REM.', 'Setelah keluar dari huruf S, tambah gas di lintasan lurus sampai ±30 km/jam sebelum garis REM.');
+        isyarat();
+      } else if (st.remAt === null && st.l > K.rem + 22) { st.remAt = st.l; gagal(3, 'Terlambat mengerem: garis REM sudah terlewati.'); isyarat(); }
+      if (st.v === 0) gagal(3, 'Berhenti di tengah lintasan, kaki turun.');
+    }
+    if (st.path !== 'main') {
+      if (l0 < K.stop2 && st.l >= K.stop2 && st.v > 0) gagal(3, 'Melewati garis STOP di akhir lintasan.');
+      if (st.l >= K.ujung) { st.l = K.ujung; st.v = 0; }
+      if (st.v === 0) {
+        if (K.stop2 - st.l > 45) gagal(3, 'Berhenti terlalu jauh sebelum garis STOP.');
+        st.fase = 'akhir'; setGas(false); setRem(false); aktif(false); btn.look.disabled = false;
+        say('Berhenti di garis STOP. Tekan <b>👀 Tengok kanan belakang</b> untuk menyelesaikan ujian.', st.fail[3] ? 'bad' : 'good');
+      }
+    }
+  }
+  function isyarat(){
+    st.isyarat = Math.random() < .5 ? 'L' : 'R';
+    panah.setAttribute('transform', st.isyarat === 'L' ? 'scale(-1 1)' : 'scale(1 1)');
+    sig.setAttribute('transform', 'translate(640 132)'); sig.setAttribute('visibility', 'visible');
+    btn.L.disabled = btn.R.disabled = false;
+    if (!st.fail[3]) say(`Isyarat petugas: hindar ke <b>${st.isyarat === 'L' ? 'KIRI ⬅' : 'KANAN ➡'}</b>. Lepas rem dulu, baru pilih arah.`);
+  }
+  function pilih(d){
+    if (!st || !st.on || st.fase !== 'jalan' || st.path !== 'main' || !st.isyarat || st.pilih) return;
+    st.pilih = d; btn.L.disabled = btn.R.disabled = true;
+    if (rem) gagal(3, 'Berbelok sambil masih mengerem, motor oleng.');
+    else if (d !== st.isyarat) gagal(3, 'Menghindar ke arah yang salah.');
+    else if (!st.fail[3]) say('✓ Arah benar. Sekarang berhenti tepat sebelum garis STOP.', 'good');
+  }
+  function tengok(){
+    if (!st || !st.on) return;
+    if (st.fase === 'tengok') {
+      st.fase = 'jalan'; btn.look.disabled = true;
+      if (!st.fail[0]) say('✓ Bagus. Lanjut ke putar balik huruf U: pelan dan stabil.', 'good');
+    } else if (st.fase === 'akhir') selesai();
+  }
+  function setGas(b){
+    if (!st || !st.on || st.fase === 'akhir') b = false;
+    if (b && st.fase === 'tengok') { gagal(0, 'Langsung berjalan tanpa menengok ke kanan belakang.', 'Setelah berhenti: kaki kiri turun, tengok ke kanan belakang, baru berjalan lagi.'); st.fase = 'jalan'; btn.look.disabled = true; }
+    gas = b; btn.gas.classList.toggle('on', b);
+  }
+  function setRem(b){ if (!st || !st.on || st.fase === 'akhir') b = false; rem = b; btn.rem.classList.toggle('on', b); }
+
+  function gambar(){
+    const p = P[st.path], T = p.getTotalLength(), l = Math.min(st.l, T);
+    const a = p.getPointAtLength(Math.max(0, l - 1)), b = p.getPointAtLength(Math.min(T, l + 1)), q = p.getPointAtLength(l);
+    moto.setAttribute('transform', `translate(${q.x} ${q.y}) rotate(${Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI})`);
+    const kmh = Math.round(st.v / KMH), m = materi();
+    spd.textContent = kmh + ' km/jam';
+    spd.classList.toggle('lebih', (m === 1 && kmh > 18) || (m === 2 && kmh > 22));
+    mat.textContent = m === 3 && st.isyarat ? 'Materi 4 · Lepas rem, hindar sesuai isyarat, berhenti di garis STOP' : PANDU[m];
+    nomor.forEach((g, i) => g.classList.toggle('on', i === m));
+  }
+  function selesai(){
+    berhenti(); btn.start.textContent = '🔄 Ulangi';
+    const lulus = st.fail.every(f => !f);
+    say(lulus ? '🎉 Semua materi lulus.' : 'Ujian selesai. Lihat materi yang perlu dilatih di bawah.', lulus ? 'good' : 'bad');
+    res.innerHTML = `<div class="big" style="text-align:center;color:var(${lulus ? '--ok' : '--danger'})">${lulus ? '✅ LULUS' : '❌ BELUM LULUS'}</div>
+      <ol class="us-hasil">${NAMA.map((n, i) => `<li class="${st.fail[i] ? 'x' : 'v'}"><b>${st.fail[i] ? '✗' : '✓'} ${i + 1}. ${n}</b>${st.fail[i] ? ` — ${st.fail[i]}<br><small>Tips: ${st.tip[i] || ''}</small>` : ' — lulus'}</li>`).join('')}</ol>
+      <p class="small" style="margin:10px 0 0">Ingin berlatih langsung di lapangan uji yang sebenarnya? Ikuti latihan gratis <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p>`;
+    btn.start.focus({preventScroll: true});
+  }
+
+  btn.start.addEventListener('click', mulai);
+  btn.look.addEventListener('click', tengok);
+  btn.L.addEventListener('click', () => pilih('L'));
+  btn.R.addEventListener('click', () => pilih('R'));
+  [[btn.gas, setGas], [btn.rem, setRem]].forEach(([el, set]) => {
+    el.addEventListener('pointerdown', e => { e.preventDefault(); try { el.setPointerCapture(e.pointerId); } catch(_){} set(true); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(n => el.addEventListener(n, () => set(false)));
+    el.addEventListener('contextmenu', e => e.preventDefault());
+  });
+  const KEY = {ArrowUp: 'gas', w: 'gas', W: 'gas', ArrowDown: 'rem', s: 'rem', S: 'rem', ' ': 'rem', ArrowLeft: 'L', ArrowRight: 'R', t: 'look', T: 'look'};
+  box.addEventListener('keydown', e => {
+    const k = KEY[e.key]; if (!k || !st || !st.on) return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.repeat) return;
+    if (k === 'gas') setGas(true); else if (k === 'rem') setRem(true); else if (k === 'look') tengok(); else pilih(k);
+  });
+  box.addEventListener('keyup', e => { const k = KEY[e.key]; if (k === 'gas') setGas(false); else if (k === 'rem') setRem(false); });
+  window.addEventListener('blur', () => { setGas(false); setRem(false); });
+})();
+
+/* ---------- B.13 kuis lulus atau gagal ---------- */
+(function(){
+  const body = $('#lgBody'); if (!body) return;
+  // [lulus?, kejadian, penjelasan] — dari ketentuan lulus uji praktik SIM C (Kep/105/VIII/2023)
+  const S = [
+    [false, 'Saat putar balik huruf U, motor terlalu pelan sehingga kaki kanan turun menyentuh tanah.', 'Kaki harus tetap di pijakan (footstep) selama motor berjalan. Jaga gas tetap stabil.'],
+    [true, 'Di garis STOP materi 1, motor berhenti tepat sebelum garis, kaki kiri turun, peserta menengok ke kanan belakang, lalu berjalan lagi.', 'Urutan ini sesuai ketentuan: berhenti sebelum garis, kaki kiri turun, tengok kanan belakang.'],
+    [false, 'Di tikungan huruf S, spion menyenggol satu patok.', 'Peserta tidak boleh menyentuh satu pun patok atau sensor elektronik.'],
+    [false, 'Saat pengereman materi 1, ban depan melewati garis STOP.', 'Motor harus berhenti sebelum garis. Kurangi gas lebih awal dan pakai rem depan + belakang bersamaan.'],
+    [true, 'Di garis REM motor direm, rem dilepas, lalu peserta menghindar ke kanan sesuai isyarat petugas dan berhenti di garis STOP.', 'Itulah urutan materi 4 yang benar: rem di garis REM, lepas rem, menghindar sesuai isyarat, berhenti di garis STOP.'],
+    [false, 'Petugas memberi isyarat ke kanan, tetapi peserta menghindar ke kiri.', 'Arah menghindar harus sesuai isyarat petugas.'],
+    [false, 'Di cabang Y peserta masih menahan rem sambil berbelok, motor oleng dan kaki turun.', 'Lepas rem dulu, baru menghindar. Kaki tidak boleh turun saat motor berjalan.'],
+    [true, 'Putar balik huruf U dilakukan pelan tetapi stabil, kaki tetap di pijakan, tidak menyentuh patok.', 'Tidak ada kesalahan pada materi ini, jadi lulus.'],
+    [false, 'Setelah berhenti di garis STOP, peserta langsung berjalan tanpa menengok ke kanan belakang.', 'Saat berhenti dan akan berjalan, peserta wajib menurunkan kaki kiri dan menengok ke kanan belakang.'],
+    [true, 'Kecepatan di huruf S sempat naik-turun, tetapi tidak menyentuh patok dan kaki tetap di pijakan.', 'Menurut ketentuan tetap lulus. Namun kecepatan yang rata membuat tikungan berikutnya lebih mudah.'],
+    [false, 'Peserta ragu sebelum cabang Y, lalu berhenti di tengah lintasan dan menurunkan kaki.', 'Kaki turun saat materi masih berjalan termasuk kesalahan. Jaga laju sampai garis STOP.'],
+    [false, 'Di lintasan lurus materi 1, peserta hanya melaju sekitar 15 km/jam lalu mengerem.', 'Materi pengereman meminta laju minimal ±30 km/jam sebelum berhenti di garis STOP.']
+  ];
+  let qs = [], qi = 0, skor = 0;
+  function baru(){ qs = shuffle(S).slice(0, 8); qi = 0; skor = 0; tanya(); }
+  function tanya(){
+    if (qi >= qs.length) {
+      body.innerHTML = `<div class="out" style="text-align:center"><div class="big">${skor} / ${qs.length}</div><p>${skor >= 7 ? '🎉 Bagus! Anda sudah paham aturan lulus ujian praktik.' : '📚 Baca lagi ketentuan lulus dan kesalahan yang sering terjadi di atas, lalu coba kembali.'}</p><div class="hasil-act c">${KartuBijak.tombol({jenis: 'praktik', judul: 'Kuis Lulus atau Gagal Ujian Praktik', skor, maks: qs.length})}<button class="btn" type="button" id="lgAgain">🔄 Ulangi dengan soal lain</button></div></div>`;
+      $('#lgAgain').onclick = baru; return;
+    }
+    const [lulus, teks, alasan] = qs[qi];
+    body.innerHTML = `<div class="q"><p class="small muted" style="margin:0 0 6px">Soal ${qi + 1} dari ${qs.length}</p><p style="font-weight:700">${teks}</p><div class="rq-opts quiz"><button type="button" class="opt" data-ok="${lulus}">✅ Lulus</button><button type="button" class="opt" data-ok="${!lulus}">❌ Gagal</button></div><p class="small" id="lgEx" tabindex="-1" style="margin-top:8px"></p></div>`;
+    $$('#lgBody .opt').forEach(b => b.onclick = () => {
+      if ($('#lgBody .opt[disabled]')) return;
+      const ok = b.dataset.ok === 'true'; if (ok) skor++;
+      $$('#lgBody .opt').forEach(x => { x.disabled = true; if (x.dataset.ok === 'true') x.classList.add('right'); });
+      if (!ok) b.classList.add('wrong');
+      $('#lgEx').innerHTML = `${ok ? '✅ Benar!' : '❌ Kurang tepat.'} Jawabannya <b>${lulus ? 'lulus' : 'gagal'}</b>. ${alasan} <button class="btn sm" type="button" id="lgNext" style="margin-left:6px">${qi + 1 < qs.length ? 'Soal berikutnya →' : 'Lihat skor'}</button>`;
+      $('#lgNext').onclick = () => { qi++; tanya(); };
+      $('#lgEx').focus();
+    });
+  }
+  baru();
 })();
 
 /* ---------- A.2 denah alur layanan lantai 1 ---------- */
