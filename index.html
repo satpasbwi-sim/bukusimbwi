@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610131522">
+<meta name="versi-buku" content="202610131538">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -555,8 +555,11 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .circ .st.on text{fill:#1b1400}
 
 /* ---------- bilah aksi per halaman: dengarkan, bagikan ---------- */
-.pact{display:flex;gap:8px;flex-wrap:wrap;padding:10px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);background:var(--surface-2)}
-.pact button,.pact a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 12px;font-size:.8rem;font-weight:700;text-decoration:none;min-height:34px}
+/* bilah aksi: 4 kotak sama besar (PC 4 kolom, HP 2×2); di sampul "Pasang di HP" menggantikan "Bagikan" bila tersedia */
+.pact{display:grid;grid-template-columns:repeat(4,minmax(0,168px));gap:8px;padding:10px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.pact [hidden]{display:none!important}
+@media (max-width:560px){.pact{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pact button,.pact a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 10px;font-size:.8rem;font-weight:700;text-decoration:none;min-height:38px;width:100%;min-width:0;justify-content:center;white-space:nowrap;overflow:hidden}
 .pact button:hover,.pact a:hover{border-color:var(--brand)}
 .pact .wa{background:#137c3e;border-color:#137c3e;color:#fff}
 .pact button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1b1400}
@@ -3743,9 +3746,9 @@ pages.forEach(p => {
   const bar = document.createElement('div'); bar.className = 'pact noprint';
   const msg = `${shareText(p)}: ${pageUrl(p)}`;
   bar.innerHTML = (TTS ? `<button type="button" data-listen aria-pressed="false">🔊 <span>Dengarkan</span></button>` : '') +
-    `<a class="wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" data-share-wa>💬 Bagikan ke WhatsApp</a>` +
+    `<a class="wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" data-share-wa>💬 WhatsApp</a>` +
     `<button type="button" data-copy>🔗 Salin tautan</button>` +
-    (navigator.share ? `<button type="button" data-nshare>📤 Bagikan…</button>` : '');
+    (navigator.share ? `<button type="button" data-nshare>📤 Bagikan</button>` : '');
   const anchor = p.querySelector('.ph') || p.querySelector('.cover');
   anchor.after(bar);
 });
@@ -4223,13 +4226,15 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   btn.setAttribute('aria-label', 'Pasang buku ini sebagai aplikasi di layar utama');
   const bar = pages[0].querySelector('.pact');
   if (bar) bar.appendChild(btn);
-  addEventListener('beforeinstallprompt', e => { e.preventDefault(); tawaran = e; btn.hidden = false; });
+  // bilah tetap 4 kotak: saat tombol pasang tampil, tombol "Bagikan" di sampul disembunyikan
+  const tampil = on => { btn.hidden = !on; const s = bar && bar.querySelector('[data-nshare]'); if (s) s.hidden = on; };
+  addEventListener('beforeinstallprompt', e => { e.preventDefault(); tawaran = e; tampil(true); });
   btn.onclick = () => {
     if (!tawaran) return;
     tawaran.prompt();
-    tawaran.userChoice.finally(() => { tawaran = null; btn.hidden = true; });
+    tawaran.userChoice.finally(() => { tawaran = null; tampil(false); });
   };
-  addEventListener('appinstalled', () => { btn.hidden = true; toast('Buku terpasang di layar utama ✓'); gcCount('aplikasi/terpasang', 'Pasang aplikasi', true); });
+  addEventListener('appinstalled', () => { tampil(false); toast('Buku terpasang di layar utama ✓'); gcCount('aplikasi/terpasang', 'Pasang aplikasi', true); });
   addEventListener('offline', () => toast('Anda sedang offline — buku tetap bisa dibaca.'));
   addEventListener('online', () => toast('Kembali online.'));
 })();
