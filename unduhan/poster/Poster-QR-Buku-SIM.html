@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poster QR Buku SIM</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; background: #d9dee8; font-family: "Plus Jakarta Sans", system-ui, "Segoe UI", sans-serif; }
+  .hint { max-width: 210mm; margin: 16px auto; padding: 10px 14px; background: #fff7d6; border-radius: 10px; font-size: 14px; color: #3a2f0e; }
+  .sheet { width: 210mm; height: 297mm; margin: 0 auto 24px; background: #071f4d; color: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .sheet::before { content: ""; position: absolute; right: -60mm; top: -60mm; width: 150mm; height: 150mm; border-radius: 50%; border: 22mm solid rgba(242,183,5,.15); }
+  .top { padding: 12mm 16mm 0; position: relative; }
+  .tag { display: inline-block; background: #f2b705; color: #1d1600; font-weight: 800; font-size: 12pt; padding: 2mm 5mm; border-radius: 99px; letter-spacing: .06em; }
+  h1 { font-size: 29pt; line-height: 1.08; margin: 5mm 0 3mm; letter-spacing: -.01em; }
+  h1 em { font-style: normal; color: #f2b705; }
+  .sub { font-size: 12.5pt; opacity: .9; margin: 0; }
+  .qrbox { margin: 7mm auto 0; width: 100mm; background: #fff; border-radius: 8mm; padding: 6mm; text-align: center; position: relative; box-shadow: 0 0 0 3mm rgba(242,183,5,.9); }
+  .qrbox svg { width: 88mm; height: 88mm; display: block; }
+  .scan { position: absolute; left: 50%; bottom: -6mm; transform: translateX(-50%); background: #c62828; color: #fff; font-weight: 800; font-size: 14pt; padding: 2.5mm 8mm; border-radius: 99px; white-space: nowrap; letter-spacing: .04em; }
+  .url { text-align: center; margin: 11mm 0 0; font-size: 13pt; font-weight: 700; color: #f2b705; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; padding: 6mm 16mm 0; }
+  .step { background: rgba(255,255,255,.08); border: .4mm solid rgba(255,255,255,.18); border-radius: 5mm; padding: 5mm; }
+  .step b { display: grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: #f2b705; color: #1d1600; font-size: 14pt; margin-bottom: 2.5mm; }
+  .step span { font-size: 11.5pt; line-height: 1.35; display: block; }
+  .inside { padding: 5mm 16mm 0; font-size: 11pt; line-height: 1.5; opacity: .92; text-align: center; }
+  .inside strong { color: #f2b705; }
+  .foot { margin-top: auto; background: #fff; color: #071f4d; text-align: center; padding: 5mm 10mm; font-weight: 700; font-size: 11pt; }
+  .stripe { height: 4mm; background: linear-gradient(90deg, #c62828 0 50%, #fff 50% 100%); }
+  @media print { html, body { background: #071f4d; } .hint { display: none; } .sheet { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="hint">Cetak: tekan <b>Ctrl + P</b> → ukuran kertas <b>A4</b>, margin <b>None/Tidak ada</b>, centang <b>Background graphics</b>. Untuk standee/banner, cetak ke PDF lalu perbesar di percetakan (A3/A2) — QR tetap tajam karena berbentuk vektor.</div>
+<div class="sheet">
+  <div class="top">
+    <span class="tag">BUKU DIGITAL INTERAKTIF</span>
+    <h1>Sambil Menunggu<br>SIM Jadi, <em>Yuk Scan<br>&amp; Baca!</em></h1>
+    <p class="sub">Panduan lengkap layanan penerbitan SIM Satpas Polresta Banyuwangi — langsung di HP Anda, gratis, tanpa aplikasi.</p>
+  </div>
+  <div class="qrbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#071f4d" d="M2 2.5h7m1 0h1m3 0h2m1 0h1m1 0h2m1 0h2m1 0h4m1 0h1m1 0h7M2 3.5h1m5 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m4 0h4m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m1 0h1m4 0h2m2 0h2m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m2 0h2m1 0h4m2 0h5m1 0h3m3 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h1m2 0h1m2 0h4m2 0h2m6 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h1m1 0h5m1 0h2m4 0h7m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h1m1 0h1m2 0h1m2 0h1m1 0h2m2 0h1m3 0h1m1 0h1M4 10.5h3m1 0h1m1 0h2m1 0h6m2 0h3m1 0h4m1 0h4m2 0h3M2 11.5h2m1 0h3m1 0h1m2 0h5m1 0h1m1 0h1m1 0h4m1 0h1m2 0h1m2 0h1M2 12.5h1m1 0h2m2 0h1m3 0h5m1 0h1m4 0h1m1 0h1m1 0h3m2 0h3m2 0h2M2 13.5h1m4 0h1m4 0h1m2 0h1m1 0h3m1 0h1m1 0h4m1 0h1m3 0h1M2 14.5h3m3 0h1m4 0h3m2 0h2m1 0h3m2 0h4m1 0h2m1 0h4M3 15.5h2m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1m1 0h5m4 0h1m2 0h1m1 0h1m1 0h3M2 16.5h4m2 0h3m1 0h2m2 0h6m1 0h2m1 0h2m1 0h1m2 0h1m2 0h1m1 0h2M3 17.5h2m2 0h1m2 0h4m1 0h3m3 0h1m2 0h1m3 0h1m4 0h1m4 0h1M6 18.5h1m1 0h5m1 0h3m3 0h2m4 0h4m1 0h2m1 0h1m1 0h3M2 19.5h6m2 0h1m2 0h1m2 0h1m1 0h1m1 0h3m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1M3 20.5h2m1 0h5m1 0h4m2 0h1m1 0h1m8 0h2m2 0h3m1 0h2M7 21.5h1m2 0h1m2 0h4m1 0h2m2 0h1m3 0h1m1 0h2m2 0h1m4 0h1M2 22.5h1m2 0h4m1 0h1m1 0h4m1 0h2m2 0h2m1 0h2m1 0h2m2 0h6M2 23.5h2m2 0h2m1 0h1m2 0h4m1 0h3m3 0h2m1 0h2m3 0h1m1 0h1m3 0h1M5 24.5h2m1 0h1m1 0h1m2 0h2m2 0h1m1 0h3m1 0h1m5 0h1m6 0h3M3 25.5h1m6 0h2m2 0h3m4 0h1m1 0h2m3 0h1m2 0h3M2 26.5h1m1 0h2m1 0h5m1 0h3m2 0h3m5 0h2m3 0h6m1 0h1M2 27.5h6m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m6 0h1m2 0h1m1 0h2M2 28.5h1m2 0h4m1 0h1m2 0h1m1 0h3m3 0h7m1 0h2m1 0h2m2 0h1m1 0h1M2 29.5h1m1 0h4m3 0h2m5 0h1m3 0h1m2 0h1m2 0h4m1 0h1m3 0h2M2 30.5h1m3 0h4m3 0h5m2 0h1m2 0h1m1 0h4m1 0h5m1 0h2M10 31.5h1m1 0h2m4 0h2m1 0h2m1 0h2m1 0h1m1 0h2m3 0h1m2 0h1M2 32.5h7m3 0h4m1 0h1m2 0h2m1 0h2m5 0h1m1 0h1m1 0h2m1 0h2M2 33.5h1m5 0h1m3 0h1m1 0h1m3 0h1m1 0h6m2 0h1m1 0h1m3 0h1m2 0h2M2 34.5h1m1 0h3m1 0h1m1 0h2m2 0h3m1 0h2m1 0h1m1 0h1m1 0h10m1 0h1m1 0h1M2 35.5h1m1 0h3m1 0h1m1 0h1m5 0h3m1 0h1m1 0h2m2 0h2m4 0h4M2 36.5h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h1m4 0h3m2 0h2m2 0h1m1 0h1m4 0h1M2 37.5h1m5 0h1m2 0h2m1 0h1m1 0h3m2 0h1m3 0h1m2 0h6m4 0h1M2 38.5h7m6 0h1m2 0h3m4 0h3m3 0h1m2 0h1m1 0h3"/></svg>
+<span class="scan">SCAN DI SINI</span></div>
+  <p class="url">satpasbwi-sim.github.io/bukusimbwi/</p>
+  <div class="steps">
+    <div class="step"><b>1</b><span>Buka <strong>kamera HP</strong> atau aplikasi pemindai QR</span></div>
+    <div class="step"><b>2</b><span>Arahkan ke <strong>QR code</strong> di atas</span></div>
+    <div class="step"><b>3</b><span>Ketuk tautan yang muncul, buku <strong>langsung terbuka</strong></span></div>
+  </div>
+  <p class="inside">Isi: <strong>Persyaratan &amp; prosedur</strong> SIM baru, perpanjangan, peningkatan · <strong>Tarif resmi PNBP</strong> · Kesehatan &amp; psikologi · SIM Internasional &amp; WNA · Dasar hukum Perpol 5/2021 jo. 2/2023 · <strong>Kalkulator biaya, cek usia, kuis</strong>, dan lainnya.</p>
+  <div class="foot">STOP PUNGLI · HINDARI CALO — © Satpas Polresta Banyuwangi · Informasi Layanan Publik</div>
+  <div class="stripe"></div>
+</div>
+</body>
+</html>
