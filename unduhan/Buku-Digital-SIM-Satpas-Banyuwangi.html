@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140652">
+<meta name="versi-buku" content="202610140657">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -4004,9 +4004,14 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   const nomor = $$('.st', svg);
   let K = null, st = null, raf = 0, last = 0, gas = false, rem = false;
 
+  // titik lintasan terdekat: titik lintasan diambil sekali tiap 10 satuan, lalu dihaluskan di sekitarnya (agar tombol Mulai tidak tersendat)
+  const contoh = new Map();
   function dekat(p, x, y){
+    const T = p.getTotalLength(), jarak = l => { const q = p.getPointAtLength(l); return (q.x - x) ** 2 + (q.y - y) ** 2; };
+    if (!contoh.has(p)) { const a = []; for (let l = 0; l <= T; l += 10) { const q = p.getPointAtLength(l); a.push([l, q.x, q.y]); } contoh.set(p, a); }
     let best = 0, bd = Infinity;
-    for (let l = 0, T = p.getTotalLength(); l <= T; l++) { const q = p.getPointAtLength(l), d = (q.x - x) ** 2 + (q.y - y) ** 2; if (d < bd) { bd = d; best = l; } }
+    for (const [l, qx, qy] of contoh.get(p)) { const d = (qx - x) ** 2 + (qy - y) ** 2; if (d < bd) { bd = d; best = l; } }
+    for (const step of [2, 1]) { const c = best; for (let l = Math.max(0, c - 5 * step); l <= Math.min(T, c + 5 * step); l += step) { const d = jarak(l); if (d < bd) { bd = d; best = l; } } }
     return best;
   }
   function ukur(){
@@ -4146,6 +4151,11 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     btn.start.focus({preventScroll: true});
   }
 
+  // hitung titik acuan lebih dulu saat simulasi terlihat, agar tombol Mulai langsung jalan
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); setTimeout(() => { if (!K) ukur(); }, 200); } });
+    io.observe(box);
+  }
   btn.start.addEventListener('click', mulai);
   btn.look.addEventListener('click', tengok);
   btn.L.addEventListener('click', () => pilih('L'));
