@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610132039">
+<meta name="versi-buku" content="202610140649">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -325,16 +325,16 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 
 
 /* sampul */
-.cfeat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px;max-width:640px}
-.cfeat div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:10px 12px}
-.cfeat b{display:block;font-size:1.35rem;color:var(--accent);line-height:1.1}
-.cfeat span{font-size:.75rem;opacity:.9}
+.cfeat{display:grid;grid-template-columns:repeat(4,minmax(0,120px));gap:8px;margin-top:18px}
+.cfeat div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:6px 10px}
+.cfeat b{display:block;font-size:1.1rem;color:var(--accent);line-height:1.15}
+.cfeat span{display:block;font-size:.68rem;opacity:.9;line-height:1.25}
 /* logo Lantas di sampul: kanan pada layar lebar, di atas judul pada HP */
 .covlogo{display:block;width:92px;height:auto;margin:0 auto 14px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
 @media (min-width:900px){.covlogo{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);width:230px;margin:0}}
 @media print{.covlogo{filter:none}}
 @media (min-width:900px){.cover .ct{padding-right:330px}}
-@media (max-width:640px){.cfeat,.g4{grid-template-columns:repeat(2,1fr)}.g4 .stat b{font-size:1.25rem}.g4 .card{padding:12px 10px}}
+@media (max-width:640px){.cfeat{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.cfeat div{padding:6px 6px;text-align:center}.cfeat span{font-size:.62rem}.g4{grid-template-columns:repeat(2,1fr)}.g4 .stat b{font-size:1.25rem}.g4 .card{padding:12px 10px}}
 
 /* halaman inovasi */
 .hero-inov{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:linear-gradient(135deg,#071f4d,#0b3d91);color:#fff;border-radius:16px;padding:20px 22px;margin:0 0 16px}
@@ -573,11 +573,10 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 @media (max-width:640px){.us-mat{text-align:left}.us-act{grid-template-columns:1fr 1fr}.us-act #usLook{grid-column:1/-1;grid-row:1}}
 
 /* ---------- bilah aksi per halaman: dengarkan, bagikan ---------- */
-/* bilah aksi: 4 kotak sama besar (PC 4 kolom, HP 2×2); di sampul "Pasang di HP" menggantikan "Bagikan" bila tersedia */
-.pact{display:grid;grid-template-columns:repeat(4,minmax(0,168px));gap:8px;padding:10px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);background:var(--surface-2)}
+/* bilah aksi: tombol bulat berikon (nama tombol muncul saat disentuh/diarahkan); di sampul "Pasang di HP" menggantikan "Bagikan" bila tersedia */
+.pact{display:flex;flex-wrap:wrap;gap:10px;padding:8px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);background:var(--surface-2)}
 .pact [hidden]{display:none!important}
-@media (max-width:560px){.pact{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.pact button,.pact a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 10px;font-size:.8rem;font-weight:700;text-decoration:none;min-height:38px;width:100%;min-width:0;justify-content:center;white-space:nowrap;overflow:hidden}
+.pact button,.pact a{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:50%;width:42px;height:42px;padding:0;font-size:1.15rem;line-height:1;text-decoration:none;flex:none}
 .pact button:hover,.pact a:hover{border-color:var(--brand)}
 .pact .wa{background:#137c3e;border-color:#137c3e;color:#fff}
 .pact button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1b1400}
@@ -3810,7 +3809,7 @@ function ttsSet(on){
   ttsOn = on;
   $$('[data-listen]').concat([$('#btnListen')]).forEach(b => b.setAttribute('aria-pressed', on));
   $('#btnListenT').textContent = on ? 'Berhenti' : 'Dengarkan';
-  $$('[data-listen] span').forEach(s => s.textContent = on ? 'Berhenti' : 'Dengarkan');
+  $$('[data-listen]').forEach(b => { b.firstChild.textContent = on ? '⏹' : '🔊'; b.title = on ? 'Berhenti' : 'Dengarkan'; b.querySelector('span').textContent = on ? 'Berhenti' : 'Dengarkan'; });
 }
 function ttsStart(){
   if (!TTS) return toast('Maaf, browser ini belum mendukung fitur baca suara.');
@@ -3872,10 +3871,10 @@ const shareText = p => p.dataset.share || SHARE[p.dataset.id] || (short(p) + ' �
 pages.forEach(p => {
   const bar = document.createElement('div'); bar.className = 'pact noprint';
   const msg = `${shareText(p)}: ${pageUrl(p)}`;
-  bar.innerHTML = (TTS ? `<button type="button" data-listen aria-pressed="false">🔊 <span>Dengarkan</span></button>` : '') +
-    `<a class="wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" data-share-wa>💬 WhatsApp</a>` +
-    `<button type="button" data-copy>🔗 Salin tautan</button>` +
-    (navigator.share ? `<button type="button" data-nshare>📤 Bagikan</button>` : '');
+  bar.innerHTML = (TTS ? `<button type="button" data-listen aria-pressed="false" title="Dengarkan">🔊<span class="sr">Dengarkan</span></button>` : '') +
+    `<a class="wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" data-share-wa title="Bagikan ke WhatsApp">💬<span class="sr">WhatsApp</span></a>` +
+    `<button type="button" data-copy title="Salin tautan">🔗<span class="sr">Salin tautan</span></button>` +
+    (navigator.share ? `<button type="button" data-nshare title="Bagikan">📤<span class="sr">Bagikan</span></button>` : '');
   const anchor = p.querySelector('.ph') || p.querySelector('.cover');
   anchor.after(bar);
 });
@@ -4596,7 +4595,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
 (function(){
   let tawaran = null;
   const btn = document.createElement('button');
-  btn.type = 'button'; btn.hidden = true; btn.textContent = '📲 Pasang di HP';
+  btn.type = 'button'; btn.hidden = true; btn.innerHTML = '📲<span class="sr">Pasang di HP</span>'; btn.title = 'Pasang di HP';
   btn.setAttribute('aria-label', 'Pasang buku ini sebagai aplikasi di layar utama');
   const bar = pages[0].querySelector('.pact');
   if (bar) bar.appendChild(btn);
