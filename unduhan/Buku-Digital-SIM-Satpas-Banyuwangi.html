@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610132018">
+<meta name="versi-buku" content="202610132032">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -2607,7 +2607,7 @@ const CONFIG = {
   goatcounter: 'satpasbwi',
   // URL Web App Google Apps Script untuk survei IKM (diakhiri /exec). Kosong = survei belum aktif
   ikmUrl: 'https://script.google.com/macros/s/AKfycbxlCB2_vkrHEMCxzffvPByFwC-I9MMC8cvgTcbKNZFYNAlxM-pojll9AMRpLb4kN0loOA/exec',
-  // Nilai IKM baru ditampilkan setelah jumlah responden mencapai angka ini (sebelumnya hanya progres)
+  // Nilai IKM baru ditampilkan setelah jumlah responden mencapai angka ini (sebelumnya hanya ajakan mengisi, tanpa jumlah responden)
   ikmMin: 30
 };
 const pageHooks = []; // fungsi yang dipanggil setiap kali halaman berganti: f(page)
@@ -4475,13 +4475,11 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   const box = $('#ikmRes');
   const head = '<span class="wt">Hasil langsung</span>';
   function renderRes(r){
-    if (!r || !r.n) { box.innerHTML = head + '<p class="small" style="margin:0">Belum ada responden. Jadilah yang pertama mengisi survei di bawah ini.</p>'; return; }
-    const min = CONFIG.ikmMin || 0;
-    if (r.n < min) {
+    // sebelum responden mencukupi: jumlah responden sengaja tidak ditampilkan
+    if (!r || !r.n || r.n < (CONFIG.ikmMin || 0)) {
       box.innerHTML = head + `<h4 style="margin:0 0 6px">📊 Survei sedang berjalan</h4>
-        <p style="margin:0"><b>${r.n.toLocaleString('id-ID')}</b> dari minimal <b>${min}</b> responden${r.mulai ? ` sejak ${new Date(r.mulai).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})}` : ''}.</p>
-        <div class="bars" style="margin:10px 0 6px"><div class="b" style="grid-template-columns:1fr 48px"><span style="display:block;background:var(--line);border-radius:6px"><i style="--v:${r.n};--max:${min}"></i></span><em>${Math.round(r.n / min * 100)}%</em></div></div>
-        <p class="small muted" style="margin:0">Nilai IKM dan mutu pelayanan akan ditampilkan setelah responden mencukupi, agar hasilnya mewakili pendapat pembaca. Bantu kami dengan mengisi survei di bawah ini.</p>`;
+        <p style="margin:0">Nilai IKM dan mutu pelayanan akan ditampilkan setelah cukup banyak pembaca mengisi, agar hasilnya mewakili pendapat pembaca.</p>
+        <p style="margin:8px 0 0"><b>Pendapat Anda sangat berarti.</b> Isi survei singkat di bawah ini, tanpa nama, nomor HP, atau NIK.</p>`;
       return;
     }
     const m = mutu(r.ikm);
