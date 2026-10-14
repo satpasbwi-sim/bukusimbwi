@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140755">
+<meta name="versi-buku" content="202610140818">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -619,6 +619,10 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .resume[hidden]{display:none}
 .wizcta{display:flex;align-items:center;gap:12px;width:100%;max-width:520px;margin:6px 0 14px;padding:12px 14px;border-radius:14px;border:2px solid var(--accent);background:#fff;color:#071f4d;text-align:left;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 .wizcta .ic{font-size:1.6rem}
+.calhelp{margin-top:10px}
+.calhelp h4{margin:0 0 6px}
+.calhelp ol{margin:0 0 8px;padding-left:20px}
+.calhelp p{margin:0 0 6px}
 .wiz .wimg{display:flex;width:100%;justify-content:center;margin-top:10px;background:var(--accent);border-color:var(--accent);color:#1b1400}
 .wizcta span:nth-child(2){flex:1;min-width:0}
 .wizcta b{display:block;font-size:1rem}
@@ -3392,8 +3396,23 @@ function calHtml(exp){
     '&details=' + encodeURIComponent(calInfo(exp));
   return `<div class="calbtn"><a class="btn sm" href="${g}" target="_blank" rel="noopener" data-cal="google">📅 Tambah ke Google Calendar</a>` +
     `<button type="button" class="btn ghost sm" data-ics="${ymd(exp)}">⬇️ Simpan ${n} pengingat ke kalender HP</button></div>` +
-    `<p class="small muted" style="margin:6px 0 0">Untuk iPhone, Samsung, Outlook, dll. Pengingat berbunyi pukul 08.00 pada H-30, H-14, H-7, dan hari habisnya (yang belum terlewat).</p>`;
+    `<p class="small muted" style="margin:6px 0 0">Untuk iPhone, Samsung, Outlook, dll. Pengingat berbunyi pukul 08.00 pada H-30, H-14, H-7, dan hari habisnya (yang belum terlewat).</p>` + CAL_PETUNJUK;
 }
+// petunjuk memasang pengingat & menyalakan notifikasi (Android / iPhone) + lampiran PDF yang bisa dicetak
+const PDF_PENGINGAT = (/^https?:$/.test(location.protocol) ? '' : CONFIG.siteUrl) + 'unduhan/Panduan-Pengingat-SIM-di-HP.pdf';
+const CAL_PETUNJUK = `<details class="acc calhelp"><summary>📖 Petunjuk: cara menyimpan &amp; menyalakan notifikasi di HP</summary><div class="in small">
+  <div class="grid g2">
+    <div><h4>🤖 Android</h4>
+      <p><b>Samsung:</b></p><ol><li>Ketuk <b>⬇️ Simpan pengingat ke kalender HP</b>.</li><li>Buka file <b>pengingat-perpanjang-SIM.ics</b> dari notifikasi unduhan / <b>File Saya → Unduhan</b>.</li><li>Pilih <b>Kalender</b>, lalu ketuk <b>Simpan</b>.</li></ol>
+      <p><b>Xiaomi, Oppo, Vivo, realme, dll.:</b></p><ol><li>Ketuk <b>📅 Tambah ke Google Calendar</b>, pilih aplikasi <b>Google Kalender</b>, lalu <b>Simpan</b>.</li><li>Buka acara itu → <b>Edit</b> → <b>Tambahkan notifikasi</b> → pilih waktunya → <b>Simpan</b>.</li></ol>
+      <p><b>Nyalakan notifikasi:</b> Setelan → Aplikasi → Kalender → Notifikasi → <b>Izinkan</b>. Di menu Baterai pilih <b>Tidak dibatasi</b>.</p></div>
+    <div><h4>🍎 iPhone</h4>
+      <ol><li>Buka buku ini di <b>Safari</b>.</li><li>Ketuk <b>⬇️ Simpan pengingat ke kalender HP</b>.</li><li>Ketuk <b>Tambah Semua</b> (<i>Add All</i>), pilih kalender, lalu <b>Selesai</b>.</li></ol>
+      <p><b>Nyalakan notifikasi:</b> Pengaturan → Notifikasi → Kalender → <b>Izinkan Notifikasi</b>. Bila memakai mode Fokus, izinkan aplikasi Kalender.</p>
+      <p><b>Cek:</b> buka aplikasi Kalender, pada tanggal H-30 harus ada acara "Saatnya perpanjang SIM".</p></div>
+  </div>
+  <p style="margin:10px 0 0"><a class="btn sm" href="${PDF_PENGINGAT}" target="_blank" rel="noopener" data-cal="pdf">⬇️ Unduh petunjuk lengkap (PDF, 2 halaman, bisa dicetak)</a></p>
+</div></details>`;
 function unduhIcs(exp){
   const esc = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
   const fold = l => l.match(/.{1,60}/g).join('\r\n '); // baris iCalendar maks. 75 oktet
@@ -3417,6 +3436,7 @@ document.addEventListener('click', e => {
   const b = e.target.closest('[data-ics]');
   if (b) { unduhIcs(parseDate(b.dataset.ics.replace(/(\d{4})(\d\d)(\d\d)/, '$1-$2-$3'))); gcCount('pengingat/ics', 'Pengingat kalender', true); }
   else if (e.target.closest('[data-cal="google"]')) gcCount('pengingat/google', 'Pengingat kalender', true);
+  else if (e.target.closest('[data-cal="pdf"]')) gcCount('pengingat/petunjuk-pdf', 'Pengingat kalender', true);
 });
 
 /* ---------------- Wizard "SIM apa yang saya butuhkan?" ---------------- */
