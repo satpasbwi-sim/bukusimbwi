@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141412">
+<meta name="versi-buku" content="202610141524">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -719,6 +719,9 @@ html.simx-lock,html.simx-lock body{overflow:hidden}
 .simx-stg div{display:grid;grid-template-columns:34px 1fr;align-items:center;column-gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
 .simx-stg span{grid-row:span 2;font-size:1.4rem}.simx-stg small{color:var(--muted)}
 .simx-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.simx-act.hasil{gap:10px}
+.simx-act.hasil .btn{flex:1 1 0;min-width:0;margin:0;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:50px;line-height:1.25;padding:10px 12px;font-size:.95rem}
+@media (max-width:640px){.simx-act.hasil .kartu-btn{flex-basis:100%}}
 .simx-gol{border:1px solid var(--line);border-radius:12px;padding:10px 12px 12px;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px}
 .simx-gol legend{font-weight:800;font-size:.9rem;padding:0 6px}
 .simx-gol label{flex:1 1 140px;display:flex;gap:8px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;background:var(--surface-2)}
@@ -6165,7 +6168,7 @@ const U_ORANG = { kiri: -1.2, tengah: -0.35, kanan: 1.2 }, U_KEND = { kiri: -0.7
     el(`<div class="simx-res ${lulus ? 'ok' : 'no'}"><small>Nilai Anda</small><b data-focus tabindex="-1">${skor}</b><span>${lulus ? '✅ LULUS (nilai ≥ 70)' : '❌ BELUM LULUS (nilai < 70)'}</span></div>
       <table class="simx-tbl"><thead><tr><th>Tahap</th><th>Benar</th><th>Nilai</th></tr></thead><tbody>${state.qs.map(c => `<tr><td>${c.t.ikon} ${c.t.n}</td><td>${c.benar} / ${c.qs.length}</td><td>${Math.round(c.benar / c.qs.length * 100)}</td></tr>`).join('')}</tbody></table>
       <p class="small muted">Ini latihan. Hasil tidak memengaruhi ujian resmi di Satpas.</p>
-      <div class="simx-act">${window.KartuBijak ? KartuBijak.tombol({ jenis: 'eavis', judul: 'Simulasi Ujian Teori E-AVIS', skor, maks: 100 }) : ''}<button type="button" class="btn" data-ulang>🔄 Coba lagi</button><button type="button" class="btn ghost" data-menu>Kembali ke menu</button></div>
+      <div class="simx-act hasil">${window.KartuBijak ? KartuBijak.tombol({ jenis: 'eavis', judul: 'Simulasi Ujian Teori E-AVIS', skor, maks: 100 }) : ''}<button type="button" class="btn" data-ulang>🔄 Coba lagi</button><button type="button" class="btn ghost" data-menu>Kembali ke menu</button></div>
       ${salah.length ? `<h3>Pembahasan soal yang belum tepat (${salah.length})</h3><ol class="simx-rev">${salah.map(x => `<li><p><b>${esc(x.q.q)}</b></p><p class="small">Jawaban Anda: ${x.a === null ? '<i>tidak dijawab</i>' : '✗ ' + esc(x.a)}<br>Jawaban tepat: <b>✓ ${esc(x.q.a)}</b></p><p class="small muted">💡 ${esc(x.q.e)}${x.q.d ? ` <span class="simx-d">${esc(x.q.d)}</span>` : ''}</p></li>`).join('')}</ol>` : '<p><b>Sempurna! Semua jawaban benar.</b></p>'}`);
     body.querySelector('[data-ulang]').onclick = () => start(state.mode === 'Lengkap' ? 'all' : String(TAHAP.findIndex(t => t.n === state.mode)));
     body.querySelector('[data-menu]').onclick = intro;
