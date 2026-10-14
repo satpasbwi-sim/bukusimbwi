@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140657">
+<meta name="versi-buku" content="202610140702">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -80,6 +80,8 @@ img{max-width:100%;height:auto;display:block}
 .drawer:not(.on){visibility:hidden;transition:transform .25s,visibility 0s .25s}
 .drawer header{padding:14px 16px;background:var(--brand-deep);color:#fff;display:flex;align-items:center;gap:8px}
 .drawer header b{flex:1}
+.drawer header .efek{font-size:.85rem}
+.drawer header .efek[aria-pressed="false"]{opacity:.7}
 .search{padding:12px 16px;border-bottom:1px solid var(--line)}
 .search input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit}
 .toc{overflow:auto;padding:8px 8px 24px;flex:1}
@@ -837,7 +839,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" aria-label="Daftar isi">
-  <header><b>Daftar Isi</b><button class="ib" id="btnClose" aria-label="Tutup">✕</button></header>
+  <header><b>Daftar Isi</b><button class="ib efek" id="btnEfek" aria-pressed="true" title="Suara &amp; getar saat berinteraksi">🔔<span class="hide-sm"> Suara</span><span class="sr"> &amp; getar</span></button><button class="ib" id="btnClose" aria-label="Tutup">✕</button></header>
   <div class="search"><input type="text" id="q" placeholder="Cari topik… (mis. tarif, psikologi, poin)" autocomplete="off"></div>
   <div class="sres toc" id="sres" hidden></div>
   <nav class="toc" id="toc"></nav>
@@ -2773,6 +2775,46 @@ let fs = store.get('sim-book-fs', 16);
 const setFs = v => { fs = Math.max(13, Math.min(22, v)); root.style.setProperty('--fs', fs + 'px'); store.set('sim-book-fs', fs); };
 setFs(fs);
 $('#fsUp').onclick = () => setFs(fs + 1); $('#fsDown').onclick = () => setFs(fs - 1);
+// efek suara halus (dibuat langsung oleh browser, tanpa file MP3) & getaran HP; bisa dimatikan di panel Daftar Isi
+const Efek = (() => {
+  let on = store.get('sim-efek', true), ctx = null;
+  const btn = $('#btnEfek');
+  const tampil = () => { btn.setAttribute('aria-pressed', on); btn.firstChild.textContent = on ? '🔔' : '🔕'; btn.setAttribute('aria-label', 'Suara & getar: ' + (on ? 'aktif' : 'mati')); };
+  // browser hanya mengizinkan suara setelah pengunjung menyentuh layar / menekan tombol
+  const buka = () => { if (!on) return; try { if (!ctx) { const A = window.AudioContext || window.webkitAudioContext; if (A) ctx = new A(); } if (ctx && ctx.state === 'suspended') ctx.resume(); } catch (e) {} };
+  ['pointerdown', 'keydown'].forEach(n => addEventListener(n, buka, {capture: true, passive: true}));
+  const nada = (f1, f2, mulai, lama, vol, jenis = 'sine') => {
+    const t = ctx.currentTime + mulai, o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = jenis; o.frequency.setValueAtTime(f1, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + lama);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + lama);
+    o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + lama + .02);
+  };
+  const SUARA = {
+    balik(){   // desir lembut kertas
+      const n = Math.floor(ctx.sampleRate * .16), b = ctx.createBuffer(1, n, ctx.sampleRate), d = b.getChannelData(0);
+      for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+      const src = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain(), t = ctx.currentTime;
+      f.type = 'bandpass'; f.Q.value = .8; f.frequency.setValueAtTime(2200, t); f.frequency.exponentialRampToValueAtTime(700, t + .16);
+      g.gain.setValueAtTime(.05, t);
+      src.buffer = b; src.connect(f).connect(g).connect(ctx.destination); src.start(t);
+    },
+    benar(){ nada(880, 0, 0, .3, .09); nada(1318.5, 0, .09, .45, .08); },   // ting!
+    salah(){ nada(240, 170, 0, .22, .06, 'triangle'); },
+    sentuh(){ nada(150, 110, 0, .16, .08, 'triangle'); }
+  };
+  btn.onclick = () => { on = !on; store.set('sim-efek', on); tampil(); if (on) { buka(); main('benar', 30); } };
+  tampil();
+  // main(nama suara, pola getar): getaran hanya di HP yang mendukung (umumnya Android)
+  function main(nama, getar){
+    if (!on) return;
+    if (getar && navigator.vibrate) { try { navigator.vibrate(getar); } catch (e) {} }
+    if (ctx && ctx.state === 'running' && SUARA[nama]) { try { SUARA[nama](); } catch (e) {} }
+  }
+  return {main};
+})();
+let halSebelum = null;
+pageHooks.push(p => { if (halSebelum && halSebelum !== p) Efek.main('balik'); halSebelum = p; });
+
 // Gambar lazy di halaman tersembunyi belum terunduh; muat semuanya dulu sebelum mencetak.
 const muatSemuaGambar = () => { const imgs = $$('img[loading="lazy"]'); imgs.forEach(i => i.loading = 'eager'); return Promise.all(imgs.map(i => i.decode().catch(() => {}))); };
 window.addEventListener('beforeprint', muatSemuaGambar);
@@ -3423,7 +3465,7 @@ function renderQuiz(){
   const newBtn = '<button class="btn sm" data-newquiz style="margin-top:10px">🔄 Ganti Soal Baru</button>';
   $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p><div class="hasil-act">${KartuBijak.tombol({jenis: 'kuis', judul: 'Kuis Pemahaman Layanan SIM', skor: score, maks: quizSet.length})}${newBtn}</div>` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
 }
-$('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; renderQuiz(); $$('#quiz .ex')[+b.dataset.q].focus(); });
+$('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; Efek.main(quizSet[+b.dataset.q].ans === +b.dataset.o ? 'benar' : 'salah', quizSet[+b.dataset.q].ans === +b.dataset.o ? 0 : 40); renderQuiz(); $$('#quiz .ex')[+b.dataset.q].focus(); });
 $('#quizOut').addEventListener('click', e => { if (e.target.closest('[data-newquiz]')) { newQuiz(); $('#quizTop').scrollIntoView({behavior:'smooth', block:'start'}); } });
 $('#bankN').textContent = BANK.length;
 newQuiz();
@@ -4020,7 +4062,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   }
   const say = (html, cls = '') => { msg.className = 'vinfo us-msg ' + cls; msg.innerHTML = `<p>${html}</p>`; };
   const materi = () => st.path !== 'main' || st.l >= K.s1 ? 3 : st.l >= K.s0 ? 2 : st.l >= K.u0 ? 1 : 0;
-  function gagal(i, alasan, tip){ if (st.fail[i]) return; st.fail[i] = alasan; st.tip[i] = tip || TIP[i]; say(`❌ <b>${NAMA[i]}:</b> ${alasan} Lanjutkan sampai selesai.`, 'bad'); }
+  function gagal(i, alasan, tip){ if (st.fail[i]) return; Efek.main('sentuh', [70, 50, 70]); st.fail[i] = alasan; st.tip[i] = tip || TIP[i]; say(`❌ <b>${NAMA[i]}:</b> ${alasan} Lanjutkan sampai selesai.`, 'bad'); }
   function aktif(b){ btn.gas.disabled = btn.rem.disabled = !b; }
 
   function mulai(){
@@ -4086,7 +4128,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     }
     if (m === 3 && st.path === 'main') {
       if (rem && st.remAt === null && st.l > K.rem - 60) {
-        st.remAt = st.l;
+        st.remAt = st.l; Efek.main(null, 30);
         if (st.l < K.rem - 22) gagal(3, 'Mengerem sebelum garis REM.');
         else if (kmh < 25) gagal(3, 'Kecepatan belum ±30 km/jam saat tiba di garis REM.', 'Setelah keluar dari huruf S, tambah gas di lintasan lurus sampai ±30 km/jam sebelum garis REM.');
         isyarat();
@@ -4144,6 +4186,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   function selesai(){
     berhenti(); btn.start.textContent = '🔄 Ulangi';
     const lulus = st.fail.every(f => !f);
+    Efek.main(lulus ? 'benar' : 'salah', lulus ? [40, 60, 40] : 0);
     say(lulus ? '🎉 Semua materi lulus.' : 'Ujian selesai. Lihat materi yang perlu dilatih di bawah.', lulus ? 'good' : 'bad');
     res.innerHTML = `<div class="big" style="text-align:center;color:var(${lulus ? '--ok' : '--danger'})">${lulus ? '✅ LULUS' : '❌ BELUM LULUS'}</div>
       <ol class="us-hasil">${NAMA.map((n, i) => `<li class="${st.fail[i] ? 'x' : 'v'}"><b>${st.fail[i] ? '✗' : '✓'} ${i + 1}. ${n}</b>${st.fail[i] ? ` — ${st.fail[i]}<br><small>Tips: ${st.tip[i] || ''}</small>` : ' — lulus'}</li>`).join('')}</ol>
@@ -4205,7 +4248,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     body.innerHTML = `<div class="q"><p class="small muted" style="margin:0 0 6px">Soal ${qi + 1} dari ${qs.length}</p><p style="font-weight:700">${teks}</p><div class="rq-opts quiz"><button type="button" class="opt" data-ok="${lulus}">✅ Lulus</button><button type="button" class="opt" data-ok="${!lulus}">❌ Gagal</button></div><p class="small" id="lgEx" tabindex="-1" style="margin-top:8px"></p></div>`;
     $$('#lgBody .opt').forEach(b => b.onclick = () => {
       if ($('#lgBody .opt[disabled]')) return;
-      const ok = b.dataset.ok === 'true'; if (ok) skor++;
+      const ok = b.dataset.ok === 'true'; if (ok) skor++; Efek.main(ok ? 'benar' : 'salah', ok ? 0 : 40);
       $$('#lgBody .opt').forEach(x => { x.disabled = true; if (x.dataset.ok === 'true') x.classList.add('right'); });
       if (!ok) b.classList.add('wrong');
       $('#lgEx').innerHTML = `${ok ? '✅ Benar!' : '❌ Kurang tepat.'} Jawabannya <b>${lulus ? 'lulus' : 'gagal'}</b>. ${alasan} <button class="btn sm" type="button" id="lgNext" style="margin-left:6px">${qi + 1 < qs.length ? 'Soal berikutnya →' : 'Lihat skor'}</button>`;
@@ -4426,7 +4469,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     $('#rqBody').innerHTML = `<div class="q rq-sign"><p class="small muted" style="text-align:center;margin:0 0 6px">Soal ${qi + 1} dari ${qs.length} · ${CATN[r.k]}</p>${svg(r, 'Gambar soal ' + (qi + 1))}<p style="text-align:center;font-weight:700">Apa arti gambar ini?</p><div class="rq-opts quiz">${opts.map(o => `<button type="button" class="opt" data-ok="${o === r}">${o.n}</button>`).join('')}</div><p class="small" id="rqEx" tabindex="-1" style="margin-top:8px"></p></div>`;
     $$('#rqBody .opt').forEach(b => b.onclick = () => {
       if ($('#rqBody .opt[disabled]')) return;
-      const ok = b.dataset.ok === 'true'; if (ok) score++;
+      const ok = b.dataset.ok === 'true'; if (ok) score++; Efek.main(ok ? 'benar' : 'salah', ok ? 0 : 40);
       $$('#rqBody .opt').forEach(x => { x.disabled = true; if (x.dataset.ok === 'true') x.classList.add('right'); });
       if (!ok) b.classList.add('wrong');
       $('#rqEx').innerHTML = `${ok ? '✅ Benar!' : '❌ Kurang tepat.'} <b>${r.n}</b>: ${r.a} <button class="btn sm" type="button" id="rqNext" style="margin-left:6px">${qi + 1 < qs.length ? 'Soal berikutnya →' : 'Lihat skor'}</button>`;
