@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140722">
+<meta name="versi-buku" content="202610140730">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -126,7 +126,9 @@ main{max-width:980px;margin:0 auto;padding:18px 16px 110px;overflow-x:clip}
 @media (prefers-reduced-motion: reduce){.page.active,.page.active.back{animation:none}}
 .pbody{padding:26px clamp(16px,4vw,40px) 30px}
 .ph{background:linear-gradient(120deg,var(--brand-deep),#0b3d91 70%,#1456c2);color:#fff;padding:26px clamp(16px,4vw,40px) 22px;position:relative;overflow:hidden}
-.ph::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:28px solid rgba(242,183,5,.18)}
+/* ornamen batik Gajah Oling khas Banyuwangi (siluet garis tipis) */
+.ph::after{content:"";position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:min(300px,45%);height:150px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' opacity='.32'%3E%3Cg fill='none' stroke='%23f2b705' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M46 94C26 82 20 52 36 34C52 16 80 22 82 44C84 62 66 70 56 62C48 55 53 45 61 46'/%3E%3Cpath d='M46 94C58 86 72 88 80 98'/%3E%3Cpath d='M14 36C20 22 34 16 44 20C36 28 24 34 14 36Z'/%3E%3Cpath d='M88 70C94 78 94 88 88 94C84 86 84 78 88 70Z'/%3E%3Ccircle cx='24' cy='58' r='3' stroke='none' fill='%23f2b705'/%3E%3Ccircle cx='70' cy='82' r='2.5' stroke='none' fill='%23f2b705'/%3E%3Ccircle cx='92' cy='58' r='2.5' stroke='none' fill='%23f2b705'/%3E%3C/g%3E%3Cg transform='translate(200 0) scale(-1 1)'%3E%3Cg fill='none' stroke='%23f2b705' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M46 94C26 82 20 52 36 34C52 16 80 22 82 44C84 62 66 70 56 62C48 55 53 45 61 46'/%3E%3Cpath d='M46 94C58 86 72 88 80 98'/%3E%3Cpath d='M14 36C20 22 34 16 44 20C36 28 24 34 14 36Z'/%3E%3Cpath d='M88 70C94 78 94 88 88 94C84 86 84 78 88 70Z'/%3E%3Ccircle cx='24' cy='58' r='3' stroke='none' fill='%23f2b705'/%3E%3Ccircle cx='70' cy='82' r='2.5' stroke='none' fill='%23f2b705'/%3E%3Ccircle cx='92' cy='58' r='2.5' stroke='none' fill='%23f2b705'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right center/contain no-repeat;pointer-events:none}
+@media (max-width:560px){.ph::after{width:150px;height:100px;top:auto;bottom:6px;transform:none;opacity:.65}}
 .ph .code{display:inline-block;background:var(--accent);color:#1d1600;font-weight:800;font-size:.78rem;padding:3px 10px;border-radius:99px;letter-spacing:.04em}
 .ph .grp{font-size:.75rem;opacity:.8;margin-left:8px;letter-spacing:.06em;text-transform:uppercase}
 .ph h2{margin:10px 0 4px;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.2;letter-spacing:-.01em}
@@ -304,6 +306,14 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cover .tag{display:block;width:fit-content;margin:0 auto;background:var(--accent);color:#1d1600;font-weight:800;font-size:.78rem;padding:4px 12px;border-radius:99px;letter-spacing:.08em}
 .cover h2{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
 .cover h2 em{font-style:normal;color:var(--accent)}
+/* sapaan waktu + status buka/tutup Satpas di sampul */
+.sapa{margin:0 auto 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.sapa span{font-weight:800;font-size:1.02rem}
+.sapa small{font-size:.8rem;opacity:.85}
+.sapa-st{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:3px 10px;border-radius:99px;font-size:.74rem;font-weight:700;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1)}
+.sapa-st i{width:8px;height:8px;border-radius:50%;background:var(--danger)}
+.sapa-st.buka i{background:#3fd27a;animation:pulse 1.6s infinite}
+.sapa-st[hidden]{display:none}
 .cover p{opacity:.9;max-width:60ch}
 .cover .stripe{height:8px;background:linear-gradient(90deg,#c62828 0 50%,#fff 50% 100%);position:relative;z-index:2}
 .cover .cbtn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;max-width:520px}
@@ -874,6 +884,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="bgimg" style="background-image:url('img/sampul-latar.webp')"></div>
     <div class="ct">
       <img class="covlogo" src="img/logo-lantas-baru.webp" fetchpriority="high" alt="Logo Korps Lalu Lintas Polri" width="356" height="390">
+      <p class="sapa" id="sapa" aria-live="polite"><span id="sapaT">Sugeng rawuh, Dulur Banyuwangi</span><small>Tetap tertib berlalu lintas 🙏</small><a href="#C.2" data-go="c1-1" class="sapa-st" id="sapaSt" hidden></a></p>
       <span class="tag">BUKU DIGITAL INTERAKTIF</span>
       <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
@@ -3099,7 +3110,20 @@ function statusHariIni(){
     }
   } catch(e) {}
 }
-statusHariIni(); setInterval(statusHariIni, 30000);
+// sapaan di sampul: salam menurut jam perangkat pembaca + status layanan dari kotak C.2
+function sapaan(){
+  const h = new Date().getHours();
+  const salam = h >= 4 && h < 11 ? 'Selamat Pagi' : h >= 11 && h < 15 ? 'Selamat Siang' : h >= 15 && h < 18 ? 'Selamat Sore' : 'Selamat Malam';
+  $('#sapaT').textContent = `${salam}, Dulur Banyuwangi 👋`;
+  const st = $('#openStatus'), a = $('#sapaSt'), buka = st.classList.contains('open');
+  const ket = (st.querySelector('.small') || {}).textContent || '';
+  const kembali = ket.match(/Buka kembali (\S+?),? .*?pukul ([\d.]+)/) || ket.match(/Buka kembali (\S+) pukul ([\d.]+)/);
+  const lagi = buka ? 'tutup 13.00 WIB' : /hari ini pukul/.test(ket) ? 'buka 08.00 WIB' : kembali ? `buka ${kembali[1]} ${kembali[2]}` : '';
+  a.className = 'sapa-st' + (buka ? ' buka' : '');
+  a.innerHTML = `<i aria-hidden="true"></i>Satpas ${buka ? 'BUKA' : 'TUTUP'}${lagi ? ' · ' + lagi : ''}`;
+  a.hidden = !st.classList.contains('open') && !st.classList.contains('closed');
+}
+statusHariIni(); sapaan(); setInterval(() => { statusHariIni(); sapaan(); }, 30000);
 
 /* ---------------- C.2 perkiraan keramaian hari ini ---------------- */
 // rata-rata pemohon di kantor Satpas per hari (rekap 1 Agu – 13 Okt 2026); indeks 1 = Senin
@@ -3679,12 +3703,31 @@ const KartuBijak = (() => {
     ls.push(l); ls.forEach((s, i) => ctx.fillText(s, x, y + i * lh)); return ls.length;
   }
 
+  // bingkai batik Gajah Oling khas Banyuwangi: garis emas tipis + motif di keempat sudut
+  const MOTIF = ['M46 94C26 82 20 52 36 34C52 16 80 22 82 44C84 62 66 70 56 62C48 55 53 45 61 46', 'M46 94C58 86 72 88 80 98', 'M14 36C20 22 34 16 44 20C36 28 24 34 14 36Z', 'M88 70C94 78 94 88 88 94C84 86 84 78 88 70Z'].map(d => new Path2D(d)), TITIK = [[24, 58, 3], [70, 82, 2.5], [92, 58, 2.5]];
+  function motif(ctx, x, y, s, cermin, balik){
+    ctx.save(); ctx.translate(x, y); ctx.scale(cermin ? -s : s, balik ? -s : s);
+    ctx.lineWidth = 3; ctx.lineCap = ctx.lineJoin = 'round';
+    MOTIF.forEach(p => ctx.stroke(p)); TITIK.forEach(([cx, cy, r]) => { ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fill(); });
+    ctx.restore();
+  }
+  function bingkai(ctx){
+    ctx.save();
+    ctx.strokeStyle = ctx.fillStyle = 'rgba(242,183,5,.55)';
+    ctx.lineWidth = 3; bulat(ctx, 34, 34, W - 68, 1612, 28); ctx.stroke();
+    ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(242,183,5,.3)'; bulat(ctx, 50, 50, W - 100, 1580, 20); ctx.stroke();
+    ctx.strokeStyle = 'rgba(242,183,5,.6)';
+    const s = 2;
+    motif(ctx, 64, 64, s, false, false); motif(ctx, W - 64, 64, s, true, false);
+    motif(ctx, 64, 1616, 1.4, false, true); motif(ctx, W - 64, 1616, 1.4, true, true);   // bawah lebih kecil agar tidak menabrak label predikat
+    ctx.restore();
+  }
+
   function gambar(){
     const ctx = cv.getContext('2d'), pct = Math.round(opt.skor / opt.maks * 100), [ikon, pred] = predikat(pct);
     const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#071f4d'); g.addColorStop(1, '#0b3d91');
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-    ctx.lineWidth = 90; ctx.strokeStyle = 'rgba(242,183,5,.13)'; ctx.beginPath(); ctx.arc(W + 40, -40, 360, 0, 7); ctx.stroke();
-    ctx.lineWidth = 60; ctx.strokeStyle = 'rgba(111,156,242,.12)'; ctx.beginPath(); ctx.arc(-80, 1250, 260, 0, 7); ctx.stroke();
+    bingkai(ctx);
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     if (img.logo) ctx.drawImage(img.logo, W / 2 - 110, 110, 220, 220 * img.logo.height / img.logo.width);
     // label
