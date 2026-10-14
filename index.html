@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140710">
+<meta name="versi-buku" content="202610140713">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -89,6 +89,17 @@ img{max-width:100%;height:auto;display:block}
 .drawer:not(.on){visibility:hidden;transition:transform .25s,visibility 0s .25s}
 .drawer header{padding:14px 16px;background:var(--brand-deep);color:#fff;display:flex;align-items:center;gap:8px}
 .drawer header b{flex:1}
+/* Mode Intisari: halaman panjang hanya menampilkan bagian bertanda data-inti */
+.inti-bar{display:flex;justify-content:flex-end;margin:0 0 12px}
+.inti-sw{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--accent);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 6px 5px 12px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+.inti-sw small{font-weight:500;color:var(--muted)}
+.inti-sw i{position:relative;width:34px;height:20px;border-radius:99px;background:var(--line);transition:background .2s;flex:none}
+.inti-sw i::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.inti-sw[aria-checked="true"]{background:var(--accent-soft)}
+.inti-sw[aria-checked="true"] i{background:var(--accent)}
+.inti-sw[aria-checked="true"] i::after{transform:translateX(14px)}
+.inti-only{margin-bottom:16px}
+.inti-more{display:block;margin:14px auto 0}
 .drawer header .efek{font-size:.85rem}
 .drawer header .efek[aria-pressed="false"]{opacity:.7}
 .search{padding:12px 16px;border-bottom:1px solid var(--line)}
@@ -935,13 +946,33 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="a1" data-code="A.1" data-group="A" data-title="Rangkuman Pasal-Pasal Penting Perpol 5/2021 & Perpol 2/2023">
   <div class="ph"><span class="code">A.1</span><span class="grp">Materi Pokok</span><h2>Rangkuman Pokok Pasal-Pasal Penting</h2><p>Perpol No. 5 Tahun 2021 tentang Penerbitan dan Penandaan SIM beserta perubahannya dalam Perpol No. 2 Tahun 2023.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: yang wajib diketahui pemohon</h4>
+      <p class="small" style="margin:0 0 4px"><b>Syarat wajib</b></p>
+      <ul class="clean small">
+        <li>Setiap pengemudi kendaraan bermotor di jalan <b>wajib punya SIM</b> sesuai golongannya, termasuk kendaraan listrik.</li>
+        <li><b>Usia minimal:</b> 17 th (A, C, D, DI) · 18 th (CI) · 19 th (CII) · 20 th (A Umum, BI) · 21 th (BII) · 22 th (BI Umum) · 23 th (BII Umum).</li>
+        <li><b>e-KTP</b>, surat <b>sehat jasmani</b> dari dokter (berlaku 14 hari), surat <b>lulus psikologi</b> (berlaku 6 bulan), dan bukti <b>peserta aktif JKN/BPJS Kesehatan</b>.</li>
+        <li>Perpanjangan: lampirkan <b>SIM lama</b>.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti</b></p>
+      <ol class="small" style="margin:0;padding-left:20px">
+        <li>Pendaftaran</li><li>Identifikasi (foto, sidik jari, tanda tangan)</li><li>Ujian teori (E-AVIS) &amp; ujian praktik, bila SIM baru/naik golongan</li><li>Cetak &amp; terima SIM</li>
+      </ol>
+      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
+      <ul class="clean small">
+        <li>SIM yang <b>sudah lewat masa berlaku</b> tidak bisa diperpanjang, harus membuat <b>SIM baru</b> (kecuali Keadaan Kahar).</li>
+        <li>Tidak lulus ujian? Boleh <b>ujian ulang 2 kali</b> dalam 14 hari kerja.</li>
+        <li>Poin pelanggaran ≥ 12 = SIM ditahan/dicabut sementara; ≥ 18 = dicabut lewat putusan pengadilan.</li>
+      </ul>
+    </div>
     <div class="grid g2">
       <div class="card brand"><span class="chip">Peraturan Pokok</span><h4 style="margin-top:8px">Perpol No. 5 Tahun 2021</h4><p class="small">Tentang Penerbitan dan Penandaan Surat Izin Mengemudi. Ditetapkan &amp; diundangkan 19 Februari 2021 (BN RI 2021 No. 160). Terdiri atas 5 Bab dan 47 Pasal. Mencabut Perkap No. 9 Tahun 2012 tentang SIM.</p></div>
       <div class="card accent"><span class="chip y">Perubahan</span><h4 style="margin-top:8px">Perpol No. 2 Tahun 2023</h4><p class="small">Perubahan atas Perpol 5/2021. Ditetapkan 8 Februari 2023, diundangkan 17 Februari 2023 (BN RI 2023 No. 160). Latar belakang: memastikan pemohon SIM menjadi peserta aktif program <b>Jaminan Kesehatan Nasional</b>.</p></div>
     </div>
 
-    <h3>Angka-angka kunci</h3>
-    <div class="grid g4">
+    <h3 data-inti>Angka-angka kunci</h3>
+    <div class="grid g4" data-inti>
       <div class="card stat"><b>5 tahun</b><span>Masa berlaku SIM perseorangan &amp; umum (Ps. 4)</span></div>
       <div class="card stat"><b>3 tahun</b><span>Masa berlaku SIM Internasional (Ps. 4)</span></div>
       <div class="card stat"><b>14 hari</b><span>Berlaku surat keterangan dokter (Ps. 11)</span></div>
@@ -2813,6 +2844,34 @@ const Efek = (() => {
     if (ctx && ctx.state === 'running' && SUARA[nama]) { try { SUARA[nama](); } catch (e) {} }
   }
   return {main};
+})();
+// Mode Intisari (Baca 30 Detik): sakelar di halaman yang punya bagian bertanda data-inti; pilihan diingat untuk semua halaman
+(function(){
+  let on = store.get('sim-intisari', false);
+  const hal = pages.filter(p => p.querySelector('.pbody [data-inti]'));
+  function terap(p){
+    const body = p.querySelector('.pbody'), sw = body.querySelector('.inti-sw');
+    sw.setAttribute('aria-checked', on);
+    [...body.children].forEach(el => {
+      if (el.classList.contains('inti-bar')) return;
+      const tampil = on ? el.hasAttribute('data-inti') || el.classList.contains('inti-more') : !el.classList.contains('inti-only') && !el.classList.contains('inti-more');
+      if (!tampil && !el.hidden) { el.hidden = true; el.dataset.intiSembunyi = ''; }
+      else if (tampil && 'intiSembunyi' in el.dataset) { el.hidden = false; delete el.dataset.intiSembunyi; }
+    });
+  }
+  const set = (v, p) => { on = v; store.set('sim-intisari', on); hal.forEach(terap); if (p) p.querySelector('.inti-bar').scrollIntoView({block: 'nearest'}); };
+  hal.forEach(p => {
+    const body = p.querySelector('.pbody');
+    body.insertAdjacentHTML('afterbegin', '<div class="inti-bar noprint"><button type="button" class="inti-sw" role="switch" aria-checked="false">⚡ Mode Intisari <small>(Baca 30 Detik)</small><i aria-hidden="true"></i></button></div>');
+    body.insertAdjacentHTML('beforeend', '<button type="button" class="btn ghost inti-more noprint">📖 Tampilkan uraian lengkap</button>');
+    body.querySelector('.inti-sw').onclick = () => set(!on);
+    body.querySelector('.inti-more').onclick = () => set(false, p);
+    terap(p);
+  });
+  // saat mencetak, seluruh uraian ikut tercetak
+  let tadi = false;
+  addEventListener('beforeprint', () => { tadi = on; if (on) { on = false; hal.forEach(terap); } });
+  addEventListener('afterprint', () => { if (tadi) { on = true; hal.forEach(terap); } });
 })();
 let halSebelum = null;
 pageHooks.push(p => { if (halSebelum && halSebelum !== p) Efek.main('balik'); halSebelum = p; });
