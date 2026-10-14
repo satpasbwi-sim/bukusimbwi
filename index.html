@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140713">
+<meta name="versi-buku" content="202610140722">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -90,7 +90,7 @@ img{max-width:100%;height:auto;display:block}
 .drawer header{padding:14px 16px;background:var(--brand-deep);color:#fff;display:flex;align-items:center;gap:8px}
 .drawer header b{flex:1}
 /* Mode Intisari: halaman panjang hanya menampilkan bagian bertanda data-inti */
-.inti-bar{display:flex;justify-content:flex-end;margin:0 0 12px}
+.inti-bar{display:flex;justify-content:center;margin:0 0 12px}
 .inti-sw{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--accent);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 6px 5px 12px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
 .inti-sw small{font-weight:500;color:var(--muted)}
 .inti-sw i{position:relative;width:34px;height:20px;border-radius:99px;background:var(--line);transition:background .2s;flex:none}
@@ -99,6 +99,7 @@ img{max-width:100%;height:auto;display:block}
 .inti-sw[aria-checked="true"] i{background:var(--accent)}
 .inti-sw[aria-checked="true"] i::after{transform:translateX(14px)}
 .inti-only{margin-bottom:16px}
+.pbody > [data-inti-sembunyi]{display:none!important}
 .inti-more{display:block;margin:14px auto 0}
 .drawer header .efek{font-size:.85rem}
 .drawer header .efek[aria-pressed="false"]{opacity:.7}
@@ -1064,6 +1065,22 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="a2" data-code="A.2" data-group="A" data-title="Mekanisme dan SOP Penerbitan SIM">
   <div class="ph"><span class="code">A.2</span><span class="grp">Materi Pokok</span><h2>Mekanisme &amp; SOP Penerbitan SIM</h2><p>Sesuai Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: alur penerbitan SIM</h4>
+      <p class="small" style="margin:0 0 4px"><b>Syarat wajib</b></p>
+      <ul class="clean small">
+        <li>Memenuhi <b>usia</b>, <b>administrasi</b> (e-KTP, formulir/bukti daftar online), <b>sehat jasmani &amp; rohani</b>, dan <b>lulus ujian</b>.</li>
+        <li>Lampiran tambahan: <b>SIM lama</b> (perpanjangan / SIM kedaluwarsa), <b>surat laporan kehilangan</b> dari Polri (SIM hilang), SIM yang rusak (SIM rusak).</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li>Pendaftaran: serahkan dokumen, terima tanda bukti pendaftaran</li><li>Identifikasi: foto, sidik jari, tanda tangan elektronik</li><li>Pencerahan &amp; ujian teori E-AVIS (lulus nilai ≥ 70)</li><li>Ujian praktik (lulus bila tanpa kesalahan di setiap materi)</li><li>Bayar PNBP di loket BRI / BRIVA</li><li>Cetak &amp; terima SIM</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
+      <ul class="clean small">
+        <li>Ujian teori &amp; praktik untuk SIM baru, peningkatan golongan, dan pasca-pencabutan.</li>
+        <li>Tidak lulus? Ujian ulang <b>paling banyak 2 kali</b> dalam <b>14 hari kerja</b>, mulai 1 hari setelahnya.</li>
+        <li>Siapkan bukti <b>peserta aktif JKN</b>, diminta saat SIM diserahkan bila belum diberikan.</li>
+      </ul>
+    </div>
     <h3>Dua komponen penerbitan SIM <span class="chip">Pasal 6–7</span></h3>
     <div class="grid g2">
       <div class="card brand"><h4>1. Persyaratan</h4><p class="small">Usia · Administrasi · Kesehatan (jasmani &amp; rohani) · Lulus ujian (teori, simulator, praktik).</p></div>
@@ -1421,6 +1438,29 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b6" data-code="B.9" data-group="B" data-title="Permohonan SIM Perpanjangan">
   <div class="ph"><span class="code">B.9</span><span class="grp">Materi Pendukung</span><h2>Permohonan SIM Perpanjangan</h2><p>SIM A, SIM B, SIM C, dan SIM D — perpanjang sebelum masa berlaku habis.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: perpanjangan SIM</h4>
+      <p class="small" style="margin:0 0 4px"><b>Syarat wajib</b></p>
+      <ul class="clean small">
+        <li><b>SIM lama yang masih berlaku</b> + <b>e-KTP</b>.</li>
+        <li>Surat <b>sehat jasmani</b> dan hasil <b>tes psikologi</b>.</li>
+        <li>Bukti <b>peserta aktif JKN/BPJS Kesehatan</b>.</li>
+        <li>Khusus SIM A Umum, BI, BI Umum, BII, BII Umum: surat uji keterampilan (simulator).</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Angka kunci</b></p>
+      <ul class="clean small">
+        <li><b>± 30 menit</b> selesai di Satpas · <b>tanpa ujian</b> teori &amp; praktik · SIM baru berlaku <b>5 tahun</b>.</li>
+        <li>Tarif PNBP: SIM A/B <b>Rp80.000</b> · SIM C <b>Rp75.000</b> · SIM D <b>Rp30.000</b>.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li>Ambil formulir di Meja Informasi (A)</li><li>Bayar PNBP di loket BRI (G), simpan bukti</li><li>Registrasi, identifikasi &amp; foto (B)</li><li>Cetak SIM (H)</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
+      <ul class="clean small">
+        <li>Perpanjang <b>sebelum</b> masa berlaku habis. SIM yang sudah lewat harus dibuat <b>SIM baru</b> (kecuali Keadaan Kahar).</li>
+        <li>SIM A &amp; C juga bisa diperpanjang lewat <b>SINAR</b> (online, B.15) atau <b>SIM JEMPOL</b> (bus keliling, B.16).</li>
+        <li>Pemilik SIM yang terkena pinalti poin pelanggaran tidak dapat memperpanjang SIM.</li>
+      </ul>
+    </div>
     <figure class="poster"><img src="img/poster-standar-pelayanan-permohonan-sim-perpanja.webp" alt="Poster standar pelayanan permohonan SIM perpanjangan" width="1220" height="672" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
     <div class="grid g4">
       <div class="card brand stat"><b>± 30 menit</b><span>Jangka waktu penyelesaian</span></div>
@@ -1623,6 +1663,23 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji, sirkuit huruf S & simulasi uji sirkuit">
   <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, sirkuit huruf S, simulasi uji sirkuit, dan kuis lulus atau gagal untuk SIM C &amp; SIM A.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: ujian praktik SIM C</h4>
+      <p class="small" style="margin:0 0 4px"><b>Urutan sirkuit huruf S</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li><b>Pengereman / keseimbangan</b>: kurangi gas, rem depan + belakang bersamaan, berhenti sebelum garis STOP</li><li><b>Putar balik huruf U</b>: masuk dari sisi luar, gas tetap stabil, kaki tidak turun</li><li><b>Tikungan huruf S</b>: kecepatan rata, pandang ke tikungan berikutnya</li><li><b>Rem menghindar (cabang Y)</b>: rem di garis REM, lepas rem dulu, lalu menghindar sesuai isyarat petugas</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Syarat lulus</b></p>
+      <ul class="clean small">
+        <li><b>Tidak menyentuh</b> satu pun patok/sensor.</li>
+        <li><b>Kaki tetap di pijakan</b> selama motor berjalan.</li>
+        <li>Saat berhenti &amp; akan jalan: <b>turunkan kaki kiri</b> dan <b>tengok kanan belakang</b>.</li>
+        <li>Menyelesaikan seluruh materi.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
+      <ul class="clean small">
+        <li>Sebelum ujian: cek rem, lampu, spion, ban, klakson; pakai <b>helm SNI</b> (SIM C) atau <b>sabuk keselamatan</b> (SIM A).</li>
+        <li>Gagal? Ujian ulang <b>paling banyak 2 kali</b> dalam 14 hari kerja. Berlatih gratis di <b>LUPIS</b> (B.17).</li>
+      </ul>
+    </div>
     <h3>Video tutorial ujian praktik</h3>
     <p class="small muted" style="margin-top:-4px">Ketuk tombol untuk membuka langsung. Bila membaca dari laptop/komputer, pindai QR code dengan kamera HP.</p>
     <div class="grid g2 rqs">
@@ -1764,6 +1821,23 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b12" data-code="B.15" data-group="B" data-title="Layanan Penerbitan SIM SINAR">
   <div class="ph"><span class="code">B.15</span><span class="grp">Materi Pendukung</span><h2>Layanan Penerbitan SIM SINAR</h2><p>SIM Nasional Presisi — perpanjangan SIM secara online dari HP, tanpa perlu datang ke Satpas.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: perpanjang SIM online (SINAR)</h4>
+      <p class="small" style="margin:0 0 4px"><b>Syarat wajib</b></p>
+      <ul class="clean small">
+        <li><b>SIM A atau C lama yang masih berlaku</b>.</li>
+        <li>NIK, foto e-KTP, foto SIM lama, swafoto, pas foto &amp; foto tanda tangan.</li>
+        <li>Hasil <b>E-Rikkes</b> (kesehatan) &amp; <b>E-PPsi</b> (psikologi) yang masih berlaku.</li>
+        <li>Bukti <b>peserta aktif JKN/BPJS Kesehatan</b>, HP berkamera + internet, nomor HP aktif, rekening bank, alamat kirim lengkap.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li>Unduh aplikasi resmi <b>Digital Korlantas POLRI</b></li><li>Verifikasi OTP, registrasi &amp; unggah dokumen</li><li>Pilih SIM A/C dan Satpas Polresta Banyuwangi</li><li>Verifikasi E-Rikkes &amp; E-PPsi</li><li>Bayar PNBP + ongkos kirim dengan kode bayar</li><li>SIM dicetak &amp; dikirim lewat Pos Indonesia</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Angka kunci</b></p>
+      <ul class="clean small">
+        <li>PNBP: SIM A <b>Rp80.000</b> · SIM C <b>Rp75.000</b> (ongkos kirim &amp; tes kesehatan/psikologi terpisah).</li>
+        <li>Bantuan SINAR: WhatsApp <b>0816-255-705</b>.</li>
+      </ul>
+    </div>
     <div class="hero-inov sinar">
       <div><span class="chip y">INOVASI KORLANTAS POLRI</span><h3 class="plain">Perpanjang SIM dari rumah</h3><p>Melalui aplikasi <b>Digital Korlantas POLRI</b>, pemohon dapat memperpanjang SIM A dan C secara daring penuh: mengunggah data, memverifikasi hasil tes kesehatan (E-Rikkes) &amp; psikologi (E-PPsi), membayar PNBP, lalu menerima SIM baru yang dikirim lewat Pos Indonesia ke alamat rumah.</p></div>
       <div class="hero-art logo"><img loading="lazy" decoding="async" src="img/logo-sinar.png" alt="Logo SINAR, SIM Nasional Presisi, Korps Lalu Lintas Polri" width="178" height="130"></div>
@@ -1866,6 +1940,24 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b13" data-code="B.16" data-group="B" data-title="Layanan Penerbitan SIM Jempol">
   <div class="ph"><span class="code">B.16</span><span class="grp">Materi Pendukung</span><h2>SIM JEMPOL (Jemput Bola)</h2><p>Bus SIM Keliling hadir di kecamatan dan pusat keramaian untuk perpanjangan SIM A &amp; C.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: SIM JEMPOL (bus SIM keliling)</h4>
+      <p class="small" style="margin:0 0 4px"><b>Syarat wajib</b></p>
+      <ul class="clean small">
+        <li><b>Hanya perpanjangan SIM A &amp; C yang masih berlaku</b>. Perpanjang paling lambat <b>H-3</b> sebelum habis.</li>
+        <li>SIM asli, <b>e-KTP asli + 2 fotokopi</b>.</li>
+        <li>Surat sehat jasmani &amp; psikologi (tersedia di lokasi).</li>
+        <li><b>Peserta aktif BPJS Kesehatan</b>.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti (± 10–15 menit)</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li>Daftar &amp; verifikasi berkas</li><li>Tes kesehatan &amp; psikologi di tenda</li><li>Bayar PNBP (bisa QRIS/EDC)</li><li>Foto, sidik jari, tanda tangan di dalam bus</li><li>Cetak &amp; terima SIM</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Angka kunci</b></p>
+      <ul class="clean small">
+        <li>PNBP: SIM A <b>Rp80.000</b> · SIM C <b>Rp75.000</b>.</li>
+        <li>Info jadwal: WhatsApp <b>0852-3390-0100</b> · Instagram <b>@satpassim_banyuwangi</b>.</li>
+        <li>SIM baru / SIM yang sudah lewat masa berlaku: urus di Satpas induk (B.8).</li>
+      </ul>
+    </div>
     <div class="hero-inov jempol">
       <div><span class="chip y">INOVASI SATLANTAS POLRESTA BANYUWANGI</span><h3 class="plain">“Kami yang datang ke Anda”</h3><p>Banyuwangi adalah kabupaten terluas di Pulau Jawa. Warga di pelosok dan pesisir bisa menempuh <b>40–70 km</b> ke Satpas induk. SIM JEMPOL mengubah pola layanan dari <b>menunggu pemohon datang</b> menjadi <b>menjemput kebutuhan masyarakat</b>.</p></div>
       <div class="hero-art foto"><img src="img/bus-simling.webp" alt="Ilustrasi Bus Layanan SIM Keliling Polisi" width="1200" height="800" loading="lazy"></div>
@@ -1877,9 +1969,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 
     <div class="note warn"><b>Hanya untuk perpanjangan!</b>SIM JEMPOL melayani <b>perpanjangan SIM A dan SIM C yang masih berlaku</b>. SIM baru atau SIM yang sudah lewat masa berlaku tetap diurus di Satpas induk (lihat B.8). Perpanjang paling lambat <b>H-3</b> sebelum tanggal habis.</div>
 
-    <h3 id="jadwal-simling">🗓️ Jadwal SIM Keliling</h3>
-    <div class="simling" id="simling" aria-live="polite"><p class="small muted">Memuat jadwal terbaru…</p></div>
-    <p class="small muted" id="simlingUpd" style="margin-top:6px"></p>
+    <h3 id="jadwal-simling" data-inti>🗓️ Jadwal SIM Keliling</h3>
+    <div class="simling" id="simling" aria-live="polite" data-inti><p class="small muted">Memuat jadwal terbaru…</p></div>
+    <p class="small muted" id="simlingUpd" style="margin-top:6px" data-inti></p>
 
     <h3>Persyaratan</h3>
     <div class="tw"><table><thead><tr><th>No</th><th>Dokumen</th><th>Ketentuan</th></tr></thead><tbody>
@@ -1985,6 +2077,23 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b14" data-code="B.17" data-group="B" data-title="SIM LUPIS">
   <div class="ph"><span class="code">B.17</span><span class="grp">Materi Pendukung</span><h2>LUPIS — Latihan Ujian Praktik SIM</h2><p>Bimbingan dan coaching clinic uji teori &amp; praktik SIM, <b>100% gratis</b>.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: LUPIS, latihan ujian praktik gratis</h4>
+      <p class="small" style="margin:0 0 4px"><b>Siapa yang boleh ikut</b></p>
+      <ul class="clean small">
+        <li>Usia minimal <b>17 tahun</b>, punya <b>e-KTP</b> (atau kartu pelajar bagi pemula).</li>
+        <li>Yang <b>belum lulus</b> ujian teori/praktik, atau warga yang ingin berlatih sebelum mendaftar SIM.</li>
+        <li><b>Gratis (Rp0)</b>, boleh berlatih berulang kali sampai siap.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Jadwal &amp; durasi</b></p>
+      <ul class="clean small">
+        <li><b>Selasa–Jumat 12.00–15.00 WIB</b> · <b>Sabtu 09.00–11.30 WIB</b>.</li>
+        <li>Per sesi: SIM C &amp; SIM A <b>30 menit</b>, SIM D 30–45 menit.</li>
+        <li>Konfirmasi lewat WhatsApp <b>0852-3390-0100</b>.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li>Lapor ke loket LUPIS (bawa bukti gagal ujian / bukti registrasi)</li><li>Pencerahan teori &amp; tips soal E-AVIS (± 15 menit)</li><li>Latihan simulator</li><li>Latihan praktik di sirkuit resmi bersama penguji</li></ol>
+    </div>
     <div class="hero-inov lupis">
       <div><span class="chip y">INOVASI SATLANTAS POLRESTA BANYUWANGI</span><h3 class="plain">Dari “kami menguji Anda” menjadi “kami membantu Anda belajar”</h3><p>Banyak pemohon gagal ujian praktik bukan karena tidak bisa berkendara, melainkan karena <b>gugup dan cemas</b> di bawah pengawasan penguji. LUPIS menghadirkan latihan di <b>lapangan ujian yang sebenarnya</b>, didampingi penguji bersertifikat yang ramah, sabar, dan komunikatif.</p></div>
       <div class="hero-art foto"><img src="img/lupis-1.jpg" alt="Ilustrasi latihan LUPIS: petugas memberi arahan kepada peserta bersepeda motor di lapangan uji" width="1000" height="704" loading="lazy"></div>
@@ -2114,6 +2223,28 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <section class="page" data-id="b15" data-code="B.18" data-group="B" data-title="SIBABA">
   <div class="ph"><span class="code">B.18</span><span class="grp">Materi Pendukung</span><h2>SIBABA — SIM Bersama Disabilitas</h2><p>Layanan SIM D &amp; DI yang inklusif, ramah, dan jemput bola bagi penyandang disabilitas.</p></div>
   <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: SIBABA, SIM untuk penyandang disabilitas</h4>
+      <p class="small" style="margin:0 0 4px"><b>Syarat wajib</b></p>
+      <ul class="clean small">
+        <li>Usia minimal <b>17 tahun</b>, <b>e-KTP</b> asli yang masih berlaku.</li>
+        <li>Surat dokter (kondisi fisik &amp; rekomendasi kendaraan modifikasi) dan surat lulus <b>tes psikologi</b>.</li>
+        <li>Bukti <b>peserta aktif JKN/BPJS Kesehatan</b>.</li>
+        <li>Kendaraan modifikasi sendiri, atau memakai yang disediakan Satpas.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Angka kunci</b></p>
+      <ul class="clean small">
+        <li><b>SIM D</b> (roda dua/tiga modifikasi) &amp; <b>SIM DI</b> (roda empat modifikasi): baru <b>Rp50.000</b> · perpanjangan <b>Rp30.000</b>.</li>
+        <li>Layanan di Satpas <b>± 50 menit</b>, dengan antrean &amp; loket prioritas.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Langkah inti</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li>Disambut petugas pendamping, antrean prioritas</li><li>Registrasi &amp; verifikasi berkas</li><li>Bayar PNBP</li><li>Identifikasi &amp; foto (alat disesuaikan)</li><li>Ujian teori (soal bisa dibacakan / juru bahasa isyarat)</li><li>Uji praktik khusus</li><li>Terima SIM di loket prioritas</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
+      <ul class="clean small">
+        <li>Belum lulus? Ada <b>coaching clinic gratis</b>, ujian ulang paling banyak 2 kali dalam 14 hari kerja.</li>
+        <li>WhatsApp khusus: <b>0852-3390-0100</b>.</li>
+      </ul>
+    </div>
     <div class="hero-inov sibaba">
       <div><span class="chip y">INOVASI SATLANTAS POLRESTA BANYUWANGI</span><h3 class="plain">Semua berhak berkendara secara legal</h3><p>Penyandang disabilitas sebelumnya terkendala jarak ke Satpas, informasi yang minim, beban psikologis, dan ujian yang belum adaptif. Bersama <b>Dinas Sosial</b>, organisasi disabilitas, dan <b>pendamping sebaya (peer support)</b>, SIBABA hadir menjemput dan mendampingi.</p></div>
       <div class="a11y" aria-hidden="true">♿</div>
