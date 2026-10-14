@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140750">
+<meta name="versi-buku" content="202610140755">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -619,6 +619,7 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .resume[hidden]{display:none}
 .wizcta{display:flex;align-items:center;gap:12px;width:100%;max-width:520px;margin:6px 0 14px;padding:12px 14px;border-radius:14px;border:2px solid var(--accent);background:#fff;color:#071f4d;text-align:left;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 .wizcta .ic{font-size:1.6rem}
+.wiz .wimg{display:flex;width:100%;justify-content:center;margin-top:10px;background:var(--accent);border-color:var(--accent);color:#1b1400}
 .wizcta span:nth-child(2){flex:1;min-width:0}
 .wizcta b{display:block;font-size:1rem}
 .wizcta small{display:block;font-size:.78rem;color:#3f4d66;line-height:1.35}
@@ -3535,6 +3536,7 @@ document.addEventListener('click', e => {
     if (!biaya) { const b = cariTarif(jenisTarif, gol); biaya = b ? rupiah(b) : 'lihat <a href="#c3" data-go="c3">D.3</a>'; }
     links.push(['b2', 'B.2 Tarif resmi & stop pungli']);
     const ikon = {ok: '✅', warn: '⚠️', danger: '⛔'};
+    st._kartu = {judul, notes, biaya, dok: CEK[ck], cara};
     const ringkas = `${judul}\nBiaya resmi (PNBP): ${biaya.replace(/<[^>]+>/g, '')}\nDokumen: ${CEK[ck].join('; ')}\nPanduan lengkap: ${CONFIG.siteUrl}`;
     body.innerHTML = `<p class="wstep">Hasil</p><h3 id="wizQ" tabindex="-1">${judul}</h3>
       ${notes.map(([k, s]) => `<p class="wnote ${k}"><span aria-hidden="true">${ikon[k]}</span> ${s}</p>`).join('')}
@@ -3544,7 +3546,8 @@ document.addEventListener('click', e => {
       ${st._exp ? `<h4>Jangan sampai lupa</h4>${calHtml(st._exp)}` : ''}
       <h4>Baca selengkapnya</h4><p class="wlinks">${links.map(([id, l]) => `<a href="#${id}" data-go="${id}">${l}</a>`).join('')}</p>
       <div class="wnav"><button type="button" class="btn ghost" data-wreset>↺ Ulangi</button><button type="button" class="btn" data-wck="${ck}">☑️ Buka checklist dokumen</button>
-      <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(ringkas)}" target="_blank" rel="noopener">💬 Kirim ke WhatsApp</a></div>`;
+      <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(ringkas)}" target="_blank" rel="noopener">💬 Kirim ke WhatsApp</a></div>
+      <button type="button" class="btn wimg" data-wimg>📥 Simpan Ringkasan Syarat sebagai Gambar</button>`;
     $('#wizQ').focus();
     gcCount('wizard/' + st.jenis + '/' + (gol || '').replace(/\s+/g, '-'), 'Wizard SIM', true);
   }
@@ -3559,6 +3562,7 @@ document.addEventListener('click', e => {
     if (e.target.closest('[data-wback]')) { step--; tampil(); }
     else if (e.target.closest('[data-wnext]')) { if (step < alur().length - 1) { step++; tampil(); } else hasil(); }
     else if (e.target.closest('[data-wreset]')) { st = {}; step = 0; tampil(); }
+    else if (e.target.closest('[data-wimg]')) { const b = e.target.closest('[data-wimg]'); b.disabled = true; b.textContent = '⏳ Menyiapkan gambar…'; KartuSyarat.simpan(st._kartu).finally(() => { b.disabled = false; b.textContent = '📥 Simpan Ringkasan Syarat sebagai Gambar'; }); }
     else if (e.target.closest('[data-wck]')) { $('#ckSel').value = e.target.closest('[data-wck]').dataset.wck; renderCk(); tutup(); goId('c6'); focusPage(); }
   });
   dlg.addEventListener('change', e => {
@@ -3796,9 +3800,102 @@ const KartuBijak = (() => {
   };
   $('#kartuWa').onclick = () => { window.open('https://wa.me/?text=' + encodeURIComponent(teksBagi()), '_blank', 'noopener'); };
   document.addEventListener('click', e => { const b = e.target.closest('[data-kartu]'); if (b) buka(JSON.parse(b.dataset.kartu)); });
-  return { buka, tombol: o => `<button type="button" class="btn kartu-btn" data-kartu='${JSON.stringify(o).replace(/'/g, '&#39;')}'>🪪 Buat Kartu Pengendara Bijak</button>` };
+  return { buka, unduh, alat: {F, bulat, baris, muat, motif, QR}, tombol: o => `<button type="button" class="btn kartu-btn" data-kartu='${JSON.stringify(o).replace(/'/g, '&#39;')}'>🪪 Buat Kartu Pengendara Bijak</button>` };
 })();
 window.KartuBijak = KartuBijak;
+
+/* ---------------- Kartu "Ceklis Siap Berangkat" (hasil "SIM apa yang saya butuhkan?" disimpan ke galeri HP) ---------------- */
+const KartuSyarat = (() => {
+  const {F, bulat, baris, muat, motif, QR} = KartuBijak.alat;
+  const W = 1080, M = 70, LEBAR = W - 2 * M, URL_BUKU = 'satpasbwi-sim.github.io/bukusimbwi';
+  const polos = t => String(t).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  const WARNA = {ok: ['#e6f6ec', '#1b7a43'], warn: ['#fff4d6', '#8a5a00'], danger: ['#fde8e8', '#b42318']};
+  let img = null;
+  // jumlah baris teks bila dibungkus selebar maks (sama dengan cara baris())
+  const jml = (ctx, t, maks) => { let l = '', n = 1; t.split(' ').forEach(k => { const c = l ? l + ' ' + k : k; if (ctx.measureText(c).width > maks && l) { n++; l = k; } else l = c; }); return n; };
+
+  function gambar(cv, d){
+    const ctx = cv.getContext('2d'), H = cv.height;
+    ctx.fillStyle = '#f4f7fc'; ctx.fillRect(0, 0, W, H);
+    // kepala
+    const g = ctx.createLinearGradient(0, 0, W, 360); g.addColorStop(0, '#071f4d'); g.addColorStop(1, '#0b3d91');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, 360);
+    ctx.strokeStyle = ctx.fillStyle = 'rgba(242,183,5,.5)'; motif(ctx, W - 40, 40, 1.6, true, false);
+    if (img.logo) ctx.drawImage(img.logo, M, 60, 120, 120 * img.logo.height / img.logo.width);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.font = F(800, 30); const lbl = 'CEKLIS SIAP BERANGKAT', lw = ctx.measureText(lbl).width + 50;
+    ctx.fillStyle = '#f2b705'; bulat(ctx, M + 150, 70, lw, 56, 28); ctx.fill();
+    ctx.fillStyle = '#1d1600'; ctx.fillText(lbl, M + 175, 108);
+    ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.font = F(700, 28); ctx.fillText('SATPAS POLRESTA BANYUWANGI', M + 150, 170);
+    ctx.fillStyle = '#fff'; ctx.font = F(800, 50); const nj = baris(ctx, polos(d.judul), M, 260, LEBAR, 60);
+    let y = 260 + nj * 60 + 40;
+    y = Math.max(y, 400);
+    // catatan penting
+    ctx.font = F(600, 30);
+    d.notes.forEach(([k, t]) => {
+      const [bg, fg] = WARNA[k] || WARNA.warn, teks = polos(t);
+      const n = jml(ctx, teks, LEBAR - 60);
+      ctx.fillStyle = bg; bulat(ctx, M, y, LEBAR, n * 40 + 30, 18); ctx.fill();
+      ctx.fillStyle = fg; const nb = baris(ctx, teks, M + 30, y + 50, LEBAR - 60, 40);
+      y += nb * 40 + 50;
+    });
+    // biaya
+    ctx.fillStyle = '#071f4d'; bulat(ctx, M, y, LEBAR, 170, 22); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.font = F(600, 28); ctx.fillText('Biaya resmi (PNBP)', M + 36, y + 52);
+    ctx.fillStyle = '#f2b705'; ctx.font = F(800, 52); ctx.fillText(polos(d.biaya), M + 36, y + 112);
+    ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.font = F(500, 24); ctx.fillText('Dibayar di loket bank, bukan ke perorangan.', M + 36, y + 150);
+    y += 220;
+    const judulBag = t => { ctx.fillStyle = '#0b3d91'; ctx.font = F(800, 36); ctx.fillText(t, M, y); y += 24; };
+    // dokumen
+    judulBag('Dokumen yang dibawa');
+    d.dok.forEach(t => {
+      y += 20; ctx.strokeStyle = '#0b3d91'; ctx.lineWidth = 3; bulat(ctx, M, y, 36, 36, 8); ctx.stroke();
+      ctx.fillStyle = '#1c2840'; ctx.font = F(500, 30); const n = baris(ctx, polos(t), M + 60, y + 29, LEBAR - 60, 40);
+      y += n * 40 + 4;
+    });
+    y += 50;
+    // jam layanan
+    judulBag('Jam layanan Satpas');
+    y += 24; ctx.fillStyle = '#1c2840'; ctx.font = F(700, 30); ctx.fillText('Senin–Sabtu, 08.00–13.00 WIB', M, y + 20);
+    ctx.font = F(500, 28); ctx.fillStyle = '#5b6780'; ctx.fillText('Minggu, libur nasional & cuti bersama: tutup. Datang lebih pagi.', M, y + 62);
+    y += 120;
+    // tempat
+    judulBag('Di mana mengurusnya');
+    d.cara.forEach(t => {
+      y += 20; ctx.fillStyle = '#c62828'; ctx.beginPath(); ctx.arc(M + 12, y + 18, 8, 0, 7); ctx.fill();
+      ctx.fillStyle = '#1c2840'; ctx.font = F(500, 30); const n = baris(ctx, polos(t), M + 40, y + 29, LEBAR - 40, 40);
+      y += n * 40 + 4;
+    });
+    y += 50;
+    // kaki: QR + alamat buku
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, y, W, 240);
+    ctx.fillStyle = '#e1e8f3'; ctx.fillRect(0, y, W, 2);
+    if (img.qr) ctx.drawImage(img.qr, M - 10, y + 25, 190, 190);
+    ctx.fillStyle = '#071f4d'; ctx.font = F(800, 38); ctx.fillText('Panduan lengkap & tarif resmi:', M + 210, y + 90);
+    ctx.fillStyle = '#c62828'; ctx.font = F(800, 32); ctx.fillText(URL_BUKU, M + 210, y + 140);
+    ctx.fillStyle = '#5b6780'; ctx.font = F(500, 24);
+    ctx.fillText('Disimpan ' + new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'}) + ' · Tolak calo & pungli', M + 210, y + 185);
+    y += 240;
+    ctx.fillStyle = '#c62828'; ctx.fillRect(0, y, W / 2, 16); ctx.fillStyle = '#e9eff8'; ctx.fillRect(W / 2, y, W / 2, 16);
+    return y + 16;
+  }
+
+  async function simpan(d){
+    if (!img) { const [logo, qr] = await Promise.all([muat('img/logo-lantas-baru.webp'), muat(QR)]); img = {logo, qr}; }
+    try { await Promise.all([document.fonts.load(F(800, 40)), document.fonts.load(F(500, 30))]); } catch(e){}
+    // gambar dua kali: pertama untuk mengukur tinggi, kedua dengan tinggi yang pas
+    const uji = document.createElement('canvas'); uji.width = W; uji.height = 4000;
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = Math.max(1350, gambar(uji, d));
+    gambar(cv, d);
+    const f = await new Promise(ok => cv.toBlob(b => ok(new File([b], 'ceklis-siap-berangkat-SIM.jpg', {type: 'image/jpeg'})), 'image/jpeg', .92));
+    if (navigator.canShare && navigator.canShare({files: [f]})) {
+      try { await navigator.share({files: [f], title: 'Ceklis Siap Berangkat', text: polos(d.judul) + ' · Buku Digital SIM Satpas Polresta Banyuwangi'}); }
+      catch(e){ if (e && e.name !== 'AbortError') KartuBijak.unduh(f); }
+    } else KartuBijak.unduh(f);
+    gcCount('ceklis/simpan', 'Ceklis Siap Berangkat', true);
+  }
+  return {simpan};
+})();
 
 /* ---------------- D.9 glosarium ---------------- */
 const GLO = [
