@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140746">
+<meta name="versi-buku" content="202610140750">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -3363,6 +3363,7 @@ const ymd = d => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}
 const tglPendek = d => d.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'});
 const PENGINGAT = [
   [-30, 'Saatnya perpanjang SIM (habis 30 hari lagi)'],
+  [-14, 'SIM habis 14 hari lagi, segera perpanjang'],
   [-7, 'SIM habis 7 hari lagi, segera perpanjang'],
   [0, 'Hari terakhir masa berlaku SIM']
 ];
@@ -3381,7 +3382,7 @@ function calHtml(exp){
     '&details=' + encodeURIComponent(calInfo(exp));
   return `<div class="calbtn"><a class="btn sm" href="${g}" target="_blank" rel="noopener" data-cal="google">📅 Tambah ke Google Calendar</a>` +
     `<button type="button" class="btn ghost sm" data-ics="${ymd(exp)}">⬇️ Simpan ${n} pengingat ke kalender HP</button></div>` +
-    `<p class="small muted" style="margin:6px 0 0">Untuk iPhone, Samsung, Outlook, dll. Pengingat berbunyi pukul 08.00 pada H-30, H-7, dan hari habisnya (yang belum terlewat). Tanggal SIM diolah di HP Anda saja, tidak dikirim ke server Satpas.</p>`;
+    `<p class="small muted" style="margin:6px 0 0">Untuk iPhone, Samsung, Outlook, dll. Pengingat berbunyi pukul 08.00 pada H-30, H-14, H-7, dan hari habisnya (yang belum terlewat).</p>`;
 }
 function unduhIcs(exp){
   const esc = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
