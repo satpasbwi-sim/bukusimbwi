@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140702">
+<meta name="versi-buku" content="202610140710">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -2799,16 +2799,9 @@ const Efek = (() => {
     o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + lama + .02);
   };
   const SUARA = {
-    balik(){   // desir lembut kertas
-      const n = Math.floor(ctx.sampleRate * .16), b = ctx.createBuffer(1, n, ctx.sampleRate), d = b.getChannelData(0);
-      for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
-      const src = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain(), t = ctx.currentTime;
-      f.type = 'bandpass'; f.Q.value = .8; f.frequency.setValueAtTime(2200, t); f.frequency.exponentialRampToValueAtTime(700, t + .16);
-      g.gain.setValueAtTime(.05, t);
-      src.buffer = b; src.connect(f).connect(g).connect(ctx.destination); src.start(t);
-    },
-    benar(){ nada(880, 0, 0, .3, .09); nada(1318.5, 0, .09, .45, .08); },   // ting!
-    salah(){ nada(240, 170, 0, .22, .06, 'triangle'); },
+    balik(){ nada(1200, 900, 0, .05, .05); },   // klik lembut
+    benar(){ nada(660, 0, 0, .18, .07, 'triangle'); nada(880, 0, .08, .18, .07, 'triangle'); nada(1100, 0, .16, .35, .07, 'triangle'); },   // tiga nada naik
+    salah(){ nada(180, 90, 0, .16, .09); },   // dentum pelan
     sentuh(){ nada(150, 110, 0, .16, .08, 'triangle'); }
   };
   btn.onclick = () => { on = !on; store.set('sim-efek', on); tampil(); if (on) { buka(); main('benar', 30); } };
