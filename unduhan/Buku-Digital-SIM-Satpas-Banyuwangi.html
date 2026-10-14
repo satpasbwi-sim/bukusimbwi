@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141358">
+<meta name="versi-buku" content="202610141409">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -1848,10 +1848,10 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <g class="spd"><circle cx="200" cy="34" r="15" fill="#fff" stroke="#c62828" stroke-width="4"/><text x="200" y="39" text-anchor="middle" font-weight="800" font-size="12">30</text>
            <circle cx="700" cy="350" r="15" fill="#fff" stroke="#c62828" stroke-width="4"/><text x="700" y="355" text-anchor="middle" font-weight="800" font-size="12">30</text></g>
         <g class="cap" font-size="12" fill="#cfd6df" text-anchor="middle"><text x="460" y="440">Luas lapangan 35 × 30 m · lebar lintasan 200 cm</text></g>
-        <g class="st" data-i="0" tabindex="0" role="button" aria-label="Materi 1: pengereman dan keseimbangan"><circle cx="300" cy="70" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="300" y="78" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">1</text></g>
-        <g class="st" data-i="1" tabindex="0" role="button" aria-label="Materi 2: putar balik huruf U"><circle cx="510" cy="110" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="510" y="118" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">2</text></g>
-        <g class="st" data-i="2" tabindex="0" role="button" aria-label="Materi 3: tikungan kombinasi"><circle cx="220" cy="270" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="220" y="278" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">3</text></g>
-        <g class="st" data-i="3" tabindex="0" role="button" aria-label="Materi 4: rem menghindar"><circle cx="640" cy="260" r="26" fill="#1f8a4c" stroke="#fff" stroke-width="4"/><text x="640" y="268" text-anchor="middle" font-weight="800" fill="#fff" font-size="22">4</text></g>
+        <g class="st" data-i="0" tabindex="0" role="button" aria-label="Materi 1: pengereman dan keseimbangan"><circle cx="290" cy="25" r="21" fill="#1f8a4c" stroke="#fff" stroke-width="3"/><text x="290" y="32" text-anchor="middle" font-weight="800" fill="#fff" font-size="19">1</text></g>
+        <g class="st" data-i="1" tabindex="0" role="button" aria-label="Materi 2: putar balik huruf U"><circle cx="555" cy="110" r="21" fill="#1f8a4c" stroke="#fff" stroke-width="3"/><text x="555" y="117" text-anchor="middle" font-weight="800" fill="#fff" font-size="19">2</text></g>
+        <g class="st" data-i="2" tabindex="0" role="button" aria-label="Materi 3: tikungan kombinasi"><circle cx="220" cy="270" r="21" fill="#1f8a4c" stroke="#fff" stroke-width="3"/><text x="220" y="277" text-anchor="middle" font-weight="800" fill="#fff" font-size="19">3</text></g>
+        <g class="st" data-i="3" tabindex="0" role="button" aria-label="Materi 4: rem menghindar"><circle cx="690" cy="262" r="21" fill="#1f8a4c" stroke="#fff" stroke-width="3"/><text x="690" y="269" text-anchor="middle" font-weight="800" fill="#fff" font-size="19">4</text></g>
       </svg>
       <div class="vinfo" id="circInfo" aria-live="polite"><h4>Urutan: 1 → 2 → 3 → 4</h4><p>Masuk dari START di kiri atas, lalu ikuti lintasan sampai berhenti di garis STOP kiri atau kanan pada cabang Y.</p></div>
       <div class="salah">
@@ -4486,9 +4486,10 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   const P = {main: mk('path', {d: dMain, fill: 'none'}), L: mk('path', {d: dL + ' V70', fill: 'none'}), R: mk('path', {d: dR + ' V70', fill: 'none'})};
   const sig = mk('g', {visibility: 'hidden'});
   const panah = mk('path', {d: 'M-24 -9H4V-20L26 0L4 20V9H-24Z', fill: '#f2b705', stroke: '#111', 'stroke-width': 3}, sig);
-  const moto = mk('g', {transform: 'translate(30 70)'});
-  // ikon sepeda motor tampak atas (menghadap kanan; diputar mengikuti arah lintasan)
-  moto.innerHTML = `<g transform="scale(1.45)"><rect x="-24" y="-3.5" width="13" height="7" rx="3.5" fill="#111"/><rect x="12" y="-3" width="12" height="6" rx="3" fill="#111"/>
+  const FR = 24;                                       // jarak titik tengah ikon ke ujung ban depan (1 m = ±19 satuan gambar; lebar lintasan 200 cm = 38)
+  const moto = mk('g', {transform: `translate(${30 + FR} 70)`});
+  // ikon sepeda motor tampak atas (menghadap kanan; diputar mengikuti arah lintasan). Ukuran ±2,6 × 1 m agar tetap di dalam lintasan 200 cm, termasuk di cabang Y
+  moto.innerHTML = `<g><rect x="-24" y="-3.5" width="13" height="7" rx="3.5" fill="#111"/><rect x="12" y="-3" width="12" height="6" rx="3" fill="#111"/>
     <path d="M-17 -5.5H8L15 -3V3L8 5.5H-17Q-20 0 -17 -5.5Z" fill="#f2b705" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
     <path d="M11 -10V10" stroke="#111" stroke-width="3" stroke-linecap="round"/>
     <path d="M-6 -6.5L10 -8.5M-6 6.5L10 8.5" stroke="#0b3d91" stroke-width="3" stroke-linecap="round"/>
@@ -4531,7 +4532,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
 
   function mulai(){
     if (!K) ukur();
-    st = {on: true, path: 'main', l: 0, v: 0, max1: 0, fase: 'jalan', henti1: false, remAt: null, isyarat: null, pilih: null, fail: [null, null, null, null], tip: []};
+    st = {on: true, path: 'main', l: FR, v: 0, max1: 0, fase: 'jalan', henti1: false, remAt: null, isyarat: null, pilih: null, fail: [null, null, null, null], tip: []};
     gas = rem = false; res.innerHTML = ''; sig.setAttribute('visibility', 'hidden');
     btn.start.hidden = true; btn.L.disabled = btn.R.disabled = btn.look.disabled = true; aktif(true);
     say('Tahan <b>Gas</b> sampai ±30 km/jam, lalu <b>Rem</b> agar berhenti tepat sebelum garis STOP pertama.');
@@ -4570,11 +4571,11 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     const m = materi();
     if (m === 0 && !st.henti1) {
       st.max1 = Math.max(st.max1, kmh);
-      if (l0 < K.stop1 && st.l >= K.stop1) { gagal(0, 'Ban depan melewati garis STOP.'); st.henti1 = true; }
-      else if (st.v === 0 && st.l > 5) {
+      if (l0 + FR < K.stop1 && st.l + FR >= K.stop1) { gagal(0, 'Ban depan melewati garis STOP.'); st.henti1 = true; }
+      else if (st.v === 0 && st.l > FR + 5) {
         st.henti1 = true;
         if (st.max1 < 27) gagal(0, 'Kecepatan belum mencapai ±30 km/jam sebelum mengerem.', 'Tahan gas di lintasan lurus sampai ±30 km/jam, baru mulai mengerem.');
-        else if (K.stop1 - st.l > 45) gagal(0, 'Berhenti terlalu jauh sebelum garis STOP.');
+        else if (K.stop1 - st.l - FR > 45) gagal(0, 'Berhenti terlalu jauh sebelum garis STOP.');
         st.fase = 'tengok'; btn.look.disabled = false;
         if (!st.fail[0]) say('✓ Berhenti tepat. Kaki kiri turun. Sekarang tekan <b>👀 Tengok kanan belakang</b> sebelum berjalan lagi.', 'good');
         else say(`❌ <b>${NAMA[0]}:</b> ${st.fail[0]} Tekan <b>👀 Tengok kanan belakang</b>, lalu lanjutkan.`, 'bad');
@@ -4591,19 +4592,19 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
       if (kmh < 4) gagal(2, 'Terlalu pelan atau berhenti sehingga kaki turun.');
     }
     if (m === 3 && st.path === 'main') {
-      if (rem && st.remAt === null && st.l > K.rem - 60) {
+      if (rem && st.remAt === null && st.l + FR > K.rem - 60) {
         st.remAt = st.l; Efek.main(null, 30);
-        if (st.l < K.rem - 22) gagal(3, 'Mengerem sebelum garis REM.');
+        if (st.l + FR < K.rem - 22) gagal(3, 'Mengerem sebelum garis REM.');
         else if (kmh < 25) gagal(3, 'Kecepatan belum ±30 km/jam saat tiba di garis REM.', 'Setelah keluar dari huruf S, tambah gas di lintasan lurus sampai ±30 km/jam sebelum garis REM.');
         isyarat();
-      } else if (st.remAt === null && st.l > K.rem + 22) { st.remAt = st.l; gagal(3, 'Terlambat mengerem: garis REM sudah terlewati.'); isyarat(); }
+      } else if (st.remAt === null && st.l + FR > K.rem + 22) { st.remAt = st.l; gagal(3, 'Terlambat mengerem: garis REM sudah terlewati.'); isyarat(); }
       if (st.v === 0) gagal(3, 'Berhenti di tengah lintasan, kaki turun.');
     }
     if (st.path !== 'main') {
-      if (l0 < K.stop2 && st.l >= K.stop2 && st.v > 0) gagal(3, 'Melewati garis STOP di akhir lintasan.');
+      if (l0 + FR < K.stop2 && st.l + FR >= K.stop2 && st.v > 0) gagal(3, 'Melewati garis STOP di akhir lintasan.');
       if (st.l >= K.ujung) { st.l = K.ujung; st.v = 0; }
       if (st.v === 0) {
-        if (K.stop2 - st.l > 45) gagal(3, 'Berhenti terlalu jauh sebelum garis STOP.');
+        if (K.stop2 - st.l - FR > 45) gagal(3, 'Berhenti terlalu jauh sebelum garis STOP.');
         st.fase = 'akhir'; setGas(false); setRem(false); aktif(false); btn.look.disabled = false;
         say('Berhenti di garis STOP. Tekan <b>👀 Tengok kanan belakang</b> untuk menyelesaikan ujian.', st.fail[3] ? 'bad' : 'good');
       }
