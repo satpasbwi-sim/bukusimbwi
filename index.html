@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141608">
+<meta name="versi-buku" content="202610141613">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -715,6 +715,10 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .wnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:18px}
 .wnav .btn[disabled]{opacity:.5;cursor:not-allowed}
 .wnav .wa{background:#137c3e;color:#fff;text-decoration:none;display:inline-flex;align-items:center}
+.wnav.whasil{display:grid;grid-template-columns:1fr}
+@media (min-width:641px){.wnav.whasil{grid-template-columns:1fr 1fr}}
+.wnav.whasil .btn{display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25}
+.wnav.whasil .wa{grid-column:1/-1}
 .wnote{margin:0 0 8px;padding:8px 12px;border-radius:10px;font-size:.9rem;border-left:4px solid var(--brand);background:var(--brand-soft)}
 .wnote.ok{border-color:var(--ok);background:var(--ok-soft)}
 .wnote.warn{border-color:var(--warn);background:var(--warn-soft)}
@@ -725,7 +729,8 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .wlinks{display:flex;flex-wrap:wrap;gap:6px}
 .wlinks a{border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:.82rem;text-decoration:none;background:var(--surface-2)}
 .calbtn{display:flex;flex-wrap:wrap;gap:8px}
-.calbtn a.btn{text-decoration:none;display:inline-flex;align-items:center}
+.calbtn a.btn{text-decoration:none}
+.calbtn .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;flex:1 1 220px}
 .simw-mini .linkbtn{background:none;border:0;padding:0;color:var(--brand);font-weight:700;text-decoration:underline;cursor:pointer;font-size:inherit}
 .simx{position:fixed;inset:0;z-index:80;background:rgba(3,10,25,.7);display:none;padding:10px}
 .simx.on{display:block}
@@ -852,6 +857,15 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   .poster figcaption{display:none}
   details.acc{break-inside:avoid}
   details.acc .in{display:block}
+}
+/* HP: tombol pilihan dua kolom sama lebar; tombol terakhir yang sendirian dibuat selebar baris */
+@media (max-width:640px){
+  .seg,#sopBtns,.langsw{display:grid;grid-template-columns:1fr 1fr}
+  .langsw{width:100%}
+  .seg button,#sopBtns .btn,.langsw button{width:100%;padding:6px 8px;line-height:1.25;display:flex;align-items:center;justify-content:center;text-align:center}
+  .seg button:last-child:nth-child(odd),#sopBtns .btn:last-child:nth-child(odd){grid-column:1/-1}
+  .alurctl{display:grid;grid-template-columns:1fr 1fr}
+  .alurctl #alurPlay{grid-column:1/-1}
 }
 </style>
 <script>
@@ -1186,7 +1200,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
             <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path id="route" d="" vector-effect="non-scaling-stroke"/></svg>
           </div>
           <div class="vinfo" id="alurInfo" aria-live="polite"></div>
-          <div class="ctrl">
+          <div class="ctrl alurctl">
             <button class="btn sm ghost" id="alurPrev" type="button">← Sebelumnya</button>
             <button class="btn sm" id="alurNext" type="button">Berikutnya →</button>
             <button class="btn sm ghost" id="alurPlay" type="button">▶ Putar alur</button>
@@ -3753,7 +3767,7 @@ document.addEventListener('click', e => {
       <h4>Di mana mengurusnya</h4><ul class="clean small">${cara.map(x => `<li>${x}</li>`).join('')}</ul>
       ${st._exp ? `<h4>Jangan sampai lupa</h4>${calHtml(st._exp)}` : ''}
       <h4>Baca selengkapnya</h4><p class="wlinks">${links.map(([id, l]) => `<a href="#${id}" data-go="${id}">${l}</a>`).join('')}</p>
-      <div class="wnav"><button type="button" class="btn ghost" data-wreset>↺ Ulangi</button><button type="button" class="btn" data-wck="${ck}">☑️ Buka checklist dokumen</button>
+      <div class="wnav whasil"><button type="button" class="btn ghost" data-wreset>↺ Ulangi</button><button type="button" class="btn" data-wck="${ck}">☑️ Buka checklist dokumen</button>
       <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(ringkas)}" target="_blank" rel="noopener">💬 Kirim ke WhatsApp</a></div>
       <button type="button" class="btn wimg" data-wimg>📥 Simpan Ringkasan Syarat sebagai Gambar</button>`;
     $('#wizQ').focus();
