@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140818">
+<meta name="versi-buku" content="202610141249">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -294,15 +294,15 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cover .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5}
 .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,23,61,.92) 0%,rgba(6,23,61,.7) 45%,rgba(6,23,61,.92) 100%);z-index:1}
 .cover .ct{position:relative;z-index:2;padding:34px clamp(18px,5vw,48px) 30px}
-.cover .tag{display:block;width:fit-content;margin:0 auto;background:var(--accent);color:#1d1600;font-weight:800;font-size:.78rem;padding:4px 12px;border-radius:99px;letter-spacing:.08em}
+.cover .tag{display:block;width:fit-content;max-width:100%;margin:0 auto;background:var(--accent);color:#1d1600;font-weight:800;font-size:clamp(.78rem,3.4vw,.92rem);line-height:1.2;padding:8px clamp(18px,7vw,40px);border-radius:99px;letter-spacing:.14em;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .cover h2{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
 .cover h2 em{font-style:normal;color:var(--accent)}
 /* sapaan waktu + status buka/tutup Satpas di sampul */
 .sapa{margin:0 auto 10px;max-width:none!important;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
 .sapa span{font-weight:700;font-size:clamp(.82rem,1.4vw,.92rem);line-height:1.3}
 .sapa small{font-size:clamp(.72rem,1.2vw,.8rem);opacity:.8}
-.sapa-st{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:3px 10px;border-radius:99px;font-size:.74rem;font-weight:700;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1)}
-.sapa-st i{width:8px;height:8px;border-radius:50%;background:var(--danger)}
+.sapa-st{display:inline-flex;align-items:center;gap:5px;margin-top:5px;padding:1px 8px;border-radius:99px;font-size:.64rem;font-weight:600;color:rgba(255,255,255,.85);text-decoration:none;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+.sapa-st i{width:6px;height:6px;border-radius:50%;background:var(--danger)}
 .sapa-st.buka i{background:#3fd27a;animation:pulse 1.6s infinite}
 .sapa-st[hidden]{display:none}
 .cover p{opacity:.9;max-width:60ch}
@@ -614,6 +614,9 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .calhelp h4{margin:0 0 6px}
 .calhelp ol{margin:0 0 8px;padding-left:20px}
 .calhelp p{margin:0 0 6px}
+.calhelp a.btn{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;text-align:center;line-height:1.35;padding:8px 14px}
+.calhelp a.btn small{font-weight:600;font-size:.78rem;opacity:.9}
+@media (max-width:600px){.calhelp a.btn{display:flex;width:100%}.calhelp .grid.g2{gap:4px}.calhelp ol{padding-left:18px}.calhelp .in{padding:12px}.out:has(.calhelp){padding:10px}.widget:has(.calhelp){padding-left:12px;padding-right:12px}}
 .wiz .wimg{display:flex;width:100%;justify-content:center;margin-top:10px;background:var(--accent);border-color:var(--accent);color:#1b1400}
 .wizcta span:nth-child(2){flex:1;min-width:0}
 .wizcta b{display:block;font-size:1rem}
@@ -3402,7 +3405,7 @@ const CAL_PETUNJUK = `<details class="acc calhelp"><summary>📖 Petunjuk: cara 
       <p><b>Nyalakan notifikasi:</b> Pengaturan → Notifikasi → Kalender → <b>Izinkan Notifikasi</b>. Bila memakai mode Fokus, izinkan aplikasi Kalender.</p>
       <p><b>Cek:</b> buka aplikasi Kalender, pada tanggal H-30 harus ada acara "Saatnya perpanjang SIM".</p></div>
   </div>
-  <p style="margin:10px 0 0"><a class="btn sm" href="${PDF_PENGINGAT}" target="_blank" rel="noopener" data-cal="pdf">⬇️ Unduh petunjuk lengkap (PDF, 2 halaman, bisa dicetak)</a></p>
+  <p style="margin:10px 0 0"><a class="btn sm" href="${PDF_PENGINGAT}" target="_blank" rel="noopener" data-cal="pdf"><span>⬇️ Unduh petunjuk lengkap</span><small>PDF · 2 halaman · bisa dicetak</small></a></p>
 </div></details>`;
 function unduhIcs(exp){
   const esc = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
