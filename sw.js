@@ -1,9 +1,10 @@
 /* Service worker Buku Digital SIM: agar buku tetap bisa dibuka tanpa internet.
-   - Halaman buku: ambil dari internet dulu (selalu versi terbaru), bila gagal pakai salinan tersimpan.
+   - Halaman buku, skrip simulasi, bank soal & file unduhan: ambil dari internet dulu (selalu versi
+     terbaru), bila gagal pakai salinan tersimpan.
    - Gambar & font: pakai salinan tersimpan agar cepat, sambil diperbarui di latar belakang.
    - Layanan lain (survei IKM, jadwal SIM Keliling, statistik) tidak disentuh.
    Naikkan VERSI bila daftar INTI berubah. */
-const VERSI = 'buku-sim-v1';
+const VERSI = 'buku-sim-v2';
 const INTI = [
   './',
   'manifest.webmanifest',
@@ -37,17 +38,20 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   const sendiri = url.origin === location.origin && url.pathname.startsWith(new URL('./', location).pathname);
+  const gambar = /\.(webp|png|jpe?g|svg|gif|ico)$/i.test(url.pathname);
 
-  // Halaman buku (termasuk cek versi terbaru): internet dulu, lalu salinan
-  if (sendiri && (req.mode === 'navigate' || /\/(index\.html)?$/.test(url.pathname))) {
+  // Halaman buku, skrip & bank soal simulasi, file unduhan: internet dulu, lalu salinan
+  // (agar perubahan langsung sampai; hanya gambar yang boleh pakai salinan lebih dulu)
+  if (sendiri && !gambar) {
     e.respondWith(
       fetch(req).then(res => simpan(new Request(url.pathname), res))
-        .catch(() => caches.match(url.pathname, { ignoreSearch: true }).then(r => r || caches.match('./')))
+        .catch(() => caches.match(url.pathname, { ignoreSearch: true })
+          .then(r => r || (req.mode === 'navigate' ? caches.match('./') : Response.error())))
     );
     return;
   }
 
-  // Gambar, ikon, manifest buku & font Google: salinan dulu, diperbarui diam-diam
+  // Gambar, ikon & font Google: salinan dulu, diperbarui diam-diam
   const font = url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com';
   if (sendiri || font) {
     e.respondWith(
