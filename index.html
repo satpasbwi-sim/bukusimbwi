@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141335">
+<meta name="versi-buku" content="202610141346">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -111,7 +111,7 @@ img{max-width:100%;height:auto;display:block}
 .toc a{display:flex;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:.9rem;line-height:1.35}
 .toc a:hover{background:var(--surface-2)}
 .toc a.on{background:var(--brand-soft);color:var(--brand);font-weight:700}
-.toc a .c{flex:none;min-width:2.6em;font-weight:700;color:var(--brand)}
+.toc a .c{flex:none;min-width:3.4em;font-weight:700;color:var(--brand)}
 .sres a{display:block;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:.88rem}
 .sres a:hover{background:var(--surface-2)}
 .sres small{display:block;color:var(--muted);font-size:.78rem}
@@ -325,7 +325,7 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .tocpage .grpbox header{background:var(--brand);color:var(--brand-ink);padding:10px 16px;font-weight:800;letter-spacing:.03em}
 .tocpage .grpbox a{display:flex;gap:12px;padding:11px 16px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);align-items:center}
 .tocpage .grpbox a:hover{background:var(--surface-2)}
-.tocpage .grpbox a .c{font-weight:800;color:var(--brand);min-width:3em}
+.tocpage .grpbox a .c{font-weight:800;color:var(--brand);min-width:3.8em}
 .tocpage .grpbox .sub{padding:8px 16px;border-top:1px solid var(--line);background:var(--surface-2);font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--brand)}
 .tocpage .grpbox a .pg{margin-left:auto;color:var(--muted);font-size:.8rem;white-space:nowrap}
 
@@ -593,7 +593,7 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .salah li .x{color:var(--danger)}
 .salah li .v{color:var(--ok)}
 @media (max-width:640px){.salah ol{grid-template-columns:1fr}}
-/* B.13 uji sirkuit S & kuis lulus/gagal */
+/* B.13.2 uji sirkuit S & kuis lulus/gagal · B.13.1 uji praktik SIM A */
 .uji{scroll-margin-top:72px}
 .uji:focus{outline:none}
 .uji .st{cursor:default}
@@ -1704,22 +1704,14 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= b5-3 · Persiapan Ujian Praktik ================= -->
-<section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji, sirkuit huruf S, simulasi uji sirkuit SIM C & uji praktik SIM A">
-  <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, sirkuit huruf S, simulasi uji sirkuit SIM C, simulasi uji praktik SIM A, dan kuis lulus atau gagal.</p></div>
+<section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: video tutorial, lapangan uji & simulasi SIM A dan SIM C">
+  <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, dan persiapan sebelum ujian praktik. Simulasi ujian ada di <b>B.13.1</b> (mobil, SIM A) dan <b>B.13.2</b> (motor, SIM C).</p></div>
   <div class="pbody">
     <div class="card ok inti-only" data-inti>
-      <h4 style="margin:0 0 8px">⚡ Intisari: ujian praktik SIM C</h4>
-      <p class="small" style="margin:0 0 4px"><b>Urutan sirkuit huruf S</b></p>
-      <ol class="small" style="margin:0;padding-left:20px"><li><b>Pengereman / keseimbangan</b>: kurangi gas, rem depan + belakang bersamaan, berhenti sebelum garis STOP</li><li><b>Putar balik huruf U</b>: masuk dari sisi luar, gas tetap stabil, kaki tidak turun</li><li><b>Tikungan huruf S</b>: kecepatan rata, pandang ke tikungan berikutnya</li><li><b>Rem menghindar (cabang Y)</b>: rem di garis REM, lepas rem dulu, lalu menghindar sesuai isyarat petugas</li></ol>
-      <p class="small" style="margin:8px 0 4px"><b>Syarat lulus</b></p>
+      <h4 style="margin:0 0 8px">⚡ Intisari: ujian praktik SIM</h4>
       <ul class="clean small">
-        <li><b>Tidak menyentuh</b> satu pun patok/sensor.</li>
-        <li><b>Kaki tetap di pijakan</b> selama motor berjalan.</li>
-        <li>Saat berhenti &amp; akan jalan: <b>turunkan kaki kiri</b> dan <b>tengok kanan belakang</b>.</li>
-        <li>Menyelesaikan seluruh materi.</li>
-      </ul>
-      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
-      <ul class="clean small">
+        <li><b>SIM A (mobil)</b>: 5 materi di lapangan uji: jalur sempit, slalom, parkir seri, parkir paralel, tanjakan. Simulasi di <a href="#B.13.1" data-go="b5-3-1">B.13.1</a>.</li>
+        <li><b>SIM C (motor)</b>: satu sirkuit huruf S berisi 4 materi. Simulasi di <a href="#B.13.2" data-go="b5-3-2">B.13.2</a>.</li>
         <li>Sebelum ujian: cek rem, lampu, spion, ban, klakson; pakai <b>helm SNI</b> (SIM C) atau <b>sabuk keselamatan</b> (SIM A).</li>
         <li>Gagal? Ujian ulang <b>paling banyak 2 kali</b> dalam 14 hari kerja. Berlatih gratis di <b>LUPIS</b> (B.17).</li>
       </ul>
@@ -1753,7 +1745,100 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="legend"><span><i style="background:#1f8a4c"></i>SIM C (1–5)</span><span><i style="background:#0b3d91"></i>SIM A (6–10)</span></div>
       <p class="small muted" style="margin:8px 0 0">Penjelasan diringkas dari Keputusan Kakorlantas Polri Nomor Kep/105/VIII/2023 tentang Ketentuan Pelaksanaan Uji Praktik Penerbitan SIM.</p>
     </div>
+    <p class="small muted">Sebelum ujian (pencerahan): periksa fungsi kemudi, rem tangan &amp; kaki, transmisi, kopling, oli, busi, spion, lampu, bahan bakar, kondisi &amp; tekanan ban, dan klakson. Pakai helm SNI (SIM C) atau sabuk keselamatan (SIM A). Lulus bila tidak melakukan kesalahan pada setiap materi (Pasal 19 ayat 2 Perpol 5/2021).</p>
 
+    <h3>🎮 Simulasi ujian praktik</h3>
+    <div class="grid g2">
+      <div class="card"><h4>🚗 B.13.1 Simulasi Ujian Praktik Mobil (SIM A)</h4><p class="small">Lima materi lapangan uji mobil: maju–mundur jalur sempit, slalom, parkir seri, parkir paralel, dan berhenti di tanjakan.</p><a class="btn sm" href="#B.13.1" data-go="b5-3-1" style="text-decoration:none;display:inline-flex">Buka simulasi mobil →</a></div>
+      <div class="card"><h4>🏍️ B.13.2 Simulasi Ujian Praktik Motor (SIM C)</h4><p class="small">Sirkuit huruf S: pengereman, putar balik U, tikungan S, rem menghindar, ditambah kuis lulus atau gagal.</p><a class="btn sm" href="#B.13.2" data-go="b5-3-2" style="text-decoration:none;display:inline-flex">Buka simulasi motor →</a></div>
+    </div>
+    <div class="grid g2">
+      <div class="card ok"><h4>😊 Jika gagal, jangan khawatir!</h4><p class="small">Ada kesempatan mengulang (paling banyak 2 kali dalam 14 hari kerja) dengan <b>bimbingan langsung</b> dari petugas kami.</p></div>
+      <div class="card accent"><h4>🤝 Belum lulus juga?</h4><p class="small">Tim Penguji kami siap memberikan <b>panduan khusus</b> untuk kesempatan Anda berikutnya — ikuti latihan gratis <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= b5-3-1 · Simulasi Ujian Praktik Mobil (SIM A) ================= -->
+<section class="page" data-id="b5-3-1" data-code="B.13.1" data-group="B" data-title="Simulasi Ujian Praktik Mobil (SIM A)" data-share="Simulasi ujian praktik SIM A (mobil): jalur sempit, slalom, parkir & tanjakan">
+  <div class="ph"><span class="code">B.13.1</span><span class="grp">Materi Pendukung</span><h2>Simulasi Ujian Praktik Mobil (SIM A)</h2><p>Coba lima materi uji praktik mobil sesuai Kep/105/VIII/2023, lengkap dengan ketentuan lulusnya.</p></div>
+  <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: ujian praktik SIM A</h4>
+      <p class="small" style="margin:0 0 4px"><b>Urutan materi (lintasan 6–10)</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li><b>Maju–mundur di jalur sempit</b>: berhenti sebelum garis STOP; saat mundur lihat <b>kaca spion</b>, jangan menengok ke belakang</li><li><b>Slalom maju &amp; mundur</b>: pelan dan rata melewati 9 patok</li><li><b>Parkir seri</b>: masuk 1× gerakan mundur, keluar 1× gerakan maju</li><li><b>Parkir paralel</b>: masuk 1× mundur + 1× maju, keluar 1× mundur + 1× maju</li><li><b>Tanjakan &amp; turunan</b>: berhenti sebelum garis STOP, tarik rem tangan, netralkan, jalan lagi tanpa mundur</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Syarat lulus</b></p>
+      <ul class="clean small">
+        <li><b>Tidak menyentuh</b> satu pun patok/sensor.</li>
+        <li>Di tanjakan mobil <b>tidak mundur</b> dan <b>tidak mati mesin</b>.</li>
+        <li>Wajib memakai <b>sabuk keselamatan</b> &amp; menyelesaikan seluruh materi.</li>
+      </ul>
+    </div>
+    <h3>🎮 Uji Praktik SIM A: coba sendiri</h3>
+    <p class="small muted" style="margin-top:-4px">Lima materi uji praktik mobil (lintasan 6–10 pada <a href="#b5-3" data-go="b5-3">denah lapangan uji B.13</a>) sesuai Kep/105/VIII/2023. Setir bergerak otomatis mengikuti lintasan; Anda mengatur gas, rem, gigi (transmisi otomatis), rem tangan, dan cara melihat ke belakang. Kecepatan &amp; jarak disederhanakan; ini latihan memahami urutan &amp; aturan, bukan pengganti latihan mengemudi.</p>
+    <div class="widget uji" id="ujiA" tabindex="-1"><span class="wt">Simulasi</span>
+      <h4>Pilih materi, lalu tekan Mulai</h4>
+      <div class="seg" role="group" aria-label="Pilih materi" id="uaPilih">
+        <button type="button" aria-pressed="true" data-m="-1">Semua (6–10)</button>
+        <button type="button" aria-pressed="false" data-m="0">6 Jalur sempit</button>
+        <button type="button" aria-pressed="false" data-m="1">7 Slalom</button>
+        <button type="button" aria-pressed="false" data-m="2">8 Parkir seri</button>
+        <button type="button" aria-pressed="false" data-m="3">9 Parkir paralel</button>
+        <button type="button" aria-pressed="false" data-m="4">10 Tanjakan</button>
+      </div>
+      <div id="uaStage"></div>
+      <div class="us-hud"><span class="us-spd" id="uaSpd">0 km/jam</span><span class="us-mat" id="uaMat">Materi 6 → 10 berurutan</span></div>
+      <div class="vinfo us-msg" id="uaMsg" aria-live="polite"><p>Tekan <b>Mulai</b>. Pasang sabuk, pilih gigi <b>D</b> (maju) atau <b>R</b> (mundur), lalu tahan <b>Gas</b> dan <b>Rem</b>. Lepas keduanya = mobil melambat pelan.</p></div>
+      <div class="ua-gear" role="group" aria-label="Gigi transmisi otomatis">
+        <button type="button" data-g="D" aria-pressed="false" disabled>D<small>Maju</small></button>
+        <button type="button" data-g="N" aria-pressed="true" disabled>N<small>Netral</small></button>
+        <button type="button" data-g="R" aria-pressed="false" disabled>R<small>Mundur</small></button>
+      </div>
+      <div class="us-pads">
+        <button type="button" class="us-pad rem" id="uaRem" disabled>⏹ Rem</button>
+        <button type="button" class="us-pad gas" id="uaGas" disabled>Gas ⏩</button>
+      </div>
+      <div class="ua-act">
+        <button type="button" class="btn ghost" id="uaSabuk" disabled>🔒 Pasang sabuk</button>
+        <button type="button" class="btn ghost" id="uaHb" aria-pressed="false" disabled>🅿️ Rem tangan</button>
+        <button type="button" class="btn ghost" id="uaSpion" disabled>🪞 Lihat spion</button>
+        <button type="button" class="btn ghost" id="uaTengok" disabled>👀 Tengok belakang</button>
+      </div>
+      <div class="hasil-act c"><button type="button" class="btn" id="uaStart">▶ Mulai</button></div>
+      <div class="out" id="uaRes"></div>
+      <p class="small muted" style="margin:8px 0 0">Dengan keyboard: ↑ gas, ↓ rem, D/N/R gigi, P rem tangan, M spion, T tengok, B sabuk.</p>
+    </div>
+    <div class="card ok"><h4>✅ Ketentuan lulus uji praktik SIM A</h4><ul class="clean small">
+      <li>Tidak menyentuh satu pun patok/sensor elektronik.</li>
+      <li>Saat mundur di jalur sempit, kepala tidak boleh menengok ke belakang: lihat melalui kaca spion.</li>
+      <li>Di tanjakan, mobil tidak boleh bergerak mundur atau mati mesin saat jalan kembali.</li>
+      <li>Menyelesaikan seluruh materi sesuai ketentuan. Wajib memakai sabuk keselamatan sejak awal.</li>
+    </ul><p class="small muted" style="margin:6px 0 0">Kep/105/VIII/2023 huruf A.3 &amp; I (berlaku juga untuk SIM BI, BI Umum, BII, SIM Umum &amp; SIM DI).</p></div>
+    <p class="small muted">Sebelum ujian (pencerahan): periksa fungsi kemudi, rem tangan &amp; kaki, transmisi, kopling, oli, spion, lampu, bahan bakar, kondisi &amp; tekanan ban, dan klakson, lalu pasang sabuk keselamatan. Denah seluruh lintasan ada di <a href="#b5-3" data-go="b5-3">B.13</a>; gagal? latihan gratis di <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p>
+  </div>
+</section>
+
+<!-- ================= b5-3-2 · Simulasi Ujian Praktik Motor (SIM C) ================= -->
+<section class="page" data-id="b5-3-2" data-code="B.13.2" data-group="B" data-title="Simulasi Ujian Praktik Motor (SIM C)" data-share="Simulasi ujian praktik SIM C (motor): sirkuit huruf S & kuis lulus atau gagal">
+  <div class="ph"><span class="code">B.13.2</span><span class="grp">Materi Pendukung</span><h2>Simulasi Ujian Praktik Motor (SIM C)</h2><p>Sirkuit huruf S, simulasi uji sirkuit, ketentuan lulus, dan kuis lulus atau gagal untuk SIM C.</p></div>
+  <div class="pbody">
+    <div class="card ok inti-only" data-inti>
+      <h4 style="margin:0 0 8px">⚡ Intisari: ujian praktik SIM C</h4>
+      <p class="small" style="margin:0 0 4px"><b>Urutan sirkuit huruf S</b></p>
+      <ol class="small" style="margin:0;padding-left:20px"><li><b>Pengereman / keseimbangan</b>: kurangi gas, rem depan + belakang bersamaan, berhenti sebelum garis STOP</li><li><b>Putar balik huruf U</b>: masuk dari sisi luar, gas tetap stabil, kaki tidak turun</li><li><b>Tikungan huruf S</b>: kecepatan rata, pandang ke tikungan berikutnya</li><li><b>Rem menghindar (cabang Y)</b>: rem di garis REM, lepas rem dulu, lalu menghindar sesuai isyarat petugas</li></ol>
+      <p class="small" style="margin:8px 0 4px"><b>Syarat lulus</b></p>
+      <ul class="clean small">
+        <li><b>Tidak menyentuh</b> satu pun patok/sensor.</li>
+        <li><b>Kaki tetap di pijakan</b> selama motor berjalan.</li>
+        <li>Saat berhenti &amp; akan jalan: <b>turunkan kaki kiri</b> dan <b>tengok kanan belakang</b>.</li>
+        <li>Menyelesaikan seluruh materi.</li>
+      </ul>
+      <p class="small" style="margin:8px 0 4px"><b>Perlu diingat</b></p>
+      <ul class="clean small">
+        <li>Sebelum ujian: cek rem, lampu, spion, ban, klakson; pakai <b>helm SNI</b> (SIM C) atau <b>sabuk keselamatan</b> (SIM A).</li>
+        <li>Gagal? Ujian ulang <b>paling banyak 2 kali</b> dalam 14 hari kerja. Berlatih gratis di <b>LUPIS</b> (B.17).</li>
+      </ul>
+    </div>
     <h3>Sirkuit huruf S: uji praktik SIM C sejak Agustus 2023</h3>
     <p>Sejak <b>Agustus 2023</b>, Korlantas Polri mengganti lintasan <b>angka 8</b> dan <b>zig-zag</b> pada ujian praktik SIM C dengan satu sirkuit tak terputus berbentuk huruf <b>S</b>. Desainnya dimuat dalam lampiran Kep/105/VIII/2023 (“Disain Sirkuit Uji Praktek R2 Baru”). Peserta melintasi empat materi secara berurutan.</p>
     <div class="widget circ" id="circ"><span class="wt">Interaktif</span>
@@ -1821,56 +1906,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Menurut lampiran Kep/105, uji SIM D tetap memakai pengereman, slalom/zig-zag, dan rem menghindar.</li>
       </ul></div>
     </div>
-    <h3>🎮 Uji Praktik SIM A: coba sendiri</h3>
-    <p class="small muted" style="margin-top:-4px">Lima materi uji praktik mobil (lintasan 6–10 pada denah lapangan) sesuai Kep/105/VIII/2023. Setir bergerak otomatis mengikuti lintasan; Anda mengatur gas, rem, gigi (transmisi otomatis), rem tangan, dan cara melihat ke belakang. Kecepatan &amp; jarak disederhanakan; ini latihan memahami urutan &amp; aturan, bukan pengganti latihan mengemudi.</p>
-    <div class="widget uji" id="ujiA" tabindex="-1"><span class="wt">Simulasi</span>
-      <h4>Pilih materi, lalu tekan Mulai</h4>
-      <div class="seg" role="group" aria-label="Pilih materi" id="uaPilih">
-        <button type="button" aria-pressed="true" data-m="-1">Semua (6–10)</button>
-        <button type="button" aria-pressed="false" data-m="0">6 Jalur sempit</button>
-        <button type="button" aria-pressed="false" data-m="1">7 Slalom</button>
-        <button type="button" aria-pressed="false" data-m="2">8 Parkir seri</button>
-        <button type="button" aria-pressed="false" data-m="3">9 Parkir paralel</button>
-        <button type="button" aria-pressed="false" data-m="4">10 Tanjakan</button>
-      </div>
-      <div id="uaStage"></div>
-      <div class="us-hud"><span class="us-spd" id="uaSpd">0 km/jam</span><span class="us-mat" id="uaMat">Materi 6 → 10 berurutan</span></div>
-      <div class="vinfo us-msg" id="uaMsg" aria-live="polite"><p>Tekan <b>Mulai</b>. Pasang sabuk, pilih gigi <b>D</b> (maju) atau <b>R</b> (mundur), lalu tahan <b>Gas</b> dan <b>Rem</b>. Lepas keduanya = mobil melambat pelan.</p></div>
-      <div class="ua-gear" role="group" aria-label="Gigi transmisi otomatis">
-        <button type="button" data-g="D" aria-pressed="false" disabled>D<small>Maju</small></button>
-        <button type="button" data-g="N" aria-pressed="true" disabled>N<small>Netral</small></button>
-        <button type="button" data-g="R" aria-pressed="false" disabled>R<small>Mundur</small></button>
-      </div>
-      <div class="us-pads">
-        <button type="button" class="us-pad rem" id="uaRem" disabled>⏹ Rem</button>
-        <button type="button" class="us-pad gas" id="uaGas" disabled>Gas ⏩</button>
-      </div>
-      <div class="ua-act">
-        <button type="button" class="btn ghost" id="uaSabuk" disabled>🔒 Pasang sabuk</button>
-        <button type="button" class="btn ghost" id="uaHb" aria-pressed="false" disabled>🅿️ Rem tangan</button>
-        <button type="button" class="btn ghost" id="uaSpion" disabled>🪞 Lihat spion</button>
-        <button type="button" class="btn ghost" id="uaTengok" disabled>👀 Tengok belakang</button>
-      </div>
-      <div class="hasil-act c"><button type="button" class="btn" id="uaStart">▶ Mulai</button></div>
-      <div class="out" id="uaRes"></div>
-      <p class="small muted" style="margin:8px 0 0">Dengan keyboard: ↑ gas, ↓ rem, D/N/R gigi, P rem tangan, M spion, T tengok, B sabuk.</p>
-    </div>
-    <div class="card ok"><h4>✅ Ketentuan lulus uji praktik SIM A</h4><ul class="clean small">
-      <li>Tidak menyentuh satu pun patok/sensor elektronik.</li>
-      <li>Saat mundur di jalur sempit, kepala tidak boleh menengok ke belakang: lihat melalui kaca spion.</li>
-      <li>Di tanjakan, mobil tidak boleh bergerak mundur atau mati mesin saat jalan kembali.</li>
-      <li>Menyelesaikan seluruh materi sesuai ketentuan. Wajib memakai sabuk keselamatan sejak awal.</li>
-    </ul><p class="small muted" style="margin:6px 0 0">Kep/105/VIII/2023 huruf A.3 &amp; I (berlaku juga untuk SIM BI, BI Umum, BII, SIM Umum &amp; SIM DI).</p></div>
-    <p class="small muted">Sebelum ujian (pencerahan): periksa fungsi kemudi, rem tangan &amp; kaki, transmisi, kopling, oli, busi, spion, lampu, bahan bakar, kondisi &amp; tekanan ban, dan klakson. Pakai helm SNI (SIM C) atau sabuk keselamatan (SIM A). Lulus bila tidak melakukan kesalahan pada setiap materi (Pasal 19 ayat 2 Perpol 5/2021).</p>
+    <p class="small muted">Sebelum ujian (pencerahan): periksa rem, lampu, spion, ban, rantai, dan klakson, lalu pakai helm SNI. Denah seluruh lintasan ada di <a href="#b5-3" data-go="b5-3">B.13</a>.</p>
 
     <h3>Kuis: lulus atau gagal?</h3>
     <div class="widget" id="lgQuiz"><span class="wt">Interaktif</span>
       <p class="small muted" style="margin:0 0 10px">8 kejadian acak di sirkuit S. Tebak: peserta <b>lulus</b> atau <b>gagal</b> pada materi itu?</p>
       <div id="lgBody"></div>
-    </div>
-    <div class="grid g2">
-      <div class="card ok"><h4>😊 Jika gagal, jangan khawatir!</h4><p class="small">Ada kesempatan mengulang (paling banyak 2 kali dalam 14 hari kerja) dengan <b>bimbingan langsung</b> dari petugas kami.</p></div>
-      <div class="card accent"><h4>🤝 Belum lulus juga?</h4><p class="small">Tim Penguji kami siap memberikan <b>panduan khusus</b> untuk kesempatan Anda berikutnya — ikuti latihan gratis <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p></div>
     </div>
   </div>
 </section>
@@ -4330,7 +4371,7 @@ pageHooks.push(() => { if (ttsOn) ttsStop(); });
 /* ---------- bilah aksi per halaman: Dengarkan · WhatsApp · Salin tautan ---------- */
 const SHARE = {
   b1:'Alamat & jadwal pelayanan Satpas Polresta Banyuwangi', b2:'Tarif resmi SIM, stop pungli & calo', b5:'Syarat & alur membuat SIM baru',
-  'b5-1':'Belajar ujian teori SIM (E-AVIS) & simulasi', 'b5-3':'Persiapan ujian praktik SIM: lapangan & sirkuit huruf S', b6:'Syarat perpanjangan SIM', b7:'Syarat peningkatan golongan SIM',
+  'b5-1':'Belajar ujian teori SIM (E-AVIS) & simulasi', 'b5-3':'Persiapan ujian praktik SIM: video, lapangan uji & simulasi', b6:'Syarat perpanjangan SIM', b7:'Syarat peningkatan golongan SIM',
   b8:'Info layanan SIM hari Minggu & libur nasional', b9:'Syarat tes kesehatan & psikologi SIM', b12:'Perpanjang SIM online lewat SINAR',
   b13:'SIM Keliling (SIM JEMPOL) Banyuwangi', b14:'Latihan ujian praktik SIM gratis (LUPIS)', b15:'Layanan SIM untuk penyandang disabilitas (SIBABA)',
   a2:'Alur & denah layanan SIM di Satpas', c3:'Hitung biaya resmi (PNBP) SIM', c6:'Checklist dokumen sebelum ke Satpas'
@@ -4370,7 +4411,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   const LAP = [
     {k:'moto', x:30.5, y:81.5, t:'Lintasan angka 8', old:true,
      d:'Peserta berkelok mengikuti lintasan angka 8 tanpa menurunkan kaki dan tanpa menyentuh patok atau marka.',
-     n:['Sejak Agustus 2023 materi angka 8 tidak lagi diujikan untuk SIM C; diganti tikungan kombinasi pada sirkuit huruf S (lihat di bawah).','Lintasan ini tetap berguna sebagai sarana latihan keseimbangan, misalnya dalam program LUPIS.'], s:'Kep/105/VIII/2023 huruf D.3'},
+     n:['Sejak Agustus 2023 materi angka 8 tidak lagi diujikan untuk SIM C; diganti tikungan kombinasi pada sirkuit huruf S (lihat B.13.2).','Lintasan ini tetap berguna sebagai sarana latihan keseimbangan, misalnya dalam program LUPIS.'], s:'Kep/105/VIII/2023 huruf D.3'},
     {k:'moto', x:38.8, y:82.6, t:'Putar balik huruf U (U-turn)',
      d:'Menjalankan sepeda motor lalu memutar mengikuti lintasan untuk berbalik arah membentuk huruf U.',
      n:['Lebar lintasan 2 × lebar kendaraan uji, radius luar putaran 250 cm.','Kaki tetap di pijakan (footstep) selama berputar dan tidak menyentuh patok.','Mengukur kemampuan menguasai kendaraan saat berbalik arah.'], s:K105 + ' huruf D.3.b'},
@@ -4439,7 +4480,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   });
 })();
 
-/* ---------- B.13 uji sirkuit S (simulasi) ---------- */
+/* ---------- B.13.2 uji sirkuit S (simulasi) ---------- */
 (function(){
   const box = $('#ujiS'); if (!box) return;
   const NS = 'http://www.w3.org/2000/svg';
@@ -4644,7 +4685,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   box.addEventListener('keyup', e => { const k = KEY[e.key]; if (k === 'gas') setGas(false); else if (k === 'rem') setRem(false); });
   window.addEventListener('blur', () => { setGas(false); setRem(false); });
 })();
-/* ---------- B.13 uji praktik SIM A (simulasi; sumber: Kep/105/VIII/2023 huruf A.3 & I) ---------- */
+/* ---------- B.13.1 uji praktik SIM A (simulasi; sumber: Kep/105/VIII/2023 huruf A.3 & I) ---------- */
 (function(){
   const box = $('#ujiA'); if (!box) return;
   const NS = 'http://www.w3.org/2000/svg';
@@ -5059,7 +5100,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   window.addEventListener('blur', () => { setGas(false); setRem(false); });
 })();
 
-/* ---------- B.13 kuis lulus atau gagal ---------- */
+/* ---------- B.13.2 kuis lulus atau gagal ---------- */
 (function(){
   const body = $('#lgBody'); if (!body) return;
   // [lulus?, kejadian, penjelasan] — dari ketentuan lulus uji praktik SIM C (Kep/105/VIII/2023)
