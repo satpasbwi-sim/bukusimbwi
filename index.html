@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141332">
+<meta name="versi-buku" content="202610141335">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -496,8 +496,9 @@ h3.plain::before{display:none}
 .hol-list .kt .chip{font-size:.66rem;padding:1px 8px}
 @media (min-width:760px){.hol-list{grid-template-columns:1fr 1fr}}
 details.hol summary{font-size:.95rem;line-height:1.35}
-details.hol summary span:first-child{flex:1;min-width:0}
-@media (max-width:640px){details.hol summary{padding:11px 14px;font-size:.88rem;gap:8px}}
+details.hol summary span:first-child{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){details.hol summary{padding:11px 12px;font-size:clamp(.74rem,3.6vw,.88rem);gap:6px}}
+@media (max-width:360px){details.hol summary{padding:10px 8px;font-size:.66rem;gap:4px}details.hol summary .ps{font-size:.64rem;padding:2px 6px}}
 .holalert{background:var(--danger-soft);border:1px solid var(--danger);border-radius:12px;padding:12px 14px}
 .holalert .chip{white-space:normal}
 /* tips putar HP */
@@ -2447,7 +2448,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <div class="fld"><label for="dispDate">Tanggal masa berlaku SIM habis</label><input type="date" id="dispDate"></div>
      </div>
       <div class="out" id="dispOut"></div>
-      <details class="acc hol" style="margin-top:10px"><summary><span>📅 Hari libur nasional &amp; cuti bersama</span><span class="ps" id="holYear"></span></summary><div class="in small" id="holList"></div></details>
+      <details class="acc hol" style="margin-top:10px"><summary><span>📅 Hari libur &amp; cuti bersama</span><span class="ps" id="holYear"></span></summary><div class="in small" id="holList"></div></details>
       <p class="small muted" style="margin:8px 0 0">Data: SKB 3 Menteri tentang Hari Libur Nasional dan Cuti Bersama Tahun 2026 dan Tahun 2027. Tanggal hari besar Islam dapat bergeser mengikuti penetapan Kementerian Agama (sidang isbat).</p>
     </div>
     <div class="note warn"><b>Tips pengingat</b>Agar SIM tidak hangus dan harus membuat baru dari awal, selalu cek tanggal masa berlaku SIM secara berkala dan manfaatkan dispensasi 1 hari kerja ini jika tanggal habisnya bertepatan dengan hari libur. <span class="small muted">Sumber: Korlantas Polri.</span></div>
