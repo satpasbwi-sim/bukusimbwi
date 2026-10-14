@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141524">
+<meta name="versi-buku" content="202610141532">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -720,8 +720,9 @@ html.simx-lock,html.simx-lock body{overflow:hidden}
 .simx-stg span{grid-row:span 2;font-size:1.4rem}.simx-stg small{color:var(--muted)}
 .simx-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .simx-act.hasil{gap:10px}
-.simx-act.hasil .btn{flex:1 1 0;min-width:0;margin:0;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:50px;line-height:1.25;padding:10px 12px;font-size:.95rem}
-@media (max-width:640px){.simx-act.hasil .kartu-btn{flex-basis:100%}}
+.simx-act.hasil .btn,.hasil-act.hasil .btn{flex:1 1 0;min-width:0;margin:0;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:58px;line-height:1.25;padding:10px 12px;font-size:.95rem}
+.hasil-act.hasil{gap:10px;max-width:640px}.hasil-act.hasil.c{margin-left:auto;margin-right:auto}
+@media (max-width:640px){.simx-act.hasil .kartu-btn,.hasil-act.hasil .btn{flex-basis:100%}}
 .simx-gol{border:1px solid var(--line);border-radius:12px;padding:10px 12px 12px;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px}
 .simx-gol legend{font-weight:800;font-size:.9rem;padding:0 6px}
 .simx-gol label{flex:1 1 140px;display:flex;gap:8px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;background:var(--surface-2)}
@@ -3813,7 +3814,7 @@ function renderQuiz(){
     return `<button class="opt ${c}" data-q="${i}" data-o="${j}" ${qAns[i] !== undefined ? 'disabled' : ''}>${String.fromCharCode(65+j)}. ${o}${tanda}</button>`; }).join('')}<div class="ex" tabindex="-1">${qAns[i] === undefined ? '' : `<b>${qAns[i] === q.ans ? '✅ Benar!' : '❌ Kurang tepat.'}</b> `}💡 ${q.ex}</div></div>`).join('');
   const done = Object.keys(qAns).length, score = Object.entries(qAns).filter(([i, a]) => quizSet[i].ans === a).length;
   const newBtn = '<button class="btn sm" data-newquiz style="margin-top:10px">🔄 Ganti Soal Baru</button>';
-  $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p><div class="hasil-act">${KartuBijak.tombol({jenis: 'kuis', judul: 'Kuis Pemahaman Layanan SIM', skor: score, maks: quizSet.length})}${newBtn}</div>` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
+  $('#quizOut').innerHTML = done === quizSet.length ? `<p style="margin:0">Skor Anda:</p><div class="big">${score} / ${quizSet.length}</div><p class="small" style="margin:6px 0 0">${score >= 8 ? 'Luar biasa! Anda siap mengurus SIM. 🎉' : score >= 5 ? 'Cukup baik — pelajari kembali Materi A.1.' : 'Yuk baca ulang buku ini, terutama Lampiran A dan B.'}</p><div class="hasil-act hasil">${KartuBijak.tombol({jenis: 'kuis', judul: 'Kuis Pemahaman Layanan SIM', skor: score, maks: quizSet.length})}${newBtn}</div>` : `<p class="small muted" style="margin:0">Terjawab ${done} dari ${quizSet.length} soal.</p>${newBtn}`;
 }
 $('#quiz').addEventListener('click', e => { const b = e.target.closest('.opt'); if (!b || b.disabled) return; qAns[+b.dataset.q] = +b.dataset.o; Efek.main(quizSet[+b.dataset.q].ans === +b.dataset.o ? 'benar' : 'salah', quizSet[+b.dataset.q].ans === +b.dataset.o ? 0 : 40); renderQuiz(); $$('#quiz .ex')[+b.dataset.q].focus(); });
 $('#quizOut').addEventListener('click', e => { if (e.target.closest('[data-newquiz]')) { newQuiz(); $('#quizTop').scrollIntoView({behavior:'smooth', block:'start'}); } });
@@ -5124,7 +5125,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   function baru(){ qs = shuffle(S).slice(0, 8); qi = 0; skor = 0; tanya(); }
   function tanya(){
     if (qi >= qs.length) {
-      body.innerHTML = `<div class="out" style="text-align:center"><div class="big">${skor} / ${qs.length}</div><p>${skor >= 7 ? '🎉 Bagus! Anda sudah paham aturan lulus ujian praktik.' : '📚 Baca lagi ketentuan lulus dan kesalahan yang sering terjadi di atas, lalu coba kembali.'}</p><div class="hasil-act c">${KartuBijak.tombol({jenis: 'praktik', judul: 'Kuis Lulus atau Gagal Ujian Praktik', skor, maks: qs.length})}<button class="btn" type="button" id="lgAgain">🔄 Ulangi dengan soal lain</button></div></div>`;
+      body.innerHTML = `<div class="out" style="text-align:center"><div class="big">${skor} / ${qs.length}</div><p>${skor >= 7 ? '🎉 Bagus! Anda sudah paham aturan lulus ujian praktik.' : '📚 Baca lagi ketentuan lulus dan kesalahan yang sering terjadi di atas, lalu coba kembali.'}</p><div class="hasil-act hasil c">${KartuBijak.tombol({jenis: 'praktik', judul: 'Kuis Lulus atau Gagal Ujian Praktik', skor, maks: qs.length})}<button class="btn" type="button" id="lgAgain">🔄 Ulangi dengan soal lain</button></div></div>`;
       $('#lgAgain').onclick = baru; return;
     }
     const [lulus, teks, alasan] = qs[qi];
@@ -5343,7 +5344,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   function ask(){
     if (qi >= qs.length) {
       const pct = Math.round(score / qs.length * 100);
-      $('#rqBody').innerHTML = `<div class="out" style="text-align:center"><div class="big">${score} / ${qs.length}</div><p>${pct >= 70 ? '🎉 Bagus! Anda siap menghadapi soal rambu di ujian teori.' : '📚 Ayo pelajari lagi galeri di atas, lalu coba kembali.'}</p><div class="hasil-act c">${KartuBijak.tombol({jenis: 'rambu', judul: 'Kuis Rambu Lalu Lintas', skor: score, maks: qs.length})}<button class="btn" type="button" id="rqAgain">🔄 Ulangi dengan soal lain</button></div></div>`;
+      $('#rqBody').innerHTML = `<div class="out" style="text-align:center"><div class="big">${score} / ${qs.length}</div><p>${pct >= 70 ? '🎉 Bagus! Anda siap menghadapi soal rambu di ujian teori.' : '📚 Ayo pelajari lagi galeri di atas, lalu coba kembali.'}</p><div class="hasil-act hasil c">${KartuBijak.tombol({jenis: 'rambu', judul: 'Kuis Rambu Lalu Lintas', skor: score, maks: qs.length})}<button class="btn" type="button" id="rqAgain">🔄 Ulangi dengan soal lain</button></div></div>`;
       $('#rqAgain').onclick = newQuiz; return;
     }
     const r = R[qs[qi]];
