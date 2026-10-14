@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610140738">
+<meta name="versi-buku" content="202610140739">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -307,9 +307,9 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cover h2{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
 .cover h2 em{font-style:normal;color:var(--accent)}
 /* sapaan waktu + status buka/tutup Satpas di sampul */
-.sapa{margin:0 auto 14px;max-width:none!important;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
-.sapa span{font-weight:800;font-size:clamp(1rem,2.2vw,1.25rem);line-height:1.25}
-.sapa small{font-size:clamp(.8rem,1.6vw,.92rem);opacity:.88}
+.sapa{margin:0 auto 10px;max-width:none!important;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+.sapa span{font-weight:700;font-size:clamp(.82rem,1.4vw,.92rem);line-height:1.3}
+.sapa small{font-size:clamp(.72rem,1.2vw,.8rem);opacity:.8}
 .sapa-st{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:3px 10px;border-radius:99px;font-size:.74rem;font-weight:700;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1)}
 .sapa-st i{width:8px;height:8px;border-radius:50%;background:var(--danger)}
 .sapa-st.buka i{background:#3fd27a;animation:pulse 1.6s infinite}
@@ -884,7 +884,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="bgimg" style="background-image:url('img/sampul-latar.webp')"></div>
     <div class="ct">
       <img class="covlogo" src="img/logo-lantas-baru.webp" fetchpriority="high" alt="Logo Korps Lalu Lintas Polri" width="356" height="390">
-      <p class="sapa" id="sapa" aria-live="polite"><span id="sapaT">Sugeng rawuh, Dulur Banyuwangi</span><small id="sapaK">Tetap tertib berlalu lintas 🙏</small><a href="#C.2" data-go="c1-1" class="sapa-st" id="sapaSt" hidden></a></p>
+      <p class="sapa" id="sapa" aria-live="polite"><span id="sapaT">Selamat datang, Dulur Banyuwangi</span><small id="sapaK">Tetap tertib berlalu lintas</small><a href="#C.2" data-go="c1-1" class="sapa-st" id="sapaSt" hidden></a></p>
       <span class="tag">BUKU DIGITAL INTERAKTIF</span>
       <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
@@ -3114,11 +3114,11 @@ function statusHariIni(){
 function sapaan(){
   const h = new Date().getHours();
   // Pagi 04.00–10.59 · Siang 11.00–14.59 · Sore 15.00–17.59 · Malam 18.00–03.59
-  const [salam, pesan] = h >= 4 && h < 11 ? ['Selamat Pagi', 'Awali hari dengan tertib berlalu lintas 🙏']
-    : h >= 11 && h < 15 ? ['Selamat Siang', 'Tetap fokus di jalan & jaga jarak aman 🚦']
-    : h >= 15 && h < 18 ? ['Selamat Sore', 'Hati-hati di perjalanan pulang, patuhi rambu 🏍️']
-    : ['Selamat Malam', 'Nyalakan lampu & jaga kecepatan, selamat sampai tujuan 🌙'];
-  $('#sapaT').textContent = `${salam}, Dulur Banyuwangi 👋`;
+  const [salam, pesan] = h >= 4 && h < 11 ? ['Selamat Pagi', 'Awali hari dengan tertib berlalu lintas']
+    : h >= 11 && h < 15 ? ['Selamat Siang', 'Tetap fokus di jalan & jaga jarak aman']
+    : h >= 15 && h < 18 ? ['Selamat Sore', 'Hati-hati di perjalanan pulang, patuhi rambu']
+    : ['Selamat Malam', 'Nyalakan lampu & jaga kecepatan, selamat sampai tujuan'];
+  $('#sapaT').textContent = `${salam}, Dulur Banyuwangi`;
   $('#sapaK').textContent = pesan;
   const st = $('#openStatus'), a = $('#sapaSt'), buka = st.classList.contains('open');
   const ket = (st.querySelector('.small') || {}).textContent || '';
