@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141249">
+<meta name="versi-buku" content="202610141332">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -477,6 +477,18 @@ h3.plain::before{display:none}
 .adu .arr{align-self:center;font-size:1.5rem;color:var(--muted)}
 @media (max-width:820px){.adu{grid-template-columns:1fr}.adu .arr{transform:rotate(90deg);justify-self:center;line-height:1}}
 /* C.1 notifikasi libur */
+/* C.1 daftar hari libur: judul ringkas + tahun sebagai label kecil */
+.hol-list{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:6px}
+.hol-list li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.hol-list .tg{text-align:center;line-height:1.1;border-right:1px solid var(--line);padding-right:8px}
+.hol-list .tg b{display:block;font-size:1.25rem;color:var(--brand)}
+.hol-list .tg small{font-size:.68rem;color:var(--muted);white-space:nowrap}
+.hol-list .kt{display:flex;flex-direction:column;align-items:flex-start;gap:3px;font-size:.88rem;line-height:1.35}
+.hol-list .kt .chip{font-size:.66rem;padding:1px 8px}
+@media (min-width:760px){.hol-list{grid-template-columns:1fr 1fr}}
+details.hol summary{font-size:.95rem;line-height:1.35}
+details.hol summary span:first-child{flex:1;min-width:0}
+@media (max-width:640px){details.hol summary{padding:11px 14px;font-size:.88rem;gap:8px}}
 .holalert{background:var(--danger-soft);border:1px solid var(--danger);border-radius:12px;padding:12px 14px}
 .holalert .chip{white-space:normal}
 /* tips putar HP */
@@ -595,6 +607,18 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .us-hasil li.v{border-color:var(--ok)}
 .us-hasil small{color:var(--muted)}
 @media (max-width:640px){.us-mat{text-align:left}.us-act{grid-template-columns:1fr 1fr}.us-act #usLook{grid-column:1/-1;grid-row:1}}
+#uaStage svg{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;background:#868b93;touch-action:manipulation}
+@media (max-width:640px){#uaStage svg{aspect-ratio:4/3}}
+.ua-gear{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.ua-gear button{min-height:50px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-weight:800;font-size:1.15rem;line-height:1.1}
+.ua-gear small{display:block;font-size:.7rem;font-weight:600;color:var(--muted)}
+.ua-gear button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.ua-gear button[aria-pressed="true"] small{color:inherit}
+.ua-gear button[disabled]{opacity:.4}
+.ua-act{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.ua-act .btn{padding:8px 6px;font-size:.88rem}
+.ua-act .btn.on{background:var(--accent);border-color:var(--accent);color:#1d1600}
+@media (max-width:640px){.ua-act{grid-template-columns:1fr 1fr}}
 
 /* ---------- bilah aksi per halaman: dengarkan, bagikan ---------- */
 /* bilah aksi: tombol bulat berikon (nama tombol muncul saat disentuh/diarahkan); di sampul "Pasang di HP" menggantikan "Bagikan" bila tersedia */
@@ -1670,8 +1694,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </section>
 
 <!-- ================= b5-3 · Persiapan Ujian Praktik ================= -->
-<section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji, sirkuit huruf S & simulasi uji sirkuit">
-  <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, sirkuit huruf S, simulasi uji sirkuit, dan kuis lulus atau gagal untuk SIM C &amp; SIM A.</p></div>
+<section class="page" data-id="b5-3" data-code="B.13" data-group="B" data-title="Persiapan Ujian Praktik" data-share="Persiapan ujian praktik SIM: lapangan uji, sirkuit huruf S, simulasi uji sirkuit SIM C & uji praktik SIM A">
+  <div class="ph"><span class="code">B.13</span><span class="grp">Materi Pendukung</span><h2>Persiapan Ujian Praktik</h2><p>Video tutorial, denah lapangan uji, sirkuit huruf S, simulasi uji sirkuit SIM C, simulasi uji praktik SIM A, dan kuis lulus atau gagal.</p></div>
   <div class="pbody">
     <div class="card ok inti-only" data-inti>
       <h4 style="margin:0 0 8px">⚡ Intisari: ujian praktik SIM C</h4>
@@ -1787,6 +1811,46 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Menurut lampiran Kep/105, uji SIM D tetap memakai pengereman, slalom/zig-zag, dan rem menghindar.</li>
       </ul></div>
     </div>
+    <h3>🎮 Uji Praktik SIM A: coba sendiri</h3>
+    <p class="small muted" style="margin-top:-4px">Lima materi uji praktik mobil (lintasan 6–10 pada denah lapangan) sesuai Kep/105/VIII/2023. Setir bergerak otomatis mengikuti lintasan; Anda mengatur gas, rem, gigi (transmisi otomatis), rem tangan, dan cara melihat ke belakang. Kecepatan &amp; jarak disederhanakan; ini latihan memahami urutan &amp; aturan, bukan pengganti latihan mengemudi.</p>
+    <div class="widget uji" id="ujiA" tabindex="-1"><span class="wt">Simulasi</span>
+      <h4>Pilih materi, lalu tekan Mulai</h4>
+      <div class="seg" role="group" aria-label="Pilih materi" id="uaPilih">
+        <button type="button" aria-pressed="true" data-m="-1">Semua (6–10)</button>
+        <button type="button" aria-pressed="false" data-m="0">6 Jalur sempit</button>
+        <button type="button" aria-pressed="false" data-m="1">7 Slalom</button>
+        <button type="button" aria-pressed="false" data-m="2">8 Parkir seri</button>
+        <button type="button" aria-pressed="false" data-m="3">9 Parkir paralel</button>
+        <button type="button" aria-pressed="false" data-m="4">10 Tanjakan</button>
+      </div>
+      <div id="uaStage"></div>
+      <div class="us-hud"><span class="us-spd" id="uaSpd">0 km/jam</span><span class="us-mat" id="uaMat">Materi 6 → 10 berurutan</span></div>
+      <div class="vinfo us-msg" id="uaMsg" aria-live="polite"><p>Tekan <b>Mulai</b>. Pasang sabuk, pilih gigi <b>D</b> (maju) atau <b>R</b> (mundur), lalu tahan <b>Gas</b> dan <b>Rem</b>. Lepas keduanya = mobil melambat pelan.</p></div>
+      <div class="ua-gear" role="group" aria-label="Gigi transmisi otomatis">
+        <button type="button" data-g="D" aria-pressed="false" disabled>D<small>Maju</small></button>
+        <button type="button" data-g="N" aria-pressed="true" disabled>N<small>Netral</small></button>
+        <button type="button" data-g="R" aria-pressed="false" disabled>R<small>Mundur</small></button>
+      </div>
+      <div class="us-pads">
+        <button type="button" class="us-pad rem" id="uaRem" disabled>⏹ Rem</button>
+        <button type="button" class="us-pad gas" id="uaGas" disabled>Gas ⏩</button>
+      </div>
+      <div class="ua-act">
+        <button type="button" class="btn ghost" id="uaSabuk" disabled>🔒 Pasang sabuk</button>
+        <button type="button" class="btn ghost" id="uaHb" aria-pressed="false" disabled>🅿️ Rem tangan</button>
+        <button type="button" class="btn ghost" id="uaSpion" disabled>🪞 Lihat spion</button>
+        <button type="button" class="btn ghost" id="uaTengok" disabled>👀 Tengok belakang</button>
+      </div>
+      <div class="hasil-act c"><button type="button" class="btn" id="uaStart">▶ Mulai</button></div>
+      <div class="out" id="uaRes"></div>
+      <p class="small muted" style="margin:8px 0 0">Dengan keyboard: ↑ gas, ↓ rem, D/N/R gigi, P rem tangan, M spion, T tengok, B sabuk.</p>
+    </div>
+    <div class="card ok"><h4>✅ Ketentuan lulus uji praktik SIM A</h4><ul class="clean small">
+      <li>Tidak menyentuh satu pun patok/sensor elektronik.</li>
+      <li>Saat mundur di jalur sempit, kepala tidak boleh menengok ke belakang: lihat melalui kaca spion.</li>
+      <li>Di tanjakan, mobil tidak boleh bergerak mundur atau mati mesin saat jalan kembali.</li>
+      <li>Menyelesaikan seluruh materi sesuai ketentuan. Wajib memakai sabuk keselamatan sejak awal.</li>
+    </ul><p class="small muted" style="margin:6px 0 0">Kep/105/VIII/2023 huruf A.3 &amp; I (berlaku juga untuk SIM BI, BI Umum, BII, SIM Umum &amp; SIM DI).</p></div>
     <p class="small muted">Sebelum ujian (pencerahan): periksa fungsi kemudi, rem tangan &amp; kaki, transmisi, kopling, oli, busi, spion, lampu, bahan bakar, kondisi &amp; tekanan ban, dan klakson. Pakai helm SNI (SIM C) atau sabuk keselamatan (SIM A). Lulus bila tidak melakukan kesalahan pada setiap materi (Pasal 19 ayat 2 Perpol 5/2021).</p>
 
     <h3>Kuis: lulus atau gagal?</h3>
@@ -2374,7 +2438,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <div class="fld"><label for="dispDate">Tanggal masa berlaku SIM habis</label><input type="date" id="dispDate"></div>
      </div>
       <div class="out" id="dispOut"></div>
-      <details class="acc" style="margin-top:10px"><summary>📅 Daftar hari libur nasional &amp; cuti bersama <span id="holYear"></span></summary><div class="in small" id="holList"></div></details>
+      <details class="acc hol" style="margin-top:10px"><summary><span>📅 Hari libur nasional &amp; cuti bersama</span><span class="ps" id="holYear"></span></summary><div class="in small" id="holList"></div></details>
       <p class="small muted" style="margin:8px 0 0">Data: SKB 3 Menteri tentang Hari Libur Nasional dan Cuti Bersama Tahun 2026 dan Tahun 2027. Tanggal hari besar Islam dapat bergeser mengikuti penetapan Kementerian Agama (sidang isbat).</p>
     </div>
     <div class="note warn"><b>Tips pengingat</b>Agar SIM tidak hangus dan harus membuat baru dari awal, selalu cek tanggal masa berlaku SIM secara berkala dan manfaatkan dispensasi 1 hari kerja ini jika tanggal habisnya bertepatan dengan hari libur. <span class="small muted">Sumber: Korlantas Polri.</span></div>
@@ -3173,7 +3237,7 @@ function renderHolList(year){
   $('#holYear').textContent = year;
   const items = Object.keys(LIBUR).filter(k => k.startsWith(year + '-')).sort();
   $('#holList').innerHTML = items.length
-    ? '<div class="tw fit" style="margin:0"><table><thead><tr><th>Tanggal</th><th>Keterangan</th></tr></thead><tbody>' + items.map(k => { const [y, m, d] = k.split('-').map(Number); const t = LIBUR[k]; return `<tr><td>${new Date(y, m - 1, d).toLocaleDateString('id-ID', {weekday:'short', day:'numeric', month:'short'})}</td><td>${t[0] === 'C' ? '<span class="chip y">Cuti bersama</span> ' : '<span class="chip r">Libur</span> '}${t[1].replace('Cuti bersama ', '')}</td></tr>`; }).join('') + '</tbody></table></div>'
+    ? '<ul class="hol-list">' + items.map(k => { const [y, m, d] = k.split('-').map(Number), t = LIBUR[k], tg = new Date(y, m - 1, d); return `<li><span class="tg"><b>${d}</b><small>${tg.toLocaleDateString('id-ID', {month:'short'})} · ${tg.toLocaleDateString('id-ID', {weekday:'short'})}</small></span><span class="kt">${t[0] === 'C' ? '<span class="chip y">Cuti bersama</span>' : '<span class="chip r">Libur nasional</span>'}<span>${t[1].replace('Cuti bersama ', '')}</span></span></li>`; }).join('') + '</ul>'
     : `<p>Data hari libur keagamaan tahun ${year} belum tersedia (menunggu SKB 3 Menteri). Hanya hari Minggu dan libur tetap (1 Jan, 1 Mei, 1 Jun, 17 Agu, 25 Des) yang dicek otomatis.</p>`;
 }
 function disp(){
@@ -4568,6 +4632,420 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     if (k === 'gas') setGas(true); else if (k === 'rem') setRem(true); else if (k === 'look') tengok(); else pilih(k);
   });
   box.addEventListener('keyup', e => { const k = KEY[e.key]; if (k === 'gas') setGas(false); else if (k === 'rem') setRem(false); });
+  window.addEventListener('blur', () => { setGas(false); setRem(false); });
+})();
+/* ---------- B.13 uji praktik SIM A (simulasi; sumber: Kep/105/VIII/2023 huruf A.3 & I) ---------- */
+(function(){
+  const box = $('#ujiA'); if (!box) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  // satuan gambar = meter; kendaraan uji SIM A 4,30 × 1,70 m (lampiran Kep/105)
+  const W = 76, H = 40, HP = 2.15, SB = 1.3;   // SB: jarak roda belakang ke titik tengah mobil (mobil berbelok mengikuti roda belakang; slalom memakai titik tengah)
+  const ACC = 1.5, BRK = 3.5, DRAG = .6, VD = 4.2, VR = 2.2, KMH = 3.6;   // m/detik² · batas ±15 km/jam maju, ±8 km/jam mundur
+  // bentuk lintasan: garis lurus, busur, belokan S halus, slalom
+  const garis = (a, b) => { const n = Math.max(2, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / .1)); return Array.from({length: n + 1}, (_, i) => [a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n]); };
+  const busur = (cx, cy, r, a0, a1) => { const n = Math.ceil(Math.abs(a1 - a0) / 2); return Array.from({length: n + 1}, (_, i) => { const a = (a0 + (a1 - a0) * i / n) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }); };
+  const lengkungS = (a, b) => { const n = Math.max(2, Math.ceil(Math.abs(b[0] - a[0]) / .1)); return Array.from({length: n + 1}, (_, i) => { const t = i / n; return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * (1 - Math.cos(Math.PI * t)) / 2]; }); };
+  const sambung = (...ps) => ps.flat();
+  const JP = 6.45, SX = 5, SY = 25, AMP = 1.6;                         // slalom: jarak patok 1,5 × panjang kendaraan
+  const slalomY = x => { const u = (x - SX) / JP; const env = u <= 0 || u >= 10 ? 0 : u < 1 ? Math.sin(u * Math.PI / 2) ** 2 : u > 9 ? Math.sin((10 - u) * Math.PI / 2) ** 2 : 1; return SY + AMP * Math.cos(Math.PI * u) * env; };
+  const slalom = (x0, x1) => { const n = Math.max(2, Math.ceil(Math.abs(x1 - x0) / .1)); return Array.from({length: n + 1}, (_, i) => { const x = x0 + (x1 - x0) * i / n; return [x, slalomY(x)]; }); };
+  function jalur(pts){
+    const p = [pts[0]], c = [0];
+    for (let i = 1; i < pts.length; i++) { const q = p[p.length - 1], d = Math.hypot(pts[i][0] - q[0], pts[i][1] - q[1]); if (d > 1e-6) { p.push(pts[i]); c.push(c[c.length - 1] + d); } }
+    const L = c[c.length - 1];
+    return {L, at(s){
+      s = Math.max(0, Math.min(L, s)); let lo = 0, hi = c.length - 1;
+      while (hi - lo > 1) { const m = (lo + hi) >> 1; if (c[m] <= s) lo = m; else hi = m; }
+      const a = p[lo], b = p[hi], t = (s - c[lo]) / (c[hi] - c[lo] || 1);
+      return {x: a[0] + (b[0] - a[0]) * t, y: a[1] + (b[1] - a[1]) * t, a: Math.atan2(b[1] - a[1], b[0] - a[0])};
+    }};
+  }
+  const near = (a, b) => Math.abs(a - b) < .06;
+  // garis & patok (meter): 6 jalur sempit, 7 slalom, 8 parkir seri, 9 parkir paralel, 10 tanjakan
+  const L6 = {y: 36, start: 5, stop: 55}, L7 = {start: SX, stop: SX + 10 * JP};
+  const SERI = {x: 52, y: 5.55, w: 2.55, h: 6.45}, PAR = {x: 62, y: 9.45, w: 6.45, h: 2.55}, JY = 17.5, JP9 = 16, RS = 4;
+  const T10 = {y: 5, start: 44, naik: 34.4, turun: 27.95, akhir: 18.35, finish: 16, stop: [39.2, 31.175, 23.15]};
+  const SC = SERI.x + SERI.w / 2, PY = PAR.y + PAR.h / 2;
+  const duaBusur = (a, y1, r) => {           // keluar parkir paralel: belok ke jalan lalu lurus kembali (dua busur berlawanan)
+    const dy = (y1 - a[1]) / 2, th = Math.acos(Math.max(-1, 1 - dy / r)), n = 60, p = [];
+    for (let i = 0; i <= n; i++) { const t = th * i / n; p.push([a[0] + r * Math.sin(t), a[1] + r * (1 - Math.cos(t))]); }
+    const [xm] = p[n];
+    for (let i = 1; i <= n; i++) { const t = th * (1 - i / n); p.push([xm + r * Math.sin(th) - r * Math.sin(t), y1 - r * (1 - Math.cos(t))]); }
+    return p;
+  };
+  const M = [
+    {no: 6, nama: 'Maju–mundur di jalur sempit', pose: {x: L6.start - HP, y: L6.y, a: 0},
+     tip: 'Maju pelan dan stabil sampai bumper depan tepat sebelum garis STOP. Saat mundur lihat kaca spion, kepala tidak menengok ke belakang.',
+     ph: [
+      {gear: 'D', lim: 12, b: c => [[c.x, L6.y], [57, L6.y]], zone: c => c.x >= L6.stop - 1.5 - HP && c.x <= L6.stop - HP, over: c => c.x > L6.stop - HP + .3,
+       overMsg: 'Melewati garis STOP, mobil menyentuh patok ujung.', limMsg: 'Terlalu cepat di jalur sempit, mobil menyentuh patok samping.',
+       hint: 'Maju pelan, berhenti tepat sebelum bumper depan menyentuh garis <b>STOP</b>.', short: 'Belum sampai. Maju lagi sampai dekat garis STOP.'},
+      {gear: 'R', lim: 6, spion: true, b: c => [[c.x, L6.y], [1, L6.y]], zone: c => c.x >= L6.start - HP && c.x <= L6.start - HP + 1.5, over: c => c.x < L6.start - HP - .3,
+       overMsg: 'Mundur melewati garis START, mobil menyentuh patok.', limMsg: 'Terlalu cepat saat mundur, mobil menyentuh patok samping.',
+       hint: 'Mundur pelan sampai bumper depan kembali di garis <b>START</b>.', short: 'Belum sampai. Mundur lagi sampai garis START.'}
+     ]},
+    {no: 7, nama: 'Slalom / zig-zag maju dan mundur', pose: {x: L7.start - HP, y: SY, a: 0}, sb: 0,
+     tip: 'Jaga kecepatan pelan dan rata, mulai membelok sebelum sejajar patok. Saat mundur lebih pelan lagi.',
+     ph: [
+      {gear: 'D', lim: 10, b: c => slalom(c.x, 73), zone: c => c.x >= L7.stop - 1.5 - HP && c.x <= L7.stop - HP, over: c => c.x > L7.stop - HP + .3,
+       overMsg: 'Melewati garis STOP.', limMsg: 'Terlalu cepat berkelok, mobil menyentuh patok slalom.',
+       hint: 'Berkelok pelan melewati 9 patok, berhenti sebelum garis <b>STOP</b>.', short: 'Belum sampai. Maju lagi sampai dekat garis STOP.'},
+      {gear: 'R', lim: 5, b: c => slalom(c.x, 0), zone: c => c.x >= L7.start - HP && c.x <= L7.start - HP + 1.5, over: c => c.x < L7.start - HP - .3,
+       overMsg: 'Mundur melewati garis START.', limMsg: 'Terlalu cepat saat mundur berkelok, mobil menyentuh patok slalom.',
+       hint: 'Mundur berkelok pelan, berhenti di garis <b>START</b>.', short: 'Belum sampai. Mundur lagi sampai garis START.'}
+     ]},
+    {no: 8, nama: 'Parkir seri', pose: {x: 50, y: JY, a: 0},
+     tip: 'Maju melewati petak sampai posisi pas, masuk dengan satu kali gerakan mundur, lalu keluar dengan satu kali gerakan maju.',
+     ph: [
+      {gear: 'D', lim: 10, b: c => [[c.x, JY], [66, JY]], zone: c => c.x >= SC + RS + SB + .05,
+       limMsg: 'Terlalu cepat, mobil menyentuh patok tepi jalan.', hint: 'Maju melewati petak <b>PARKIR SERI</b>, lalu berhenti.', short: 'Maju lagi sampai mobil melewati petak parkir.'},
+      {gear: 'R', lim: 6, satu: true, b: c => sambung(garis([c.x, JY], [SC + RS, JY]), busur(SC + RS, JY - RS, RS, 90, 180), garis([SC, JY - RS], [SC, SERI.y + .5])),
+       zone: c => Math.abs(c.x - SC) < .3 && c.y >= SERI.y + HP + .3 && c.y <= SERI.y + SERI.h - HP - .1, over: c => near(c.x, SC) && c.y < SERI.y + HP + .15,
+       overMsg: 'Mundur terlalu dalam, bumper belakang menyentuh patok.', limMsg: 'Terlalu cepat saat mundur, mobil menyentuh patok petak.',
+       early: 'Masuk petak parkir seri lebih dari satu kali gerakan mundur.', hint: 'Satu kali gerakan <b>mundur</b> sampai mobil masuk penuh ke petak.', short: 'Mobil belum masuk penuh. Lanjutkan mundur pelan.'},
+      {gear: 'D', lim: 10, satu: true, b: c => sambung(garis([SC, c.y], [SC, JY - RS]), busur(SC + RS, JY - RS, RS, 180, 90), garis([SC + RS, JY], [72, JY])),
+       zone: c => c.x >= SC + RS + 4, limMsg: 'Terlalu cepat saat keluar, mobil menyentuh patok petak.',
+       early: 'Keluar dari petak parkir seri lebih dari satu kali gerakan maju.', hint: 'Satu kali gerakan <b>maju</b> keluar dari petak ke jalan.', short: 'Lanjutkan maju sampai mobil kembali di jalan.'}
+     ]},
+    {no: 9, nama: 'Parkir paralel', pose: {x: 57, y: JP9, a: 0},
+     tip: 'Masuk: satu kali mundur lalu satu kali maju. Keluar: satu kali mundur lalu satu kali maju. Jaga jarak bumper dengan patok depan & belakang.',
+     ph: [
+      {gear: 'D', lim: 10, b: c => [[c.x, JP9], [74.5, JP9]], zone: c => c.x >= 70 + SB + .05,
+       limMsg: 'Terlalu cepat, mobil menyentuh patok tepi jalan.', hint: 'Maju melewati petak <b>PARKIR PARALEL</b>, lalu berhenti.', short: 'Maju lagi sampai mobil melewati petak parkir.'},
+      {gear: 'R', lim: 6, satu: true, b: c => sambung(garis([c.x, JP9], [70, JP9]), lengkungS([70, JP9], [63.6, PY]), garis([63.6, PY], [61.5, PY])),
+       zone: c => near(c.y, PY) && c.x >= PAR.x + HP + .15 && c.x <= 65.25, over: c => near(c.y, PY) && c.x < PAR.x + HP + .05,
+       overMsg: 'Mundur terlalu jauh, bumper belakang menyentuh patok.', limMsg: 'Terlalu cepat saat mundur, mobil menyentuh patok petak.',
+       early: 'Masuk parkir paralel lebih dari satu kali gerakan mundur.', hint: 'Masuk: satu kali gerakan <b>mundur</b> ke dalam petak.', short: 'Mobil belum masuk penuh. Lanjutkan mundur pelan.'},
+      {gear: 'D', lim: 5, satu: true, b: c => [[c.x, PY], [PAR.x + PAR.w + .5, PY]],
+       zone: (c, c0) => c.x >= c0.x + .3 && c.x <= PAR.x + PAR.w - HP - .15, over: c => c.x > PAR.x + PAR.w - HP - .05,
+       overMsg: 'Maju terlalu jauh, bumper depan menyentuh patok.', limMsg: 'Terlalu cepat di dalam petak, mobil menyentuh patok.',
+       early: 'Merapikan posisi lebih dari satu kali gerakan maju.', hint: 'Lalu satu kali gerakan <b>maju</b> sedikit untuk merapikan posisi.', short: 'Maju sedikit lagi.'},
+      {gear: 'R', lim: 5, satu: true, b: c => [[c.x, PY], [PAR.x - .5, PY]],
+       zone: (c, c0) => c.x <= c0.x - .3 && c.x >= PAR.x + HP + .15, over: c => c.x < PAR.x + HP + .05,
+       overMsg: 'Mundur terlalu jauh, bumper belakang menyentuh patok.', limMsg: 'Terlalu cepat di dalam petak, mobil menyentuh patok.',
+       early: 'Keluar parkir paralel lebih dari satu kali gerakan mundur.', hint: 'Keluar: satu kali gerakan <b>mundur</b> sedikit.', short: 'Mundur sedikit lagi.'},
+      {gear: 'D', lim: 10, satu: true, b: c => { const p = duaBusur([c.x, PY], JP9, 3); return sambung(p, garis(p[p.length - 1], [W, JP9])); },
+       zone: (c, c0) => c.x >= c0.x + 6, limMsg: 'Terlalu cepat saat keluar, mobil menyentuh patok petak.',
+       early: 'Keluar parkir paralel lebih dari satu kali gerakan maju.', hint: 'Lalu satu kali gerakan <b>maju</b> keluar ke jalan.', short: 'Lanjutkan maju sampai mobil kembali di jalan.'}
+     ]},
+    {no: 10, nama: 'Berhenti di tanjakan dan turunan', pose: {x: T10.start + HP, y: T10.y, a: Math.PI}, lereng: true,
+     tip: 'Berhenti sebelum garis STOP dengan rem kaki, tarik rem tangan, netralkan (N). Jalan lagi: pindah D, turunkan rem tangan sambil menahan rem/gas agar mobil tidak mundur.',
+     ph: [
+      {gear: 'D', lim: 10, bukit: true, b: c => [[c.x, T10.y], [12, T10.y]], zone: c => c.x <= T10.stop[0] + 1.5 + HP && c.x >= T10.stop[0] + HP, over: c => c.x < T10.stop[0] + HP - .2,
+       overMsg: 'Melewati garis STOP di tanjakan.', limMsg: 'Terlalu cepat menanjak.', hint: 'Naik tanjakan, berhenti sebelum garis <b>STOP</b> pertama.', short: 'Maju lagi sampai dekat garis STOP.'},
+      {gear: 'D', lim: 10, bukit: true, b: c => [[c.x, T10.y], [12, T10.y]], zone: c => c.x <= T10.stop[1] + 1.5 + HP && c.x >= T10.stop[1] + HP, over: c => c.x < T10.stop[1] + HP - .2,
+       overMsg: 'Melewati garis STOP di jalan datar.', limMsg: 'Terlalu cepat di atas jembatan.', hint: 'Berhenti sebelum garis <b>STOP</b> di jalan datar.', short: 'Maju lagi sampai dekat garis STOP.'},
+      {gear: 'D', lim: 10, bukit: true, b: c => [[c.x, T10.y], [12, T10.y]], zone: c => c.x <= T10.stop[2] + 1.5 + HP && c.x >= T10.stop[2] + HP, over: c => c.x < T10.stop[2] + HP - .2,
+       overMsg: 'Melewati garis STOP di turunan.', limMsg: 'Terlalu cepat di turunan. Kendalikan kecepatan dengan rem.', hint: 'Turun pelan (tahan <b>Rem</b> bila perlu), berhenti sebelum garis <b>STOP</b> di turunan.', short: 'Maju lagi sampai dekat garis STOP.'},
+      {gear: 'D', lim: 12, b: c => [[c.x, T10.y], [12, T10.y]], zone: c => c.x <= T10.finish + HP,
+       limMsg: 'Terlalu cepat di turunan. Kendalikan kecepatan dengan rem.', hint: 'Turun pelan (tahan <b>Rem</b> bila perlu) sampai melewati garis <b>FINISH</b>, lalu berhenti.', short: 'Maju lagi sampai melewati garis FINISH.'}
+     ]}
+  ];
+  // percepatan lereng (hanya materi 10): menanjak menarik mobil mundur, menurun mendorong maju
+  const lereng = x => x <= T10.start && x > T10.naik ? -1 : x <= T10.turun && x > T10.akhir ? .5 : 0;
+
+  // ---------- gambar lapangan ----------
+  const el = (tag, at, par) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); if (par) par.append(e); return e; };
+  const svg = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Simulasi lapangan uji praktik SIM A'});
+  let g = '';
+  const NAVY = '#14238c', ASPAL = '#959aa2', PUTIH = '#fff';
+  const lajur = (x, y, w, h) => { g += `<rect x="${x - .8}" y="${y - .8}" width="${w + 1.6}" height="${h + 1.6}" fill="${NAVY}"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${ASPAL}" stroke="${PUTIH}" stroke-width=".08"/>`; };
+  const patok = (x, y) => { g += `<circle cx="${x}" cy="${y}" r=".2" fill="#ff7a00" stroke="#fff" stroke-width=".06"/>`; };
+  const tulis = (x, y, t, s = .8, rot = 0, fill = PUTIH) => { g += `<text x="${x}" y="${y}" font-size="${s}" font-weight="800" fill="${fill}" text-anchor="middle" dominant-baseline="middle"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}>${t}</text>`; };
+  const garisMelintang = (x, y0, y1, w = .25) => { g += `<path d="M${x} ${y0}V${y1}" stroke="${PUTIH}" stroke-width="${w}"/>`; };
+  g += `<rect width="${W}" height="${H}" fill="#868b93"/>`;
+  // 6
+  lajur(1, L6.y - 1.15, 55.5, 2.3);
+  garisMelintang(L6.start, L6.y - 1.15, L6.y + 1.15); garisMelintang(L6.stop, L6.y - 1.15, L6.y + 1.15);
+  for (let x = L6.start + 3; x < L6.stop - 1; x += 4.5) g += `<path d="M${x} ${L6.y}h.9m-.3 -.25l.3 .25l-.3 .25" stroke="#fff" stroke-width=".08" fill="none" opacity=".8"/>`;
+  for (let x = L6.start; x <= L6.stop + .01; x += JP) { patok(x, L6.y - 1.15); patok(x, L6.y + 1.15); }
+  patok(L6.stop, L6.y - 1.15); patok(L6.stop, L6.y + 1.15);
+  tulis(L6.start - 2.3, L6.y, 'START', .55, -90); tulis(L6.stop + 1, L6.y, 'STOP', .55, 90);
+  // 7
+  lajur(1, SY - 3.5, 71.5, 7);
+  garisMelintang(L7.start, SY - 3.5, SY + 3.5); garisMelintang(L7.stop, SY - 3.5, SY + 3.5);
+  g += `<path d="${slalom(L7.start, L7.stop).filter((_, i) => i % 3 === 0).map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join('')}" fill="none" stroke="#fff" stroke-width=".12" stroke-dasharray=".5 .5" opacity=".55"/>`;
+  for (let k = 1; k <= 9; k++) patok(SX + k * JP, SY);
+  patok(L7.start, SY - 3.2); patok(L7.stop, SY - 3.2);
+  tulis(L7.start - 2.3, SY, 'START', .55, -90); tulis(L7.stop + 1.2, SY, 'STOP', .55, 90);
+  // 8 & 9: jalan + petak parkir
+  g += `<rect x="${SERI.x - 1.2}" y="${SERI.y - 1.2}" width="${SERI.w + 2.4}" height="${SERI.h + 1.2}" fill="${NAVY}"/>`;
+  g += `<rect x="${PAR.x - 1.2}" y="${PAR.y - 1.2}" width="${PAR.w + 2.4}" height="${PAR.h + 1.2}" fill="${NAVY}"/>`;
+  lajur(47, 12, 28.2, 8);
+  g += `<rect x="${SERI.x}" y="${SERI.y}" width="${SERI.w}" height="${SERI.h + .1}" fill="${ASPAL}" stroke="${PUTIH}" stroke-width=".1"/>`;
+  g += `<rect x="${PAR.x}" y="${PAR.y}" width="${PAR.w}" height="${PAR.h + .1}" fill="${ASPAL}" stroke="${PUTIH}" stroke-width=".1"/>`;
+  tulis(SC, SERI.y + SERI.h / 2, 'PARKIR SERI', .6, -90, 'rgba(255,255,255,.75)'); tulis(PAR.x + PAR.w / 2, PY, 'PARKIR PARALEL', .6, 0, 'rgba(255,255,255,.75)');
+  [[SERI.x, SERI.y], [SERI.x + SERI.w, SERI.y], [SERI.x, SERI.y + SERI.h / 2], [SERI.x + SERI.w, SERI.y + SERI.h / 2], [SERI.x, 12], [SERI.x + SERI.w, 12],
+   [PAR.x, PAR.y], [PAR.x + PAR.w, PAR.y], [PAR.x + PAR.w / 2, PAR.y], [PAR.x, 12], [PAR.x + PAR.w, 12]].forEach(p => patok(...p));
+  for (let x = 48; x < W; x += 3.2) patok(x, 20);
+  // 10: tanjakan – datar – turunan
+  lajur(14.5, T10.y - 1.275, 33, 2.55);
+  g += `<rect x="${T10.naik}" y="${T10.y - 1.275}" width="${T10.start - T10.naik}" height="2.55" fill="#5f646c"/><rect x="${T10.akhir}" y="${T10.y - 1.275}" width="${T10.turun - T10.akhir}" height="2.55" fill="#5f646c"/>`;
+  [[T10.naik + .8, T10.start - .3], [T10.akhir + .8, T10.turun - .3]].forEach(([a, b]) => { for (let x = a; x < b - .4; x += 1.3) g += `<path d="M${x + .7} ${T10.y - .9}L${x} ${T10.y}L${x + .7} ${T10.y + .9}" stroke="#fff" stroke-width=".12" fill="none"/>`; });
+  T10.stop.forEach(x => { garisMelintang(x, T10.y - 1.275, T10.y + 1.275, .3); tulis(x - .55, T10.y, 'STOP', .45, 90); });
+  garisMelintang(T10.start, T10.y - 1.275, T10.y + 1.275); garisMelintang(T10.finish, T10.y - 1.275, T10.y + 1.275);
+  tulis(T10.start + 1, T10.y, 'START', .5, 90); tulis(T10.finish - .9, T10.y, 'FINISH', .5, -90);
+  tulis((T10.naik + T10.start) / 2, T10.y - 2.1, 'TANJAKAN 15°', .65); tulis((T10.naik + T10.turun) / 2, T10.y - 2.1, 'DATAR (JEMBATAN)', .65); tulis((T10.akhir + T10.turun) / 2, T10.y - 2.1, 'TURUNAN', .65);
+  svg.innerHTML = g;
+  const nomor = [[59.3, L6.y], [74.3, SY], [SC, 2.6], [PAR.x + PAR.w / 2, 6.6], [49.6, T10.y]].map(([x, y], i) => {
+    const n = el('g', {class: 'ua-no'}, svg);
+    el('circle', {cx: x, cy: y, r: 1.3, fill: NAVY, stroke: '#fff', 'stroke-width': .25}, n);
+    const t = el('text', {x, y: y + .05, 'font-size': 1.3, 'font-weight': 800, fill: '#fff', 'text-anchor': 'middle', 'dominant-baseline': 'middle'}, n); t.textContent = M[i].no;
+    return n;
+  });
+  const mobil = el('g', {}, svg);
+  mobil.innerHTML = `<rect x="-2.15" y="-.85" width="4.3" height="1.7" rx=".4" fill="#e53935" stroke="#2b0b0b" stroke-width=".07"/>
+    <rect x=".35" y="-.68" width=".75" height="1.36" rx=".15" fill="#1f2630" opacity=".85"/><rect x="-1.6" y="-.62" width=".5" height="1.24" rx=".12" fill="#1f2630" opacity=".85"/>
+    <rect x="1.95" y="-.7" width=".18" height=".35" fill="#ffe08a"/><rect x="1.95" y=".35" width=".18" height=".35" fill="#ffe08a"/>`;
+  $('#uaStage').append(svg);
+
+  // ---------- keadaan & kendali ----------
+  const msg = $('#uaMsg'), spd = $('#uaSpd'), mat = $('#uaMat'), res = $('#uaRes');
+  const btn = {gas: $('#uaGas'), rem: $('#uaRem'), hb: $('#uaHb'), spion: $('#uaSpion'), tengok: $('#uaTengok'), sabuk: $('#uaSabuk'), start: $('#uaStart')};
+  const gigiBtn = $$('#ujiA .ua-gear button'), pilihBtn = $$('#uaPilih button');
+  let pilihan = -1, st = null, raf = 0, last = 0, gas = false, rem = false, cam = null;
+  const say = (html, cls = '') => { msg.className = 'vinfo us-msg ' + cls; msg.innerHTML = `<p>${html}</p>`; };
+  const posAt = s => { const q = st.path.at(s), h = q.a + (st.mundur ? Math.PI : 0); return {x: q.x + st.sb * Math.cos(h), y: q.y + st.sb * Math.sin(h), a: h, rx: q.x, ry: q.y}; };
+  const pos = () => posAt(st.s);
+  const fase = () => M[st.m].ph[st.p];
+  const berikut = () => M[st.m].ph[st.p + 1];
+  function gagal(alasan){
+    const i = st.m; st.fail[i] = st.fail[i] || [];
+    if (st.fail[i].includes(alasan)) return;
+    st.fail[i].push(alasan); Efek.main('sentuh', [70, 50, 70]);
+    say(`❌ <b>${M[i].no}. ${M[i].nama}:</b> ${alasan} Lanjutkan sampai materi selesai.`, 'bad');
+  }
+  function kendali(on){
+    [btn.gas, btn.rem, btn.hb, btn.spion, btn.tengok, ...gigiBtn].forEach(b => b.disabled = !on);
+    btn.sabuk.disabled = !on || st.sabuk;
+  }
+  function tampilGigi(){ gigiBtn.forEach(b => b.setAttribute('aria-pressed', b.dataset.g === st.gigi)); btn.hb.classList.toggle('on', st.hb); btn.hb.setAttribute('aria-pressed', st.hb); }
+
+  function pasangJalur(pts, c){            // jalur diperpanjang 3 m ke belakang agar mobil bisa tergelincir mundur
+    const [a, b] = [pts[0], pts[Math.min(5, pts.length - 1)]], d = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+    const blk = [a[0] - (b[0] - a[0]) / d * 3, a[1] - (b[1] - a[1]) / d * 3];
+    st.path = jalur([blk, ...pts]); st.s = 3; st.c0 = c;
+  }
+  function mulaiMateri(i){
+    const m = M[i];
+    st.m = i; st.p = -1; st.selesaiFase = true; st.gigi = 'N'; st.hb = false; st.v = 0; st.spionOk = true; st.proc = null; st.rb0 = null; st.lim = false;
+    st.sb = m.sb ?? SB;
+    const rx = m.pose.x - Math.cos(m.pose.a) * st.sb, ry = m.pose.y - Math.sin(m.pose.a) * st.sb;
+    st.path = jalur([[rx - Math.cos(m.pose.a) * 3, ry - Math.sin(m.pose.a) * 3], [rx, ry]]); st.s = 3; st.c0 = m.pose; st.mundur = false; st.lewat = false; st.kurang = false;
+    cam = null; kendali(true); tampilGigi();
+    say(`<b>Materi ${m.no}: ${m.nama}.</b> ${st.sabuk ? '' : 'Pasang <b>sabuk keselamatan</b>, lalu '}pindah gigi ke <b>${m.ph[0].gear}</b> dan tahan <b>Gas</b>. ${m.ph[0].hint}`);
+  }
+  function mulaiFase(){
+    const f = berikut(), c = pos();
+    if (fase() && fase().bukit) {
+      if (!(st.proc && st.proc.hb && st.proc.n)) gagal('Tidak menarik rem tangan lalu menetralkan transmisi sebelum jalan kembali.');
+      st.rb0 = 3;                             // pantau mobil mundur sampai benar-benar melaju
+    }
+    st.p++; st.selesaiFase = false; st.proc = null; st.lim = false; st.kurang = false; st.mundur = f.gear === 'R';
+    pasangJalur(f.b({x: c.rx, y: c.ry}), c);
+    st.spionOk = !f.spion;
+    if (f.spion) say('Sebelum mundur, pilih cara melihat ke belakang: <b>🪞 Lihat spion</b> atau <b>👀 Tengok belakang</b>.');
+    else say(f.hint);
+  }
+  function faseSelesai(){
+    st.selesaiFase = true; st.v = 0;
+    const f = fase(), n = berikut(), ok = !st.fail[st.m];
+    if (!n) return materiSelesai();
+    if (f.bukit) { st.proc = {hb: st.hb, n: st.gigi === 'N', s0: st.s}; say(`${ok ? '✓ Berhenti sebelum garis STOP. ' : ''}Tahan <b>Rem</b>, tarik <b>🅿️ Rem tangan</b>, lalu pindah ke <b>N</b>. Setelah itu pindah <b>D</b>, turunkan rem tangan, dan <b>Gas</b> tanpa membiarkan mobil mundur.`, ok ? 'good' : 'bad'); }
+    else say(`${ok ? '✓ Tepat. ' : ''}Pindah gigi ke <b>${n.gear}</b>. ${n.spion ? '' : n.hint}`, ok ? 'good' : 'bad');
+  }
+  function materiSelesai(){
+    st.selesaiFase = true; setGas(false); setRem(false); kendali(false);
+    const ok = !st.fail[st.m], urut = st.urut, k = urut.indexOf(st.m);
+    st.hasil.push(st.m);
+    if (k < urut.length - 1) {
+      say(`${ok ? '✓' : '❌'} <b>Materi ${M[st.m].no} selesai${ok ? ' tanpa kesalahan' : ''}.</b> Tekan <b>Lanjut</b> ke materi ${M[urut[k + 1]].no}.`, ok ? 'good' : 'bad');
+      btn.start.textContent = `▶ Lanjut ke materi ${M[urut[k + 1]].no}`; btn.start.hidden = false; st.lanjut = urut[k + 1];
+    } else hasil();
+  }
+  function lompatKeZona(){                 // gerakan tambahan: catat gagal, lalu mobil diletakkan di posisi akhir agar ujian bisa berlanjut
+    const f = fase(); let a = -1, b = -1;
+    for (let s = st.s; s <= st.path.L; s += .05) { const z = f.zone(posAt(s), st.c0); if (z && a < 0) a = s; if (!z && a >= 0) { b = s; break; } }
+    if (a >= 0) st.s = (a + (b < 0 ? st.path.L : b)) / 2;
+  }
+
+  function setGigi(gg){
+    if (!st || !st.on || btn.gas.disabled) return;
+    if (gg === st.gigi) return;
+    if (Math.abs(st.v) > .05) { say('Hentikan mobil dulu (tahan <b>Rem</b>) sebelum pindah gigi.', 'bad'); return; }
+    const f = fase(), n = berikut();
+    if (gg === 'N') { st.gigi = 'N'; if (st.proc) st.proc.n = true; tampilGigi(); return; }
+    if (!st.selesaiFase && f && gg !== f.gear) {
+      if (!f.satu) { say(f.short); return; }
+      gagal(f.early); lompatKeZona(); faseSelesai();
+      if (!berikut()) return;
+    }
+    st.gigi = gg; tampilGigi();
+    const n2 = berikut();
+    if (st.selesaiFase && n2) {
+      if (gg === n2.gear) mulaiFase();
+      else say(`Pindah gigi ke <b>${n2.gear}</b>.`);
+    }
+  }
+  function setGas(b){
+    if (!st || !st.on || btn.gas.disabled) b = false;
+    if (b) {
+      if (!st.sabuk) { gagal('Belum memakai sabuk keselamatan sebelum menjalankan mobil.'); pasangSabuk(true); }
+      const n = berikut();
+      if (st.selesaiFase && n && st.gigi === n.gear && !st.hb) mulaiFase();
+      else if (st.gigi === 'N') say(st.proc ? 'Masih di <b>N</b>. Pindah gigi ke <b>D</b> dulu.' : 'Gigi masih <b>N</b> (netral). Pindah ke <b>D</b> atau <b>R</b> dulu.');
+      else if (st.hb) say('Rem tangan masih ditarik. Turunkan <b>🅿️ Rem tangan</b> dulu.');
+      else if (!st.spionOk) say('Sebelum mundur, pilih dulu: <b>🪞 Lihat spion</b> atau <b>👀 Tengok belakang</b>.');
+    }
+    gas = b; btn.gas.classList.toggle('on', b);
+  }
+  function setRem(b){ if (!st || !st.on) b = false; rem = b; btn.rem.classList.toggle('on', b); }
+  function remTangan(){
+    if (!st || !st.on || btn.hb.disabled) return;
+    st.hb = !st.hb; tampilGigi();
+    if (st.hb && Math.abs(st.v) > .3) say('Jangan menarik rem tangan saat mobil masih berjalan. Gunakan rem kaki dulu.', 'bad');
+    if (st.proc && st.hb) { st.proc.hb = true; if (!st.fail[st.m]) say('✓ Rem tangan ditarik. Sekarang pindah ke <b>N</b>, lalu <b>D</b>, turunkan rem tangan, dan <b>Gas</b>.', 'good'); }
+    if (st.proc && !st.hb && st.proc.hb && st.gigi === 'D' && !st.fail[st.m]) say('Rem tangan turun. Segera <b>Gas</b> agar mobil tidak mundur.');
+  }
+  function spion(){
+    if (!st || !st.on || btn.spion.disabled) return;
+    if (!st.spionOk) { st.spionOk = true; if (!st.fail[st.m]) say('✓ Benar, mundur dengan melihat kaca spion. Sekarang tahan <b>Gas</b> pelan. ' + fase().hint, 'good'); }
+    else say('🪞 Kaca spion dicek.');
+  }
+  function tengok(){
+    if (!st || !st.on || btn.tengok.disabled) return;
+    const f = fase();
+    if (f && f.spion && !st.selesaiFase) { gagal('Kepala menengok ke belakang saat mundur di jalur sempit. Wajib melihat melalui kaca spion.'); st.spionOk = true; }
+    else say('👀 Menengok kanan belakang sebelum berjalan itu kebiasaan baik.');
+  }
+  function pasangSabuk(diam){
+    if (!st || st.sabuk) return;
+    st.sabuk = true; btn.sabuk.disabled = true; btn.sabuk.textContent = '🔒 Sabuk terpasang';
+    if (!diam) say(`✓ Sabuk terpasang. Pindah gigi ke <b>${(berikut() || fase()).gear}</b>, lalu tahan <b>Gas</b>.`, 'good');
+  }
+
+  function mulai(){
+    if (st && st.lanjut != null && st.on) { const i = st.lanjut; st.lanjut = null; btn.start.hidden = true; mulaiMateri(i); box.scrollIntoView({block: 'start'}); return; }
+    const urut = pilihan < 0 ? [0, 1, 2, 3, 4] : [pilihan];
+    st = {on: true, urut, hasil: [], fail: [null, null, null, null, null], sabuk: false, gigi: 'N', hb: false, v: 0, lanjut: null};
+    btn.sabuk.textContent = '🔒 Pasang sabuk';
+    res.innerHTML = ''; btn.start.hidden = true; pilihBtn.forEach(b => b.disabled = true);
+    nomor.forEach(n => n.style.display = 'none');
+    mulaiMateri(urut[0]);
+    box.focus({preventScroll: true}); box.scrollIntoView({block: 'start'});
+    last = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(putar);
+  }
+  function putar(t){
+    if (!st || !st.on) return;
+    if (!box.offsetParent) { berhenti(); return; }   // halaman ditinggalkan
+    const dt = Math.min(.05, Math.max(0, t - last) / 1000); last = t;
+    if (!btn.gas.disabled) langkah(dt);
+    gambar(dt);
+    raf = requestAnimationFrame(putar);
+  }
+  function berhenti(){
+    if (st) st.on = false;
+    cancelAnimationFrame(raf); setGas(false); setRem(false);
+    [btn.gas, btn.rem, btn.hb, btn.spion, btn.tengok, btn.sabuk, ...gigiBtn].forEach(b => b.disabled = true);
+    pilihBtn.forEach(b => b.disabled = false); nomor.forEach(n => n.style.display = '');
+    btn.start.textContent = '▶ Mulai'; btn.start.hidden = false; cam = null; gambarAwal();
+  }
+
+  function langkah(dt){
+    const f = fase(), aktif = !st.selesaiFase;
+    const bisaGas = gas && !st.hb && st.spionOk && st.gigi !== 'N' && (aktif ? st.gigi === f.gear : false);
+    const cAwal = pos(), sl = M[st.m].lereng ? lereng(cAwal.x) : 0;
+    const vmax = st.mundur ? VR : VD;
+    if (rem || st.hb) { const d = BRK * dt; st.v = Math.abs(st.v) <= d ? 0 : st.v - Math.sign(st.v) * d; }
+    else {
+      st.v += ((bisaGas ? ACC : 0) + sl) * dt;
+      if (!bisaGas) { const d = (sl ? .3 : DRAG) * dt; if (!sl) st.v = Math.abs(st.v) <= d ? 0 : st.v - Math.sign(st.v) * d; else if (Math.abs(st.v) > 0) st.v -= Math.sign(st.v) * Math.min(Math.abs(st.v), d * .2); }
+    }
+    st.v = Math.max(-1.5, Math.min(vmax, st.v));
+    st.s += st.v * dt;
+    if (st.s <= 0) { st.s = 0; st.v = Math.max(0, st.v); }
+    if (st.s >= st.path.L) { st.s = st.path.L; st.v = Math.min(0, st.v); }
+    const c = pos();
+    // mobil tergelincir mundur di tanjakan saat akan jalan kembali
+    if (st.rb0 != null) { if (st.s < st.rb0 - .25) { gagal('Mobil bergerak mundur saat akan jalan kembali di tanjakan.'); st.rb0 = null; } else if (st.s > st.rb0 + 1) st.rb0 = null; }
+    if (st.proc && !st.proc.mundur && st.s < st.proc.s0 - .25 && sl < 0) { gagal('Mobil bergerak mundur saat berhenti di tanjakan. Tahan rem kaki sampai rem tangan ditarik.'); st.proc.mundur = true; }
+    if (!f) return;
+    if (f.over && f.over(c, st.c0)) {
+      if (aktif || !st.lewat) { gagal(f.overMsg); st.lewat = true; }
+      st.v = 0;
+      if (aktif) { lompatKeZonaMundur(f); faseSelesai(); }
+      return;
+    }
+    if (!aktif) return;
+    if (Math.abs(st.v) * KMH > f.lim && !st.lim) { st.lim = true; gagal(f.limMsg); }
+    if (Math.abs(st.v) < .01 && !gas) {
+      if (f.zone(c, st.c0)) { st.lewat = false; faseSelesai(); }
+      else if (st.s > 3.05 && !st.kurang) { st.kurang = true; say(f.short); }
+    } else st.kurang = false;
+  }
+  function lompatKeZonaMundur(f){         // setelah melewati batas: letakkan mobil di ujung zona terdekat
+    for (let s = st.s; s >= 0; s -= .05) if (f.zone(posAt(s), st.c0)) { st.s = s; return; }
+  }
+
+  function gambar(dt){
+    const c = pos(), deg = c.a * 180 / Math.PI;
+    mobil.setAttribute('transform', `translate(${c.x.toFixed(3)} ${c.y.toFixed(3)}) rotate(${deg.toFixed(2)})`);
+    // kamera mengikuti mobil
+    const r = svg.clientWidth / (svg.clientHeight || 1) || 1.6, vh = svg.clientWidth < 500 ? 15 : 17, vw = vh * r;
+    const tx = Math.max(0, Math.min(W - vw, c.x - vw / 2)), ty = Math.max(0, Math.min(H - vh, c.y - vh / 2));
+    if (!cam) cam = {x: tx, y: ty}; else { const k = Math.min(1, dt * 4); cam.x += (tx - cam.x) * k; cam.y += (ty - cam.y) * k; }
+    svg.setAttribute('viewBox', `${cam.x.toFixed(2)} ${cam.y.toFixed(2)} ${vw.toFixed(2)} ${vh}`);
+    const kmh = Math.round(Math.abs(st.v) * KMH), f = st.selesaiFase ? null : fase();
+    spd.textContent = (st.v < -.05 ? '◀ ' : '') + kmh + ' km/jam';
+    spd.classList.toggle('lebih', !!f && kmh > f.lim);
+    mat.textContent = `Materi ${M[st.m].no} · ${M[st.m].nama}` + (f ? ` · maks. ${f.lim} km/jam` : '');
+  }
+  function gambarAwal(){
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const m = M[pilihan < 0 ? 0 : pilihan].pose;
+    mobil.setAttribute('transform', `translate(${m.x} ${m.y}) rotate(${m.a * 180 / Math.PI})`);
+    spd.textContent = '0 km/jam'; spd.classList.remove('lebih');
+    mat.textContent = pilihan < 0 ? 'Materi 6 → 10 berurutan' : `Materi ${M[pilihan].no} · ${M[pilihan].nama}`;
+  }
+  function hasil(){
+    const urut = st.urut, lulus = urut.every(i => !st.fail[i]);
+    st.on = false; cancelAnimationFrame(raf);
+    [btn.gas, btn.rem, btn.hb, btn.spion, btn.tengok, btn.sabuk, ...gigiBtn].forEach(b => b.disabled = true);
+    pilihBtn.forEach(b => b.disabled = false); nomor.forEach(n => n.style.display = '');
+    btn.start.textContent = '🔄 Ulangi'; btn.start.hidden = false;
+    Efek.main(lulus ? 'benar' : 'salah', lulus ? [40, 60, 40] : 0);
+    say(lulus ? '🎉 Semua materi lulus.' : 'Ujian selesai. Lihat materi yang perlu dilatih di bawah.', lulus ? 'good' : 'bad');
+    res.innerHTML = `<div class="big" style="text-align:center;color:var(${lulus ? '--ok' : '--danger'})">${lulus ? '✅ LULUS' : '❌ BELUM LULUS'}</div>
+      <ol class="us-hasil">${urut.map(i => `<li class="${st.fail[i] ? 'x' : 'v'}"><b>${st.fail[i] ? '✗' : '✓'} ${M[i].no}. ${M[i].nama}</b>${st.fail[i] ? ` — ${st.fail[i].join(' ')}<br><small>Tips: ${M[i].tip}</small>` : ' — lulus'}</li>`).join('')}</ol>
+      <p class="small" style="margin:10px 0 0">Ingin berlatih langsung di lapangan uji yang sebenarnya? Ikuti latihan gratis <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p>`;
+    btn.start.focus({preventScroll: true});
+  }
+
+  gambarAwal();
+  pilihBtn.forEach(b => b.addEventListener('click', () => {
+    pilihan = +b.dataset.m; pilihBtn.forEach(x => x.setAttribute('aria-pressed', x === b));
+    res.innerHTML = ''; btn.start.textContent = '▶ Mulai'; gambarAwal();
+  }));
+  btn.start.addEventListener('click', mulai);
+  btn.hb.addEventListener('click', remTangan);
+  btn.spion.addEventListener('click', spion);
+  btn.tengok.addEventListener('click', tengok);
+  btn.sabuk.addEventListener('click', () => pasangSabuk(false));
+  gigiBtn.forEach(b => b.addEventListener('click', () => setGigi(b.dataset.g)));
+  [[btn.gas, setGas], [btn.rem, setRem]].forEach(([e, set]) => {
+    e.addEventListener('pointerdown', ev => { ev.preventDefault(); try { e.setPointerCapture(ev.pointerId); } catch(_){} set(true); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(n => e.addEventListener(n, () => set(false)));
+    e.addEventListener('contextmenu', ev => ev.preventDefault());
+  });
+  const KEY = {ArrowUp: 'gas', ArrowDown: 'rem', ' ': 'rem', d: 'D', D: 'D', n: 'N', N: 'N', r: 'R', R: 'R', p: 'hb', P: 'hb', m: 'spion', M: 'spion', t: 'tengok', T: 'tengok', b: 'sabuk', B: 'sabuk'};
+  box.addEventListener('keydown', ev => {
+    const k = KEY[ev.key]; if (!k || !st || !st.on) return;
+    ev.preventDefault(); ev.stopPropagation();
+    if (ev.repeat) return;
+    if (k === 'gas') setGas(true); else if (k === 'rem') setRem(true); else if (k === 'hb') remTangan(); else if (k === 'spion') spion();
+    else if (k === 'tengok') tengok(); else if (k === 'sabuk') pasangSabuk(false); else setGigi(k);
+  });
+  box.addEventListener('keyup', ev => { const k = KEY[ev.key]; if (k === 'gas') setGas(false); else if (k === 'rem') setRem(false); });
   window.addEventListener('blur', () => { setGas(false); setRem(false); });
 })();
 
