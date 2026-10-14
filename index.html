@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141550">
+<meta name="versi-buku" content="202610141558">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -468,6 +468,18 @@ h3.plain::before{display:none}
 .asli .st.ok{background:rgba(79,209,141,.18);color:#8ff0bd}
 .asli .st.off{background:rgba(242,183,5,.18);color:#ffe08a}
 .asli .st.bad{background:#c62828;color:#fff}
+.baru-btn{display:inline-flex;align-items:center;gap:6px;margin:8px 3px 0;padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;font-weight:700;font-size:.74rem;line-height:1.4;min-height:26px}
+.baru-btn:hover{background:rgba(255,255,255,.16)}
+.dot{width:9px;height:9px;border-radius:50%;background:#e53935;box-shadow:0 0 0 2px rgba(229,57,53,.3);flex:none}
+.dot[hidden]{display:none}
+.baru-tgl{margin:16px 0 6px;font-size:.8rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.baru-tgl:first-child{margin-top:0}
+.baru-tgl .chip{margin-left:6px;text-transform:none;letter-spacing:0}
+.baru-it{display:flex;gap:10px;padding:10px 12px;margin:0 0 8px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.baru-it .ic{font-size:1.3rem;line-height:1.2;flex:none}
+.baru-it b{display:block}
+.baru-it p{margin:2px 0 0;font-size:.88rem;color:var(--muted)}
+.baru-it a{display:inline-block;margin-top:4px;font-size:.85rem;font-weight:700}
 /* kata pengantar */
 .kp p{line-height:1.75}
 @media (min-width:641px){.kp p{text-align:justify}}
@@ -841,17 +853,18 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </style>
 <script>
 /* Pastikan pembaca selalu mendapat versi buku terbaru.
-   GitHub Pages mengizinkan browser menyimpan halaman 10 menit; bila versi di server
-   berbeda dengan yang sedang tampil, salinan di browser diperbarui lalu halaman dimuat ulang sekali. */
+   GitHub Pages mengizinkan browser menyimpan halaman 10 menit. Yang dicek hanya versi.txt (< 1 KB,
+   dibuat oleh alat/buat_versi_offline.py); bila berbeda dengan yang sedang tampil, salinan halaman
+   di browser diperbarui lalu halaman dimuat ulang sekali. */
 (function () {
   if (!/^https?:$/.test(location.protocol) || !window.fetch) return;
   const kini = (document.querySelector('meta[name="versi-buku"]') || {}).content;
   addEventListener('load', function () {
-    fetch(location.pathname, { cache: 'reload' }).then(function (r) { return r.text(); }).then(function (t) {
-      const m = t.match(/name="versi-buku" content="(\d+)"/), server = m && m[1];
+    fetch('versi.txt?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+      const server = (t.match(/^\d{12}$/m) || [])[0];
       if (!server || server === kini) return;
       try { if (sessionStorage.getItem('versi-dimuat') === server) return; sessionStorage.setItem('versi-dimuat', server); } catch (e) { return; }
-      location.reload();
+      return fetch(location.pathname, { cache: 'reload' }).then(function () { location.reload(); });
     }).catch(function () {});
   });
 })();
@@ -884,6 +897,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="box">
     <div class="hd"><h2 id="busT"><span aria-hidden="true">🚌</span> Bus SIM Keliling hari ini di mana?</h2><button class="x" id="busX" aria-label="Tutup">✕</button></div>
     <div class="bd" id="busBody"><p class="small muted">Memuat jadwal terbaru…</p></div>
+  </div>
+</div>
+<div class="wiz" id="baruDlg" role="dialog" aria-modal="true" aria-labelledby="baruT">
+  <div class="box">
+    <div class="hd"><h2 id="baruT"><span aria-hidden="true">✨</span> Apa yang baru di buku ini?</h2><button class="x" id="baruX" aria-label="Tutup">✕</button></div>
+    <div class="bd" id="baruBody"></div>
   </div>
 </div>
 <div class="wiz" id="wiz" role="dialog" aria-modal="true" aria-labelledby="wizT">
@@ -940,6 +959,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <p class="chint">👉 <b>Cara membaca:</b> Geser layar, gunakan tombol di bawah, atau tombol panah ← → pada keyboard untuk membalik halaman.</p>
       <div class="asli" id="asli">
         <span class="st" id="asliSt" role="status" hidden></span>
+        <button type="button" class="baru-btn noprint" data-baru>✨ Apa yang baru?<i class="dot" hidden></i></button>
       </div>
       <script>
       (function () {
@@ -977,6 +997,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="pbody">
     <button type="button" class="wizcta toc noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>Bingung mulai dari mana?</b><small>Cek SIM apa yang Anda butuhkan: syarat, biaya & tempat mengurusnya</small></span><span aria-hidden="true">→</span></button>
     <button type="button" class="wizcta toc busq noprint" data-bus hidden><span class="ic" aria-hidden="true">🚌</span><span><b>Bus SIM Keliling hari ini di mana?</b><small>Perpanjangan SIM A &amp; C di dekat Anda: lokasi, jam &amp; petunjuk arah</small></span><span aria-hidden="true">→</span></button>
+    <button type="button" class="wizcta toc noprint" data-baru><span class="ic" aria-hidden="true">✨</span><span><b>Apa yang baru?</b><small>Fitur &amp; halaman yang baru ditambahkan ke buku ini</small></span><i class="dot" hidden></i><span aria-hidden="true">→</span></button>
     <div id="tocPage"></div>
     <div class="note"><b>Cara menggunakan buku ini</b>
       <ul>
@@ -3485,6 +3506,56 @@ function renderCk(){
 $('#ckSel').addEventListener('change', renderCk);
 $('#ckList').addEventListener('change', e => { const k = $('#ckSel').value; ckState[k] = ckState[k] || []; ckState[k][+e.target.dataset.i] = e.target.checked; store.set('sim-book-ck', ckState); renderCk(); });
 renderCk();
+
+/* ---------------- "Apa yang baru?" (sampul & daftar isi) ----------------
+   Tambahkan catatan terbaru di PALING ATAS. go = data-id halaman tujuan; wiz/bus = buka alat tersebut.
+   Titik merah tampil sampai pengunjung membuka daftar ini setelah ada catatan dengan tanggal baru. */
+(function(){
+  const BARU = [
+    {tgl: '2026-10-14', item: [
+      {ic: '🚗', j: 'Simulasi Ujian Praktik Mobil (SIM A)', d: 'Coba jalur sempit, slalom, parkir seri, parkir paralel, dan tanjakan seperti di lapangan uji.', go: 'b5-3-1', l: 'Buka B.13.1'},
+      {ic: '🏍️', j: 'Simulasi Uji Sirkuit S motor (SIM C)', d: 'Kendalikan sepeda motor melewati sirkuit huruf S, lalu lihat apa yang membuat lulus atau gagal.', go: 'b5-3-2', l: 'Buka B.13.2'},
+      {ic: '📥', j: 'Simpan ringkasan syarat sebagai gambar', d: 'Hasil "SIM apa yang saya butuhkan?" bisa disimpan ke galeri HP: dokumen, biaya, dan jam layanan.', wiz: 1, l: 'Coba sekarang'},
+      {ic: '📅', j: 'Pengingat SIM H-14 & petunjuk notifikasi', d: 'Pengingat masa berlaku SIM kini juga 14 hari sebelumnya, lengkap dengan petunjuk untuk Android dan iPhone.', go: 'c4', l: 'Buka D.4'},
+      {ic: '⏱️', j: 'Mode Intisari (Baca 30 Detik)', d: 'Ringkasan singkat di halaman-halaman panjang untuk yang sedang terburu-buru.', go: 'a1', l: 'Buka A.1'},
+      {ic: '🔔', j: 'Suara & getar saat berinteraksi', d: 'Bunyi halus saat membalik halaman dan menjawab kuis. Bisa dimatikan lewat tombol 🔔 di Daftar Isi.'}
+    ]},
+    {tgl: '2026-10-13', item: [
+      {ic: '🕘', j: 'Jam layanan & perkiraan keramaian', d: 'Lihat hari dan waktu yang biasanya lebih lengang agar tidak lama mengantre.', go: 'c1-1', l: 'Buka C.2'},
+      {ic: '🚌', j: 'Tombol "Bus SIM Keliling hari ini"', d: 'Muncul otomatis bila hari ini ada layanan, langsung dengan petunjuk arah Google Maps.', bus: 1, l: 'Lihat jadwal'},
+      {ic: '🪪', j: 'Kartu Pengendara Bijak', d: 'Hasil kuis dan simulasi bisa dibuat kartu bergambar untuk dibagikan ke Story/Status.', go: 'c8', l: 'Coba kuis D.8'},
+      {ic: '📄', j: 'Unduh buku versi offline', d: 'Satu file yang bisa dibuka tanpa internet, beserta poster siap cetak.'}
+    ]},
+    {tgl: '2026-10-12', item: [
+      {ic: '🎓', j: 'Simulasi Ujian Teori bergaya E-AVIS', d: '170 soal latihan dalam 3 tahap, bisa dipilih sesuai golongan SIM.', go: 'b5-1', l: 'Buka B.12'},
+      {ic: '🧭', j: 'SIM apa yang saya butuhkan?', d: 'Jawab beberapa pertanyaan, langsung tahu syarat, biaya, dan tempat mengurusnya.', wiz: 1, l: 'Coba sekarang'},
+      {ic: '🌏', j: 'SIM Internasional & SIM WNA dalam 2 bahasa', d: 'Halaman C.4 dan C.5 tersedia dalam Bahasa Indonesia dan English.', go: 'b16', l: 'Buka C.4'}
+    ]},
+    {tgl: '2026-10-11', item: [
+      {ic: '🗓️', j: 'Jadwal Bus SIM Keliling otomatis', d: 'Jadwal lokasi SIM JEMPOL selalu mengikuti data terbaru dari petugas.', go: 'b13', l: 'Buka B.16'}
+    ]}
+  ];
+  const KUNCI = 'baru-dilihat', terbaru = BARU[0].tgl;
+  const dlg = $('#baruDlg'), body = $('#baruBody');
+  const tgl = s => new Date(s + 'T00:00:00').toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'});
+  const titik = () => $$('[data-baru] .dot').forEach(d => { d.hidden = store.get(KUNCI, '') >= terbaru; });
+  let from = null;
+  function buka(){
+    from = document.activeElement;
+    body.innerHTML = BARU.map((g, i) => `<h3 class="baru-tgl">${tgl(g.tgl)}${i ? '' : '<span class="chip">Terbaru</span>'}</h3>` + g.item.map(o => `<div class="baru-it"><span class="ic" aria-hidden="true">${o.ic}</span><div><b>${o.j}</b><p>${o.d}</p>${
+      o.go ? `<a href="#${o.go}" data-go="${o.go}">${o.l} →</a>` : o.wiz ? `<a href="#" data-wiz>${o.l} →</a>` : o.bus ? `<a href="#B.16" data-go="b13">${o.l} →</a>` : ''}</div></div>`).join('')).join('')
+      + '<p class="small muted" style="margin:14px 0 0">Punya usulan fitur? Sampaikan lewat <a href="#b10" data-go="b10">saluran pengaduan resmi (B.5)</a>.</p>';
+    dlg.classList.add('on'); $('#baruX').focus();
+    store.set(KUNCI, terbaru); titik();
+    gcCount('apa-yang-baru', 'Apa yang baru', true);
+  }
+  function tutup(){ dlg.classList.remove('on'); if (from && from.focus) from.focus(); }
+  document.addEventListener('click', e => { if (e.target.closest('[data-baru]')) { e.preventDefault(); buka(); } });
+  $('#baruX').onclick = tutup;
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-go],[data-wiz]')) tutup(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutup(); } });
+  titik();
+})();
 
 /* ---------------- Pengingat masa berlaku ke kalender (D.4 & wizard) ---------------- */
 const ymd = d => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
