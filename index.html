@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610141346">
+<meta name="versi-buku" content="202610141358">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -4496,8 +4496,14 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   const sig = mk('g', {visibility: 'hidden'});
   const panah = mk('path', {d: 'M-24 -9H4V-20L26 0L4 20V9H-24Z', fill: '#f2b705', stroke: '#111', 'stroke-width': 3}, sig);
   const moto = mk('g', {transform: 'translate(30 70)'});
-  mk('circle', {r: 19, fill: '#f2b705', stroke: '#111', 'stroke-width': 3}, moto);
-  mk('path', {d: 'M4 -10L17 0L4 10Z', fill: '#111'}, moto);
+  // ikon sepeda motor tampak atas (menghadap kanan; diputar mengikuti arah lintasan)
+  moto.innerHTML = `<g transform="scale(1.45)"><rect x="-24" y="-3.5" width="13" height="7" rx="3.5" fill="#111"/><rect x="12" y="-3" width="12" height="6" rx="3" fill="#111"/>
+    <path d="M-17 -5.5H8L15 -3V3L8 5.5H-17Q-20 0 -17 -5.5Z" fill="#f2b705" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M11 -10V10" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+    <path d="M-6 -6.5L10 -8.5M-6 6.5L10 8.5" stroke="#0b3d91" stroke-width="3" stroke-linecap="round"/>
+    <rect x="-13" y="-8" width="9" height="16" rx="4.5" fill="#0b3d91" stroke="#111" stroke-width="1.5"/>
+    <circle cx="-6" r="5.5" fill="#fff" stroke="#111" stroke-width="2"/><path d="M-2.6 -3.2Q-.8 0 -2.6 3.2" fill="none" stroke="#1f2630" stroke-width="2"/>
+    <circle cx="23" r="1.8" fill="#ffe08a" stroke="#111" stroke-width=".8"/></g>`;
 
   const KMH = 4, ACC = 90, BRK = 170, DRAG = 22, VMAX = 160;   // 1 km/jam = 4 satuan gambar per detik
   const NAMA = ['Pengereman / keseimbangan', 'Putar balik huruf U', 'Tikungan kombinasi (huruf S)', 'Rem menghindar (cabang Y)'];
