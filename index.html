@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610150546">
+<meta name="versi-buku" content="202610150758">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -241,6 +241,9 @@ input[type=date],input[type=text],select{padding:10px 12px;border-radius:10px;bo
 .btn{background:var(--brand);color:var(--brand-ink);border:none;border-radius:10px;padding:10px 16px;font-weight:700;min-height:44px}
 .btn.ghost{background:transparent;color:var(--brand);border:1.5px solid var(--brand)}
 .btn.sm{min-height:34px;padding:4px 12px;font-size:.85rem}
+/* varian warna agar tombol berdampingan tidak sama warnanya */
+.btn.soft{background:var(--brand-soft);color:var(--brand);border:1.5px solid transparent}
+.btn.alt{background:#00796b;color:#fff;border-color:#00796b}
 .btn:hover{filter:brightness(1.08)}
 .out{margin-top:10px;padding:14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
 .out:empty{display:none}
@@ -673,7 +676,6 @@ svg.route path{fill:none;stroke:#f2b705;stroke-width:5;stroke-linecap:round;stro
 .wizcta:hover{background:#fff8e1}
 .wizcta.toc{max-width:none;margin:0 0 16px;box-shadow:none}
 /* tombol cepat Bus SIM Keliling hari ini */
-.wizcta.busq{margin-top:-4px}
 /* tombol Bus SIM Keliling hanya tampil pada hari bus beroperasi (diatur skrip jadwal) */
 .busq[hidden]{display:none!important}
 .nav .btn.busq{flex:none;max-width:none;padding:0 12px;position:relative}
@@ -963,7 +965,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
       <button type="button" class="wizcta noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>SIM apa yang saya butuhkan?</b><small>Jawab beberapa pertanyaan singkat, langsung tahu syarat, biaya & tempatnya</small></span><span aria-hidden="true">→</span></button>
-      <button type="button" class="wizcta busq noprint" data-bus hidden><span class="ic" aria-hidden="true">🚌</span><span><b>Bus SIM Keliling hari ini di mana?</b><small>Lihat lokasi &amp; jam layanan hari ini, langsung buka Google Maps</small></span><span aria-hidden="true">→</span></button>
       <div class="cbtn">
         <button class="btn" data-go="daftar-isi">Buka Daftar Isi</button>
         <button class="btn ghost" data-go="kata-pengantar">Mulai Membaca →</button>
@@ -1014,7 +1015,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="ph"><span class="code">ISI</span><h2>Daftar Isi</h2><p>Klik judul untuk langsung menuju halaman yang diinginkan.</p></div>
   <div class="pbody">
     <button type="button" class="wizcta toc noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>Bingung mulai dari mana?</b><small>Cek SIM apa yang Anda butuhkan: syarat, biaya & tempat mengurusnya</small></span><span aria-hidden="true">→</span></button>
-    <button type="button" class="wizcta toc busq noprint" data-bus hidden><span class="ic" aria-hidden="true">🚌</span><span><b>Bus SIM Keliling hari ini di mana?</b><small>Perpanjangan SIM A &amp; C di dekat Anda: lokasi, jam &amp; petunjuk arah</small></span><span aria-hidden="true">→</span></button>
     <button type="button" class="wizcta toc noprint" data-baru><span class="ic" aria-hidden="true">✨</span><span><b>Apa yang baru?</b><small>Fitur &amp; halaman yang baru ditambahkan ke buku ini</small></span><i class="dot" hidden></i><span aria-hidden="true">→</span></button>
     <div id="tocPage"></div>
     <div class="note"><b>Cara menggunakan buku ini</b>
@@ -1204,7 +1204,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
           <div class="ctrl alurctl">
             <button class="btn sm ghost" id="alurPrev" type="button">← Sebelumnya</button>
             <button class="btn sm" id="alurNext" type="button">Berikutnya →</button>
-            <button class="btn sm ghost" id="alurPlay" type="button">▶ Putar alur</button>
+            <button class="btn sm soft" id="alurPlay" type="button">▶ Putar alur</button>
           </div>
           <div class="legend"><span><i style="background:#f2b705"></i>Langkah aktif &amp; rute</span><span><i style="background:#5c6b84"></i>Sudah dilalui</span><span><i style="background:#7a4cc2"></i>Fasilitas umum</span></div>
         </div>
@@ -1844,8 +1844,8 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="ua-act">
         <button type="button" class="btn ghost" id="uaSabuk" disabled>🔒 Pasang sabuk</button>
         <button type="button" class="btn ghost" id="uaHb" aria-pressed="false" disabled>🅿️ Rem tangan</button>
-        <button type="button" class="btn ghost" id="uaSpion" disabled>🪞 Lihat spion</button>
-        <button type="button" class="btn ghost" id="uaTengok" disabled>👀 Tengok belakang</button>
+        <button type="button" class="btn soft" id="uaSpion" disabled>🪞 Lihat spion</button>
+        <button type="button" class="btn soft" id="uaTengok" disabled>👀 Tengok belakang</button>
       </div>
       <div class="hasil-act c"><button type="button" class="btn" id="uaStart">▶ Mulai</button></div>
       <div class="out" id="uaRes"></div>
@@ -1930,7 +1930,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       </div>
       <div class="us-act">
         <button type="button" class="btn ghost" id="usL" disabled>⬅ Kiri</button>
-        <button type="button" class="btn ghost" id="usLook" disabled>👀 Tengok kanan belakang</button>
+        <button type="button" class="btn soft" id="usLook" disabled>👀 Tengok kanan belakang</button>
         <button type="button" class="btn ghost" id="usR" disabled>Kanan ➡</button>
       </div>
       <div class="hasil-act c"><button type="button" class="btn" id="usStart">▶ Mulai</button></div>
@@ -2915,7 +2915,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 </div>
 
 <nav class="nav" aria-label="Pindah halaman">
-  <button type="button" class="btn ghost busq noprint" data-bus hidden aria-label="Bus SIM Keliling hari ini di mana?" title="Bus SIM Keliling hari ini"><span aria-hidden="true">🚌</span><span class="hide-sm">Bus hari ini</span></button>
+  <button type="button" class="btn alt busq noprint" data-bus hidden aria-label="Bus SIM Keliling hari ini di mana?" title="Bus SIM Keliling hari ini"><span aria-hidden="true">🚌</span><span class="hide-sm">Bus hari ini</span></button>
   <button class="btn ghost" id="prev" aria-label="Halaman sebelumnya"><span aria-hidden="true">←</span><span id="prevT">Sebelumnya</span></button>
   <div class="pn" id="pn">1 / 1</div>
   <button class="btn" id="next" aria-label="Halaman berikutnya"><span id="nextT">Berikutnya</span><span aria-hidden="true">→</span></button>
@@ -3540,7 +3540,7 @@ renderCk();
     ]},
     {tgl: '2026-10-13', item: [
       {ic: '🕘', j: 'Jam layanan & perkiraan keramaian', d: 'Lihat hari dan waktu yang biasanya lebih lengang agar tidak lama mengantre.', go: 'c1-1', l: 'Buka C.2'},
-      {ic: '🚌', j: 'Tombol "Bus SIM Keliling hari ini"', d: 'Muncul otomatis bila hari ini ada layanan, langsung dengan petunjuk arah Google Maps.', bus: 1, l: 'Lihat jadwal'},
+      {ic: '🚌', j: 'Tombol "Bus hari ini"', d: 'Muncul otomatis di bilah bawah bila hari ini ada layanan Bus SIM Keliling, langsung dengan petunjuk arah Google Maps.', bus: 1, l: 'Lihat jadwal'},
       {ic: '🪪', j: 'Kartu Pengendara Bijak', d: 'Hasil kuis dan simulasi bisa dibuat kartu bergambar untuk dibagikan ke Story/Status.', go: 'c8', l: 'Coba kuis D.8'},
       {ic: '📄', j: 'Unduh buku versi offline', d: 'Satu file yang bisa dibuka tanpa internet, beserta poster siap cetak.'}
     ]},
@@ -3597,7 +3597,7 @@ function calHtml(exp){
     '&text=' + encodeURIComponent(`Perpanjang SIM (berlaku s.d. ${tglPendek(exp)})`) +
     '&dates=' + ymd(mulai) + '/' + ymd(addDays(mulai, 1)) +
     '&details=' + encodeURIComponent(calInfo(exp));
-  return `<div class="calbtn"><a class="btn sm" href="${g}" target="_blank" rel="noopener" data-cal="google">📅 Tambah ke Google Calendar</a>` +
+  return `<div class="calbtn"><a class="btn sm alt" href="${g}" target="_blank" rel="noopener" data-cal="google">📅 Tambah ke Google Calendar</a>` +
     `<button type="button" class="btn ghost sm" data-ics="${ymd(exp)}">⬇️ Simpan ${n} pengingat ke kalender HP</button></div>` +
     `<p class="small muted" style="margin:6px 0 0">Untuk iPhone, Samsung, Outlook, dll. Pengingat berbunyi pukul 08.00 pada H-30, H-14, H-7, dan hari habisnya (yang belum terlewat).</p>` + CAL_PETUNJUK;
 }
@@ -3614,7 +3614,7 @@ const CAL_PETUNJUK = `<details class="acc calhelp"><summary>📖 Petunjuk: cara 
       <p><b>Nyalakan notifikasi:</b> Pengaturan → Notifikasi → Kalender → <b>Izinkan Notifikasi</b>. Bila memakai mode Fokus, izinkan aplikasi Kalender.</p>
       <p><b>Cek:</b> buka aplikasi Kalender, pada tanggal H-30 harus ada acara "Saatnya perpanjang SIM".</p></div>
   </div>
-  <p style="margin:10px 0 0"><a class="btn sm" href="${PDF_PENGINGAT}" target="_blank" rel="noopener" data-cal="pdf"><span>⬇️ Unduh petunjuk lengkap</span><small>PDF · 2 halaman · bisa dicetak</small></a></p>
+  <p style="margin:10px 0 0"><a class="btn sm soft" href="${PDF_PENGINGAT}" target="_blank" rel="noopener" data-cal="pdf"><span>⬇️ Unduh petunjuk lengkap</span><small>PDF · 2 halaman · bisa dicetak</small></a></p>
 </div></details>`;
 function unduhIcs(exp){
   const esc = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
@@ -3768,7 +3768,7 @@ document.addEventListener('click', e => {
       <h4>Di mana mengurusnya</h4><ul class="clean small">${cara.map(x => `<li>${x}</li>`).join('')}</ul>
       ${st._exp ? `<h4>Jangan sampai lupa</h4>${calHtml(st._exp)}` : ''}
       <h4>Baca selengkapnya</h4><p class="wlinks">${links.map(([id, l]) => `<a href="#${id}" data-go="${id}">${l}</a>`).join('')}</p>
-      <div class="wnav whasil"><button type="button" class="btn ghost" data-wreset>↺ Ulangi</button><button type="button" class="btn" data-wck="${ck}">☑️ Buka checklist dokumen</button>
+      <div class="wnav whasil"><button type="button" class="btn soft" data-wreset>↺ Ulangi</button><button type="button" class="btn" data-wck="${ck}">☑️ Buka checklist dokumen</button>
       <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(ringkas)}" target="_blank" rel="noopener">💬 Kirim ke WhatsApp</a></div>
       <button type="button" class="btn wimg" data-wimg>📥 Simpan Ringkasan Syarat sebagai Gambar</button>`;
     $('#wizQ').focus();
