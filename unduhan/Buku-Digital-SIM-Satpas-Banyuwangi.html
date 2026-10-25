@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610150758">
+<meta name="versi-buku" content="202610250700">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -94,6 +94,40 @@ img{max-width:100%;height:auto;display:block}
 .inti-more{display:block;margin:14px auto 0}
 .drawer header .efek{font-size:.85rem}
 .drawer header .efek[aria-pressed="false"]{opacity:.7}
+/* Tampilan baca: huruf ramah disleksia & kontras tinggi (sakelar di panel Daftar Isi) */
+.tampil{display:grid;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.tampil .inti-sw{justify-content:space-between;text-align:left}
+:root[data-disleksia] body{font-family:"Lexend","Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.04em;word-spacing:.14em;line-height:1.8}
+:root[data-disleksia] :is(p,li,dd,td,blockquote){text-align:left!important;hyphens:none}
+:root[data-disleksia] :is(em,cite,i:not(:empty)){font-style:normal}
+@media (prefers-color-scheme: light){
+  :root[data-disleksia]:not([data-kontras]):not([data-theme="dark"]){--bg:#efeadc; --surface:#fffbf0; --surface-2:#f8f2e2}
+}
+:root[data-disleksia][data-theme="light"]:not([data-kontras]){--bg:#efeadc; --surface:#fffbf0; --surface-2:#f8f2e2}
+:root[data-kontras]{
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f2f2f2; --ink:#000000; --muted:#1f1f1f; --line:#000000;
+  --brand:#002a80; --brand-ink:#ffffff; --brand-deep:#001a4d; --brand-soft:#dde6ff;
+  --danger:#a00000; --ok:#005a2b; --warn:#6b3f00; --shadow:none;
+}
+@media (prefers-color-scheme: dark){
+  :root[data-kontras]:not([data-theme="light"]){
+    --bg:#000000; --surface:#000000; --surface-2:#111111; --ink:#ffffff; --muted:#e6e6e6; --line:#ffffff;
+    --brand:#9cc2ff; --brand-ink:#000000; --brand-deep:#000000; --brand-soft:#0d1a33;
+    --accent:#ffd400; --accent-soft:#332a00; --danger:#ff8a8a; --danger-soft:#2a0000;
+    --ok:#6ff0a8; --ok-soft:#002611; --warn:#ffc266; --warn-soft:#2a1a00;
+  }
+}
+:root[data-kontras][data-theme="dark"]{
+  --bg:#000000; --surface:#000000; --surface-2:#111111; --ink:#ffffff; --muted:#e6e6e6; --line:#ffffff;
+  --brand:#9cc2ff; --brand-ink:#000000; --brand-deep:#000000; --brand-soft:#0d1a33;
+  --accent:#ffd400; --accent-soft:#332a00; --danger:#ff8a8a; --danger-soft:#2a0000;
+  --ok:#6ff0a8; --ok-soft:#002611; --warn:#ffc266; --warn-soft:#2a1a00;
+}
+:root[data-kontras] :is(.card,.page,.btn.ghost,.inti-sw){border-width:2px}
+:root[data-kontras] .topbar{border-bottom:2px solid #fff}
+:root[data-kontras] .topbar .t span{opacity:1}
+:root[data-kontras] main a:not(.btn){text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:2px}
+:root[data-kontras] :focus-visible{outline-width:4px}
 .search{padding:12px 16px;border-bottom:1px solid var(--line)}
 .search input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit}
 .toc{overflow:auto;padding:8px 8px 24px;flex:1}
@@ -433,6 +467,16 @@ h3.plain::before{display:none}
 .infolinks .ic{font-size:1.5rem;line-height:1;flex:none}
 .infolinks small{display:block;color:var(--muted);font-size:.75rem;line-height:1.3}
 .infolinks b{display:block;color:var(--brand);font-size:.98rem;word-break:break-word}
+/* C.6 titik rawan lalu lintas */
+.rawan-peta{max-width:420px;margin:6px auto 14px}
+.rawan-peta svg{width:100%;height:auto;display:block}
+.rawan{border:1px solid var(--line);border-left:6px solid var(--k);border-radius:0 14px 14px 0;background:var(--surface-2);padding:14px 16px;margin:0 0 14px}
+.rawan.laka{--k:var(--danger)} .rawan.langgar{--k:var(--warn)} .rawan.macet{--k:var(--brand)}
+.rawan h4{margin:6px 0 4px;display:flex;gap:10px;align-items:baseline}
+.rawan h4 .no{flex:none;display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--k);color:var(--surface);font-size:.85rem}
+.rawan .koord{font-size:.8rem;color:var(--muted);margin:0 0 10px;font-variant-numeric:tabular-nums}
+.rawan ul{margin:0 0 12px;padding-left:20px}
+.rawan .infolinks{margin-top:4px}
 /* Jadwal SIM Keliling (data dari Google Sheets) */
 .sl-today{background:var(--ok-soft);border:1px solid transparent;border-left:5px solid var(--ok);border-radius:0 14px 14px 0;padding:14px 16px;margin:0 0 12px}
 .sl-today.none{background:var(--surface-2);border-left-color:var(--line)}
@@ -938,6 +982,10 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" aria-label="Daftar isi">
   <header><b>Daftar Isi</b><button class="ib efek" id="btnEfek" aria-pressed="true" title="Suara &amp; getar saat berinteraksi">🔔<span class="hide-sm"> Suara</span><span class="sr"> &amp; getar</span></button><button class="ib" id="btnClose" aria-label="Tutup">✕</button></header>
+  <div class="tampil" role="group" aria-label="Tampilan baca">
+    <button type="button" class="inti-sw" id="swDis" role="switch" aria-checked="false" title="Huruf Lexend, jarak huruf & baris lebih lega, latar krem"><span><span aria-hidden="true">🔤</span> Huruf mudah dibaca <small>(disleksia)</small></span><i aria-hidden="true"></i></button>
+    <button type="button" class="inti-sw" id="swKon" role="switch" aria-checked="false" title="Warna hitam-putih tegas, garis tepi tebal, tautan bergaris bawah"><span><span aria-hidden="true">🌓</span> Kontras tinggi <small>(penglihatan kurang)</small></span><i aria-hidden="true"></i></button>
+  </div>
   <div class="search"><input type="text" id="q" placeholder="Cari topik… (mis. tarif, psikologi, poin)" autocomplete="off"></div>
   <div class="sres toc" id="sres" hidden></div>
   <nav class="toc" id="toc"></nav>
@@ -1016,6 +1064,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Klik gambar poster untuk memperbesar; klik sekali lagi untuk zoom.</li>
         <li>Bagian bertanda <span class="chip">INTERAKTIF</span> berisi kalkulator, pengecek, dan kuis yang bisa dicoba langsung.</li>
         <li>Tombol <b>A−/A+</b> mengatur ukuran huruf, tombol bulan mengganti tema terang/gelap, tombol <b>Cetak</b> mencetak/menyimpan seluruh buku sebagai PDF.</li>
+        <li>Sakelar <b>🔤 Huruf mudah dibaca</b> (ramah disleksia) dan <b>🌓 Kontras tinggi</b> (untuk penglihatan kurang jelas) ada di bagian atas panel <b>Daftar Isi</b>.</li>
       </ul>
     </div>
   </div>
@@ -2692,6 +2741,86 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
+<!-- ================= c-rawan · Titik Rawan Lalu Lintas ================= -->
+<section class="page" data-id="c-rawan" data-code="C.6" data-group="C" data-title="Titik Rawan Lalu Lintas Banyuwangi" data-share="Titik rawan kecelakaan, pelanggaran & kemacetan di Banyuwangi: kenali dan berkendara lebih waspada">
+  <div class="ph"><span class="code">C.6</span><span class="grp">Materi Tambahan</span><h2>Titik Rawan Lalu Lintas Banyuwangi</h2><p>Tiga lokasi yang perlu diwaspadai: rawan kecelakaan, rawan pelanggaran, dan rawan kemacetan.</p></div>
+  <div class="pbody">
+    <p>Punya SIM berarti siap berkendara dengan aman. Kenali titik-titik berikut agar Anda lebih berhati-hati saat melintas, baik sebagai pengemudi, penumpang, maupun pejalan kaki.</p>
+    <figure class="rawan-peta">
+      <svg viewBox="0 0 340 340" role="img" aria-labelledby="rawanPetaT">
+        <title id="rawanPetaT">Skema posisi tiga titik rawan dari utara ke selatan: 1 Bangsring (rawan kecelakaan), 3 Ketapang (rawan kemacetan), 2 Penganjuran (rawan pelanggaran)</title>
+        <rect x="1" y="1" width="338" height="338" rx="16" fill="var(--surface-2)" stroke="var(--line)"/>
+        <polyline points="156,41 126,185 78,305" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+        <g font-family="inherit" font-size="13" fill="var(--ink)">
+          <circle cx="156" cy="41" r="13" fill="var(--danger)"/><text x="156" y="46" text-anchor="middle" fill="#fff" font-weight="800">1</text>
+          <text x="178" y="38" font-weight="700">Bangsring</text><text x="178" y="54" font-size="11" fill="var(--muted)">Rawan kecelakaan</text>
+          <circle cx="126" cy="185" r="13" fill="var(--brand)"/><text x="126" y="190" text-anchor="middle" fill="var(--surface)" font-weight="800">3</text>
+          <text x="148" y="182" font-weight="700">Ketapang</text><text x="148" y="198" font-size="11" fill="var(--muted)">Rawan kemacetan</text>
+          <circle cx="78" cy="305" r="13" fill="var(--warn)"/><text x="78" y="310" text-anchor="middle" fill="#fff" font-weight="800">2</text>
+          <text x="100" y="302" font-weight="700">Penganjuran</text><text x="100" y="318" font-size="11" fill="var(--muted)">Rawan pelanggaran</text>
+          <text x="40" y="112" font-size="11" fill="var(--muted)" transform="rotate(-78 40 112)">Situbondo ↑</text>
+          <path d="M306 20 l8 18 h-16 z" fill="var(--ink)"/><text x="306" y="54" text-anchor="middle" font-size="11" font-weight="700">U</text>
+          <text x="318" y="250" text-anchor="end" font-size="11" fill="var(--brand)" font-style="italic">Selat Bali →</text>
+        </g>
+      </svg>
+      <figcaption class="small muted" style="text-align:center">Skema posisi menurut koordinat (bukan peta berskala). Ketuk tombol Google Maps di setiap lokasi untuk peta sebenarnya.</figcaption>
+    </figure>
+    <div class="rawan laka">
+      <span class="chip r">RAWAN KECELAKAAN</span>
+      <h4><span class="no">1</span>Jl. Raya Desa Bangsring</h4>
+      <p class="small" style="margin:0 0 2px">Jl. Raya Ds. Bangsring, Kec. Wongsorejo, Kab. Banyuwangi</p>
+      <p class="koord">📍 8°03'24.7"LS 114°25'03.4"BT · -8.056861, 114.417611</p>
+      <p class="small" style="margin:0 0 6px"><b>Mengapa perlu waspada:</b> ruas jalan antarkota yang dilalui kendaraan besar dan kendaraan berkecepatan tinggi.</p>
+      <ul class="small">
+        <li>Kurangi kecepatan dan jaga jarak aman dengan kendaraan di depan, terutama di belakang truk dan bus.</li>
+        <li>Jangan menyalip di marka garis utuh atau saat pandangan ke depan tidak jelas.</li>
+        <li>Nyalakan lampu utama, juga pada siang hari bagi sepeda motor (Pasal 107 UU 22/2009).</li>
+        <li>Waspadai kendaraan yang keluar-masuk dari jalan kampung dan tempat usaha di tepi jalan.</li>
+      </ul>
+      <div class="infolinks">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=-8.056861,114.417611" target="_blank" rel="noopener"><span class="ic">🗺️</span><span><small>Lihat lokasi</small><b>Buka di Google Maps</b></span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-8.056861,114.417611" target="_blank" rel="noopener"><span class="ic">🧭</span><span><small>Dari posisi Anda</small><b>Petunjuk arah</b></span></a>
+      </div>
+    </div>
+    <div class="rawan langgar">
+      <span class="chip y">RAWAN PELANGGARAN</span>
+      <h4><span class="no">2</span>Jl. Jend. PB. Sudirman, Penganjuran</h4>
+      <p class="small" style="margin:0 0 2px">Jl. Jend. PB. Sudirman, Penganjuran – Banyuwangi</p>
+      <p class="koord">📍 8°12'54.6"LS 114°22'13.9"BT · -8.215167, 114.370528</p>
+      <p class="small" style="margin:0 0 6px"><b>Mengapa perlu waspada:</b> ruas perkotaan yang padat, tempat banyak pelanggaran lalu lintas ditemukan.</p>
+      <ul class="small">
+        <li>Patuhi lampu lalu lintas (APILL), rambu, dan marka; berhenti di belakang garis henti.</li>
+        <li>Pakai helm SNI untuk pengemudi dan penumpang, serta sabuk pengaman di mobil.</li>
+        <li>Jangan melawan arus, menerobos lampu merah, atau memakai HP saat berkendara.</li>
+        <li>Bawa SIM dan STNK yang masih berlaku. Setiap pelanggaran bisa menambah poin SIM: <a href="#c5" data-go="c5">coba Simulator Poin (D.5) →</a></li>
+      </ul>
+      <div class="infolinks">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=-8.215167,114.370528" target="_blank" rel="noopener"><span class="ic">🗺️</span><span><small>Lihat lokasi</small><b>Buka di Google Maps</b></span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-8.215167,114.370528" target="_blank" rel="noopener"><span class="ic">🧭</span><span><small>Dari posisi Anda</small><b>Petunjuk arah</b></span></a>
+      </div>
+    </div>
+    <div class="rawan macet">
+      <span class="chip ">RAWAN KEMACETAN</span>
+      <h4><span class="no">3</span>Jl. Gatot Subroto, Ketapang</h4>
+      <p class="small" style="margin:0 0 2px">Jl. Gatot Subroto, Ketapang, Kec. Kalipuro, Kab. Banyuwangi</p>
+      <p class="koord">📍 8°08'34.5"LS 114°23'58.2"BT · -8.142917, 114.399500</p>
+      <p class="small" style="margin:0 0 6px"><b>Mengapa perlu waspada:</b> jalur menuju Pelabuhan Ketapang, sehingga antrean kendaraan sering memanjang, terutama saat musim liburan dan arus mudik.</p>
+      <ul class="small">
+        <li>Berangkat lebih awal dan cek informasi penyeberangan sebelum menuju pelabuhan.</li>
+        <li>Tetap di lajur antrean; jangan menyerobot atau memakai bahu jalan.</li>
+        <li>Ikuti arahan petugas dan rambu pengalihan arus.</li>
+        <li>Siapkan air minum dan pastikan kendaraan dalam kondisi baik bila antrean panjang.</li>
+      </ul>
+      <div class="infolinks">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=-8.142917,114.399500" target="_blank" rel="noopener"><span class="ic">🗺️</span><span><small>Lihat lokasi</small><b>Buka di Google Maps</b></span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-8.142917,114.399500" target="_blank" rel="noopener"><span class="ic">🧭</span><span><small>Dari posisi Anda</small><b>Petunjuk arah</b></span></a>
+      </div>
+    </div>
+    <div class="note"><b>Dalam keadaan darurat</b> hubungi <a href="tel:110">110</a> (Call Center Polri) atau <a href="tel:112">112</a>. Melihat kecelakaan? Amankan diri dan lokasi lebih dulu, nyalakan lampu hazard, dan jangan memindahkan korban yang terluka parah kecuali ada bahaya lain.</div>
+    <p class="small muted">Data titik rawan: Satlantas Polresta Banyuwangi. Koordinat dapat dibuka di aplikasi peta untuk melihat lokasi tepatnya.</p>
+  </div>
+</section>
+
 <!-- ================= c1 · Golongan SIM & Cek Usia Minimal ================= -->
 <section class="page" data-id="c1" data-code="D.1" data-group="D" data-title="Golongan SIM & Cek Usia Minimal">
   <div class="ph"><span class="code">D.1</span><span class="grp">Materi Penunjang</span><h2>Golongan SIM &amp; Cek Usia Minimal</h2><p>Kenali golongan SIM yang sesuai dengan kendaraan Anda.</p></div>
@@ -3106,6 +3235,20 @@ let fs = store.get('sim-book-fs', 16);
 const setFs = v => { fs = Math.max(13, Math.min(22, v)); root.style.setProperty('--fs', fs + 'px'); store.set('sim-book-fs', fs); };
 setFs(fs);
 $('#fsUp').onclick = () => setFs(fs + 1); $('#fsDown').onclick = () => setFs(fs - 1);
+// tampilan baca: huruf ramah disleksia (Lexend, dimuat hanya bila dinyalakan) & kontras tinggi
+const sakelar = (id, kunci, attr, nyala) => {
+  const btn = $(id);
+  const set = on => { if (on) root.setAttribute(attr, ''); else root.removeAttribute(attr); btn.setAttribute('aria-checked', on); store.set(kunci, on); if (on && nyala) nyala(); };
+  set(store.get(kunci, false));
+  btn.onclick = () => set(!root.hasAttribute(attr));
+};
+sakelar('#swDis', 'sim-book-disleksia', 'data-disleksia', () => {
+  if ($('#fontLexend')) return;
+  const l = document.createElement('link');
+  l.id = 'fontLexend'; l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap';
+  document.head.appendChild(l);
+});
+sakelar('#swKon', 'sim-book-kontras', 'data-kontras');
 // efek suara halus (dibuat langsung oleh browser, tanpa file MP3) & getaran HP; bisa dimatikan di panel Daftar Isi
 const Efek = (() => {
   let on = store.get('sim-efek', true), ctx = null;
@@ -3521,6 +3664,12 @@ renderCk();
    Titik merah tampil sampai pengunjung membuka daftar ini setelah ada catatan dengan tanggal baru. */
 (function(){
   const BARU = [
+    {tgl: '2026-10-25', item: [
+      {ic: '⚠️', j: 'Titik rawan lalu lintas Banyuwangi', d: 'Lokasi rawan kecelakaan, rawan pelanggaran, dan rawan kemacetan, lengkap dengan tips berkendara dan petunjuk arah Google Maps.', go: 'c-rawan', l: 'Buka C.6'}
+    ]},
+    {tgl: '2026-10-24', item: [
+      {ic: '🔤', j: 'Huruf mudah dibaca & kontras tinggi', d: 'Sakelar baru di panel Daftar Isi: huruf ramah disleksia dengan jarak lebih lega, serta warna hitam-putih tegas bagi yang penglihatannya kurang jelas.'}
+    ]},
     {tgl: '2026-10-14', item: [
       {ic: '🚗', j: 'Simulasi Ujian Praktik Mobil (SIM A)', d: 'Coba jalur sempit, slalom, parkir seri, parkir paralel, dan tanjakan seperti di lapangan uji.', go: 'b5-3-1', l: 'Buka B.13.1'},
       {ic: '🏍️', j: 'Simulasi Uji Sirkuit S motor (SIM C)', d: 'Kendalikan sepeda motor melewati sirkuit huruf S, lalu lihat apa yang membuat lulus atau gagal.', go: 'b5-3-2', l: 'Buka B.13.2'},
