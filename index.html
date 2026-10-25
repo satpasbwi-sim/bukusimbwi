@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610251945">
+<meta name="versi-buku" content="202610251530">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -491,6 +491,39 @@ h3.plain::before{display:none}
 .rawan ul{margin:0 0 12px;padding-left:20px}
 .rawan .infolinks{margin-top:4px}
 .chip.k{background:var(--ink);color:var(--surface)}
+/* A.3 Kisah Mas Oling: panel komik bisa digeser */
+.kisah{position:relative;margin:4px 0 16px}
+.kisah-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:12px;scrollbar-width:none;border-radius:16px}
+.kisah-track::-webkit-scrollbar{display:none}
+.kisah-p{flex:0 0 100%;scroll-snap-align:center;margin:0;background:var(--surface-2);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.kisah-p img{width:100%;height:auto;aspect-ratio:701/455;object-fit:cover;background:#fff}
+.kisah-p figcaption{padding:12px 16px 16px}
+.kisah-p figcaption b{display:block;font-size:1.05rem;margin-bottom:4px}
+.kisah-p figcaption p{margin:0 0 8px}
+.kisah-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.kisah-nav button.ar{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--brand);background:var(--surface);color:var(--brand);font-size:1.1rem;font-weight:800}
+.kisah-nav button.ar:disabled{opacity:.35}
+.kisah-dots{display:flex;gap:6px}
+.kisah-dots button{width:10px;height:10px;padding:0;border-radius:50%;border:none;background:var(--line)}
+.kisah-dots button[aria-current="true"]{background:var(--brand);width:24px;border-radius:99px}
+/* D.8.2 Mitos vs Fakta: kartu geser */
+.mf-top{display:flex;justify-content:space-between;font-weight:700;color:var(--muted);font-size:.85rem;margin-bottom:10px}
+.mf-stage{position:relative;min-height:230px;display:grid}
+.mf-card{grid-area:1/1;align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:22px 20px;border-radius:18px;background:var(--surface-2);border:2px solid var(--line);box-shadow:var(--shadow);touch-action:pan-y;user-select:none;cursor:grab;transition:transform .25s,border-color .2s;text-align:center}
+.mf-card.drag{transition:none;cursor:grabbing}
+.mf-card .mf-q{font-size:1.2rem;font-weight:800;line-height:1.4;margin:0}
+.mf-card .mf-hint{font-size:.8rem;color:var(--muted);margin:0}
+.mf-card.kiri{border-color:var(--danger)} .mf-card.kanan{border-color:var(--ok)}
+.mf-card.hasil{cursor:default;text-align:left;justify-content:flex-start}
+.mf-card.hasil.ok{border-color:var(--ok)} .mf-card.hasil.no{border-color:var(--danger)}
+.mf-badge{align-self:flex-start;font-weight:800;font-size:.8rem;letter-spacing:.06em;padding:3px 10px;border-radius:99px}
+.mf-badge.m{background:var(--danger-soft);color:var(--danger)} .mf-badge.f{background:var(--ok-soft);color:var(--ok)}
+.mf-act{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.mf-act .btn{min-height:52px;font-size:1rem}
+.mf-act .mf-m{background:var(--danger);color:#fff}
+.mf-act .mf-f{background:var(--ok);color:#fff}
+.mf-act .full{grid-column:1/-1}
+.mf-act .full .btn{width:100%}
 /* C.7 pertolongan pertama: panduan langkah & ketukan RJP */
 .p3k-q{font-size:1.12rem;font-weight:800;margin:2px 0 4px}
 .p3k-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -1343,6 +1376,55 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <tr><td>Penggantian SIM rusak</td><td>SIM lama yang rusak · <a href="#b6-1" data-go="b6-1">panduan langkah demi langkah (B.10)</a></td></tr>
       <tr><td>Akibat pencabutan oleh pengadilan</td><td>Putusan pengadilan; diajukan setelah larangan mengemudi berakhir</td></tr>
     </tbody></table></div>
+  </div>
+</section>
+
+<!-- ================= a3 · Kisah Mas Oling Mengurus SIM ================= -->
+<section class="page" data-id="a3" data-code="A.3" data-group="A" data-title="Kisah Mas Oling Mengurus SIM" data-share="Cerita bergambar: Mas Oling mengurus SIM sendiri, tanpa calo, sampai lulus">
+  <div class="ph"><span class="code">A.3</span><span class="grp">Materi Pokok</span><h2>Kisah Mas Oling Mengurus SIM</h2><p>Cerita bergambar alur mengurus SIM baru: dari ditegur ibu, menolak calo, gagal ujian, sampai SIM di tangan.</p></div>
+  <div class="pbody">
+    <p>Ikuti perjalanan <b>Mas Oling</b>, pelajar Banyuwangi yang baru berusia 17 tahun, mengurus SIM C sendiri. Geser gambar atau tekan tombol panah untuk membaca panel berikutnya.</p>
+    <div class="kisah" id="kisah">
+      <div class="kisah-track" id="kisahTrack" tabindex="0" aria-label="Panel cerita Kisah Mas Oling, geser untuk membaca">
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 1 dari 8">
+          <img src="img/kisah-oling/panel-1.webp" alt="Panel 1: Mas Oling berseragam sekolah duduk di atas sepeda motor sambil memegang helm, ibunya berdiri di depan rumah bertanya SIM-mu endi, Le?" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>1. Belum punya SIM, jangan naik motor dulu</b><p>Mas Oling baru berusia 17 tahun dan ingin naik motor ke sekolah. Ibu mengingatkan: <i>"SIM-mu endi, Le?"</i> (Mana SIM-mu, Nak?). Tanpa SIM, ia belum boleh berkendara di jalan.</p><a href="#c1" data-go="c1">Pelajari: Cek usia minimal (D.1) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 2 dari 8">
+          <img src="img/kisah-oling/panel-2.webp" alt="Panel 2: Calo bertopi berkata langsung jadi, tanpa tes; Mas Oling menolak sambil memegang buku Tarif Resmi SIM" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>2. Tolak calo, cek tarif resmi</b><p>Seorang calo menawarkan SIM "langsung jadi, tanpa tes". Mas Oling menolak sambil menunjukkan tarif resmi: PNBP SIM C baru Rp100.000, dibayar di loket resmi, dan tetap harus lulus ujian.</p><a href="#b2" data-go="b2">Pelajari: Stop Pungli (B.2) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 3 dari 8">
+          <img src="img/kisah-oling/panel-3.webp" alt="Panel 3: Mas Oling di meja mencentang ceklis dokumen: e-KTP dan BPJS aktif" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>3. Siapkan dokumen</b><p>Sebelum berangkat, Mas Oling mencentang dokumennya satu per satu: e-KTP asli dan bukti peserta aktif BPJS Kesehatan (JKN).</p><a href="#c6" data-go="c6">Pelajari: Checklist Siap ke Satpas (D.6) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 4 dari 8">
+          <img src="img/kisah-oling/panel-4.webp" alt="Panel 4: Dokter memeriksa mata dan tekanan darah Mas Oling, dengan papan Tes Kesehatan dan Psikologi" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>4. Tes kesehatan & psikologi</b><p>Ia memeriksakan kesehatan jasmani (penglihatan, pendengaran, fisik) dan menjalani tes psikologi. Hasilnya tercatat di E-Rikkes dan E-PPsi.</p><a href="#b9" data-go="b9">Pelajari: Persyaratan E-Rikkes & E-PPsi (C.3) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 5 dari 8">
+          <img src="img/kisah-oling/panel-5.webp" alt="Panel 5: Di loket SATPAS, Mas Oling difoto dan merekam sidik jari dibantu petugas polwan" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>5. Pendaftaran & identifikasi</b><p>Di Satpas, Mas Oling menyerahkan dokumen, lalu difoto, direkam sidik jarinya, dan membubuhkan tanda tangan elektronik.</p><a href="#a2" data-go="a2">Pelajari: Alur layanan di Satpas (A.2) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 6 dari 8">
+          <img src="img/kisah-oling/panel-6.webp" alt="Panel 6: Mas Oling mengepalkan tangan gembira di depan komputer E-AVIS bertuliskan Lulus Ujian Teori" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>6. Lulus ujian teori</b><p>Karena rajin berlatih soal, Mas Oling lulus ujian teori E-AVIS dengan nilai di atas batas minimal 70.</p><a href="#b5-1" data-go="b5-1">Pelajari: Latihan ujian teori (B.12) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 7 dari 8">
+          <img src="img/kisah-oling/panel-7.webp" alt="Panel 7: Mas Oling menyenggol kerucut saat ujian praktik motor, lalu berlatih di lapangan LUPIS Gratis didampingi petugas" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>7. Gagal? Latihan lagi di LUPIS</b><p>Saat ujian praktik, motornya menyenggol kerucut sehingga belum lulus. Mas Oling tidak menyerah: ia berlatih gratis di LUPIS, lalu ikut ujian ulang (paling banyak 2 kali dalam 14 hari kerja).</p><a href="#b14" data-go="b14">Pelajari: LUPIS, latihan gratis (B.17) →</a></figcaption>
+        </figure>
+        <figure class="kisah-p" role="group" aria-roledescription="panel" aria-label="Panel 8 dari 8">
+          <img src="img/kisah-oling/panel-8.webp" alt="Panel 8: Mas Oling berjalan kaki ke Loket BRI PNBP membayar, lalu tersenyum bangga memegang SIM C" width="701" height="455" loading="lazy" decoding="async">
+          <figcaption><b>8. Bayar resmi, SIM di tangan</b><p>Setelah lulus, Mas Oling membayar PNBP di loket BRI dan menyimpan buktinya. SIM C dicetak dan diserahkan. <b>SIM adalah bukti kompetensi, bukan hasil transaksi.</b></p><a href="#b5" data-go="b5">Pelajari: Syarat & alur SIM baru (B.8) →</a></figcaption>
+        </figure>
+      </div>
+      <div class="kisah-nav noprint"><button type="button" class="ar" data-kisah="-1" aria-label="Panel sebelumnya">◀</button><div class="kisah-dots" id="kisahDots"></div><button type="button" class="ar" data-kisah="1" aria-label="Panel berikutnya">▶</button></div>
+    </div>
+
+    <h3>Komik utuh</h3>
+    <figure class="poster"><img src="img/kisah-oling/kisah-mas-oling-utuh.webp" alt="Komik delapan panel Kisah Mas Oling Mengurus SIM: ditegur ibu, menolak calo, menyiapkan dokumen, tes kesehatan dan psikologi, foto dan sidik jari, lulus ujian teori E-AVIS, gagal ujian praktik lalu berlatih di LUPIS, membayar PNBP di loket BRI dan menerima SIM C. SIM adalah bukti kompetensi, bukan hasil transaksi." width="1493" height="2000" loading="lazy" decoding="async"><figcaption>🔍 Perbesar</figcaption></figure>
+    <p class="small muted">Komik ini boleh dicetak atau dibagikan untuk sosialisasi di sekolah dan komunitas. Tokoh dan cerita bersifat ilustrasi.</p>
   </div>
 </section>
 
@@ -3142,6 +3224,19 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
+<!-- ================= c-mitos · Mitos vs Fakta ================= -->
+<section class="page" data-id="c-mitos" data-code="D.8.2" data-group="D" data-title="Mitos vs Fakta Seputar SIM" data-share="Mitos atau fakta? Uji pengetahuanmu seputar SIM: calo, SIM mati, motor listrik, BPJS, dan lainnya">
+  <div class="ph"><span class="code">D.8.2</span><span class="grp">Materi Penunjang</span><h2>Mitos vs Fakta Seputar SIM</h2><p>Banyak kabar keliru beredar soal SIM. Tebak: mitos atau fakta?</p></div>
+  <div class="pbody">
+    <div class="widget" id="mfBox"><span class="wt">Interaktif</span>
+      <div class="mf-top"><span id="mfPos"></span><span id="mfSkor"></span></div>
+      <div class="mf-stage"><div class="mf-card" id="mfCard" aria-live="polite"></div></div>
+      <div class="mf-act" id="mfAct"></div>
+    </div>
+    <p class="small muted">Geser kartu ke <b>kiri untuk MITOS</b> atau ke <b>kanan untuk FAKTA</b>, atau tekan tombolnya. Setiap jawaban disertai penjelasan dan dasar aturannya. Bisa juga dimainkan bersama di kelas lewat <a href="#c-kelas" data-go="c-kelas">Mode Kelas (D.8.1)</a>.</p>
+  </div>
+</section>
+
 <!-- ================= c9 · Glosarium ================= -->
 <section class="page" data-id="c9" data-code="D.9" data-group="D" data-title="Glosarium">
   <div class="ph"><span class="code">D.9</span><span class="grp">Materi Penunjang</span><h2>Glosarium</h2><p>Istilah dan singkatan yang sering dijumpai dalam layanan SIM.</p></div>
@@ -3849,6 +3944,8 @@ renderCk();
 (function(){
   const BARU = [
     {tgl: '2026-10-25', item: [
+      {ic: '📖', j: 'Kisah Mas Oling Mengurus SIM', d: 'Cerita bergambar 8 panel: dari ditegur ibu, menolak calo, gagal ujian praktik lalu berlatih di LUPIS, sampai SIM di tangan.', go: 'a3', l: 'Buka A.3'},
+      {ic: '🃏', j: 'Mitos vs Fakta seputar SIM', d: 'Geser kartu ke kiri atau kanan: calo, SIM mati, motor listrik, BPJS, dan 11 kabar lain, lengkap dengan dasar aturannya.', go: 'c-mitos', l: 'Buka D.8.2'},
       {ic: '🩹', j: 'Pertolongan Pertama di Jalan', d: 'Panduan langkah demi langkah saat melihat kecelakaan, tombol telepon darurat 112/110/119, dan ketukan pemandu RJP.', go: 'c-p3k', l: 'Buka C.7'},
       {ic: '🏫', j: 'Mode Kelas — Satpas Goes to School', d: 'Kuis berkelompok untuk proyektor di sekolah, papan skor, dan hitung mundur boleh punya SIM di usia 17.', go: 'c-kelas', l: 'Buka D.8.1'},
       {ic: '🗂️', j: 'Daftar Isi lebih tertata', d: 'Bab C dan D kini dikelompokkan: Informasi Layanan, Keselamatan Berlalu Lintas, Cek & Hitung, Belajar Bersama, dan Penilaian Layanan.'},
@@ -4353,6 +4450,103 @@ const KartuBijak = (() => {
   return { buka, unduh, alat: {F, bulat, baris, muat, motif, QR}, tombol: o => `<button type="button" class="btn kartu-btn" data-kartu='${JSON.stringify(o).replace(/'/g, '&#39;')}'>🪪 Buat Kartu Pengendara Bijak</button>` };
 })();
 window.KartuBijak = KartuBijak;
+
+/* ---------------- A.3 Kisah Mas Oling: panel geser ---------------- */
+(function(){
+  const track = $('#kisahTrack'); if (!track) return;
+  const panel = $$('.kisah-p', track), dots = $('#kisahDots');
+  dots.innerHTML = panel.map((_, i) => `<button type="button" aria-label="Panel ${i + 1}"></button>`).join('');
+  const ke = i => { i = Math.max(0, Math.min(panel.length - 1, i)); track.scrollTo({left: panel[i].offsetLeft - track.offsetLeft, behavior: 'smooth'}); };
+  const kini = () => Math.round(track.scrollLeft / (panel[0].offsetWidth + 12));
+  let akhir = -1;
+  function tanda(){
+    const i = kini(); if (i === akhir) return; akhir = i;
+    $$('button', dots).forEach((b, k) => b.setAttribute('aria-current', k === i));
+    $('[data-kisah="-1"]').disabled = i === 0; $('[data-kisah="1"]').disabled = i === panel.length - 1;
+  }
+  track.addEventListener('scroll', () => requestAnimationFrame(tanda), {passive: true});
+  $('#kisah').addEventListener('click', e => {
+    const a = e.target.closest('[data-kisah]'); if (a) { ke(kini() + +a.dataset.kisah); Efek.main('balik'); return; }
+    const d = e.target.closest('.kisah-dots button'); if (d) ke($$('button', dots).indexOf(d));
+  });
+  track.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); ke(kini() + (e.key === 'ArrowRight' ? 1 : -1)); } });
+  tanda();
+})();
+
+/* ---------------- D.8.2 Mitos vs Fakta: kartu geser ---------------- */
+(function(){
+  const kartu = $('#mfCard'); if (!kartu) return;
+  // [pernyataan, fakta? (true = fakta), penjelasan, dasar, halaman, nama halaman]
+  const MF = [
+    ['Mengurus SIM lewat calo lebih cepat dan hasilnya sama resminya.', false, 'SIM hanya sah bila pemohon sendiri lulus uji kompetensi. Membayar di luar tarif resmi termasuk pungutan liar dan bisa dilaporkan.', 'Tarif PNBP, PP No. 76 Tahun 2020', 'b2', 'Stop Pungli (B.2)'],
+    ['SIM yang sudah lewat masa berlakunya cukup diperpanjang seperti biasa.', false, 'SIM yang lewat masa berlaku harus diajukan sebagai SIM baru dengan melampirkan SIM lama. Bila habis tepat di hari Minggu atau libur nasional, ada dispensasi 1 hari kerja.', 'Pasal 4 ayat (3)', 'b8', 'Info hari Minggu & libur (C.1)'],
+    ['Pengendara sepeda motor listrik juga wajib memiliki SIM.', true, 'Sejak Perpol 2/2023, kendaraan bermotor listrik mengikuti golongan SIM kendaraan sejenis; sepeda motor listrik memakai SIM C, CI, atau CII.', 'Pasal 3 ayat (2) Perpol No. 2 Tahun 2023', 'c1', 'Golongan SIM (D.1)'],
+    ['Penyandang disabilitas tidak bisa memiliki SIM.', false, 'Tersedia SIM D (setara SIM C) dan SIM DI (setara SIM A) untuk kendaraan yang dimodifikasi. Satpas Polresta Banyuwangi melayaninya lewat program SIBABA.', 'Pasal 3 ayat (2)', 'b15', 'SIBABA (B.18)'],
+    ['Biaya SIM C baru Rp100.000 sudah termasuk tes kesehatan dan psikologi.', false, 'Rp100.000 adalah PNBP penerbitan SIM. Biaya tes kesehatan, psikologi, dan sertifikat mengemudi tidak termasuk di dalamnya.', 'PP No. 76 Tahun 2020', 'c3', 'Kalkulator PNBP (D.3)'],
+    ['SIM A dan SIM C bisa diperpanjang dari rumah tanpa datang ke Satpas.', true, 'Lewat SINAR di aplikasi Digital Korlantas POLRI, selama SIM lama masih berlaku. SIM baru dikirim ke alamat Anda lewat Pos Indonesia.', 'SINAR, Korlantas Polri', 'b12', 'SINAR (B.15)'],
+    ['Bus SIM Keliling bisa melayani pembuatan SIM baru.', false, 'SIM Keliling (SIM JEMPOL) hanya melayani perpanjangan SIM A dan SIM C yang masih berlaku. SIM baru diurus di Satpas induk.', 'Layanan SIM JEMPOL', 'b13', 'SIM JEMPOL (B.16)'],
+    ['Gagal ujian praktik berarti harus menunggu berbulan-bulan untuk ujian lagi.', false, 'Pemohon boleh ujian ulang paling banyak 2 kali dalam 14 hari kerja, terhitung 1 hari setelah dinyatakan tidak lulus. Latihan gratis tersedia di LUPIS.', 'Pasal 19 ayat (4)', 'b14', 'LUPIS (B.17)'],
+    ['Ujian teori SIM boleh dikerjakan dengan HP milik pemohon.', true, 'Perpol 2/2023 mengatur ujian teori E-AVIS memakai perangkat yang tersedia di Satpas atau gawai milik pemohon.', 'Perpol No. 2 Tahun 2023', 'b5-1', 'Ujian teori E-AVIS (B.12)'],
+    ['Pelanggaran lalu lintas bisa membuat SIM dicabut.', true, 'Setiap pelanggaran diberi poin. Akumulasi 12 poin: SIM ditahan atau dicabut sementara; 18 poin: dicabut berdasarkan putusan pengadilan.', 'Pasal 33–39', 'c5', 'Simulator poin (D.5)'],
+    ['Belum terdaftar BPJS Kesehatan tetap bisa mendapat SIM seperti biasa.', false, 'Bukti kepesertaan aktif JKN (BPJS Kesehatan) adalah syarat penerbitan SIM. Bila belum, pemohon harus segera mengurusnya sebelum SIM diserahkan.', 'Pasal 9 ayat (3c) & Pasal 25 ayat (2) huruf d Perpol No. 2 Tahun 2023', 'b5', 'Syarat SIM baru (B.8)'],
+    ['SIM berlaku seumur hidup.', false, 'SIM perseorangan dan umum berlaku 5 tahun, SIM Internasional 3 tahun, dan bisa diperpanjang sebelum masa berlakunya habis.', 'Pasal 4', 'c4', 'Pengingat masa berlaku (D.4)'],
+    ['Umur 16 tahun boleh membuat SIM C asal ada izin orang tua.', false, 'Usia minimal SIM A, SIM C, dan SIM D adalah 17 tahun. Izin orang tua tidak mengubah ketentuan ini.', 'Pasal 8', 'c1', 'Cek usia minimal (D.1)'],
+    ['Nilai minimal lulus ujian teori SIM adalah 70.', true, 'Nilai paling rendah 70, dan hasilnya langsung tampil di layar setelah ujian selesai.', 'Pasal 15', 'b5-1', 'Latihan ujian teori (B.12)'],
+    ['Pengemudi yang terlibat kecelakaan boleh langsung pergi asal korban sudah ditolong orang lain.', false, 'Pengemudi yang terlibat wajib menghentikan kendaraan, menolong korban, dan melapor ke polisi. Bila tidak, dapat dipidana penjara paling lama 3 tahun atau denda paling banyak Rp75 juta.', 'Pasal 231 & 312 UU No. 22 Tahun 2009', 'c-p3k', 'Pertolongan pertama (C.7)']
+  ];
+  const act = $('#mfAct');
+  let urut = [], i = 0, skor = 0, jawab = null;
+  function mulai(){ urut = shuffle(MF.map((_, k) => k)); i = 0; skor = 0; tampil(); }
+  function tampil(){
+    $('#mfPos').textContent = i < urut.length ? `Kartu ${i + 1} dari ${urut.length}` : 'Selesai';
+    $('#mfSkor').textContent = `Benar: ${skor}`;
+    kartu.className = 'mf-card'; kartu.style.transform = '';
+    if (i >= urut.length) return akhir();
+    const m = MF[urut[i]];
+    if (jawab === null) {
+      kartu.innerHTML = `<p class="mf-hint">Mitos atau fakta?</p><p class="mf-q">“${m[0]}”</p><p class="mf-hint">👈 geser ke kiri: mitos · geser ke kanan: fakta 👉</p>`;
+      act.innerHTML = '<button type="button" class="btn mf-m" data-mf="0">👈 MITOS</button><button type="button" class="btn mf-f" data-mf="1">FAKTA 👉</button>';
+    } else {
+      const benar = jawab === m[1];
+      kartu.className = 'mf-card hasil ' + (benar ? 'ok' : 'no');
+      kartu.innerHTML = `<span class="mf-badge ${m[1] ? 'f' : 'm'}">${m[1] ? '✔ FAKTA' : '✘ MITOS'}</span><p style="margin:0;font-weight:800">${benar ? '✅ Jawaban Anda benar!' : '❌ Kurang tepat.'}</p><p class="small" style="margin:0"><i>“${m[0]}”</i></p><p style="margin:0">${m[2]}</p><p class="small muted" style="margin:0">Dasar: ${m[3]} · <a href="#${m[4]}" data-go="${m[4]}">${m[5]} →</a></p>`;
+      act.innerHTML = `<button type="button" class="btn full" data-mf="lanjut">${i + 1 < urut.length ? 'Kartu berikutnya →' : 'Lihat hasil'}</button>`;
+    }
+  }
+  function akhir(){
+    const n = urut.length;
+    kartu.className = 'mf-card hasil ok';
+    kartu.innerHTML = `<p class="mf-hint" style="text-align:center">Hasil Anda</p><div class="big" style="text-align:center">${skor} / ${n}</div><p style="margin:0;text-align:center">${skor >= 13 ? '🎉 Hebat! Anda tidak mudah termakan kabar keliru soal SIM.' : skor >= 9 ? '👍 Cukup baik. Baca lagi penjelasan kartu yang terlewat.' : '📚 Masih banyak mitos yang perlu diluruskan. Ayo coba lagi!'}</p>`;
+    act.innerHTML = `<button type="button" class="btn full" data-mf="ulang">↺ Main lagi</button><div class="full">${KartuBijak.tombol({jenis: 'mitos', judul: 'Kuis Mitos vs Fakta SIM', skor, maks: n})}</div>`;
+  }
+  function pilih(v){
+    if (jawab !== null || i >= urut.length) return;
+    jawab = v; if (v === MF[urut[i]][1]) skor++;
+    Efek.main(v === MF[urut[i]][1] ? 'benar' : 'salah', v === MF[urut[i]][1] ? 0 : 40);
+    tampil();
+  }
+  act.addEventListener('click', e => {
+    const b = e.target.closest('[data-mf]'); if (!b) return;
+    const a = b.dataset.mf;
+    if (a === 'lanjut') { jawab = null; i++; Efek.main('balik'); tampil(); }
+    else if (a === 'ulang') { jawab = null; mulai(); }
+    else pilih(a === '1');
+  });
+  // geser kartu: kiri = mitos, kanan = fakta
+  let x0 = null, dx = 0;
+  kartu.addEventListener('pointerdown', e => { if (jawab !== null || i >= urut.length || e.target.closest('a')) return; x0 = e.clientX; dx = 0; kartu.classList.add('drag'); kartu.setPointerCapture(e.pointerId); });
+  kartu.addEventListener('pointermove', e => {
+    if (x0 === null) return; dx = e.clientX - x0;
+    kartu.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+    kartu.classList.toggle('kiri', dx < -40); kartu.classList.toggle('kanan', dx > 40);
+  });
+  const lepas = () => {
+    if (x0 === null) return; x0 = null; kartu.classList.remove('drag', 'kiri', 'kanan');
+    if (Math.abs(dx) > 90) pilih(dx > 0); else kartu.style.transform = '';
+  };
+  kartu.addEventListener('pointerup', lepas); kartu.addEventListener('pointercancel', lepas);
+  mulai();
+})();
 
 /* ---------------- C.7 Pertolongan Pertama: panduan langkah & ketukan RJP ---------------- */
 (function(){
