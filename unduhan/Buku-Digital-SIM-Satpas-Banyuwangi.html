@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610251530">
+<meta name="versi-buku" content="202610251700">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -515,6 +515,24 @@ h3.plain::before{display:none}
 .mf-act .mf-f{background:var(--ok);color:#fff}
 .mf-act .full{grid-column:1/-1}
 .mf-act .full .btn{width:100%}
+/* Paspor Pengendara: stempel khas Banyuwangi */
+.ps-tier{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);margin:0 0 14px}
+.ps-tier .m{font-size:2.2rem;line-height:1}
+.ps-tier b{display:block;font-size:1.05rem}
+.ps-bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}
+.ps-bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.ps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ps-it{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:12px 8px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.ps-it small{color:var(--muted);font-size:.75rem;line-height:1.3}
+.ps-it a{font-size:.8rem;font-weight:700}
+.cap{--c:var(--muted);width:86px;height:86px;border-radius:50%;border:3px double var(--c);color:var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);background:var(--surface-2);box-shadow:inset 0 0 0 4px var(--surface-2),inset 0 0 0 5px var(--c)}
+.cap .e{font-size:1.9rem;line-height:1}
+.cap .n{font-size:.58rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-top:2px;max-width:70px;line-height:1.1}
+.cap.belum{border-style:dashed;box-shadow:none;transform:none;opacity:.45}
+.cap.belum .e{filter:grayscale(1)}
+.ps-legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;font-size:.82rem}
+.ps-legend span{padding:4px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
+.ps-legend span.on{border-color:var(--accent);background:var(--accent-soft);font-weight:700}
 /* C.7 pertolongan pertama: panduan langkah & ketukan RJP */
 .p3k-q{font-size:1.12rem;font-weight:800;margin:2px 0 4px}
 .p3k-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -1039,6 +1057,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="bd" id="busBody"><p class="small muted">Memuat jadwal terbaru…</p></div>
   </div>
 </div>
+<div class="wiz" id="pasporDlg" role="dialog" aria-modal="true" aria-labelledby="pasporT">
+  <div class="box">
+    <div class="hd"><h2 id="pasporT"><span aria-hidden="true">🛂</span> Paspor Pengendara</h2><button class="x" id="pasporX" aria-label="Tutup">✕</button></div>
+    <div class="bd" id="pasporBody"></div>
+  </div>
+</div>
 <div class="wiz" id="baruDlg" role="dialog" aria-modal="true" aria-labelledby="baruT">
   <div class="box">
     <div class="hd"><h2 id="baruT"><span aria-hidden="true">✨</span> Apa yang baru di buku ini?</h2><button class="x" id="baruX" aria-label="Tutup">✕</button></div>
@@ -1103,6 +1127,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="asli" id="asli">
         <span class="st" id="asliSt" role="status" hidden></span>
         <button type="button" class="baru-btn noprint" data-baru>✨ Apa yang baru?<i class="dot" hidden></i></button>
+        <button type="button" class="baru-btn noprint" data-paspor>🛂 Paspor Pengendara <span data-paspor-n>0/7</span></button>
       </div>
       <script>
       (function () {
@@ -1140,6 +1165,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="pbody">
     <button type="button" class="wizcta toc noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>Bingung mulai dari mana?</b><small>Cek SIM apa yang Anda butuhkan: syarat, biaya & tempat mengurusnya</small></span><span aria-hidden="true">→</span></button>
     <button type="button" class="wizcta toc noprint" data-baru><span class="ic" aria-hidden="true">✨</span><span><b>Apa yang baru?</b><small>Fitur &amp; halaman yang baru ditambahkan ke buku ini</small></span><i class="dot" hidden></i><span aria-hidden="true">→</span></button>
+    <button type="button" class="wizcta toc noprint" data-paspor><span class="ic" aria-hidden="true">🛂</span><span><b>Paspor Pengendara · <span data-paspor-n>0/7</span> stempel</b><small>Lulus kuis &amp; simulasi, kumpulkan stempel khas Banyuwangi, naikkan Kartu Pengendara Bijak ke Perunggu, Perak, Emas</small></span><span aria-hidden="true">→</span></button>
     <div id="tocPage"></div>
     <div class="note"><b>Cara menggunakan buku ini</b>
       <ul>
@@ -3935,6 +3961,7 @@ renderCk();
 (function(){
   const BARU = [
     {tgl: '2026-10-25', item: [
+      {ic: '🛂', j: 'Paspor Pengendara', d: 'Lulus kuis dan simulasi untuk mengumpulkan 7 stempel khas Banyuwangi: Kawah Ijen, Pulau Merah, Gandrung, Gajah Oling, dan lainnya. Kartu Pengendara Bijak naik ke tingkat Perunggu, Perak, lalu Emas.', l: 'Lihat paspor'},
       {ic: '📖', j: 'Kisah Mas Oling Mengurus SIM', d: 'Cerita bergambar 8 panel: dari ditegur ibu, menolak calo, gagal ujian praktik lalu berlatih di LUPIS, sampai SIM di tangan.', go: 'a3', l: 'Buka A.3'},
       {ic: '🃏', j: 'Mitos vs Fakta seputar SIM', d: 'Geser kartu ke kiri atau kanan: calo, SIM mati, motor listrik, BPJS, dan 11 kabar lain, lengkap dengan dasar aturannya.', go: 'c-mitos', l: 'Buka D.8.2'},
       {ic: '🩹', j: 'Pertolongan Pertama di Jalan', d: 'Panduan langkah demi langkah saat melihat kecelakaan, tombol telepon darurat 112/110/119, dan ketukan pemandu RJP.', go: 'c-p3k', l: 'Buka C.7'},
@@ -3976,7 +4003,7 @@ renderCk();
   function buka(){
     from = document.activeElement;
     body.innerHTML = BARU.map((g, i) => `<h3 class="baru-tgl">${tgl(g.tgl)}${i ? '' : '<span class="chip">Terbaru</span>'}</h3>` + g.item.map(o => `<div class="baru-it"><span class="ic" aria-hidden="true">${o.ic}</span><div><b>${o.j}</b><p>${o.d}</p>${
-      o.go ? `<a href="#${o.go}" data-go="${o.go}">${o.l} →</a>` : o.wiz ? `<a href="#" data-wiz>${o.l} →</a>` : o.bus ? `<a href="#B.16" data-go="b13">${o.l} →</a>` : ''}</div></div>`).join('')).join('')
+      o.go ? `<a href="#${o.go}" data-go="${o.go}">${o.l} →</a>` : o.ic === '🛂' ? `<a href="#" data-paspor>${o.l} →</a>` : o.wiz ? `<a href="#" data-wiz>${o.l} →</a>` : o.bus ? `<a href="#B.16" data-go="b13">${o.l} →</a>` : ''}</div></div>`).join('')).join('')
       + '<p class="small muted" style="margin:14px 0 0">Punya usulan fitur? Sampaikan lewat <a href="#b10" data-go="b10">saluran pengaduan resmi (B.5)</a>.</p>';
     dlg.classList.add('on'); $('#baruX').focus();
     store.set(KUNCI, terbaru); titik();
@@ -3985,7 +4012,7 @@ renderCk();
   function tutup(){ dlg.classList.remove('on'); if (from && from.focus) from.focus(); }
   document.addEventListener('click', e => { if (e.target.closest('[data-baru]')) { e.preventDefault(); buka(); } });
   $('#baruX').onclick = tutup;
-  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-go],[data-wiz]')) tutup(); });
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-go],[data-wiz],[data-paspor]')) tutup(); });
   dlg.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutup(); } });
   titik();
 })();
@@ -4334,6 +4361,62 @@ $('#quizOut').addEventListener('click', e => { if (e.target.closest('[data-newqu
 $('#bankN').textContent = BANK.length;
 newQuiz();
 
+/* ---------------- Paspor Pengendara: stempel khas Banyuwangi dari kuis & simulasi ----------------
+   Stempel didapat bila benar minimal 70% (kuis/E-AVIS) atau lulus semua materi (simulasi praktik).
+   Disimpan hanya di perangkat ini (localStorage). Tingkat kartu: Perunggu 2, Perak 4, Emas 7 stempel. */
+const Paspor = (() => {
+  const CAP = [
+    {k: 'eavis', e: '🌋', n: 'Kawah Ijen', c: '#1e88e5', j: 'Simulasi Ujian Teori E-AVIS', go: 'b5-1', s: 'Nilai minimal 70'},
+    {k: 'rambu', e: '🏝️', n: 'Pulau Merah', c: '#d84315', j: 'Kuis Rambu Lalu Lintas', go: 'b5-2', s: 'Benar minimal 70%'},
+    {k: 'simA', e: '⛴️', n: 'Ketapang', c: '#00897b', j: 'Simulasi Ujian Praktik SIM A (semua materi)', go: 'b5-3-1', s: 'Lulus semua materi'},
+    {k: 'sirkuit', e: '🌳', n: 'Alas Purwo', c: '#2e7d32', j: 'Simulasi Uji Sirkuit S (SIM C)', go: 'b5-3-2', s: 'Lulus semua materi'},
+    {k: 'praktik', e: '💃', n: 'Gandrung', c: '#ad1457', j: 'Kuis Lulus atau Gagal Ujian Praktik', go: 'b5-3-2', s: 'Benar minimal 70%'},
+    {k: 'kuis', e: '🐘', n: 'Gajah Oling', c: '#8d6e00', j: 'Kuis Pemahaman Layanan SIM', go: 'c8', s: 'Benar minimal 70%'},
+    {k: 'mitos', e: '🎭', n: 'Barong Osing', c: '#6a1b9a', j: 'Mitos vs Fakta Seputar SIM', go: 'c-mitos', s: 'Benar minimal 70%'}
+  ];
+  const TIER = [[7, '🥇', 'Emas', '#f2b705'], [4, '🥈', 'Perak', '#c0c7d0'], [2, '🥉', 'Perunggu', '#cd7f32']];
+  const KUNCI = 'sim-paspor';
+  const data = () => store.get(KUNCI, {});
+  const jumlah = () => CAP.filter(c => data()[c.k]).length;
+  const tingkat = (n = jumlah()) => TIER.find(t => n >= t[0]) || null;
+  const capHtml = (c, ada) => `<span class="cap ${ada ? '' : 'belum'}" style="--c:${c.c}" aria-hidden="true"><span class="e">${c.e}</span><span class="n">${c.n}</span></span>`;
+  function hitung(){ $$('[data-paspor-n]').forEach(el => el.textContent = `${jumlah()}/${CAP.length}`); }
+  // dipanggil saat kuis/simulasi selesai; mengembalikan true bila stempel baru
+  function cap(k, lulus){
+    const c = CAP.find(x => x.k === k); if (!c || !lulus) return false;
+    const d = data(); if (d[k]) return false;
+    const tAwal = tingkat();
+    d[k] = new Date().toISOString().slice(0, 10); store.set(KUNCI, d); hitung();
+    const n = jumlah(), t = tingkat(n);
+    setTimeout(() => {
+      toast(t && t !== tAwal ? `${t[1]} Paspor naik ke ${t[2]}! Stempel ${c.n} (${n}/${CAP.length})` : `🛂 Stempel baru: ${c.e} ${c.n} (${n}/${CAP.length})`);
+      Efek.main('benar', [30, 40, 30]);
+    }, 400);
+    if (typeof gcCount === 'function') gcCount('paspor/' + k, 'Paspor Pengendara', true);
+    return true;
+  }
+  const dlg = $('#pasporDlg'), body = $('#pasporBody');
+  let from = null;
+  function isi(){
+    const d = data(), n = jumlah(), t = tingkat(n), lanjut = TIER.slice().reverse().find(x => n < x[0]);
+    const tgl = v => new Date(v + 'T00:00:00').toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'});
+    body.innerHTML = `<div class="ps-tier"><span class="m" aria-hidden="true">${t ? t[1] : '🛂'}</span><div style="flex:1"><b>${t ? 'Tingkat ' + t[2] : 'Belum ada tingkat'} · ${n} dari ${CAP.length} stempel</b><span class="small muted">${lanjut ? `${lanjut[0] - n} stempel lagi menuju ${lanjut[1]} ${lanjut[2]}` : 'Semua stempel terkumpul. Luar biasa!'}</span><div class="ps-bar"><i style="width:${Math.round(n / CAP.length * 100)}%"></i></div></div></div>`
+      + `<div class="ps-grid">${CAP.map(c => `<div class="ps-it">${capHtml(c, d[c.k])}<b class="small">${c.j}</b><small>${d[c.k] ? '✓ Didapat ' + tgl(d[c.k]) : c.s}</small>${d[c.k] ? '' : `<a href="#${c.go}" data-go="${c.go}">Kerjakan →</a>`}</div>`).join('')}</div>`
+      + `<div class="ps-legend">${TIER.slice().reverse().map(x => `<span class="${t && x[0] <= t[0] ? 'on' : ''}">${x[1]} ${x[2]}: ${x[0]} stempel</span>`).join('')}</div>`
+      + (n ? `<div style="margin-top:14px">${KartuBijak.tombol({jenis: 'paspor', judul: 'Paspor Pengendara Bijak', skor: n, maks: CAP.length})}</div>` : '')
+      + '<p class="small muted" style="margin:12px 0 0">Stempel juga tampil pada setiap Kartu Pengendara Bijak yang Anda buat. Progres hanya disimpan di HP/perangkat ini.</p>';
+  }
+  function buka(){ from = document.activeElement; isi(); dlg.classList.add('on'); $('#pasporX').focus(); }
+  function tutup(){ dlg.classList.remove('on'); if (from && from.focus) from.focus(); }
+  document.addEventListener('click', e => { if (e.target.closest('[data-paspor]')) { e.preventDefault(); buka(); } });
+  $('#pasporX').onclick = tutup;
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-go]')) tutup(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutup(); } });
+  hitung();
+  return {cap, CAP, tingkat, jumlah, data};
+})();
+window.Paspor = Paspor;
+
 /* ---------------- Kartu Pengendara Bijak (gambar hasil latihan untuk dibagikan) ---------------- */
 const KartuBijak = (() => {
   const dlg = $('#kartu'), cv = $('#kartuCv'), nama = $('#kartuNama');
@@ -4379,16 +4462,38 @@ const KartuBijak = (() => {
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     if (img.logo) ctx.drawImage(img.logo, W / 2 - 110, 110, 220, 220 * img.logo.height / img.logo.width);
     // label
+    const ps = Paspor.jumlah(), tier = Paspor.tingkat(ps), dapat = Paspor.data();
     ctx.font = F(800, 40); const lbl = 'KARTU PENGENDARA BIJAK', lw = ctx.measureText(lbl).width + 80;
-    ctx.fillStyle = '#f2b705'; bulat(ctx, W / 2 - lw / 2, 400, lw, 80, 40); ctx.fill();
+    ctx.fillStyle = tier ? tier[3] : '#f2b705'; bulat(ctx, W / 2 - lw / 2, 400, lw, 80, 40); ctx.fill();
     ctx.fillStyle = '#1d1600'; ctx.fillText(lbl, W / 2, 454);
     ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.font = F(700, 34); ctx.fillText('SATPAS POLRESTA BANYUWANGI', W / 2, 540);
+    if (tier) { ctx.fillStyle = tier[3]; ctx.font = F(800, 32); ctx.fillText(`${tier[1]} TINGKAT ${tier[2].toUpperCase()} · ${ps}/${Paspor.CAP.length} STEMPEL`, W / 2, 596); }
     // nama
     const n = (nama.value.trim() || 'Calon Pengendara').slice(0, 30);
     ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = F(500, 36); ctx.fillText('Diberikan kepada', W / 2, 650);
     ctx.fillStyle = '#fff'; pas(ctx, n, 800, 92, W - 140); ctx.fillText(n, W / 2, 760);
     ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = F(500, 36); ctx.fillText('telah menyelesaikan', W / 2, 840);
     ctx.fillStyle = '#f2b705'; ctx.font = F(800, 48); baris(ctx, opt.judul, W / 2, 910, W - 180, 60);
+    // paspor: deretan stempel menggantikan lingkaran skor
+    if (opt.jenis === 'paspor') {
+      const C = Paspor.CAP, kol = 4, sz = 200;
+      C.forEach((c, i) => {
+        const baris2 = i >= kol, nIn = baris2 ? C.length - kol : kol, x0 = (W - nIn * sz) / 2, x = x0 + (i % kol) * sz + sz / 2, y = 1030 + (baris2 ? 215 : 0), ada = dapat[c.k];
+        ctx.save(); ctx.translate(x, y); ctx.rotate(ada ? -0.14 : 0); ctx.globalAlpha = ada ? 1 : .28;
+        ctx.strokeStyle = ada ? c.c : '#fff'; ctx.lineWidth = 7; ctx.setLineDash(ada ? [] : [14, 10]);
+        ctx.beginPath(); ctx.arc(0, 0, 74, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+        if (ada) { ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(0, 0, 61, 0, 7); ctx.stroke(); ctx.fillStyle = 'rgba(255,255,255,.95)'; ctx.beginPath(); ctx.arc(0, 0, 58, 0, 7); ctx.fill(); }
+        ctx.font = F(400, 62); ctx.fillStyle = '#000'; ctx.fillText(c.e, 0, 22);
+        ctx.restore();
+        ctx.globalAlpha = ada ? 1 : .45; ctx.font = F(800, 22); ctx.fillStyle = '#fff'; ctx.fillText(c.n.toUpperCase(), x, y + 108); ctx.globalAlpha = 1;
+      });
+      ctx.globalAlpha = 1; ctx.textAlign = 'center';
+      ctx.fillStyle = '#fff'; ctx.font = F(800, 54); ctx.fillText(`${ps} / ${C.length} STEMPEL`, W / 2, 1446);
+      const tt = tier ? `${tier[1]} TINGKAT ${tier[2].toUpperCase()}` : '🛂 TERUS KUMPULKAN!';
+      ctx.font = F(800, 50); const tw = ctx.measureText(tt).width + 90;
+      ctx.fillStyle = tier ? tier[3] : '#fff'; bulat(ctx, W / 2 - tw / 2, 1480, tw, 96, 48); ctx.fill();
+      ctx.fillStyle = '#071f4d'; ctx.fillText(tt, W / 2, 1545);
+    } else {
     // skor
     const cx = W / 2, cy = 1230, r = 190;
     ctx.lineCap = 'round'; ctx.lineWidth = 34;
@@ -4399,6 +4504,8 @@ const KartuBijak = (() => {
     ctx.font = F(800, 50); const pt = `${ikon} ${pred}`, pw = ctx.measureText(pt).width + 90;
     ctx.fillStyle = '#fff'; bulat(ctx, cx - pw / 2, 1480, pw, 96, 48); ctx.fill();
     ctx.fillStyle = '#0b3d91'; ctx.fillText(pt, cx, 1545);
+    }
+    const cx = W / 2;
     ctx.fillStyle = 'rgba(255,255,255,.65)'; ctx.font = F(500, 30);
     ctx.fillText(new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'}) + ' · Latihan mandiri, bukan dokumen resmi', cx, 1630);
     // kaki: QR + ajakan
@@ -4410,7 +4517,7 @@ const KartuBijak = (() => {
     ctx.fillStyle = '#c62828'; ctx.fillRect(0, 1904, W / 2, 16); ctx.fillStyle = '#e9eff8'; ctx.fillRect(W / 2, 1904, W / 2, 16);
   }
 
-  const teksBagi = () => `Saya baru menyelesaikan ${opt.judul} dengan ${opt.maks === 100 ? 'nilai ' + opt.skor : 'skor ' + opt.skor + '/' + opt.maks} 🏍️🚗 Yuk cek kesiapanmu sebelum ujian SIM di Buku Digital SIM Satpas Polresta Banyuwangi: https://${URL_BUKU}/`;
+  const teksBagi = () => opt.jenis === 'paspor' ? `Saya sudah mengumpulkan ${opt.skor}/${opt.maks} stempel Paspor Pengendara${Paspor.tingkat() ? ' tingkat ' + Paspor.tingkat()[2] : ''} 🛂 Yuk kumpulkan stempel khas Banyuwangi lewat kuis & simulasi ujian SIM di Buku Digital SIM Satpas Polresta Banyuwangi: https://${URL_BUKU}/` : `Saya baru menyelesaikan ${opt.judul} dengan ${opt.maks === 100 ? 'nilai ' + opt.skor : 'skor ' + opt.skor + '/' + opt.maks} 🏍️🚗 Yuk cek kesiapanmu sebelum ujian SIM di Buku Digital SIM Satpas Polresta Banyuwangi: https://${URL_BUKU}/`;
   const berkas = () => new Promise(ok => cv.toBlob(b => ok(new File([b], 'kartu-pengendara-bijak.jpg', {type: 'image/jpeg'})), 'image/jpeg', .92));
   function unduh(f){ const a = document.createElement('a'); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Gambar kartu tersimpan'); }
 
@@ -4438,7 +4545,7 @@ const KartuBijak = (() => {
   };
   $('#kartuWa').onclick = () => { window.open('https://wa.me/?text=' + encodeURIComponent(teksBagi()), '_blank', 'noopener'); };
   document.addEventListener('click', e => { const b = e.target.closest('[data-kartu]'); if (b) buka(JSON.parse(b.dataset.kartu)); });
-  return { buka, unduh, alat: {F, bulat, baris, muat, motif, QR}, tombol: o => `<button type="button" class="btn kartu-btn" data-kartu='${JSON.stringify(o).replace(/'/g, '&#39;')}'>🪪 Buat Kartu Pengendara Bijak</button>` };
+  return { buka, unduh, alat: {F, bulat, baris, muat, motif, QR}, tombol: o => (Paspor.cap(o.jenis, o.skor / o.maks >= .7), `<button type="button" class="btn kartu-btn" data-kartu='${JSON.stringify(o).replace(/'/g, '&#39;')}'>🪪 Buat Kartu Pengendara Bijak</button>`) };
 })();
 window.KartuBijak = KartuBijak;
 
@@ -5418,6 +5525,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
     berhenti(); btn.start.textContent = '🔄 Ulangi';
     const lulus = st.fail.every(f => !f);
     Efek.main(lulus ? 'benar' : 'salah', lulus ? [40, 60, 40] : 0);
+    Paspor.cap('sirkuit', lulus);
     say(lulus ? '🎉 Semua materi lulus.' : 'Ujian selesai. Lihat materi yang perlu dilatih di bawah.', lulus ? 'good' : 'bad');
     res.innerHTML = `<div class="big" style="text-align:center;color:var(${lulus ? '--ok' : '--danger'})">${lulus ? '✅ LULUS' : '❌ BELUM LULUS'}</div>
       <ol class="us-hasil">${NAMA.map((n, i) => `<li class="${st.fail[i] ? 'x' : 'v'}"><b>${st.fail[i] ? '✗' : '✓'} ${i + 1}. ${n}</b>${st.fail[i] ? ` — ${st.fail[i]}<br><small>Tips: ${st.tip[i] || ''}</small>` : ' — lulus'}</li>`).join('')}</ol>
@@ -5824,6 +5932,7 @@ $$('#gedung .seg button').forEach(b => b.onclick = () => {
   }
   function hasil(){
     const urut = st.urut, lulus = urut.every(i => !st.fail[i]);
+    Paspor.cap('simA', lulus && urut.length === M.length);
     st.on = false; cancelAnimationFrame(raf);
     [btn.gas, btn.rem, btn.hb, btn.spion, btn.tengok, btn.sabuk, ...gigiBtn].forEach(b => b.disabled = true);
     pilihBtn.forEach(b => b.disabled = false); nomor.forEach(n => n.style.display = '');
