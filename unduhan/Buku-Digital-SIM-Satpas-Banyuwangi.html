@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202610250745">
+<meta name="versi-buku" content="202610250930">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -478,6 +478,57 @@ h3.plain::before{display:none}
 .rawan ul{margin:0 0 12px;padding-left:20px}
 .rawan .infolinks{margin-top:4px}
 .chip.k{background:var(--ink);color:var(--surface)}
+/* C.7 pertolongan pertama: panduan langkah & ketukan RJP */
+.sos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 14px}
+.sos a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:76px;border-radius:14px;background:var(--danger);color:#fff;text-decoration:none;font-weight:800;font-size:1.5rem;line-height:1.1}
+.sos a small{font-size:.75rem;font-weight:600;opacity:.95}
+.sos a.alt{background:var(--brand);color:var(--brand-ink)}
+.p3k-q{font-size:1.12rem;font-weight:800;margin:2px 0 4px}
+.p3k-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.p3k-act .btn{flex:1 1 130px}
+.p3k-res h4{margin:0 0 6px}
+.p3k-res ol,.p3k-res ul{margin:0;padding-left:20px}
+.p3k-res li{margin-bottom:4px}
+.rjp{display:flex;align-items:center;gap:12px;margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.rjp .dot{flex:none;width:34px;height:34px;border-radius:50%;background:var(--danger);opacity:.25;transition:transform .08s,opacity .08s}
+.rjp .dot.on{opacity:1;transform:scale(1.25)}
+.rjp .btn{margin-left:auto}
+/* D.8.1 Mode Kelas */
+.kls-setup .row{align-items:stretch}
+.kls-names{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:0 0 12px}
+.kls-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.kls-timer{font-variant-numeric:tabular-nums;font-size:1.3rem;color:var(--brand)}
+.kls-timer.habis{color:var(--danger)}
+.kls-q{font-size:1.35rem;font-weight:800;line-height:1.35;margin:4px 0 14px}
+.kls-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kls-opt{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface-2);font-size:1.05rem;font-weight:600;line-height:1.35}
+.kls-opt b{flex:none;display:grid;place-items:center;width:1.8em;height:1.8em;border-radius:50%;background:var(--brand);color:var(--brand-ink)}
+.kls-opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.kls-opt.right b{background:var(--ok);color:#fff}
+.kls-opt.dim{opacity:.45}
+.kls-ex{margin:12px 0 8px;padding:10px 14px;border-radius:12px;background:var(--ok-soft)}
+.kls-teams{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}
+.kls-team{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 14px;font-weight:700;min-height:40px}
+.kls-team[aria-pressed="true"]{border-color:var(--ok);background:var(--ok-soft)}
+.kls-team[aria-pressed="true"]::before{content:"✓ "}
+.kls-act{display:flex;flex-wrap:wrap;gap:8px}
+.kls-act .btn{flex:1 1 150px}
+.kls-score{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.kls-score span{flex:1 1 100px;background:var(--brand-soft);border-radius:12px;padding:6px 10px;text-align:center;font-size:.85rem;overflow-wrap:anywhere}
+.kls-score b{display:block;font-size:1.4rem;color:var(--brand)}
+.kls-rank{list-style:none;padding:0;margin:8px 0 14px}
+.kls-rank li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--surface-2);margin-bottom:6px;font-weight:700}
+.kls-rank li .m{font-size:1.5rem;width:1.6em;text-align:center}
+.kls-rank li .s{margin-left:auto;color:var(--brand);font-size:1.2rem}
+.kls-qr{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.kls-qr img{width:180px;height:180px;border-radius:12px;background:#fff;padding:8px;border:1px solid var(--line)}
+.kls-qr div{flex:1 1 200px}
+#kelasBox:fullscreen{overflow:auto;padding:4vh 5vw;border:none;border-radius:0;background:var(--bg);margin:0}
+#kelasBox:fullscreen .wt{display:none}
+#kelasBox:fullscreen .kls-q{font-size:clamp(1.6rem,3.4vw,3rem)}
+#kelasBox:fullscreen .kls-opt{font-size:clamp(1.1rem,2.1vw,1.9rem)}
+#kelasBox:fullscreen .kls-timer{font-size:clamp(1.4rem,2.6vw,2.4rem)}
+@media (max-width:560px){.kls-opts{grid-template-columns:1fr}.kls-q{font-size:1.15rem}}
 /* Jadwal SIM Keliling (data dari Google Sheets) */
 .sl-today{background:var(--ok-soft);border:1px solid transparent;border-left:5px solid var(--ok);border-radius:0 14px 14px 0;padding:14px 16px;margin:0 0 12px}
 .sl-today.none{background:var(--surface-2);border-left-color:var(--line)}
@@ -2850,6 +2901,58 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
+<!-- ================= c-p3k · Pertolongan Pertama di Jalan ================= -->
+<section class="page" data-id="c-p3k" data-code="C.7" data-group="C" data-title="Pertolongan Pertama di Jalan" data-share="Panduan pertolongan pertama saat melihat kecelakaan lalu lintas: amankan, minta bantuan, tolong korban">
+  <div class="ph"><span class="code">C.7</span><span class="grp">Materi Tambahan</span><h2>Pertolongan Pertama di Jalan</h2><p>Apa yang harus dilakukan saat melihat kecelakaan lalu lintas, langkah demi langkah.</p></div>
+  <div class="pbody">
+    <div class="sos">
+      <a href="tel:112">112<small>Panggilan darurat</small></a>
+      <a href="tel:110" class="alt">110<small>Polisi</small></a>
+      <a href="tel:119">119<small>Ambulans gawat darurat</small></a>
+    </div>
+    <p>Beberapa menit pertama setelah kecelakaan sangat menentukan keselamatan korban. Anda tidak harus menjadi tenaga medis untuk menolong: <b>amankan lokasi, minta bantuan, dan lakukan tindakan sederhana</b> sampai petugas datang.</p>
+
+    <h3>Tiga langkah utama</h3>
+    <ol class="steps num">
+      <li><b>Amankan diri dan lokasi</b><span>Berhenti di tempat aman, nyalakan lampu hazard, pasang segitiga pengaman di belakang lokasi, dan matikan mesin kendaraan yang terlibat. Waspadai lalu lintas yang masih lewat, bensin tumpah, api, dan kabel listrik. Jangan sampai Anda menjadi korban berikutnya.</span></li>
+      <li><b>Minta bantuan</b><span>Telepon <b>112</b>, <b>110</b>, atau <b>119</b>. Sebutkan lokasi sejelas mungkin (bagikan titik lokasi dari Google Maps), jumlah korban, dan kondisinya: sadar atau tidak, bernapas atau tidak, ada perdarahan atau tidak.</span></li>
+      <li><b>Tolong korban</b><span>Periksa kesadaran dan napas korban, hentikan perdarahan, lalu dampingi sampai petugas datang. Gunakan panduan interaktif di bawah ini.</span></li>
+    </ol>
+
+    <div class="widget" id="p3kBox"><span class="wt">Interaktif</span>
+      <h4>🩹 Panduan cepat: apa yang harus saya lakukan?</h4>
+      <div id="p3kWiz" aria-live="polite"></div>
+    </div>
+
+    <h3>Yang tidak boleh dilakukan</h3>
+    <div class="grid g2">
+      <div class="card danger"><h4>✘ Jangan</h4><ul class="small" style="margin:0;padding-left:18px">
+        <li>Memindahkan korban, kecuali ada bahaya lain seperti api atau kendaraan yang lewat.</li>
+        <li>Melepas helm korban sepeda motor, kecuali helm menghalangi napas atau korban perlu RJP.</li>
+        <li>Memberi makan atau minum kepada korban yang terluka parah atau tidak sadar.</li>
+        <li>Mencabut benda yang tertancap di tubuh korban.</li>
+        <li>Meluruskan bagian tubuh yang tampak patah.</li>
+      </ul></div>
+      <div class="card accent"><h4>📵 Hormati korban</h4><ul class="small" style="margin:0;padding-left:18px">
+        <li>Jangan berkerumun; beri ruang bagi penolong dan petugas.</li>
+        <li>Jangan memotret atau merekam korban lalu menyebarkannya di media sosial.</li>
+        <li>Jaga barang milik korban dan serahkan kepada petugas.</li>
+      </ul></div>
+    </div>
+
+    <h3>Kewajiban menurut undang-undang</h3>
+    <div class="grid g2">
+      <div class="card brand"><h4>Setiap orang <span class="chip">Pasal 232 UU 22/2009</span></h4><p class="small" style="margin:0">Setiap orang yang mendengar, melihat, dan/atau mengetahui terjadinya kecelakaan lalu lintas wajib <b>memberikan pertolongan</b> kepada korban, <b>melaporkannya</b> kepada kepolisian, dan <b>memberikan keterangan</b> kepada kepolisian.</p></div>
+      <div class="card brand"><h4>Pengemudi yang terlibat <span class="chip">Pasal 231 &amp; 312</span></h4><p class="small" style="margin:0">Wajib menghentikan kendaraan, menolong korban, dan melapor ke kantor polisi terdekat. Pengemudi yang tidak melakukannya tanpa alasan yang patut dapat dipidana penjara paling lama <b>3 tahun</b> atau denda paling banyak <b>Rp75.000.000</b>.</p></div>
+    </div>
+
+    <h3>Isi kotak P3K di kendaraan</h3>
+    <p class="small">Simpan di bagasi mobil atau jok motor: sarung tangan sekali pakai, kasa steril, perban gulung, plester, kain segitiga (mitela), gunting, cairan antiseptik, senter, dan daftar nomor darurat.</p>
+
+    <div class="note"><b>Panduan ini bukan pengganti pelatihan.</b> Ikuti pelatihan Pertolongan Pertama Gawat Darurat (PPGD) atau Bantuan Hidup Dasar dari Satlantas, PMI, atau fasilitas kesehatan terdekat. Satlantas Polresta Banyuwangi juga melaksanakan sosialisasi PPGD di lokasi rawan kecelakaan: <a href="#c-rawan" data-go="c-rawan">lihat C.6 Titik Rawan →</a></div>
+  </div>
+</section>
+
 <!-- ================= c1 · Golongan SIM & Cek Usia Minimal ================= -->
 <section class="page" data-id="c1" data-code="D.1" data-group="D" data-title="Golongan SIM & Cek Usia Minimal">
   <div class="ph"><span class="code">D.1</span><span class="grp">Materi Penunjang</span><h2>Golongan SIM &amp; Cek Usia Minimal</h2><p>Kenali golongan SIM yang sesuai dengan kendaraan Anda.</p></div>
@@ -2988,6 +3091,53 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   </div>
 </section>
 
+<!-- ================= c-kelas · Mode Kelas (Satpas Goes to School) ================= -->
+<section class="page" data-id="c-kelas" data-code="D.8.1" data-group="D" data-title="Mode Kelas (Satpas Goes to School)" data-share="Mode Kelas: kuis tertib berlalu lintas untuk dimainkan bersama di sekolah, tampil besar di proyektor">
+  <div class="ph"><span class="code">D.8.1</span><span class="grp">Materi Penunjang</span><h2>Mode Kelas — Satpas Goes to School</h2><p>Kuis tertib berlalu lintas yang dimainkan bersama di kelas atau saat sosialisasi, tampil besar di proyektor atau TV.</p></div>
+  <div class="pbody">
+    <p>Cocok untuk guru, pembina OSIS, dan petugas saat sosialisasi di sekolah, terutama bagi siswa kelas XII yang sebentar lagi berusia 17 tahun. Siswa dibagi menjadi beberapa kelompok, berdiskusi, lalu menjawab bersama. Soal diambil acak dari bank soal <a href="#c8" data-go="c8">Kuis Pemahaman (D.8)</a> yang mengacu pada Perpol No. 5 Tahun 2021 jo. Perpol No. 2 Tahun 2023.</p>
+
+    <h3>Cara bermain</h3>
+    <ol class="steps num">
+      <li><b>Sambungkan ke layar besar</b><span>Buka halaman ini di laptop atau HP yang tersambung ke proyektor/TV, lalu tekan <b>Layar penuh</b>.</span></li>
+      <li><b>Bagi kelompok</b><span>Pilih jumlah kelompok, beri nama, tentukan jumlah soal dan waktu berpikir.</span></li>
+      <li><b>Jawab bersama</b><span>Setiap kelompok menuliskan atau mengangkat kartu huruf A, B, C, atau D.</span></li>
+      <li><b>Buka jawaban</b><span>Tandai kelompok yang menjawab benar, bahas penjelasannya, lalu lanjut ke soal berikutnya.</span></li>
+      <li><b>Umumkan juara</b><span>Papan skor menampilkan peringkat semua kelompok di akhir permainan.</span></li>
+    </ol>
+
+    <div class="widget" id="kelasBox"><span class="wt">Interaktif</span>
+      <div id="kelasSetup" class="kls-setup">
+        <h4>🏫 Kuis Kelas</h4>
+        <div class="row">
+          <div class="fld"><label for="klsN">Jumlah kelompok</label><select id="klsN"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></div>
+          <div class="fld"><label for="klsQ">Jumlah soal</label><select id="klsQ"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+          <div class="fld"><label for="klsT">Waktu berpikir</label><select id="klsT"><option value="0">Tanpa batas</option><option value="20">20 detik</option><option value="30" selected>30 detik</option><option value="60">60 detik</option></select></div>
+        </div>
+        <div class="kls-names" id="klsNames"></div>
+        <div class="kls-act"><button type="button" class="btn" id="klsMulai">▶ Mulai kuis</button><button type="button" class="btn ghost" data-kls-fs hidden>⛶ Layar penuh</button></div>
+      </div>
+      <div id="kelasStage" hidden></div>
+    </div>
+
+    <div class="widget"><span class="wt">Interaktif</span>
+      <h4>⏳ Hitung mundur boleh punya SIM</h4>
+      <p class="small muted" style="margin:0 0 10px">Usia minimal SIM A, SIM C, dan SIM D adalah <b>17 tahun</b> <span class="chip">Pasal 8</span>. Masukkan tanggal lahir untuk melihat berapa hari lagi.</p>
+      <div class="row"><div class="fld"><label for="hmDob">Tanggal lahir</label><input type="date" id="hmDob"></div></div>
+      <div class="out" id="hmOut"></div>
+      <p class="small muted" style="margin:8px 0 0">Tanggal lahir hanya dihitung di perangkat ini, tidak disimpan dan tidak dikirim ke mana pun.</p>
+    </div>
+
+    <h3>Siswa ingin belajar sendiri?</h3>
+    <div class="kls-qr">
+      <img id="kelasQR" alt="QR code alamat Buku Digital SIM Satpas Polresta Banyuwangi" width="180" height="180">
+      <div><p style="margin:0 0 8px">Tampilkan QR code ini di layar. Siswa cukup memindainya dengan kamera HP untuk membuka buku, lalu berlatih lewat <a href="#b5-1" data-go="b5-1">Simulasi Ujian Teori (B.12)</a>, <a href="#b5-2" data-go="b5-2">Galeri Rambu (B.14)</a>, dan <a href="#c8" data-go="c8">Kuis (D.8)</a>.</p><p class="small muted" style="margin:0">satpasbwi-sim.github.io/bukusimbwi</p></div>
+    </div>
+
+    <div class="note"><b>🚓 Satpas Goes to School</b>Sekolah yang ingin mengundang petugas Satlantas Polresta Banyuwangi untuk sosialisasi tertib berlalu lintas dan persiapan SIM bagi siswa dapat menghubungi WhatsApp layanan Satpas <a href="https://wa.me/6285233900100" target="_blank" rel="noopener">0852-3390-0100</a>. Siswa yang belum lulus ujian bisa berlatih gratis lewat <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</div>
+  </div>
+</section>
+
 <!-- ================= c9 · Glosarium ================= -->
 <section class="page" data-id="c9" data-code="D.9" data-group="D" data-title="Glosarium">
   <div class="ph"><span class="code">D.9</span><span class="grp">Materi Penunjang</span><h2>Glosarium</h2><p>Istilah dan singkatan yang sering dijumpai dalam layanan SIM.</p></div>
@@ -3109,7 +3259,8 @@ const contentPages = pages.filter(p => p.dataset.group);
 let cur = 0;
 const GROUPS = {A:'A. Materi Pokok', B:'B. Materi Pendukung', C:'C. Materi Tambahan', D:'D. Materi Penunjang'};
 // subbab di daftar isi: halaman pertama tiap subbab → judulnya
-const SUBS = {b1:'Profil Satuan &amp; Standar Pelayanan', b5:'Jenis Permohonan', 'b5-1':'Persiapan Ujian', b12:'Inovasi Layanan'};
+const SUBS = {b1:'Profil Satuan &amp; Standar Pelayanan', b5:'Jenis Permohonan', 'b5-1':'Persiapan Ujian', b12:'Inovasi Layanan',
+  b8:'Informasi Layanan', 'c-rawan':'Keselamatan Berlalu Lintas', c1:'Cek &amp; Hitung', c7:'Belajar Bersama', c10:'Penilaian Layanan'};
 
 function buildToc(){
   const toc = $('#toc'), tp = $('#tocPage');
@@ -3694,6 +3845,9 @@ renderCk();
 (function(){
   const BARU = [
     {tgl: '2026-10-25', item: [
+      {ic: '🩹', j: 'Pertolongan Pertama di Jalan', d: 'Panduan langkah demi langkah saat melihat kecelakaan, tombol telepon darurat 112/110/119, dan ketukan pemandu RJP.', go: 'c-p3k', l: 'Buka C.7'},
+      {ic: '🏫', j: 'Mode Kelas — Satpas Goes to School', d: 'Kuis berkelompok untuk proyektor di sekolah, papan skor, dan hitung mundur boleh punya SIM di usia 17.', go: 'c-kelas', l: 'Buka D.8.1'},
+      {ic: '🗂️', j: 'Daftar Isi lebih tertata', d: 'Bab C dan D kini dikelompokkan: Informasi Layanan, Keselamatan Berlalu Lintas, Cek & Hitung, Belajar Bersama, dan Penilaian Layanan.'},
       {ic: '⚠️', j: 'Titik rawan lalu lintas Banyuwangi', d: 'Lokasi rawan kecelakaan, blackspot Jembatan Tambong (Pakistaji), rawan pelanggaran, dan rawan kemacetan, lengkap dengan tips berkendara dan petunjuk arah Google Maps.', go: 'c-rawan', l: 'Buka C.6'}
     ]},
     {tgl: '2026-10-24', item: [
@@ -4196,6 +4350,154 @@ const KartuBijak = (() => {
 })();
 window.KartuBijak = KartuBijak;
 
+/* ---------------- C.7 Pertolongan Pertama: panduan langkah & ketukan RJP ---------------- */
+(function(){
+  const box = $('#p3kWiz'); if (!box) return;
+  const L = a => '<ol>' + a.map(x => `<li>${x}</li>`).join('') + '</ol>';
+  // q = pertanyaan Ya/Tidak; r = hasil (kelas kartu, judul, isi, lanjut ke langkah berikutnya)
+  const N = {
+    aman: {q: 'Apakah lokasi aman untuk Anda dekati?', h: 'Perhatikan kendaraan yang masih lewat, api, bensin tumpah, atau kabel listrik.', ya: 'respon', tidak: 'bahaya'},
+    bahaya: {r: 'danger', j: '⚠️ Jangan mendekat dulu', b: L(['Telepon <a href="tel:112">112</a> atau <a href="tel:110">110</a> dan jelaskan bahayanya.', 'Beri tanda peringatan dari jarak aman: lampu hazard dan segitiga pengaman.', 'Arahkan kendaraan lain agar melambat dan menjauh.', 'Tunggu petugas; dekati korban hanya setelah lokasi aman.'])},
+    respon: {q: 'Apakah korban merespons saat dipanggil dan ditepuk bahunya?', h: 'Panggil dengan suara keras, misalnya "Pak/Bu, dengar saya?", sambil menepuk bahunya.', ya: 'darah', tidak: 'napas'},
+    napas: {q: 'Apakah korban bernapas normal?', h: 'Lihat gerakan dada naik-turun selama ±10 detik. Napas tersengal-sengal tidak termasuk normal.', ya: 'pingsan', tidak: 'rjp'},
+    rjp: {r: 'danger', j: '❤️ Lakukan RJP (pijat jantung) sekarang', rjp: 1, b: L(['Minta orang lain menelepon <a href="tel:119">119</a> atau <a href="tel:112">112</a> dan mencari bantuan.', 'Baringkan korban telentang di permukaan keras. Bila helm menghalangi, lepaskan berdua sambil menahan kepala dan leher tetap lurus.', 'Letakkan pangkal telapak tangan di tengah dada, tangan lain di atasnya, lengan lurus.', 'Tekan kuat sedalam 5–6 cm dengan kecepatan 100–120 kali per menit; biarkan dada mengembang penuh setiap kali. Ikuti ketukan di bawah.', 'Jangan berhenti sampai petugas medis datang atau korban bernapas normal. Bila terlatih, berikan 2 napas buatan setiap 30 tekanan.'])},
+    pingsan: {r: 'accent', j: '🫁 Korban tidak sadar tetapi bernapas', b: L(['Jangan pindahkan korban bila tidak ada bahaya; curigai cedera leher atau tulang belakang.', 'Jangan lepas helm korban.', 'Pastikan mulut dan hidung tidak tertutup apa pun.', 'Bila korban muntah, miringkan bersama 2–3 orang dengan kepala, leher, dan punggung tetap segaris.', 'Pantau napasnya terus sampai ambulans (<a href="tel:119">119</a>) tiba. Bila napas berhenti, lakukan RJP.']), lanjut: 'darah'},
+    darah: {q: 'Apakah ada perdarahan hebat?', h: 'Darah mengalir deras atau terus merembes dari luka.', ya: 'tekan', tidak: 'dampingi'},
+    tekan: {r: 'danger', j: '🩸 Hentikan perdarahan', b: L(['Pakai sarung tangan atau kantong plastik bila ada.', 'Tekan langsung luka dengan kain bersih, kuat dan terus-menerus.', 'Bila kain basah, tambahkan kain baru di atasnya; jangan diangkat.', 'Jangan mencabut benda yang tertancap; tekan di sekitarnya.']), lanjut: 'dampingi'},
+    dampingi: {r: 'ok', j: '🤝 Dampingi korban sampai bantuan datang', b: L(['Minta korban tidak bergerak bila mengeluh nyeri leher/punggung atau tampak patah tulang; jangan meluruskan bagian yang patah.', 'Jaga korban tetap hangat dan tenangkan dia.', 'Jangan beri makan atau minum.', 'Catat waktu kejadian, nomor kendaraan, dan saksi untuk petugas kepolisian (<a href="tel:110">110</a>).'])}
+  };
+  let jejak = [];
+  let rjp = null;
+  function rjpStop(){ if (!rjp) return; clearInterval(rjp.t); try { rjp.ctx && rjp.ctx.close(); } catch (e) {} rjp = null; const b = $('[data-rjp]', box); if (b) b.textContent = '▶ Mulai ketukan'; }
+  function rjpStart(btn){
+    const A = window.AudioContext || window.webkitAudioContext;
+    let ctx = null; try { ctx = A ? new A() : null; } catch (e) {}
+    const dot = $('.rjp .dot', box), n = $('.rjp b', box);
+    rjp = {ctx, i: 0, t: setInterval(() => {
+      rjp.i++; n.textContent = ((rjp.i - 1) % 30) + 1;
+      dot.classList.add('on'); setTimeout(() => dot.classList.remove('on'), 120);
+      if (ctx) { try { const o = ctx.createOscillator(), g = ctx.createGain(), t = ctx.currentTime; o.frequency.value = 880; g.gain.setValueAtTime(.12, t); g.gain.exponentialRampToValueAtTime(.0001, t + .08); o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + .1); } catch (e) {} }
+    }, 545)};   // ±110 tekanan per menit
+    btn.textContent = '■ Hentikan';
+  }
+  function tampil(){
+    rjpStop();
+    const k = jejak[jejak.length - 1], o = N[k];
+    const kembali = jejak.length > 1 ? '<button type="button" class="btn ghost" data-p3k="kembali">← Kembali</button>' : '';
+    if (o.q) {
+      box.innerHTML = `<p class="small muted" style="margin:0">Langkah ${jejak.length}</p><p class="p3k-q">${o.q}</p><p class="small muted" style="margin:0">${o.h}</p><div class="p3k-act"><button type="button" class="btn" data-p3k="ya">Ya</button><button type="button" class="btn alt" data-p3k="tidak">Tidak</button>${kembali}</div>`;
+    } else {
+      box.innerHTML = `<div class="card ${o.r} p3k-res"><h4>${o.j}</h4>${o.b}${o.rjp ? '<div class="rjp"><span class="dot" aria-hidden="true"></span><span>Tekanan ke-<b>0</b> <small class="muted">(110/menit)</small></span><button type="button" class="btn sm" data-rjp>▶ Mulai ketukan</button></div>' : ''}</div>`
+        + `<div class="p3k-act">${o.lanjut ? '<button type="button" class="btn" data-p3k="lanjut">Langkah berikutnya →</button>' : ''}${kembali}<button type="button" class="btn ghost" data-p3k="ulang">↺ Ulangi dari awal</button></div>`;
+    }
+  }
+  box.addEventListener('click', e => {
+    const r = e.target.closest('[data-rjp]'); if (r) { rjp ? rjpStop() : rjpStart(r); return; }
+    const b = e.target.closest('[data-p3k]'); if (!b) return;
+    const a = b.dataset.p3k, o = N[jejak[jejak.length - 1]];
+    if (a === 'ulang') jejak = ['aman'];
+    else if (a === 'kembali') jejak.pop();
+    else jejak.push(a === 'lanjut' ? o.lanjut : o[a]);
+    Efek.main('balik'); tampil();
+    const f = box.querySelector('button'); if (f) f.focus({preventScroll: true});
+  });
+  pageHooks.push(rjpStop);
+  jejak = ['aman']; tampil();
+})();
+
+/* ---------------- D.8.1 Mode Kelas: kuis berkelompok untuk proyektor ---------------- */
+(function(){
+  const kotak = $('#kelasBox'); if (!kotak) return;
+  const setup = $('#kelasSetup'), stage = $('#kelasStage'), names = $('#klsNames');
+  const st = {tim: [], soal: [], i: 0, buka: false, benar: new Set(), sisa: 0, t: null, detik: 0};
+  const fsOk = !!(kotak.requestFullscreen || kotak.webkitRequestFullscreen);
+  $$('[data-kls-fs]', kotak).forEach(b => b.hidden = !fsOk);
+  function isiNama(){
+    const n = +$('#klsN').value, lama = $$('input', names).map(i => i.value);
+    names.innerHTML = Array.from({length: n}, (_, k) => `<div class="fld"><label for="klsNm${k}">Nama kelompok ${k + 1}</label><input type="text" id="klsNm${k}" maxlength="24" value="${esc(lama[k] || 'Kelompok ' + (k + 1))}"></div>`).join('');
+  }
+  $('#klsN').addEventListener('change', isiNama); isiNama();
+  const henti = () => { clearInterval(st.t); st.t = null; };
+  function jalan(){
+    henti(); if (!st.detik) return;
+    st.sisa = st.detik;
+    st.t = setInterval(() => {
+      st.sisa--; const el = $('.kls-timer', stage); if (el) el.textContent = '⏱ ' + st.sisa;
+      if (st.sisa <= 0) { henti(); Efek.main('sentuh', 60); st.buka = true; tampil(); }
+    }, 1000);
+  }
+  const skor = () => `<div class="kls-score">${st.tim.map(t => `<span><b>${t.s}</b>${esc(t.n)}</span>`).join('')}</div>`;
+  const fsBtn = fsOk ? '<button type="button" class="btn sm ghost" data-kls-fs>⛶ Layar penuh</button>' : '';
+  function tampil(){
+    if (st.i >= st.soal.length) return akhir();
+    const q = st.soal[st.i];
+    let h = `<div class="kls-top"><span>Soal ${st.i + 1} dari ${st.soal.length}</span><span class="kls-timer ${st.buka && st.detik ? 'habis' : ''}">${st.detik ? '⏱ ' + (st.buka ? 0 : st.detik) : ''}</span>${fsBtn}</div>`;
+    h += `<p class="kls-q">${q.q}</p><div class="kls-opts">${q.opts.map((o, j) => `<div class="kls-opt ${st.buka ? (j === q.ans ? 'right' : 'dim') : ''}"><b>${String.fromCharCode(65 + j)}</b><span>${o}</span></div>`).join('')}</div>`;
+    if (st.buka) {
+      h += `<div class="kls-ex"><b>✅ Jawaban: ${String.fromCharCode(65 + q.ans)}.</b> <span class="small">${q.ex}</span></div>`
+        + `<p class="small" style="margin:0"><b>Kelompok yang menjawab benar</b> (ketuk untuk menandai):</p>`
+        + `<div class="kls-teams">${st.tim.map((t, k) => `<button type="button" class="kls-team" aria-pressed="${st.benar.has(k)}" data-tim="${k}">${esc(t.n)}</button>`).join('')}</div>`
+        + `<div class="kls-act"><button type="button" class="btn" data-kls="lanjut">${st.i + 1 < st.soal.length ? 'Soal berikutnya →' : '🏆 Lihat juara'}</button></div>`;
+    } else {
+      h += `<div class="kls-act" style="margin-top:14px"><button type="button" class="btn" data-kls="buka">Buka jawaban</button><button type="button" class="btn ghost" data-kls="keluar">Akhiri</button></div>`;
+    }
+    stage.innerHTML = h + skor();
+  }
+  function akhir(){
+    henti();
+    const urut = st.tim.map((t, k) => ({...t, k})).sort((a, b) => b.s - a.s);
+    const medali = ['🥇', '🥈', '🥉'];
+    let pk = 0;
+    stage.innerHTML = `<div class="kls-top"><span>Hasil akhir · ${st.soal.length} soal</span><span></span>${fsBtn}</div><p class="kls-q">🏆 Selamat kepada ${esc(urut.filter(t => t.s === urut[0].s).map(t => t.n).join(' & '))}!</p>`
+      + `<ol class="kls-rank">${urut.map((t, i) => { if (i && t.s < urut[i - 1].s) pk = i; return `<li><span class="m">${medali[pk] || (pk + 1)}</span>${esc(t.n)}<span class="s">${t.s} poin</span></li>`; }).join('')}</ol>`
+      + `<p class="small muted">Ingat: SIM adalah bukti kompetensi. Urus sendiri, tanpa calo, setelah berusia 17 tahun.</p>`
+      + `<div class="kls-act"><button type="button" class="btn" data-kls="ulang">↺ Main lagi (soal baru)</button><button type="button" class="btn ghost" data-kls="keluar">Ubah kelompok</button></div>`;
+    Efek.main('benar', [40, 40, 40]);
+  }
+  function mulai(){
+    st.tim = $$('input', names).map((i, k) => ({n: i.value.trim() || 'Kelompok ' + (k + 1), s: 0}));
+    const n = +$('#klsQ').value;
+    st.soal = shuffle(BANK.map((_, i) => i)).slice(0, n).map(i => { const b = BANK[i], opts = shuffle([b[1], ...b[2]]); return {q: b[0], opts, ans: opts.indexOf(b[1]), ex: b[3]}; });
+    st.detik = +$('#klsT').value; st.i = 0; st.buka = false; st.benar = new Set();
+    setup.hidden = true; stage.hidden = false; tampil(); jalan();
+    kotak.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+  $('#klsMulai').onclick = mulai;
+  kotak.addEventListener('click', e => {
+    if (e.target.closest('[data-kls-fs]')) {
+      const d = document;
+      if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+      else (kotak.requestFullscreen || kotak.webkitRequestFullscreen).call(kotak);
+      return;
+    }
+    const t = e.target.closest('[data-tim]');
+    if (t) { const k = +t.dataset.tim; st.benar.has(k) ? st.benar.delete(k) : st.benar.add(k); t.setAttribute('aria-pressed', st.benar.has(k)); return; }
+    const b = e.target.closest('[data-kls]'); if (!b) return;
+    const a = b.dataset.kls;
+    if (a === 'buka') { henti(); st.buka = true; Efek.main('benar'); tampil(); }
+    else if (a === 'lanjut') { st.benar.forEach(k => st.tim[k].s++); st.benar = new Set(); st.i++; st.buka = false; Efek.main('balik'); tampil(); if (st.i < st.soal.length) jalan(); }
+    else if (a === 'ulang') mulai();
+    else if (a === 'keluar') { henti(); stage.hidden = true; setup.hidden = false; }
+  });
+  pageHooks.push(p => { if (p && p.dataset.id !== 'c-kelas') henti(); });
+  $('#kelasQR').src = KartuBijak.alat.QR;
+
+  // hitung mundur usia 17 tahun (usia minimal SIM A, C, D)
+  $('#hmDob').addEventListener('change', () => {
+    const d = parseDate($('#hmDob').value), out = $('#hmOut');
+    if (!d || d > today()) { out.innerHTML = '<span class="muted">Masukkan tanggal lahir yang benar.</span>'; return; }
+    const ultah = n => new Date(d.getFullYear() + n, d.getMonth(), d.getDate());
+    const u17 = ultah(17), sisa = daysBetween(today(), u17);
+    const belajar = 'Sambil menunggu, pelajari <a href="#b5-2" data-go="b5-2">rambu &amp; marka (B.14)</a>, coba <a href="#b5-1" data-go="b5-1">simulasi ujian teori (B.12)</a>, dan siapkan dokumen dengan <a href="#c6" data-go="c6">Checklist (D.6)</a>.';
+    if (sisa > 0) {
+      out.innerHTML = `<p style="margin:0">Kamu boleh mengurus <b>SIM A, SIM C, atau SIM D</b> dalam</p><div class="big">${sisa.toLocaleString('id-ID')} hari lagi</div><p class="small" style="margin:4px 0 8px">Tepatnya mulai <b>${fmtDate(u17)}</b>, saat berusia 17 tahun.</p><p class="small" style="margin:0">${belajar}</p>`;
+    } else {
+      const lain = [[18, 'SIM CI'], [19, 'SIM CII'], [20, 'SIM A Umum & SIM BI']].filter(([n]) => daysBetween(today(), ultah(n)) > 0).map(([n, g]) => `${g} mulai ${fmtDate(ultah(n))}`);
+      out.innerHTML = `<div class="big">🎉 Sudah cukup umur</div><p style="margin:4px 0 8px">Kamu sudah boleh mengurus <b>SIM A, SIM C, dan SIM D</b>. Urus sendiri tanpa calo: <a href="#b5" data-go="b5">syarat SIM baru (B.8)</a>, latihan gratis di <a href="#b14" data-go="b14">LUPIS (B.17)</a>.</p>${lain.length ? `<p class="small" style="margin:0">Golongan lain: ${lain.join('; ')}.</p>` : ''}`;
+    }
+  });
+})();
+
 /* ---------------- Kartu "Ceklis Siap Berangkat" (hasil "SIM apa yang saya butuhkan?" disimpan ke galeri HP) ---------------- */
 const KartuSyarat = (() => {
   const {F, bulat, baris, muat, motif, QR} = KartuBijak.alat;
@@ -4291,6 +4593,9 @@ const KartuSyarat = (() => {
 
 /* ---------------- D.9 glosarium ---------------- */
 const GLO = [
+  ['Blackspot','Titik atau ruas jalan tempat kecelakaan lalu lintas terjadi berulang kali (lihat C.6).'],
+  ['PPGD','Pertolongan Pertama Gawat Darurat — tindakan awal menolong korban sebelum ditangani tenaga medis (lihat C.7).'],
+  ['RJP','Resusitasi Jantung Paru — pijat jantung (tekanan dada) bagi korban yang tidak bernapas normal (lihat C.7).'],
   ['Satpas','Satuan Penyelenggara Administrasi SIM — unit pelaksana registrasi & identifikasi pengemudi.'],
   ['Satlantas','Satuan Lalu Lintas pada tingkat Kepolisian Resor (Polres/Polresta).'],
   ['Korlantas Polri','Korps Lalu Lintas Polri, pelaksana tugas pokok lalu lintas tingkat Mabes Polri.'],
