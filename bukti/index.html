@@ -214,7 +214,8 @@ function langkahGambar() {
 function selesai(h) {
   document.getElementById('noUrut').textContent = 'No. ' + h.no;
   document.getElementById('namaSelesai').textContent = h.nama;
-  document.getElementById('catatanSelesai').textContent = h.cocok ? '' : 'Data Anda akan dicocokkan petugas secara manual.';
+  document.getElementById('catatanSelesai').textContent = (h.ulang ? 'Bukti sebelumnya sudah diganti dengan yang baru. ' : '') +
+    (h.cocok ? '' : 'Data Anda akan dicocokkan petugas secara manual.');
   document.getElementById('selesai').style.display = 'block';
 }
 
