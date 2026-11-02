@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202611030541">
+<meta name="versi-buku" content="202611030548">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -2725,7 +2725,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Layanan SIM <b>didatangkan ke masyarakat</b>: pesantren, kampus, sekolah, dan desa.</li>
         <li>Pelaksanaan <b>30 Oktober – 8 November 2026</b>, selama Operasi Patuh Semeru 2026.</li>
         <li>Semua tahap di lokasi: registrasi, kesehatan &amp; psikologi, ujian teori, ujian praktik, sampai cetak SIM.</li>
-        <li>Lokasi: <b>BBPVP Muncar</b> (Selasa, 3 Nov 2026) dan <b>UNIBA</b> (Kamis, 5 Nov 2026).</li>
+        <li id="komIntiLok">Lokasi: <b>BBPVP Muncar</b> (Selasa, 3 Nov 2026) dan <b>UNIBA</b> (Kamis, 5 Nov 2026).</li>
         <li>Sudah ikut ujian teori, <b>lulus maupun belum</b>? <a class="kom-bukti" href="https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=SIMLING" target="_blank" rel="noopener">Kirim bukti ujian teori</a>.</li>
       </ul>
     </div>
@@ -2746,10 +2746,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="note"><b>30 Oktober s.d. 8 November 2026</b><br>Selama Operasi Patuh Semeru 2026. Lokasi dan tanggal layanan diumumkan oleh petugas.</div>
 
     <h3>Jadwal lokasi</h3>
+    <!-- Tiap lokasi otomatis hilang dari halaman setelah jam data-selesai (WIB) pada tanggalnya. Lokasi baru: salin satu kartu. -->
     <div class="grid g2" id="komJadwal">
-      <div class="card" data-tgl="2026-11-03" data-lok="BBPVP-MUNCAR"><h4>🏘️ BBPVP Muncar <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Selasa, 3 November 2026</b><br>Masyarakat desa wilayah Kec. Muncar</p></div>
-      <div class="card" data-tgl="2026-11-05" data-lok="UNIBA"><h4>🎓 UNIBA <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Kamis, 5 November 2026</b><br>Universitas PGRI Banyuwangi</p></div>
+      <div class="card" data-tgl="2026-11-03" data-selesai="15:00" data-lok="BBPVP-MUNCAR" data-nama="BBPVP Muncar" data-hari="Selasa, 3 Nov 2026"><h4>🏘️ BBPVP Muncar <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Selasa, 3 November 2026</b><br>Masyarakat desa wilayah Kec. Muncar</p></div>
+      <div class="card" data-tgl="2026-11-05" data-selesai="15:00" data-lok="UNIBA" data-nama="UNIBA" data-hari="Kamis, 5 Nov 2026"><h4>🎓 UNIBA <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Kamis, 5 November 2026</b><br>Universitas PGRI Banyuwangi</p></div>
     </div>
+    <div class="note" id="komJadwalHabis" style="display:none"><b>Jadwal SIM Komunitas sudah selesai</b>Terima kasih atas partisipasi masyarakat. Info jadwal berikutnya: WhatsApp Satpas 0852-3390-0100.</div>
 
     <h3>Layanan di lokasi</h3>
     <p class="small muted" style="margin-top:-4px">Pemohon dilayani dari awal sampai SIM tercetak, tanpa perlu datang ke Satpas.</p>
@@ -2774,21 +2776,42 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     </div>
     <div class="note"><b>Belum lulus ujian teori?</b>Tetap kirim hasilnya. Petugas akan menjelaskan jadwal ujian ulang. Setelah ujian ulang, kirim lagi screenshot hasil terbaru dengan <b>nomor WhatsApp yang sama</b>; bukti lama otomatis diganti.</div>
     <script>
-    // B.19: tandai lokasi hari ini / selesai, dan arahkan tombol kirim bukti ke QR lokasi hari ini (tanggal WIB)
+    // B.19: lokasi yang sudah lewat jam selesainya (WIB) hilang otomatis; lokasi hari ini ditandai dan tombol kirim bukti
+    // diarahkan ke QR lokasi itu. Diperiksa ulang tiap menit, jadi halaman yang sedang terbuka ikut berubah.
     (function () {
-      var hari = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10), lok = null;
-      document.querySelectorAll('#komJadwal [data-tgl]').forEach(function (k) {
-        var st = k.querySelector('.kom-st'), t = k.getAttribute('data-tgl');
-        if (t === hari) { st.textContent = 'Hari ini'; lok = k; k.classList.add('ok'); }
-        else if (t < hari) { st.textContent = 'Selesai'; k.style.opacity = '.6'; }
-        else { st.textContent = 'Akan datang'; }
-      });
-      if (!lok) return;
-      var url = 'https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=' + lok.getAttribute('data-lok') + '&tgl=' + hari;
-      document.querySelectorAll('a.kom-bukti').forEach(function (a) { a.href = url; });
-      var ket = document.getElementById('komLokHariIni');
-      ket.textContent = 'Hari ini: ' + lok.querySelector('h4').firstChild.textContent.replace(/^\S+\s/, '').trim() + '.';
-      ket.hidden = false;
+      var DASAR = 'https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=';
+      var kartu = [].slice.call(document.querySelectorAll('#komJadwal [data-tgl]'));
+      var inti = document.getElementById('komIntiLok'), ket = document.getElementById('komLokHariIni');
+      function perbarui(ms) {
+        // waktu WIB sebagai teks "YYYY-MM-DDTHH:MM" agar mudah dibandingkan
+        var wib = new Date((ms || Date.now()) + 7 * 3600e3).toISOString().slice(0, 16), hari = wib.slice(0, 10);
+        var sisa = [], lok = null;
+        kartu.forEach(function (k) {
+          var t = k.getAttribute('data-tgl'), st = k.querySelector('.kom-st');
+          var selesai = wib >= t + 'T' + (k.getAttribute('data-selesai') || '23:59');
+          k.style.display = selesai ? 'none' : '';
+          k.classList.toggle('ok', !selesai && t === hari);
+          if (selesai) return;
+          sisa.push(k);
+          if (t === hari) { lok = k; st.textContent = 'Hari ini s.d. ' + k.getAttribute('data-selesai').replace(':', '.') + ' WIB'; }
+          else st.textContent = 'Akan datang';
+        });
+        // style.display, bukan atribut hidden: kelas .grid/.card/.note memasang display sendiri
+        document.getElementById('komJadwal').style.display = sisa.length ? '' : 'none';
+        var habis = document.getElementById('komJadwalHabis');
+        habis.style.display = sisa.length ? 'none' : '';
+        inti.style.display = sisa.length ? '' : 'none';
+        inti.innerHTML = 'Lokasi: ' + sisa.map(function (k) {
+          return '<b>' + k.getAttribute('data-nama') + '</b> (' + k.getAttribute('data-hari') + ')';
+        }).join(' dan ') + '.';
+        var url = lok ? DASAR + lok.getAttribute('data-lok') + '&tgl=' + hari : DASAR + 'SIMLING';
+        document.querySelectorAll('a.kom-bukti').forEach(function (a) { a.href = url; });
+        ket.textContent = lok ? 'Hari ini: ' + lok.getAttribute('data-nama') + '.' : '';
+        ket.hidden = !lok;
+      }
+      perbarui();
+      setInterval(perbarui, 60e3);
+      window.komJadwalUji = perbarui; // untuk uji petugas: komJadwalUji(Date.parse('2026-11-03T15:01+07:00'))
     })();
     </script>
 
