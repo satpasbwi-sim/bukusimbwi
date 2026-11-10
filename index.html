@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202611101432">
+<meta name="versi-buku" content="202611111000">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -1907,7 +1907,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div><span class="chip y">MAU UJIAN TEORI SIM?</span><h3 class="plain">Yuk, persiapan dulu di sini!</h3><p>Jangan tunggu gagal — pelajari materinya sambil menunggu. Satpas Polresta Banyuwangi menyediakan <b>E-Book kumpulan soal ujian teori</b>, <b>video materi</b>, dan <b>simulasi ujian bergaya E-AVIS</b>. Persiapan ujian praktik ada di <a href="#b5-3" data-go="b5-3">B.13</a>.</p></div>
       <div class="a11y" aria-hidden="true">📚</div>
     </div>
-    <div class="note ok"><b>Peserta SIM Komunitas:</b> sudah lulus ujian teori? Kirim bukti hasil ujian teori lewat halaman <a href="#b-komunitas" data-go="b-komunitas">B.19 SIM Komunitas</a>.</div>
+    <div class="note ok"><b>Peserta SIM Komunitas:</b> info jadwal, pendaftaran, dan pengiriman bukti ujian teori ada di <a href="https://satpasbwi-sim.github.io/sim-komunitas-bwi/" target="_blank" rel="noopener">Portal SIM Komunitas</a>.</div>
 
     <h3>Tahapan uji teori E-AVIS</h3>
     <p class="small muted" style="margin-top:-4px">E-AVIS (<i>Electronic Audiovisual Integrated System</i>) — ujian teori berbasis komputer/gawai yang terdiri atas 3 tahap.</p>
@@ -2735,7 +2735,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         <li>Pelaksanaan <b>30 Oktober – 8 November 2026</b>, selama Operasi Patuh Semeru 2026.</li>
         <li>Semua tahap di lokasi: registrasi, kesehatan &amp; psikologi, ujian teori, ujian praktik, sampai cetak SIM.</li>
         <li id="komIntiLok">Lokasi: <b>BBPVP Muncar</b> (Selasa, 3 Nov 2026) dan <b>UNIBA</b> (Kamis, 5 Nov 2026).</li>
-        <li>Sudah ikut ujian teori, <b>lulus maupun belum</b>? <a class="kom-bukti" href="https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=SIMLING" target="_blank" rel="noopener">Kirim bukti ujian teori</a>.</li>
+        <li>Jadwal, pendaftaran &amp; kirim bukti ujian teori: <a href="https://satpasbwi-sim.github.io/sim-komunitas-bwi/" target="_blank" rel="noopener">Portal SIM Komunitas</a>.</li>
       </ul>
     </div>
     <div class="hero-inov">
@@ -2772,25 +2772,12 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <div class="f"><span class="n">5</span><b>Foto &amp; cetak SIM</b><small>Input data, foto, lalu SIM dicetak</small></div>
     </div>
 
-    <h3>Sudah ikut ujian teori?</h3>
-    <div class="card ok">
-      <p style="margin:0 0 10px">Kirim screenshot hasil ujian teori Anda, <b>lulus maupun belum lulus</b>, supaya petugas bisa langsung mencocokkan data dan menentukan langkah berikutnya.</p>
-      <a class="btn kom-bukti" href="https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=SIMLING" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex">📤 Kirim Bukti Ujian Teori</a>
-      <p class="small muted" id="komLokHariIni" style="margin:8px 0 0" hidden></p>
-      <ol class="small" style="margin:12px 0 0;padding-left:20px">
-        <li>Tekan tombol di atas, atau pindai QR yang ditempel petugas di lokasi.</li>
-        <li>Tulis nomor WhatsApp yang dipakai saat mendaftar.</li>
-        <li>Pilih screenshot hasil ujian teori, tekan <b>Kirim</b>, lalu tunjukkan layar hijau ke petugas.</li>
-      </ol>
-    </div>
-    <div class="note"><b>Belum lulus ujian teori?</b>Tetap kirim hasilnya. Petugas akan menjelaskan jadwal ujian ulang. Setelah ujian ulang, kirim lagi screenshot hasil terbaru dengan <b>nomor WhatsApp yang sama</b>; bukti lama otomatis diganti.</div>
     <script>
-    // B.19: lokasi yang sudah lewat jam selesainya (WIB) hilang otomatis; lokasi hari ini ditandai dan tombol kirim bukti
-    // diarahkan ke QR lokasi itu. Diperiksa ulang tiap menit, jadi halaman yang sedang terbuka ikut berubah.
+    // B.19: lokasi yang sudah lewat jam selesainya (WIB) hilang otomatis; lokasi hari ini ditandai.
+    // (Kirim bukti ujian teori dipindah ke Portal SIM Komunitas, 11 Nov 2026.) Diperiksa ulang tiap menit, jadi halaman yang sedang terbuka ikut berubah.
     (function () {
-      var DASAR = 'https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=';
       var kartu = [].slice.call(document.querySelectorAll('#komJadwal [data-tgl]'));
-      var inti = document.getElementById('komIntiLok'), ket = document.getElementById('komLokHariIni');
+      var inti = document.getElementById('komIntiLok');
       function perbarui(ms) {
         // waktu WIB sebagai teks "YYYY-MM-DDTHH:MM" agar mudah dibandingkan
         var wib = new Date((ms || Date.now()) + 7 * 3600e3).toISOString().slice(0, 16), hari = wib.slice(0, 10);
@@ -2813,10 +2800,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         inti.innerHTML = 'Lokasi: ' + sisa.map(function (k) {
           return '<b>' + k.getAttribute('data-nama') + '</b> (' + k.getAttribute('data-hari') + ')';
         }).join(' dan ') + '.';
-        var url = lok ? DASAR + lok.getAttribute('data-lok') + '&tgl=' + hari : DASAR + 'SIMLING';
-        document.querySelectorAll('a.kom-bukti').forEach(function (a) { a.href = url; });
-        ket.textContent = lok ? 'Hari ini: ' + lok.getAttribute('data-nama') + '.' : '';
-        ket.hidden = !lok;
       }
       perbarui();
       setInterval(perbarui, 60e3);
@@ -4076,11 +4059,11 @@ renderCk();
 (function(){
   const BARU = [
     {tgl: '2026-11-03', item: [
-      {ic: '📍', j: 'Jadwal lokasi SIM Komunitas', d: 'BBPVP Muncar (Selasa, 3 Nov) dan UNIBA (Kamis, 5 Nov). Semua peserta yang sudah ikut ujian teori, lulus maupun belum, bisa mengirim hasilnya dari halaman ini.', go: 'b-komunitas', l: 'Buka B.19'}
+      {ic: '📍', j: 'Jadwal lokasi SIM Komunitas', d: 'BBPVP Muncar (Selasa, 3 Nov) dan UNIBA (Kamis, 5 Nov).', go: 'b-komunitas', l: 'Buka B.19'}
     ]},
     {tgl: '2026-10-31', item: [
       {ic: '🛂', j: 'Stempel ke-8: G-Land Plengkung', d: 'Paspor Pengendara kini punya 8 stempel. Selesaikan panduan Pertolongan Pertama di Jalan (C.7) untuk mendapat stempel ombak G-Land Plengkung. Tingkat Emas sekarang 8 stempel.', l: 'Lihat paspor'},
-      {ic: '🤝', j: 'SIM Komunitas', d: 'Layanan SIM langsung di pesantren, kampus, sekolah, dan desa (30 Okt – 8 Nov 2026). Peserta yang sudah lulus ujian teori bisa mengirim bukti hasil ujian dari halaman ini.', go: 'b-komunitas', l: 'Buka B.19'}
+      {ic: '🤝', j: 'SIM Komunitas', d: 'Layanan SIM langsung di pesantren, kampus, sekolah, dan desa (30 Okt – 8 Nov 2026).', go: 'b-komunitas', l: 'Buka B.19'}
     ]},
     {tgl: '2026-10-25', item: [
       {ic: '🛂', j: 'Paspor Pengendara', d: 'Lulus kuis dan simulasi untuk mengumpulkan stempel khas Banyuwangi: Kawah Ijen, Pulau Merah, Gandrung, Gajah Oling, dan lainnya. Kartu Pengendara Bijak naik ke tingkat Perunggu, Perak, lalu Emas.', l: 'Lihat paspor'},
