@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202611091415">
+<meta name="versi-buku" content="202611101423">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -1076,6 +1076,25 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
   <div class="box">
     <div class="hd"><h2 id="baruT"><span aria-hidden="true">✨</span> Apa yang baru di buku ini?</h2><button class="x" id="baruX" aria-label="Tutup">✕</button></div>
     <div class="bd" id="baruBody"></div>
+  </div>
+</div>
+<div class="wiz" id="buktiDlg" role="dialog" aria-modal="true" aria-labelledby="buktiT">
+  <div class="box">
+    <div class="hd"><h2 id="buktiT"><span aria-hidden="true">📤</span> Kirim Bukti Ujian Teori</h2><button class="x" id="buktiX" aria-label="Tutup">✕</button></div>
+    <div class="bd">
+      <p style="margin:0 0 10px">Sudah ikut <b>ujian teori SIM</b> di lokasi SIM Komunitas? Kirim screenshot hasilnya, <b>lulus maupun belum lulus</b>, supaya petugas bisa langsung mencocokkan data Anda.</p>
+      <p class="small" id="buktiLok" style="margin:0 0 10px" hidden></p>
+      <ol class="small" style="margin:0 0 14px;padding-left:20px">
+        <li>Tekan <b>Kirim Bukti Sekarang</b>.</li>
+        <li>Tulis nomor WhatsApp yang dipakai saat mendaftar.</li>
+        <li>Pilih screenshot hasil ujian teori, tekan <b>Kirim</b>, lalu tunjukkan layar hijau ke petugas.</li>
+      </ol>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn kom-bukti" id="buktiKirim" href="https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=SIMLING" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex">📤 Kirim Bukti Sekarang</a>
+        <button class="btn ghost" type="button" id="buktiNanti">Nanti saja</button>
+      </div>
+      <p class="small muted" style="margin:12px 0 0">Belum ujian? Pelajari dulu tahapan ujian teori di <a href="#b5-1" data-go="b5-1">B.12</a>.</p>
+    </div>
   </div>
 </div>
 <div class="wiz" id="wiz" role="dialog" aria-modal="true" aria-labelledby="wizT">
@@ -2732,9 +2751,9 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
       <h4 style="margin:0 0 8px">⚡ Intisari: SIM Komunitas</h4>
       <ul class="clean small">
         <li>Layanan SIM <b>didatangkan ke masyarakat</b>: pesantren, kampus, sekolah, dan desa.</li>
-        <li>Pelaksanaan <b>30 Oktober – 8 November 2026</b>, selama Operasi Patuh Semeru 2026.</li>
+        <li>Tahap 1 (30 Oktober – 8 November 2026) sudah selesai. Tahap berikutnya: <b>klaster sekolah</b>, tanggal menyusul.</li>
         <li>Semua tahap di lokasi: registrasi, kesehatan &amp; psikologi, ujian teori, ujian praktik, sampai cetak SIM.</li>
-        <li id="komIntiLok">Lokasi: <b>BBPVP Muncar</b> (Selasa, 3 Nov 2026) dan <b>UNIBA</b> (Kamis, 5 Nov 2026).</li>
+        <li id="komIntiLok">Lokasi: <b>SMAN 1 Giri Banyuwangi</b> dan <b>SMK 17 Genteng</b> (tanggal menyusul).</li>
         <li>Sudah ikut ujian teori, <b>lulus maupun belum</b>? <a class="kom-bukti" href="https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=SIMLING" target="_blank" rel="noopener">Kirim bukti ujian teori</a>.</li>
       </ul>
     </div>
@@ -2752,13 +2771,18 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     </div>
 
     <h3>Waktu pelaksanaan</h3>
-    <div class="note"><b>30 Oktober s.d. 8 November 2026</b><br>Selama Operasi Patuh Semeru 2026. Lokasi dan tanggal layanan diumumkan oleh petugas.</div>
+    <div class="note"><b>Tahap 1: 30 Oktober s.d. 8 November 2026 (selesai)</b><br>Selama Operasi Patuh Semeru 2026 di BBPVP Muncar dan UNIBA. Tahap berikutnya menyasar <b>sekolah</b>; tanggal layanan diumumkan oleh petugas.</div>
 
     <h3>Jadwal lokasi</h3>
     <!-- Tiap lokasi otomatis hilang dari halaman setelah jam data-selesai (WIB) pada tanggalnya. Lokasi baru: salin satu kartu. -->
     <div class="grid g2" id="komJadwal">
       <div class="card" data-tgl="2026-11-03" data-selesai="15:00" data-lok="BBPVP-MUNCAR" data-nama="BBPVP Muncar" data-hari="Selasa, 3 Nov 2026"><h4>🏘️ BBPVP Muncar <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Selasa, 3 November 2026</b><br>Masyarakat desa wilayah Kec. Muncar</p></div>
       <div class="card" data-tgl="2026-11-05" data-selesai="15:00" data-lok="UNIBA" data-nama="UNIBA" data-hari="Kamis, 5 Nov 2026"><h4>🎓 UNIBA <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Kamis, 5 November 2026</b><br>Universitas PGRI Banyuwangi</p></div>
+    </div>
+    <!-- (lanjutan) Kartu tanpa data-tgl = tanggal belum diumumkan: tampil sebagai "Tanggal menyusul". -->
+    <div class="grid g2" id="komJadwalSekolah">
+      <div class="card" data-tgl="" data-selesai="15:00" data-lok="SMAN1-GIRI" data-nama="SMAN 1 Giri Banyuwangi" data-hari="tanggal menyusul"><h4>🏫 SMAN 1 Giri Banyuwangi <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Tanggal menyusul</b><br>Klaster sekolah · Kec. Giri</p></div>
+      <div class="card" data-tgl="" data-selesai="15:00" data-lok="SMK17-GENTENG" data-nama="SMK 17 Genteng" data-hari="tanggal menyusul"><h4>🏫 SMK 17 Genteng <span class="chip kom-st"></span></h4><p class="small" style="margin:0"><b>Tanggal menyusul</b><br>Klaster sekolah · Kec. Genteng</p></div>
     </div>
     <div class="note" id="komJadwalHabis" style="display:none"><b>Jadwal SIM Komunitas sudah selesai</b>Terima kasih atas partisipasi masyarakat. Info jadwal berikutnya: WhatsApp Satpas 0852-3390-0100.</div>
 
@@ -2789,7 +2813,7 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     // diarahkan ke QR lokasi itu. Diperiksa ulang tiap menit, jadi halaman yang sedang terbuka ikut berubah.
     (function () {
       var DASAR = 'https://satpasbwi-sim.github.io/bukusimbwi/bukti/?lok=';
-      var kartu = [].slice.call(document.querySelectorAll('#komJadwal [data-tgl]'));
+      var kartu = [].slice.call(document.querySelectorAll('#komJadwal [data-tgl], #komJadwalSekolah [data-tgl]'));
       var inti = document.getElementById('komIntiLok'), ket = document.getElementById('komLokHariIni');
       function perbarui(ms) {
         // waktu WIB sebagai teks "YYYY-MM-DDTHH:MM" agar mudah dibandingkan
@@ -2797,22 +2821,29 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
         var sisa = [], lok = null;
         kartu.forEach(function (k) {
           var t = k.getAttribute('data-tgl'), st = k.querySelector('.kom-st');
-          var selesai = wib >= t + 'T' + (k.getAttribute('data-selesai') || '23:59');
+          // tanggal kosong = jadwal belum diumumkan: tetap tampil, tidak pernah "hari ini"
+          var selesai = !!t && wib >= t + 'T' + (k.getAttribute('data-selesai') || '23:59');
           k.style.display = selesai ? 'none' : '';
-          k.classList.toggle('ok', !selesai && t === hari);
+          k.classList.toggle('ok', !selesai && !!t && t === hari);
           if (selesai) return;
           sisa.push(k);
-          if (t === hari) { lok = k; st.textContent = 'Hari ini s.d. ' + k.getAttribute('data-selesai').replace(':', '.') + ' WIB'; }
+          if (!t) st.textContent = 'Tanggal menyusul';
+          else if (t === hari) { lok = k; st.textContent = 'Hari ini s.d. ' + k.getAttribute('data-selesai').replace(':', '.') + ' WIB'; }
           else st.textContent = 'Akan datang';
         });
         // style.display, bukan atribut hidden: kelas .grid/.card/.note memasang display sendiri
-        document.getElementById('komJadwal').style.display = sisa.length ? '' : 'none';
+        ['komJadwal', 'komJadwalSekolah'].forEach(function (id) {
+          var g = document.getElementById(id);
+          g.style.display = [].some.call(g.querySelectorAll('[data-tgl]'), function (k) { return k.style.display !== 'none'; }) ? '' : 'none';
+        });
         var habis = document.getElementById('komJadwalHabis');
         habis.style.display = sisa.length ? 'none' : '';
         inti.style.display = sisa.length ? '' : 'none';
+        var menyusul = sisa.some(function (k) { return !k.getAttribute('data-tgl'); });
         inti.innerHTML = 'Lokasi: ' + sisa.map(function (k) {
-          return '<b>' + k.getAttribute('data-nama') + '</b> (' + k.getAttribute('data-hari') + ')';
-        }).join(' dan ') + '.';
+          var n = '<b>' + k.getAttribute('data-nama') + '</b>';
+          return k.getAttribute('data-tgl') ? n + ' (' + k.getAttribute('data-hari') + ')' : n;
+        }).join(' dan ') + (menyusul ? ' (tanggal menyusul)' : '') + '.';
         var url = lok ? DASAR + lok.getAttribute('data-lok') + '&tgl=' + hari : DASAR + 'SIMLING';
         document.querySelectorAll('a.kom-bukti').forEach(function (a) { a.href = url; });
         ket.textContent = lok ? 'Hari ini: ' + lok.getAttribute('data-nama') + '.' : '';
@@ -4075,6 +4106,9 @@ renderCk();
    Titik merah tampil sampai pengunjung membuka daftar ini setelah ada catatan dengan tanggal baru. */
 (function(){
   const BARU = [
+    {tgl: '2026-11-10', item: [
+      {ic: '🏫', j: 'SIM Komunitas masuk sekolah', d: 'Jadwal berikutnya: SMAN 1 Giri Banyuwangi dan SMK 17 Genteng (tanggal menyusul). Sudah ikut ujian teori? Kirim buktinya lewat pop-up di halaman ini.', go: 'b-komunitas', l: 'Buka B.19'}
+    ]},
     {tgl: '2026-11-03', item: [
       {ic: '📍', j: 'Jadwal lokasi SIM Komunitas', d: 'BBPVP Muncar (Selasa, 3 Nov) dan UNIBA (Kamis, 5 Nov). Semua peserta yang sudah ikut ujian teori, lulus maupun belum, bisa mengirim hasilnya dari halaman ini.', go: 'b-komunitas', l: 'Buka B.19'}
     ]},
@@ -4137,6 +4171,36 @@ renderCk();
   dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-go],[data-wiz],[data-paspor]')) tutup(); });
   dlg.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutup(); } });
   titik();
+})();
+
+/* ---------------- Pop-up Kirim Bukti Ujian Teori (SIM Komunitas, B.19) ----------------
+   Muncul sekali per kunjungan saat membuka B.19, dan sekali per hari di halaman mana pun bila hari itu ada
+   lokasi SIM Komunitas yang sedang berlangsung (#komLokHariIni diisi skrip jadwal B.19). Tombol kirim memakai
+   kelas .kom-bukti, jadi otomatis mengarah ke QR lokasi hari itu. Tombol lain dengan [data-bukti-pop] juga membukanya. */
+(function(){
+  const dlg = $('#buktiDlg'); if (!dlg) return;
+  let from = null;
+  function buka(){
+    if (dlg.classList.contains('on') || document.querySelector('.wiz.on, .sdlg.on, .lb.on')) return;
+    from = document.activeElement;
+    const ket = $('#komLokHariIni'), lok = $('#buktiLok');
+    lok.hidden = !ket || ket.hidden;
+    if (!lok.hidden) lok.textContent = '📍 ' + ket.textContent;
+    dlg.classList.add('on'); $('#buktiKirim').focus();
+  }
+  function tutup(){ dlg.classList.remove('on'); if (from && from.focus) from.focus(); }
+  $('#buktiX').onclick = tutup;
+  $('#buktiNanti').onclick = tutup;
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('#buktiKirim,[data-go]')) tutup(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); tutup(); } });
+  document.addEventListener('click', e => { if (e.target.closest('[data-bukti-pop]')) { e.preventDefault(); buka(); } });
+  const sekali = k => { try { if (sessionStorage.getItem(k)) return false; sessionStorage.setItem(k, '1'); } catch(e){} return true; };
+  pageHooks.push(p => { if (p.dataset.id === 'b-komunitas' && sekali('bukti-pop')) setTimeout(buka, 1200); });
+  const ket = $('#komLokHariIni'), hari = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
+  if (ket && !ket.hidden && store.get('bukti-pop-hari', '') !== hari) {
+    store.set('bukti-pop-hari', hari);
+    if (sekali('bukti-pop')) setTimeout(buka, 1500);
+  }
 })();
 
 /* ---------------- Pengingat masa berlaku ke kalender (D.4 & wizard) ---------------- */
