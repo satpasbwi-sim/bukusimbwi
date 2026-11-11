@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="versi-buku" content="202611120000">
+<meta name="versi-buku" content="202611120100">
 <!-- Pengaman: halaman hanya boleh memuat/mengirim data ke sumber yang tercantum di sini -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://satpasbwi.goatcounter.com; connect-src 'self' https://satpasbwi.goatcounter.com https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com; media-src 'self' data: blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Buku Digital SIM Banyuwangi</title>
@@ -344,7 +344,6 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .cover .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5}
 .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,23,61,.92) 0%,rgba(6,23,61,.7) 45%,rgba(6,23,61,.92) 100%);z-index:1}
 .cover .ct{position:relative;z-index:2;padding:34px clamp(18px,5vw,48px) 30px}
-.cover .tag{display:block;width:fit-content;max-width:100%;margin:0 auto;background:var(--accent);color:#1d1600;font-weight:800;font-size:clamp(.78rem,3.4vw,.92rem);line-height:1.2;padding:8px clamp(18px,7vw,40px);border-radius:99px;letter-spacing:.14em;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .cover h2{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.08;margin:14px 0 8px;letter-spacing:-.02em}
 .cover h2 em{font-style:normal;color:var(--accent)}
 /* sapaan waktu + status buka/tutup Satpas di sampul */
@@ -407,7 +406,7 @@ blockquote.maklumat::before{content:"\201C";display:block;font-size:3.6em;line-h
 .covlogo{display:block;width:100px;height:auto;margin:0 auto 14px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
 @media (min-width:900px){.covlogo{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);width:250px;margin:0}}
 @media print{.covlogo{filter:none}}
-@media (min-width:900px){.cover .ct{padding-right:330px}.cover .sapa{margin-right:calc(clamp(18px,5vw,48px) - 330px)}.cover .tag{position:relative;left:calc((330px - clamp(18px,5vw,48px)) / 2)}}  /* sapaan & label tetap di tengah sampul walau kolom kanan dipakai logo */
+@media (min-width:900px){.cover .ct{padding-right:330px}.cover .sapa{margin-right:calc(clamp(18px,5vw,48px) - 330px)}}  /* sapaan & label tetap di tengah sampul walau kolom kanan dipakai logo */
 @media (max-width:640px){.cfeat{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.cfeat div{padding:6px 6px;text-align:center}.cfeat span{font-size:.62rem}.g4{grid-template-columns:repeat(2,1fr)}.g4 .stat b{font-size:1.25rem}.g4 .card{padding:12px 10px}}
 
 /* halaman inovasi */
@@ -1118,7 +1117,6 @@ mark.hl{background:#ffe066;color:#1b1400;border-radius:3px;padding:0 2px}
     <div class="ct">
       <img class="covlogo" src="img/logo-buku-sim.webp" fetchpriority="high" alt="Logo Buku Digital Interaktif Layanan SIM Satpas Polresta Banyuwangi" width="520" height="520">
       <p class="sapa" id="sapa" aria-live="polite"><span id="sapaT">Selamat datang, Dulur Banyuwangi</span><small id="sapaK">Tetap tertib berlalu lintas</small><a href="#C.2" data-go="c1-1" class="sapa-st" id="sapaSt" hidden></a></p>
-      <span class="tag">BUKU DIGITAL INTERAKTIF</span>
       <h2>Layanan Penerbitan <em>SIM</em><br>Satpas Polresta Banyuwangi</h2>
       <p>Panduan lengkap persyaratan, prosedur, tarif resmi, hak pemohon, inovasi layanan, dan dasar hukum penerbitan Surat Izin Mengemudi.</p>
       <button type="button" class="wizcta noprint" data-wiz><span class="ic" aria-hidden="true">🧭</span><span><b>SIM apa yang saya butuhkan?</b><small>Jawab beberapa pertanyaan singkat, langsung tahu syarat, biaya & tempatnya</small></span><span aria-hidden="true">→</span></button>
