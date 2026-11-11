@@ -4,10 +4,11 @@
    - Gambar & font: pakai salinan tersimpan agar cepat, sambil diperbarui di latar belakang.
    - Layanan lain (survei IKM, jadwal SIM Keliling, statistik) tidak disentuh.
    Naikkan VERSI bila daftar INTI berubah. */
-const VERSI = 'buku-sim-v3';
+const VERSI = 'buku-sim-v4';
 const INTI = [
   './',
   'manifest.webmanifest',
+  'img/logo-buku-sim.webp',
   'img/logo-lantas-baru.webp',
   'img/sampul-latar.webp',
   'img/ikon-v2-192.png'

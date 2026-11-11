@@ -50,7 +50,7 @@ jobs:
             echo "- **$nama** — HTTP \`$kode\`${pola:+, teks \`$pola\` tidak ditemukan} — $url" >> "$gagal"
           }
           cek 'Halaman utama buku'          "$SITUS"                             'data-id="penutup"'
-          cek 'Logo sampul'                 "${SITUS}img/logo-lantas-baru.webp"  ''
+          cek 'Logo sampul'                 "${SITUS}img/logo-buku-sim.webp"     ''
           cek 'Latar sampul'                "${SITUS}img/sampul-latar.webp"      ''
           cek 'Service worker (offline)'    "${SITUS}sw.js"                      'VERSI'
           cek 'Manifest aplikasi'           "${SITUS}manifest.webmanifest"       ''
